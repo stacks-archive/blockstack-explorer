@@ -1,3 +1,4 @@
+# Insight UI Documentation
 
 ### Quick Start
 
@@ -18,7 +19,7 @@ bitcore-node start
 
 Open a web browser to `http://localhost:3001/insight/`
 
-## Development
+### Development
 
 To run Insight UI locally in development mode:
 
@@ -40,7 +41,7 @@ There is a convenient Gruntfile.js for automation during editing the code
 $ grunt
 ```
 
-## Multilanguage support
+### Multilanguage support
 
 Insight UI uses [angular-gettext](http://angular-gettext.rocketeer.be) for multilanguage support.
 
@@ -64,17 +65,16 @@ This line will take a look at any *.po files inside ***po/*** folder, e.g.
 **po/es.po**, **po/nl.po**. After any change do not forget to run ***grunt
 compile***.
 
-
-## Note
+### Notes
 
 For more details about the [Insight API](https://github.com/bitpay/insight-api) configuration and end-points, go to [Insight API GitHub repository](https://github.com/bitpay/insight-api).
 
-## Contribute
+### Contributions
 
 Contributions and suggestions are welcomed at the [Insight UI GitHub repository](https://github.com/bitpay/insight).
 
+### License
 
-## License
 (The MIT License)
 
 Permission is hereby granted, free of charge, to any person obtaining

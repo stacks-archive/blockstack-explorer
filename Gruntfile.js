@@ -1,11 +1,14 @@
 'use strict';
 
+var bitcoreNodeDir = '../mynode';
+
 module.exports = function(grunt) {
 
   //Load NPM tasks
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-css');
   grunt.loadNpmTasks('grunt-markdown');
   grunt.loadNpmTasks('grunt-macreload');
@@ -110,6 +113,14 @@ module.exports = function(grunt) {
           'public/src/js/translations.js': ['po/*.po']
         }
       },
+    },
+    copy: {
+      main: {
+        expand: true,
+        src: ['public/**/*'],
+        dest: bitcoreNodeDir + '/node_modules/insight-ui/',
+        filter: 'isFile'
+      }
     }
   });
 
@@ -123,7 +134,7 @@ module.exports = function(grunt) {
   grunt.registerTask('translate', ['nggettext_extract']);
 
   //Compile task (concat + minify)
-  grunt.registerTask('compile', ['nggettext_compile', 'concat', 'uglify', 'cssmin']);
+  grunt.registerTask('compile', ['nggettext_compile', 'concat', 'uglify', 'cssmin', 'copy']);
 
 
 };

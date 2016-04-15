@@ -19,6 +19,10 @@ angular.module('insight').config(function($routeProvider) {
       templateUrl: 'views/transaction.html',
       title: 'Bitcoin Transaction '
     }).
+    when('/name/:domainName', {
+      controller: 'NamesController',
+      templateUrl: 'views/name.html'
+    }).
     when('/', {
       templateUrl: 'views/index.html',
       title: 'Home'

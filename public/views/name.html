@@ -1,0 +1,31 @@
+<div data-ng-include src="'views/includes/connection.html'"></div>
+<section data-ng-controller="NamesController" data-ng-init="findThis()">
+  <div class="secondary_navbar hidden-xs hidden-sm" scroll data-ng-class="{'hidden': !secondaryNavbar}" data-ng-show="nameRecord.domainName" data-ng-init="hideSNavbar=0">
+    <div class="container" data-ng-if="!hideSNavbar">
+      <div class="col-md-6 col-lg-7 text-left">
+          <h3 translate>Name</h3>
+          <div class="ellipsis"> 
+            <small>{{nameRecord.domainName}}</small> 
+            <span class="btn-copy" clip-copy="nameRecord.domainName"></span>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h2 translate>Owner Address</h2>
+    <div class="block-tx" data-ng-if="nameRecord.ownerAddress">
+      <div class="row line-mid">
+        {{nameRecord.ownerAddress}}
+      </div>
+    </div>
+  </div>
+  <div>
+    <h2 translate>Data</h2>
+    <div class="block-tx" data-ng-if="nameRecord.dataRecord">
+      <div class="row line-mid">
+        {{nameRecord.dataRecord}}
+      </div>
+    </div>
+  </div>
+</section>
+

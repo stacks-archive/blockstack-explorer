@@ -37,7 +37,7 @@
   </div>
   <div data-ng-if="block.hash">
     <div class="well well-sm ellipsis">
-      <strong>BlockHash</strong> 
+      <strong>BlockHash</strong>
       <span class="txid text-muted">{{block.hash}}</span>
       <span class="btn-copy" clip-copy="block.hash"></span>
     </div>
@@ -60,7 +60,7 @@
           <tr>
             <td><strong translate>Block Reward</strong></td>
             <td class="text-right text-muted">{{$root.currency.getConvertion(block.reward) || block.reward + ' BTC'}}</td>
-          </tr> 
+          </tr>
           <tr>
             <td><strong translate>Timestamp</strong></td>
             <td class="text-right text-muted">{{block.time * 1000 | date:'medium'}}</td>
@@ -110,6 +110,10 @@
             <td> <strong>Nonce</strong></td>
             <td class="text-right text-muted">{{block.nonce}}</td>
           </tr>
+          <tr data-ng-if="block.height" data-ng-controller="NameopsController" data-ng-init="loadBlock(block.height)">
+            <td> <strong translate>Number of Name Operations</strong></td>
+            <td class="text-right"><a href="nameops/{{block.height}}"><span data-ng-show="nameops">{{nameops.length}}</span><span data-ng-hide="nameops">Loading...</span></a></td>
+          </tr>
           <tr data-ng-show="block.nextblockhash">
             <td><strong translate>Next Block</strong></td>
             <td class="text-right"><a href="block/{{block.nextblockhash}}">{{block.height+1}}</a></td>
@@ -125,4 +129,3 @@
   </div>
 
 </section>
-

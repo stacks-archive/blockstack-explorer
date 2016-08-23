@@ -23,6 +23,10 @@ angular.module('insight').config(function($routeProvider) {
       controller: 'NamesController',
       templateUrl: 'views/name.html'
     }).
+    when('/nameops/:blockHeight', {
+      controller: 'NameopsController',
+      templateUrl: 'views/nameops.html'
+    }).
     when('/', {
       templateUrl: 'views/index.html',
       title: 'Home'

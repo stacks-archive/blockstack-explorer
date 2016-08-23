@@ -3,7 +3,7 @@
 angular.module('insight.names')
   .factory('Name',
     function($resource) {
-    return $resource('https://api.onename.com/v1/users/:domainName', {
+      return $resource('http://localhost:5000/get_name_blockchain_record/:domainName', {
       domainName: '@domainName'
     }, {
       get: {

@@ -9,7 +9,7 @@ function($scope, $rootScope, $routeParams, $location, Global, Name) {
     $scope.loading = true;
 
     if (domainName.indexOf('.') > -1) {
-      domainName = domainName.split('.')[0];
+//      domainName = domainName.split('.')[0];
     } else {
       $rootScope.flashMessage = 'Invalid Name';
       $location.path('/');
@@ -18,10 +18,10 @@ function($scope, $rootScope, $routeParams, $location, Global, Name) {
     Name.get({
       domainName: domainName
     }, function(response) {
-      var nameRecord = response[domainName];
-      nameRecord.dataRecord = nameRecord.profile;
+      var nameRecord = response;
+      nameRecord.dataRecord = "";
       nameRecord.domainName = domainName;
-      nameRecord.ownerAddress = nameRecord.owner_address;
+      nameRecord.ownerAddress = nameRecord.address;
 
       $scope.loading = false;
       $rootScope.titleDetail = nameRecord.domainName;

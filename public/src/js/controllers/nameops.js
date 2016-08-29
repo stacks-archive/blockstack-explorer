@@ -68,12 +68,22 @@ function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, Bl
   };
 
   $scope.findThis = function() {
-    $scope.blockHeight = 111
     _loadBlock($routeParams.blockHeight);
   };
 
   $scope.loadBlock = function(blockHeight) {
-    _loadBlock(blockHeight);
+    Nameops.get({
+      blockHeight: blockHeight
+    }, function(response) {
+      var nameops = response;
+      $scope.nameops = nameops.nameops;
+    }, function(e) {
+      console.log(e);
+
+      $rootScope.flashMessage = 'Backend Error';
+
+      $location.path('/');
+    });
   };
 
 });

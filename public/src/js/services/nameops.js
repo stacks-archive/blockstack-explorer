@@ -11,7 +11,7 @@ angular.module('insight.nameops')
         interceptor: {
           response: function (res) {
 
-            var result = res.data
+            var result = res.data;
             result.stats = {
               name_preorders: 0,
               name_registrations: 0,

@@ -25,7 +25,7 @@ angular.module('insight').config(function($routeProvider) {
     }).
     when('/nameops/:blockHeight', {
       controller: 'NameopsController',
-      templateUrl: 'views/nameops.html'
+      templateUrl: 'views/nameops_block.html'
     }).
     when('/', {
       templateUrl: 'views/index.html',

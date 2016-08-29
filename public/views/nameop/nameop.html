@@ -1,0 +1,34 @@
+<div class="row" data-ng-hide="!nameop">
+  <div class="col-xs-9 col-lg-9">
+    <div class="ellipsis">
+      <a class="btn-expand" title="Show/Hide items details" data-ng-click="itemsExpanded = !itemsExpanded">
+        <span class="glyphicon glyphicon-plus-sign" data-ng-class="{'glyphicon-minus-sign': itemsExpanded}"></span>
+      </a>
+
+      <a href="tx/{{nameop.txid}}" class="txvalues txvalues-default">#{{nameop.vtxindex}}</a>
+      <a href="tx/{{nameop.txid}}" class="txvalues txvalues-default">{{nameop.opcode}}</a>
+      <span data-ng-show="nameop.name" class="txvalues txvalues-default"><a data-ng-href="name/{{nameop.name}}">{{nameop.name}}</a></span>
+      <span data-ng-show="nameop.namespace_id" class="txvalues txvalues-default"><a data-ng-href="namespace/{{nameop.namespace_id}}">{{nameop.namespace_id}}</a></span>
+      <a class="txvalues txvalues-default" href="address/{{nameop.address}}">{{nameop.address}}</a>
+
+
+    </div>
+  </div>
+  <div class="col-xs-3 col-lg-3 text-right">
+    <span data-ng-show="!isNaN(parseFloat(nameop.op_fee))"
+      class="txvalues txvalues-default"><span translate>Op Fee</span>: {{$root.currency.getConvertion((nameop.op_fee | satoshisToBtc))}} </span>
+  </div>
+</div>
+
+<div class="row" data-ng-hide="!itemsExpanded">
+  <div class="well">
+    <dl class="dl-horizontal" ng-repeat="(key, value) in nameop">
+      <dt>
+        {{key}}
+      </dt>
+      <dd>
+        <code>{{value}}</code>
+      </dd>
+    </div>
+  </div>
+</div>

@@ -17,7 +17,7 @@ function($scope, $rootScope, $routeParams, $location, Global, NodeInfo) {
       $rootScope.flashMessage = 'Backend Error';
 
       $location.path('/');
-    })
+    });
   };
 
 });

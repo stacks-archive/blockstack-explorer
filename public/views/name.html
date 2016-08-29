@@ -5,7 +5,7 @@
       <div class="col-md-6 col-lg-7 text-left">
           <h3 translate>Name</h3>
           <div class="ellipsis">
-            <small>{{nameRecord}}</small> 
+            <small>{{nameRecord}}</small>
             <span class="btn-copy" clip-copy="nameRecord.domainName"></span>
           </div>
       </div>
@@ -21,9 +21,12 @@
   </div>
   <div>
     <h2 translate>Data</h2>
-    <div class="block-tx" data-ng-if="nameRecord.dataRecord">
+    <div class="block-tx" data-ng-if="nameRecord">
       <div class="row line-mid">
-        {{nameRecord.dataRecord}}
+
+        <div class="row" ng-repeat="(key, value) in nameRecord">
+        <span>{{key}}: </span><span>{{value}}</span>
+      </div>
       </div>
     </div>
   </div>

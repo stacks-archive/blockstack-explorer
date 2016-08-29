@@ -16,6 +16,7 @@ angular.module('insight',[
   'insight.system',
   'insight.socket',
   'insight.blocks',
+  'insight.getinfo',
   'insight.names',
   'insight.nameops',
   'insight.transactions',
@@ -30,6 +31,7 @@ angular.module('insight',[
 angular.module('insight.system', []);
 angular.module('insight.socket', []);
 angular.module('insight.blocks', []);
+angular.module('insight.getinfo',[]);
 angular.module('insight.names', []);
 angular.module('insight.nameops', []);
 angular.module('insight.transactions', []);

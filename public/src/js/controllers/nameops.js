@@ -72,11 +72,29 @@ function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, Bl
   };
 
   $scope.loadBlock = function(blockHeight) {
-    Nameops.get({
-      blockHeight: blockHeight
-    }, function(response) {
-      var nameops = response;
-      $scope.nameops = nameops.nameops;
+    $scope.loadingNameops = true;
+    $scope.unprocessedBlock = false;
+    NodeInfo.get({}, function(response) {
+      $scope.nodeInfo = response;
+      if(blockHeight <= response.last_block) {
+        $scope.unprocessedBlock = false;
+        Nameops.get({
+          blockHeight: blockHeight
+        }, function(response) {
+          $scope.nameops = response.nameops;
+
+        }, function(e) {
+          console.log(e);
+
+          $rootScope.flashMessage = 'Backend Error';
+
+          $location.path('/');
+        });
+      } else {
+        $scope.unprocessedBlock = true;
+      }
+      $scope.loadingNameops = false;
+
     }, function(e) {
       console.log(e);
 
@@ -84,6 +102,7 @@ function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, Bl
 
       $location.path('/');
     });
+
   };
 
 });

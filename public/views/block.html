@@ -112,7 +112,10 @@
           </tr>
           <tr data-ng-if="block.height" data-ng-controller="NameopsController" data-ng-init="loadBlock(block.height)">
             <td> <strong translate>Number of Name Operations</strong></td>
-            <td class="text-right"><a href="nameops/{{block.height}}"><span data-ng-show="nameops">{{nameops.length}}</span><span data-ng-hide="nameops">Loading...</span></a></td>
+            <td class="text-right"><a data-ng-show="nameops" href="nameops/{{block.height}}">{{nameops.length}}</a>
+              <span data-ng-show="loadingNameops" class="loader-gif"></span>
+              <abbr data-ng-cloak title="Blockstack Core only processes Bitcoin blocks with 6 or more confirmations." data-ng-show="unprocessedBlock" data-ng-cloak>Unprocessed Block</abbr>
+            </td>
           </tr>
           <tr data-ng-show="block.nextblockhash">
             <td><strong translate>Next Block</strong></td>

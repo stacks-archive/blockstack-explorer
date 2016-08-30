@@ -2,23 +2,39 @@
 
 var TRANSACTION_DISPLAYED = 10;
 var BLOCKS_DISPLAYED = 5;
+var BLOCKSTACK_CONFIRMATIONS_REQUIRED = 6;
 
 angular.module('insight.system').controller('IndexController',
-  function($scope, Global, getSocket, Blocks) {
+  function($scope, $rootScope, Global, getSocket, Blocks, NodeInfo) {
     $scope.global = Global;
+
+    var _getBlockstackNodeInfo = function() {
+      NodeInfo.get({}, function(response) {
+        $scope.blockstackNodeInfo = response;
+        _getBlocks();
+        _startSocket();
+      }, function(e) {
+        console.log(e);
+
+        $rootScope.flashMessage = 'Backend Error';
+
+        $location.path('/');
+      });
+    };
 
     var _getBlocks = function() {
       Blocks.get({
-        limit: BLOCKS_DISPLAYED
+        limit: (BLOCKS_DISPLAYED + BLOCKSTACK_CONFIRMATIONS_REQUIRED)
       }, function(res) {
-        $scope.blocks = res.blocks;
-        $scope.blocksLength = res.length;
+
+        $scope.blocks = res.blocks.slice(BLOCKSTACK_CONFIRMATIONS_REQUIRED, res.blocks.length);
+        $scope.blocksLength = $scope.blocks.length;
       });
     };
 
     var socket = getSocket($scope);
 
-    var _startSocket = function() { 
+    var _startSocket = function() {
       socket.emit('subscribe', 'inv');
       socket.on('tx', function(tx) {
         $scope.txs.unshift(tx);
@@ -44,8 +60,7 @@ angular.module('insight.system').controller('IndexController',
     };
 
     $scope.index = function() {
-      _getBlocks();
-      _startSocket();
+      _getBlockstackNodeInfo();
     };
 
     $scope.txs = [];

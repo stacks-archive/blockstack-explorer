@@ -1,32 +1,103 @@
 <div data-ng-include src="'views/includes/connection.html'"></div>
 <section data-ng-controller="NamesController" data-ng-init="findThis()">
-  <div class="secondary_navbar hidden-xs hidden-sm" scroll data-ng-class="{'hidden': !secondaryNavbar}" data-ng-show="nameRecord.domainName" data-ng-init="hideSNavbar=0">
+  <div class="secondary_navbar hidden-xs hidden-sm" scroll data-ng-class="{'hidden': !secondaryNavbar}" data-ng-show="nameRecord" data-ng-init="hideSNavbar=0">
     <div class="container" data-ng-if="!hideSNavbar">
-      <div class="col-md-6 col-lg-7 text-left">
-          <h3 translate>Name</h3>
-          <div class="ellipsis">
-            <small>{{nameRecord}}</small>
-            <span class="btn-copy" clip-copy="nameRecord.domainName"></span>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <h2 translate>Owner Address</h2>
-    <div class="block-tx" data-ng-if="nameRecord.ownerAddress">
-      <div class="row line-mid">
-        {{nameRecord.ownerAddress}}
-      </div>
-    </div>
-  </div>
-  <div>
-    <h2 translate>Data</h2>
-    <div class="block-tx" data-ng-if="nameRecord">
-      <div class="row line-mid">
+      <div class="row">
+        <div class="col-md-1">
 
-        <div class="row" ng-repeat="(key, value) in nameRecord">
-        <span>{{key}}: </span><span>{{value}}</span>
+        </div>
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-5">
+              <h3 class="text-left">{{nameRecord.domainName}}</h3>
+            </div>
+            <p class="col-md-6 ellipsis text-left">
+                <strong>Owner</strong> <a href="address/{{nameRecord.address}}">{{nameRecord.address}}</a>
+            </p>
+            <div class="col-md-1 text-left">
+                <span class="btn-copy" clip-copy="nameRecord.address"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1">
+        </div>
       </div>
+    </div> <!-- END OF CONTAINER -->
+    <div class="hide_snavbar">
+      <a href="#" data-ng-click="hideSNavbar=!hideSNavbar">
+        <span data-ng-show="hideSNavbar"><span class="text-muted glyphicon glyphicon-chevron-down"></span></span>
+        <span data-ng-show="!hideSNavbar"><span class="text-muted glyphicon glyphicon-chevron-up"></span></span>
+      </a>
+    </div>
+  </div>
+  <h1>{{nameRecord.domainName}}</h1>
+  <div class="text-muted" data-ng-if="!nameRecord">
+    <span translate>Loading name record</span>  <span class="loader-gif"></span>
+  </div>
+  <div data-ng-if="nameRecord">
+    <div class="well well-sm ellipsis">
+      <strong>Owner</strong>
+      <span class="txid text-muted"><a href="address/{{nameRecord.address}}">{{nameRecord.address}}</a></span>
+      <span class="btn-copy" clip-copy="nameRecord.address"></span>
+    </div>
+    <h2 translate>Summary</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table" style="table-layout: fixed">
+          <tbody>
+          <tr>
+            <td><strong translate>Value Hash</strong></td>
+            <td class="text-right text-muted ellipsis">{{nameRecord.value_hash}}</td>
+          </tr>
+          <tr>
+            <td><strong translate>Expires</strong></td>
+            <td class="text-right text-muted">{{nameRecord.expire_block}}</td>
+          </tr>
+          <tr>
+            <td><strong translate>Last Renewed</strong></td>
+            <td class="text-right text-muted"><a href="nameops/{{nameRecord.last_renewed}}">{{nameRecord.last_renewed}}</a></td>
+            </td>
+          </tr>
+          <tr>
+            <td><strong translate>Revoked</strong></td>
+            <td class="text-right text-muted">{{nameRecord.revoked}}</td>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <table class="table">
+          <tbody>
+          <tr>
+            <td><strong translate>First Registered</strong></td>
+            <td class="text-right text-muted"><a href="nameops/{{nameRecord.first_registered}}">{{nameRecord.first_registered}}</a></td>
+          </tr>
+          <tr>
+            <td><strong translate>Preordered</strong></td>
+            <td class="text-right text-muted"><a href="nameops/{{nameRecord.preorder_block_number}}">{{nameRecord.preorder_block_number}}</a></td>
+          </tr>
+          <tr data-ng-if="nameRecord.importer_address">
+            <td> <strong translate>Importer</strong></td>
+            <td class="text-right text-muted ellipsis"><a href="address/{{nameRecord.importer_address}}">{{nameRecord.importer_address}}</a></td>
+          </tr>
+          <tr data-ng-if="nameRecord.importer">
+            <td> <strong translate>Import Txn</strong></td>
+            <td class="text-right text-muted ellipsis"><a href="tx/{{nameRecord.importer}}">{{nameRecord.importer}}</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h2 translate>History</h2>
+      <div class="alert alert-warning"
+        data-ng-show="nameRecord.history.length == 0"
+        translate>This name has no history!</div>
+      <div data-ng-if="nameRecord.history.length > 0">
+        <div data-ng-repeat="nameop in nameRecord.history">
+          <div class="block-tx" data-ng-include src="'views/nameop/nameop_history.html'"</div>
+        </div>
       </div>
     </div>
   </div>

@@ -40,6 +40,32 @@ def ping():
     except Exception as e:
         return jsonify(str(e)), 500
 
+@app.route('/get_latest_nameops/<number>', methods=['GET'])
+@crossdomain(origin='*')
+def get_latest_nameops(number):
+    try:
+        result = []
+        info = bs_client.getinfo()
+        height = int(info["last_block"])
+        # from FIRST_BLOCK_MAINNET in blockstack/lib/config.py
+        BLOCKSTACK_GENESIS_BLOCK = 373601;
+
+
+        while height >= BLOCKSTACK_GENESIS_BLOCK and len(result) < number:
+            nameops = bs_client.get_nameops_at(height)
+            print nameops
+            print height 
+            i = 0
+            while i < len(nameops) and len(result) < number:
+                result.append(nameops[i])
+                i = i + 1
+            height = height - 1
+
+
+        return jsonify(result), 200
+    except Exception as e:
+        return jsonify(str(e)), 500
+
 def runserver():
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)

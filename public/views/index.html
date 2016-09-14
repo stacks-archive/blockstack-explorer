@@ -40,8 +40,8 @@
           <a href="blocks" class="btn btn-default" translate>See all blocks</a>
         </div>
 
-        <h2 translate>Latest Transactions</h2>
-
+        <h2 translate>Latest Name Operations</h2>
+        <p>{{nameops}}</p>
         <table class="table table-hover table-striped" style="table-layout: fixed;">
           <thead>
             <tr>
@@ -50,16 +50,15 @@
             </tr>
           </thead>
           <tbody>
-          <tr data-ng-show="!txs.length"><td colspan="3" translate>Waiting for transactions...</td></tr>
-          <tr class="fader" data-ng-repeat='tx in txs'>
+          <tr data-ng-show="!nameops.length"><td colspan="3" translate>Waiting for operations...</td></tr>
+          <tr class="fader" data-ng-repeat='nameop in nameops'>
             <td>
-              <a class="ellipsis" href="tx/{{tx.txid}}">{{tx.txid}}</a>
+              <a class="ellipsis" href="tx/{{tx.txid}}">{{nameop.txid}}</a>
             </td>
             <td class="text-right"><span class="ellipsis">{{$root.currency.getConvertion(tx.valueOut) || tx.valueOut + ' BTC'}}</span></td>
           </tr>
           </tbody>
         </table>
-
       </div>
 
       <div class="col-xs-12 col-md-4 col-gray">

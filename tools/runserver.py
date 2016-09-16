@@ -54,7 +54,7 @@ def get_latest_nameops(number):
         while height >= BLOCKSTACK_GENESIS_BLOCK and len(result) < number:
             nameops = bs_client.get_nameops_at(height)
             print nameops
-            print height 
+            print height
             i = 0
             while i < len(nameops) and len(result) < number:
                 result.append(nameops[i])
@@ -68,7 +68,7 @@ def get_latest_nameops(number):
 
 def runserver():
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port,threaded=True)
 
 if __name__ == '__main__':
     runserver()

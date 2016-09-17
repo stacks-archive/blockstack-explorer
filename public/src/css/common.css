@@ -200,10 +200,12 @@ margin-left: 0;
 
 .loader-gif {
   display: inline-block;
-  width: 16px;
-  height: 11px;
-  background: transparent url(../img/loading.gif) no-repeat;
+  width: 15px;
+  height: 15px;
+  background: transparent url(../img/loading.gif) no-repeat contain;
   margin-left: 5px;
+  border-radius: 50%;
+  opacity: .7;
 }
 
 #search { color: #fff; }

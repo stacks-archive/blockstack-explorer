@@ -18,29 +18,7 @@
 		<div class="navbar navbar-default navbar-fixed-top" data-ng-include="'views/includes/header.html'" role='navigation'></div>
 		<section class="container" data-ng-view></section>
 	</div>
-	<div id="footer" role="navigation">
-    <div class="container" data-ng-controller="FooterController">
-      <div class="links m20t pull-left">
-        <span class="languages" ng-show="availableLanguages.0">
-          [
-          <a href="#"
-            ng-click="setLanguage(l.isoCode)"
-            ng-class="{'selected': defaultLanguage == l.isoCode}"
-            ng-repeat="l in availableLanguages">
-            <span ng-show="!$first"> &middot; </span> {{l.name}}
-          </a>
-          ]
-        </span>
-        &nbsp;
-        [
-        <a href="messages/verify" translate>verify message</a>
-        <span> &middot; </span>
-        <a href="tx/send" translate>broadcast transaction</a>
-        ]
-      </div>
-      <a class="m10v pull-right" target="_blank" href="https://blockstack.org"><img src="img/blockstack.svg"></a>
-    </div>
-  </div>
+	<div id="footer" role="navigation" data-ng-include="'views/includes/footer.html'"></div>
   <script language="javascript">window.apiPrefix = '/api';</script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="js/vendors.min.js"></script>

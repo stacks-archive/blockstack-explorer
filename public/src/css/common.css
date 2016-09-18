@@ -154,14 +154,6 @@ margin-left: 0;
   cursor: pointer;
 }
 
-.insight {
-  font-family: 'Raleway', sans-serif;
-  font-size: 34px;
-  font-style: italic;
-  font-weight: 700;
-  overflow: hidden;
-}
-
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
   color: #fffffe;
 }
@@ -404,25 +396,16 @@ margin-left: 0;
 #footer {
   background-color: #1a1a1a;
   color: #fff;
-  height: 51px;
+  height: 200px;
   overflow: hidden;
 }
 
-#footer a.insight {
-  font-size: 20px;
-  text-decoration: none;
-  color: #fff;
+#footer img {
+  width: 95px;
 }
-
-#footer a.insight:hover {
-  color: #fffffe;
-}
-
-#footer a.insight small { font-size: 11px; }
-.line-footer { border-top: 2px dashed #ccc; }
 
 #footer .links {
-  color: #ddd;
+  color: rgb(255,255,255,0.65);
   font-size: 10px;
 }
 

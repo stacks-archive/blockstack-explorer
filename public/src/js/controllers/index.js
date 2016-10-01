@@ -33,7 +33,7 @@ angular.module('insight.system').controller('IndexController',
 
         $scope.blocks = res.blocks.slice(BLOCKSTACK_CONFIRMATIONS_REQUIRED, res.blocks.length);
         $scope.blocksLength = $scope.blocks.length;
-        _getOperations();
+        //_getOperations();
       });
     };
 

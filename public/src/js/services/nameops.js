@@ -3,7 +3,7 @@
 angular.module('insight.nameops')
   .factory('Nameops',
     function($resource) {
-      return $resource('http://localhost:5000/get_nameops_at/:blockHeight', {
+      return $resource(window.blockstackApiPrefix + '/get_nameops_at/:blockHeight', {
       blockHeight: '@blockHeight'
     }, {
       get: {

@@ -3,7 +3,7 @@
 angular.module('insight.getinfo')
   .factory('NodeInfo',
     function($resource) {
-      return $resource('http://localhost:5000/getinfo', {
+      return $resource(window.blockstackApiPrefix + '/getinfo', {
     }, {
       get: {
         method: 'GET',

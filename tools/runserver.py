@@ -7,10 +7,19 @@ from flask import Flask, jsonify
 from flask_crossdomain import crossdomain
 
 from blockstack_client import client as bs_client
-
-bs_client.session(server_host="node.blockstack.org", server_port=6264)
+import blockstack_client
+session = bs_client.session(server_host="40.76.194.199", server_port=6264, set_global=True)
 
 app = Flask(__name__)
+
+# @app.route('/get_all_namespaces/', methods=['GET'])
+# @crossdomain(origin='*')
+# def get_all_namespaces():
+#     try:
+#         namespaces = session.get_all_namespaces()
+#         return jsonify(namespaces), 200
+#     except Exception as e:
+#         return jsonify(str(e)), 500
 
 @app.route('/get_name_blockchain_record/<fqu>', methods=['GET'])
 @crossdomain(origin='*')
@@ -21,12 +30,36 @@ def get_name_blockchain_record(fqu):
     except Exception as e:
         return jsonify(str(e)), 500
 
+@app.route('/get_name_blockchain_history/<fqu>', methods=['GET'])
+@crossdomain(origin='*')
+def get_name_blockchain_history(fqu):
+    try:
+
+        info = bs_client.getinfo()
+        height = int(info["last_block_processed"])
+        start_block = 0
+        end_block = height
+        blockchain_history = bs_client.get_name_blockchain_history(fqu, start_block, end_block)
+        return jsonify(blockchain_history), 200
+    except Exception as e:
+        return jsonify(str(e)), 500
+
+
+@app.route('/get_name_zonefile/<fqu>', methods=['GET'])
+@crossdomain(origin='*')
+def get_name_zonefile(fqu):
+    try:
+        zonefile = blockstack_client.profile.get_name_zonefile(fqu)
+        return jsonify(zonefile), 200
+    except Exception as e:
+        return jsonify(str(e)), 500
+
 @app.route('/get_nameops_at/<blocknum>', methods=['GET'])
 @crossdomain(origin='*')
 def get_nameops_at(blocknum):
     try:
         nameops = {}
-        nameops["nameops"] = bs_client.get_nameops_at(int(blocknum))
+        nameops["nameops"] = bs_client.get_records_at(int(blocknum))
         return jsonify(nameops), 200
     except Exception as e:
         return jsonify(str(e)), 500
@@ -46,7 +79,7 @@ def get_latest_nameops(number):
     try:
         result = []
         info = bs_client.getinfo()
-        height = int(info["last_block"])
+        height = int(info["last_block_processed"])
         # from FIRST_BLOCK_MAINNET in blockstack/lib/config.py
         BLOCKSTACK_GENESIS_BLOCK = 373601;
 

@@ -19,6 +19,7 @@ angular.module('insight',[
   'insight.getinfo',
   'insight.names',
   'insight.nameops',
+  'insight.zonefiles',
   'insight.transactions',
   'insight.address',
   'insight.search',
@@ -34,6 +35,7 @@ angular.module('insight.blocks', []);
 angular.module('insight.getinfo',[]);
 angular.module('insight.names', []);
 angular.module('insight.nameops', []);
+angular.module('insight.zonefiles', []);
 angular.module('insight.transactions', []);
 angular.module('insight.address', []);
 angular.module('insight.search', []);

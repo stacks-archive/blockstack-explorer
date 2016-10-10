@@ -90,6 +90,17 @@
       </div>
     </div>
     <div>
+      <h2 translate>Zone File</h2>
+      <div class="text-muted" data-ng-if="!zonefile && loading">
+        <span translate>Loading name record</span>  <span class="loader-gif"></span>
+      </div>
+      <div class="alert alert-warning"
+        data-ng-show="!zonefile && !loading"
+        translate>This name has no zone file!</div>
+      <div class="row" data-ng-if="zonefile">
+          <pre>{{ zonefile }}</pre>
+      </div>
+    <div>
       <h2 translate>History</h2>
       <div class="alert alert-warning"
         data-ng-show="nameRecord.history.length == 0"

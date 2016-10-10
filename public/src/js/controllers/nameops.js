@@ -76,7 +76,7 @@ function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, Bl
     $scope.unprocessedBlock = false;
     NodeInfo.get({}, function(response) {
       $scope.nodeInfo = response;
-      if(blockHeight <= response.last_block) {
+      if(blockHeight <= response.last_block_processed) {
         $scope.unprocessedBlock = false;
         Nameops.get({
           blockHeight: blockHeight

@@ -705,6 +705,10 @@ a.v_highlight_more {
   margin-top: 15px;
 }
 
+.name-history {
+  margin-top: 10px;
+}
+
 @media (max-width: 991px) {
   .status {
     display: none;

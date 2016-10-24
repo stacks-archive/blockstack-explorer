@@ -212,7 +212,7 @@ margin-left: 0;
 }
 
 #search::-moz-placeholder {
-  color: #BCDF7E;
+  color:  rgb(255,255,255,0.5);
   font-family: 'Raleway', sans-serif;
   font-weight: 100;
 }

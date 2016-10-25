@@ -3,6 +3,10 @@
 </div>
 <div data-ng-include src="'views/includes/connection.html'"></div>
 <section data-ng-controller="IndexController" data-ng-init="index()">
+  <div class="alert alert-info" data-ng-show="blocksTilFork">
+    <strong><ng-pluralize count="blocksTilFork" when="{'1': '1 block',
+                       'other': '{{blocksTilFork}} blocks'}"></ng-pluralize></strong> until Blockstack Core hard fork to version 0.14 at <strong>block #{{forkBlockHeight}}</strong>. <a href="https://blog.blockstack.org/blockstack-core-v0-14-0-release-aad748f46d#.1x5cwhyvp" target="_blank">Learn more...</a>
+  </div>
   <div class="container">
     <div id="home" class="row">
       <div class="col-xs-12 col-md-12">

@@ -8,6 +8,8 @@ var OPERATIONS_DISPLAYED = 10;
 /* from FIRST_BLOCK_MAINNET in blockstack/lib/config.py  */
 var BLOCKSTACK_GENESIS_BLOCK = 373601;
 
+var BLOCKSTACK_CORE_V14_FORK_BLOCK_HEIGHT = 436363;
+
 angular.module('insight.system').controller('IndexController',
   function($scope, $rootScope, Global, getSocket, Blocks, NodeInfo, Nameops) {
     $scope.global = Global;
@@ -33,6 +35,10 @@ angular.module('insight.system').controller('IndexController',
 
         $scope.blocks = res.blocks.slice(BLOCKSTACK_CONFIRMATIONS_REQUIRED, res.blocks.length);
         $scope.blocksLength = $scope.blocks.length;
+
+        $scope.blocksTilFork = BLOCKSTACK_CORE_V14_FORK_BLOCK_HEIGHT - $scope.blocks[0].height;
+        $scope.forkBlockHeight = BLOCKSTACK_CORE_V14_FORK_BLOCK_HEIGHT;
+
         //_getOperations();
       });
     };

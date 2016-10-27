@@ -59,7 +59,7 @@ def get_name_zonefile(fqu):
 def get_nameops_at(blocknum):
     try:
         nameops = {}
-        nameops["nameops"] = bs_client.get_records_at(int(blocknum))
+        nameops["nameops"] = bs_client.get_nameops_at(int(blocknum))
         return jsonify(nameops), 200
     except Exception as e:
         return jsonify(str(e)), 500

@@ -38,9 +38,9 @@
         <strong  data-ng-init="getStatus('Info')">{{'Bitcore'|translate}}</strong> {{totalBlocks || info.blocks}}
         &nbsp; &middot; &nbsp;
         <span data-ng-controller="NodeInfoController" data-ng-init="getInfo()">
-          <strong>{{'Seen'|translate}}</strong> {{nodeInfo.bitcoind_blocks}}
+          <strong>{{'Seen'|translate}}</strong> {{nodeInfo.last_block_seen}}
           &nbsp; &middot; &nbsp;
-          <strong>{{'Processed'|translate}}</strong> {{nodeInfo.last_block}}
+          <strong>{{'Processed'|translate}}</strong> {{nodeInfo.last_block_processed}}
         </span>
       </div>
     </div>

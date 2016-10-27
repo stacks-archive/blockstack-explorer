@@ -8,18 +8,18 @@ from flask_crossdomain import crossdomain
 
 from blockstack_client import client as bs_client
 import blockstack_client
-session = bs_client.session(server_host="40.76.194.199", server_port=6264, set_global=True)
+session = bs_client.session(server_host="localhost", server_port=6264, set_global=True)
 
 app = Flask(__name__)
 
-# @app.route('/get_all_namespaces/', methods=['GET'])
-# @crossdomain(origin='*')
-# def get_all_namespaces():
-#     try:
-#         namespaces = session.get_all_namespaces()
-#         return jsonify(namespaces), 200
-#     except Exception as e:
-#         return jsonify(str(e)), 500
+@app.route('/get_all_namespaces/', methods=['GET'])
+@crossdomain(origin='*')
+def get_all_namespaces():
+    try:
+        namespaces = session.get_all_namespaces()
+        return jsonify(namespaces), 200
+    except Exception as e:
+        return jsonify(str(e)), 500
 
 @app.route('/get_name_blockchain_record/<fqu>', methods=['GET'])
 @crossdomain(origin='*')
@@ -44,6 +44,14 @@ def get_name_blockchain_history(fqu):
     except Exception as e:
         return jsonify(str(e)), 500
 
+@app.route('/get_names_owned_by_address/<address>', methods=['GET'])
+@crossdomain(origin='*')
+def get_names_owned_by_address(address):
+    try:
+        names = blockstack_client.profile.get_names_owned_by_address(address)
+        return jsonify(names), 200
+    except Exception as e:
+        return jsonify(str(e)), 500
 
 @app.route('/get_name_zonefile/<fqu>', methods=['GET'])
 @crossdomain(origin='*')
@@ -98,6 +106,7 @@ def get_latest_nameops(number):
         return jsonify(result), 200
     except Exception as e:
         return jsonify(str(e)), 500
+
 
 def runserver():
     port = int(os.environ.get('PORT', 5000))

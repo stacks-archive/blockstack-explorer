@@ -73,11 +73,11 @@ def get_nameops_at(blocknum):
     except Exception as e:
         return jsonify(str(e)), 500
 
-@app.route('/get_namespace_blockchain_record/<namespace>', methods=['GET'])
+@app.route('/get_namespace_blockchain_record/<id>', methods=['GET'])
 @crossdomain(origin='*')
-def get_namespace_blockchain_record(namespace):
+def get_namespace_blockchain_record(id):
     try:
-        blockchain_record = bs_client.get_namespace_blockchain_record(namespace)
+        blockchain_record = bs_client.get_namespace_blockchain_record(id)
         return jsonify(blockchain_record), 200
     except Exception as e:
         return jsonify(str(e)), 500

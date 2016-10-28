@@ -14,9 +14,8 @@ function($scope, $rootScope, $routeParams, $location, Global, NodeInfo) {
     }, function(e) {
       console.log(e);
 
-      $rootScope.flashMessage = 'Backend Error';
+      $rootScope.flashMessage = 'Error loading Blockstack node info';
 
-      $location.path('/');
     });
   };
 

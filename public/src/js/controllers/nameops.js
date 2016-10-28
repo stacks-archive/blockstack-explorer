@@ -86,9 +86,8 @@ function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, Bl
         }, function(e) {
           console.log(e);
 
-          $rootScope.flashMessage = 'Backend Error';
+          $rootScope.flashMessage = 'Error loading name operations in block #' + blockHeight;
 
-          $location.path('/');
         });
       } else {
         $scope.unprocessedBlock = true;
@@ -98,9 +97,8 @@ function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, Bl
     }, function(e) {
       console.log(e);
 
-      $rootScope.flashMessage = 'Backend Error';
+      $rootScope.flashMessage = 'Error loading Blockstack node info';
 
-      $location.path('/');
     });
 
   };

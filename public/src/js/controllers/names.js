@@ -41,10 +41,9 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile) {
       } else if (e.status === 404) {
         $rootScope.flashMessage = 'Name Not Found'
       } else {
-        $rootScope.flashMessage = 'Backend Error';
+        $rootScope.flashMessage = 'Error loading name ' + domainName;
       }
 
-      $location.path('/');
     })
   };
 

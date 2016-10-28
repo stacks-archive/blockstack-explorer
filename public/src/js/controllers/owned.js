@@ -15,12 +15,10 @@ function($scope, $rootScope, $routeParams, $location, Global, Owned) {
       console.log(e);
 
       if(e.status === 404) {
-        $rootScope.flashMessage = 'Name Not Found'
+        $rootScope.flashMessage = 'Address Not Found'
       } else {
-        $rootScope.flashMessage = 'Backend Error';
+        $rootScope.flashMessage = 'Error loading names owned by ' + address;
       }
-
-      $location.path('/');
     });
   };
 

@@ -73,6 +73,15 @@ def get_nameops_at(blocknum):
     except Exception as e:
         return jsonify(str(e)), 500
 
+@app.route('/get_namespace_blockchain_record/<namespace>', methods=['GET'])
+@crossdomain(origin='*')
+def get_namespace_blockchain_record(namespace):
+    try:
+        blockchain_record = bs_client.get_namespace_blockchain_record(namespace)
+        return jsonify(blockchain_record), 200
+    except Exception as e:
+        return jsonify(str(e)), 500
+
 @app.route('/getinfo', methods=['GET'])
 @crossdomain(origin='*')
 def ping():

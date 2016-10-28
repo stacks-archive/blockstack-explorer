@@ -1,0 +1,78 @@
+<div data-ng-include src="'views/includes/connection.html'"></div>
+<section data-ng-controller="NamespaceController" data-ng-init="findThis()">
+  <div class="secondary_navbar hidden-xs hidden-sm" scroll data-ng-class="{'hidden': !secondaryNavbar}" data-ng-show="record" data-ng-init="hideSNavbar=0">
+    <div class="container" data-ng-if="!hideSNavbar">
+      <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-5">
+              <h3 class="text-left"><span translate>Namespace:</span> {{record.namespace_id}}</h3>
+            </div>
+            <p class="col-md-6 ellipsis text-left">
+                <strong>Registerer</strong> <a href="address/{{record.address}}">{{record.address}}</a>
+            </p>
+            <div class="col-md-1 text-left">
+                <span class="btn-copy" clip-copy="nameRecord.address"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+      </div>
+    </div> <!-- END OF CONTAINER -->
+    <div class="hide_snavbar">
+      <a href="#" data-ng-click="hideSNavbar=!hideSNavbar">
+        <span data-ng-show="hideSNavbar"><span class="text-muted glyphicon glyphicon-chevron-down"></span></span>
+        <span data-ng-show="!hideSNavbar"><span class="text-muted glyphicon glyphicon-chevron-up"></span></span>
+      </a>
+    </div>
+  </div>
+  <h1><span translate>Namespace:</span> {{record.namespace_id}}</h1>
+  <div class="text-muted" data-ng-if="!record">
+    <span translate>Loading namespace record</span>  <span class="loader-gif"></span>
+  </div>
+  <div data-ng-if="record">
+    <div class="well well-sm ellipsis">
+      <strong>Registerer</strong>
+      <span class="txid text-muted"><a href="address/{{record.address}}">{{record.address}}</a></span>
+      <span class="btn-copy" clip-copy="record.address"></span>
+    </div>
+    <h2 translate>Summary</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table" style="table-layout: fixed">
+          <tbody>
+          <tr>
+            <td><strong translate>Fee</strong></td>
+            <td class="text-right text-muted ellipsis">{{$root.currency.getConvertion((record.op_fee | satoshisToBtc))}}</td>
+          </tr>
+          <tr>
+            <td><strong translate>Ready</strong></td>
+            <td class="text-right ellipsis">
+              <span translate data-ng-show="record.ready == true" class="ready">Yes</span>
+              <span translate data-ng-show="record.ready == false" class="not-ready">No</span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <table class="table">
+          <tbody>
+          <tr>
+            <td><strong translate>Preordered</strong></td>
+            <td class="text-right text-muted"><a href="nameops/{{record.block_number}}">{{record.block_number}}</a></td>
+          </tr>
+          <tr>
+            <td data-ng-show="record.ready == true"><strong translate>Ready block</strong></td>
+            <td class="text-right text-muted"><a href="nameops/{{record.ready_block}}">{{record.ready_block}}</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

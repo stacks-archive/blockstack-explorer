@@ -31,7 +31,10 @@ angular.module('insight').config(function($routeProvider) {
       controller: 'NameopsController',
       templateUrl: 'views/nameops_block.html'
     }).
-    when('/', {
+    when('/namespace/:id', {
+      controller: 'NamespaceController',
+      templateUrl: 'views/namespace.html'
+    }).when('/', {
       templateUrl: 'views/index.html',
       title: 'Home'
     }).

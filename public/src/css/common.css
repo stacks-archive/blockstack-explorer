@@ -709,6 +709,14 @@ a.v_highlight_more {
   margin-top: 10px;
 }
 
+.ready {
+  color: green;
+}
+
+.not-ready {
+  color: red;
+};
+
 @media (max-width: 991px) {
   .status {
     display: none;

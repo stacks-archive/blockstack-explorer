@@ -12,7 +12,7 @@ session = bs_client.session(server_host="localhost", server_port=6264, set_globa
 
 app = Flask(__name__)
 
-@app.route('/get_all_namespaces/', methods=['GET'])
+@app.route('/get_all_namespaces', methods=['GET'])
 @crossdomain(origin='*')
 def get_all_namespaces():
     try:
@@ -48,8 +48,9 @@ def get_name_blockchain_history(fqu):
 @crossdomain(origin='*')
 def get_names_owned_by_address(address):
     try:
-        names = blockstack_client.profile.get_names_owned_by_address(address)
-        return jsonify(names), 200
+        reply = {}
+        reply['names'] = blockstack_client.profile.get_names_owned_by_address(address)
+        return jsonify(reply), 200
     except Exception as e:
         return jsonify(str(e)), 500
 

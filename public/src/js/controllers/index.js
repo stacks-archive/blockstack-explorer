@@ -8,7 +8,7 @@ var OPERATIONS_DISPLAYED = 10;
 /* from FIRST_BLOCK_MAINNET in blockstack/lib/config.py  */
 var BLOCKSTACK_GENESIS_BLOCK = 373601;
 
-var BLOCKSTACK_CORE_V14_FORK_BLOCK_HEIGHT = 436363;
+var BLOCKSTACK_CORE_V14_FORK_BLOCK_HEIGHT = 436650;
 
 angular.module('insight.system').controller('IndexController',
   function($scope, $rootScope, Global, getSocket, Blocks, NodeInfo, Nameops) {

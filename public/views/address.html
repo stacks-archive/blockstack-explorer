@@ -4,7 +4,6 @@
     <div class="container" data-ng-if="!hideSNavbar">
       <div class="col-md-8 text-left">
           <h3 translate>Address</h3> {{address.addrStr}}
-          <span class="btn-copy" clip-copy="address.addrStr"></span>
       </div>
       <div class="col-md-4">
         <span class="txvalues txvalues-primary"><strong translate>Final Balance</strong> {{$root.currency.getConvertion(address.balance) || address.balance + ' BTC' }}</span>
@@ -25,7 +24,6 @@
     <div class="well well-sm ellipsis">
       <strong translate>Address</strong>
       <span class="text-muted">{{address.addrStr}}</span>
-      <span class="btn-copy" clip-copy="address.addrStr"></span>
     </div>
     <h2 translate>Summary <small>confirmed</small></h2>
     <div class="row" data-ng-hide="!address.addrStr">

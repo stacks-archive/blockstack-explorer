@@ -9,7 +9,7 @@
   </div>
   <div class="container">
     <div id="home" class="row">
-      <div class="col-xs-12 col-md-12">
+      <div class="col-xs-12 col-md-8">
 
         <div id="search-form-mobile" class="visible-xs" data-ng-include src="'views/includes/search.html'"></div>
 
@@ -64,6 +64,28 @@
           </tbody>
         </table>
       -->
+      </div>
+      <div class="col-xs-12 col-md-4 col-gray"  data-ng-controller="NamespaceController"  data-ng-init="listAll()">
+          <h1 translate>Namespaces</h1>
+          <table class="table table-hover table-striped" style="table-layout: fixed;">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th class="text-right" translate>Names</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-show="!namespaces"><td colspan="3" translate>Loading namespaces...</td></tr>
+            <tr class="fader" data-ng-repeat='namespace in namespaces'>
+              <td>
+                <a href="namespace/{{namespace.id}}">{{namespace.id}}</a>
+              </td>
+              <td class="text-right">
+                <a href="names/{{namespace.id}}">{{namespace.numberOfNames}}</a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
       </div>
     </div>
   </div>

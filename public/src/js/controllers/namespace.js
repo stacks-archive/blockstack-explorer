@@ -27,8 +27,28 @@ function($scope, $rootScope, $routeParams, $location, Global, Namespace) {
     });
   };
 
+  var _loadAll = function() {
+    Namespace.all({}, function(response) {
+      var namespaces = response;
+      for (var i = 0; i < namespaces.length; i++) {
+        $scope.counter = i;
+        Namespace.getNumberOfNames({id: namespaces[i].id}, function(countResponse) {
+          namespaces[$scope.counter].numberOfNames = countResponse.count;
+        });
+      }
+      $scope.namespaces = namespaces;
+    }, function(e) {
+      console.log(e);
+        $rootScope.flashMessage = 'Error loading namespaces';
+    });
+  };
+
   $scope.findThis = function() {
-      _findNamespace($routeParams.id);
+    _findNamespace($routeParams.id);
+  };
+
+  $scope.listAll = function() {
+    _loadAll();
   };
 
 });

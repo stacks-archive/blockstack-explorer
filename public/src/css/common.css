@@ -548,8 +548,6 @@ margin-left: 0;
   margin-top: -2px;
   opacity: 0;
 }
-.btn-copy.zeroclipboard-is-hover { color: #2a6496; }
-.btn-copy.zeroclipboard-is-active .tooltip { opacity: 1; }
 
 .tx-id {
   background-color: #1a1a1a;

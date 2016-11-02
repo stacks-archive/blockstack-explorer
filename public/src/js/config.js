@@ -25,15 +25,18 @@ angular.module('insight').config(function($routeProvider) {
     }).
     when('/name/:domainName', {
       controller: 'NamesController',
-      templateUrl: 'views/name.html'
+      templateUrl: 'views/name.html',
+      title: 'Name '
     }).
     when('/nameops/:blockHeight', {
       controller: 'NameopsController',
-      templateUrl: 'views/nameops_block.html'
+      templateUrl: 'views/nameops_block.html',
+      title: 'Name Operations in Block #'
     }).
     when('/namespace/:id', {
       controller: 'NamespaceController',
-      templateUrl: 'views/namespace.html'
+      templateUrl: 'views/namespace.html',
+      title: 'Namespace '
     }).when('/', {
       templateUrl: 'views/index.html',
       title: 'Home'

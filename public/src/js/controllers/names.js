@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('insight.names').controller('NamesController',
-function($scope, $rootScope, $routeParams, $location, Global, Name) {
+function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile) {
   $scope.global = Global;
   $scope.loading = false;
 
@@ -9,7 +9,7 @@ function($scope, $rootScope, $routeParams, $location, Global, Name) {
     $scope.loading = true;
 
     if (domainName.indexOf('.') > -1) {
-      domainName = domainName.split('.')[0];
+//      domainName = domainName.split('.')[0];
     } else {
       $rootScope.flashMessage = 'Invalid Name';
       $location.path('/');
@@ -18,14 +18,21 @@ function($scope, $rootScope, $routeParams, $location, Global, Name) {
     Name.get({
       domainName: domainName
     }, function(response) {
-      var nameRecord = response[domainName];
-      nameRecord.dataRecord = nameRecord.profile;
+      var nameRecord = response;
+      nameRecord.dataRecord = "";
       nameRecord.domainName = domainName;
-      nameRecord.ownerAddress = nameRecord.owner_address;
+      nameRecord.ownerAddress = nameRecord.address;
 
-      $scope.loading = false;
       $rootScope.titleDetail = nameRecord.domainName;
       $scope.nameRecord = nameRecord;
+
+      Zonefile.get({
+        domainName: domainName
+      }, function(response) {
+        $scope.zonefile = response;
+        $scope.loading = false;
+      });
+
     }, function(e) {
       console.log(e);
 
@@ -34,10 +41,9 @@ function($scope, $rootScope, $routeParams, $location, Global, Name) {
       } else if (e.status === 404) {
         $rootScope.flashMessage = 'Name Not Found'
       } else {
-        $rootScope.flashMessage = 'Backend Error';
+        $rootScope.flashMessage = 'Error loading name ' + domainName;
       }
 
-      $location.path('/');
     })
   };
 

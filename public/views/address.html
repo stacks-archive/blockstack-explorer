@@ -4,7 +4,6 @@
     <div class="container" data-ng-if="!hideSNavbar">
       <div class="col-md-8 text-left">
           <h3 translate>Address</h3> {{address.addrStr}}
-          <span class="btn-copy" clip-copy="address.addrStr"></span>
       </div>
       <div class="col-md-4">
         <span class="txvalues txvalues-primary"><strong translate>Final Balance</strong> {{$root.currency.getConvertion(address.balance) || address.balance + ' BTC' }}</span>
@@ -23,9 +22,8 @@
   </div>
   <div data-ng-if="address.addrStr">
     <div class="well well-sm ellipsis">
-      <strong translate>Address</strong> 
+      <strong translate>Address</strong>
       <span class="text-muted">{{address.addrStr}}</span>
-      <span class="btn-copy" clip-copy="address.addrStr"></span>
     </div>
     <h2 translate>Summary <small>confirmed</small></h2>
     <div class="row" data-ng-hide="!address.addrStr">
@@ -72,9 +70,23 @@
       </table>
     </div>
   </div>
+  <h2 translate>Names owned</h2>
+  <div class="row" data-ng-if="address.addrStr" data-ng-controller="OwnedController" data-ng-init="init(address.addrStr)">
+    <div class="col-md-10">
+      <table class="table">
+        <tbody>
+        <tr ng-repeat="name in names">
+          <td style="font-size: large"><a href="/name/{{name}}">{{name}}</td>
+        </tr>
+        <tr ng-show="names.length == 0">
+          <td style="font-size: large">None</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
   <div data-ng-if="address.addrStr" data-ng-controller="transactionsController" data-ng-init="load('address')">
     <h2 translate>Transactions</h2>
     <div data-ng-include src="'views/transaction/list.html'" when-scrolled="loadMore()"></div>
   </div>
 </section>
-

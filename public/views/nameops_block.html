@@ -1,0 +1,119 @@
+<div data-ng-include src="'views/includes/connection.html'"></div>
+<section data-ng-controller="NameopsController" data-ng-init="findThis()">
+  <div class="secondary_navbar hidden-xs hidden-sm" scroll data-ng-class="{'hidden': !secondaryNavbar}" data-ng-show="block.hash" data-ng-init="hideSNavbar=0">
+    <div class="container" data-ng-if="!hideSNavbar">
+      <div class="row">
+        <div class="col-md-1">
+          <a href="nameops/{{blockHeight-1}}"><span class="lead glyphicon glyphicon-chevron-left"></span></a>
+        </div>
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-5">
+              <h3 class="text-left"><span translate>Block</span> #{{block.height}} Name Operations</h3>
+            </div>
+            <p class="col-md-6 ellipsis text-left">
+                <strong>Consensus</strong> {{nodeInfo.consensus}}
+            </p>
+            <div class="col-md-1 text-left">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <a data-ng-show="block.nextblockhash" href="nameops/{{blockHeight+1}}"><span class="lead glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+      </div>
+    </div> <!-- END OF CONTAINER -->
+    <div class="hide_snavbar">
+      <a href="#" data-ng-click="hideSNavbar=!hideSNavbar">
+        <span data-ng-show="hideSNavbar"><span class="text-muted glyphicon glyphicon-chevron-down"></span></span>
+        <span data-ng-show="!hideSNavbar"><span class="text-muted glyphicon glyphicon-chevron-up"></span></span>
+      </a>
+    </div>
+  </div>
+  <h1>Block #{{blockHeight}} <small>Name Operations</small></h1>
+  <div class="text-muted" data-ng-if="!block.hash || !nameops || !nodeInfo">
+    <span translate>Loading Block Information</span>  <span class="loader-gif"></span>
+  </div>
+  <div data-ng-if="block.hash && nameops && nodeInfo">
+    <div class="well well-sm ellipsis">
+      <strong>Consensus</strong>
+      <span class="txid text-muted">{{nodeInfo.consensus}}</span>
+    </div>
+    <h2 translate>Summary</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table" style="table-layout: fixed">
+          <tbody>
+          <tr>
+            <td><strong translate>Total Operations</strong></td>
+            <td class="text-right text-muted">{{nameops.length}}</td>
+          </tr>
+          <tr>
+            <td><strong translate>Name Preorders</strong></td>
+            <td class="text-right text-muted">{{stats.name_preorders}}</td>
+          </tr>
+          <tr>
+            <td><strong translate>Name Registrations</strong></td>
+            <td class="text-right text-muted">{{stats.name_registrations}}
+              <span class="text-success"></span>
+            </td>
+          </tr>
+          <tr>
+            <td><strong translate>Name Updates</strong></td>
+            <td class="text-right text-muted">{{stats.name_updates}}
+          </tr>
+          <tr>
+            <td><strong translate>Name Transfers</strong></td>
+            <td class="text-right text-muted">{{stats.name_transfers}}</td>
+          </tr>
+          <tr data-ng-show="block.previousblockhash">
+            <td><strong translate>Previous Block</strong></td>
+            <td class="text-right"><a href="nameops/{{block.height-1}}">{{block.height-1}}</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <table class="table">
+          <tbody>
+          <tr>
+            <td><strong translate>Timestamp</strong></td>
+            <td class="text-right text-muted">{{block.time * 1000 | date:'medium'}}</td>
+          </tr>
+          <tr>
+            <td><strong>Name Revocations</strong></td>
+            <td class="text-right text-muted">{{stats.name_revokes}}</td>
+          </tr>
+          <tr>
+            <td> <strong translate>Name Imports</strong></td>
+            <td class="text-right text-muted">{{stats.name_imports}}</td>
+          </tr>
+          <tr>
+            <td> <strong translate>Namespace Preorders</strong></td>
+            <td class="text-right text-muted">{{stats.namespace_preorders}}</td>
+          </tr>
+          <tr>
+            <td> <strong translate>Namespace Reveals</strong></td>
+            <td class="text-right text-muted">{{stats.namespace_reveals}}</td>
+          </tr>
+          <tr data-ng-show="block.nextblockhash">
+            <td><strong translate>Next Block</strong></td>
+            <td class="text-right"><a href="nameops/{{block.height+1}}">{{block.height+1}}</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h2 translate>Operations</h2>
+      <div class="alert alert-warning"
+        data-ng-show="nameops.length == 0"
+        translate>There are no name operations in this block.</div>
+      <div data-ng-if="nameops.length > 0">
+        <div data-ng-repeat="nameop in nameops">
+          <div class="block-tx" data-ng-include src="'views/nameop/nameop.html'"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

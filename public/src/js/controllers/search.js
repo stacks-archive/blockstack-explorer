@@ -23,6 +23,15 @@ angular.module('insight.search').controller('SearchController',
     $scope.badQuery = false;
     $scope.loading = true;
 
+    // Looks like a blockstack name
+    // FIXME: use proper regex 
+    var tokens = q.split(".");
+    if(tokens.length == 2 && tokens[0].length >= 1 && tokens[1].length >= 1) {
+      _resetSearch();
+      $location.path('name/' + q );
+      return;
+    }
+
     Block.get({
       blockHash: q
     }, function() {

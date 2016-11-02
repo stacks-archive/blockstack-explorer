@@ -5,7 +5,7 @@
       <div class="block-id">
         <div class="icon-block text-center">
           <span class="glyphicon glyphicon-list"></span>
-          <h3><span translate>Blocks</span> <br> 
+          <h3><span translate>Blocks</span> <br>
             <span translate>mined on:</span></h3>
         </div>
       </div>
@@ -39,6 +39,7 @@
           <tr>
             <th translate>Height</th>
             <th translate>Timestamp</th>
+            <th translate>Name Operations</th>
             <th class="text-right" translate>Transactions</th>
             <th class="text-right hidden-xs" translate>Mined by</th>
             <th class="text-right" translate>Size</th>
@@ -51,6 +52,11 @@
         <tr class="fader" data-ng-repeat='b in blocks'>
           <td><a href="block/{{b.hash}}">{{b.height}}</a></td>
           <td>{{b.time * 1000 | date:'medium'}}</td>
+          <td data-ng-if="b.height" data-ng-controller="NameopsController" data-ng-init="loadBlock(b.height)" data-ng-class="{'text-muted': unprocessedBlock}">
+          <a data-ng-show="!unprocessedBlock" href="nameops/{{b.height}}">{{nameops.length}}</a>
+          <abbr title="Blockstack Core only processes Bitcoin blocks with 6 or more confirmations." data-ng-show="unprocessedBlock" data-ng-cloak>Unprocessed</abbr>
+          <span data-ng-show="loadingNameops" class="loader-gif"></span>
+          </td>
           <td class="text-right">{{b.txlength}}</td>
           <td class="text-right hidden-xs"><a href="{{b.poolInfo.url}}" title="{{b.poolInfo.poolName}}" target="_blank" data-ng-show="b.poolInfo">{{b.poolInfo.poolName}}</a></td>
           <td class="text-right">{{b.size}}</td>
@@ -66,4 +72,3 @@
   <h2 class="text-center text-muted" data-ng-show="!blocks.length && !loading"
     translate>No blocks yet.</h2>
 </section>
-

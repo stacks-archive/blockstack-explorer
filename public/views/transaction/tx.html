@@ -5,16 +5,15 @@
         <span class="glyphicon glyphicon-plus-sign" data-ng-class="{'glyphicon-minus-sign': itemsExpanded}"></span>
       </a>
       <a href="tx/{{tx.txid}}">{{tx.txid}}</a>
-      <span class="btn-copy" clip-copy="tx.txid"></span>
     </div>
   </div>
   <div class="col-xs-5 col-md-4 text-right text-muted">
     <div data-ng-show="tx.firstSeenTs">
-      <span translate>first seen at</span> 
+      <span translate>first seen at</span>
       <time>{{tx.firstSeenTs * 1000 | date:'medium'}}</time>
     </div>
     <div data-ng-show="tx.blocktime && !tx.firstSeenTs">
-      <span translate>mined</span> 
+      <span translate>mined</span>
       <time>{{tx.time * 1000 | date:'medium'}}</time>
     </div>
   </div>
@@ -44,20 +43,20 @@
             </div>
             <div data-ng-show="vin.unconfirmedInput" class="text-danger"> <span class="glyphicon glyphicon-warning-sign"></span> (Input unconfirmed)</div>
             <div data-ng-show="vin.dbError" class="text-danger">
-              <span class="glyphicon glyphicon-warning-sign"></span> 
+              <span class="glyphicon glyphicon-warning-sign"></span>
               <span translate>Incoherence in levelDB detected:</span> {{vin.dbError}}
             </div>
-            <div data-ng-show="vin.doubleSpentTxID" class="text-danger"> 
-              <span class="glyphicon glyphicon-warning-sign"></span> 
-              <span translate>Double spent attempt detected. From tx:</span> 
+            <div data-ng-show="vin.doubleSpentTxID" class="text-danger">
+              <span class="glyphicon glyphicon-warning-sign"></span>
+              <span translate>Double spent attempt detected. From tx:</span>
               <a href="tx/{{vin.doubleSpentTxID}}">{{vin.doubleSpentTxID}},{{vin.doubleSpentIndex}}</a>
             </div>
           </div>
         </div>
         <div class="showmore_collapse text-left" data-ng-show="tx.vinSimple.length > 5" data-ng-class="{ 'hidden': itemsExpanded}">
-          <button type="button" class="btn btn-info btn-sm" ng-hide="sizeInNoExpanded != tx.vinSimple.length" ng-click="currentInNoExpanded=0; sizeInNoExpanded=5"><i class="glyphicon glyphicon-chevron-up"></i> 
+          <button type="button" class="btn btn-info btn-sm" ng-hide="sizeInNoExpanded != tx.vinSimple.length" ng-click="currentInNoExpanded=0; sizeInNoExpanded=5"><i class="glyphicon glyphicon-chevron-up"></i>
             <span translate>Show less</span></button>
-          <button type="button" class="btn btn-info btn-sm" ng-hide="currentInNoExpanded >= tx.vinSimple.length/sizeInNoExpanded - 1" ng-click="currentInNoExpanded=0; sizeInNoExpanded=tx.vinSimple.length"><i class="glyphicon glyphicon-chevron-down"></i> 
+          <button type="button" class="btn btn-info btn-sm" ng-hide="currentInNoExpanded >= tx.vinSimple.length/sizeInNoExpanded - 1" ng-click="currentInNoExpanded=0; sizeInNoExpanded=tx.vinSimple.length"><i class="glyphicon glyphicon-chevron-down"></i>
             <span translate>Show more</span></button>
         </div>
       </div>
@@ -75,17 +74,17 @@
                 <span data-ng-show="vin.notAddr">{{vin.addr}}</span>
                 <a href="address/{{vin.addr}}" data-ng-show="!vin.notAddr">{{vin.addr}}</a>
               </div>
-              <div data-ng-show="vin.unconfirmedInput" class="text-danger"> 
-                <span class="glyphicon glyphicon-warning-sign"></span> 
+              <div data-ng-show="vin.unconfirmedInput" class="text-danger">
+                <span class="glyphicon glyphicon-warning-sign"></span>
                 <span translate>(Input unconfirmed)</span>
               </div>
-              <div data-ng-show="vin.dbError" class="text-danger"> 
-                <span class="glyphicon glyphicon-warning-sign"></span> 
+              <div data-ng-show="vin.dbError" class="text-danger">
+                <span class="glyphicon glyphicon-warning-sign"></span>
                 <span translate>Incoherence in levelDB detected:</span> {{vin.dbError}}
               </div>
-              <div data-ng-show="vin.doubleSpentTxID" class="text-danger"> 
-                <span class="glyphicon glyphicon-warning-sign"></span> 
-                <span translate>Double spent attempt detected. From tx:</span> 
+              <div data-ng-show="vin.doubleSpentTxID" class="text-danger">
+                <span class="glyphicon glyphicon-warning-sign"></span>
+                <span translate>Double spent attempt detected. From tx:</span>
                 <a href="tx/{{<vin class=""></vin>doubleSpentTxID}}">{{vin.doubleSpentTxID}},{{vin.doubleSpentIndex}}</a>
               </div>
             </div> <!-- END OF PANEL BODY -->
@@ -95,7 +94,6 @@
             <p><strong>scriptSig</strong></p>
               <div data-ng-repeat="item in vin.scriptSig.asm | split:' '" class="">
                 <p class="col-md-11 ellipsis text-muted">{{item}}</p>
-                <p class="btn-copy" clip-copy="item"></p>
               </div>
           </div>
         </div>
@@ -106,9 +104,9 @@
             <span translate>Show all</span></button>
         </div>
         <div class="showmore_collapse text-left" data-ng-show="tx.vin.length > 5 && !fromVinCollapsed" data-ng-class="{ 'hidden': !itemsExpanded}">
-          <button type="button" class="btn btn-info btn-sm" ng-hide="sizeInExpanded != tx.vin.length" ng-click="currentInExpanded=0; sizeInExpanded=5"><i class="glyphicon glyphicon-chevron-up"></i> 
+          <button type="button" class="btn btn-info btn-sm" ng-hide="sizeInExpanded != tx.vin.length" ng-click="currentInExpanded=0; sizeInExpanded=5"><i class="glyphicon glyphicon-chevron-up"></i>
             <span translate>Show less</span></button>
-          <button type="button" class="btn btn-info btn-sm" ng-hide="currentInExpanded >= tx.vin.length/sizeInExpanded - 1" ng-click="currentInExpanded=0; sizeInExpanded=tx.vin.length"><i class="glyphicon glyphicon-chevron-down"></i> 
+          <button type="button" class="btn btn-info btn-sm" ng-hide="currentInExpanded >= tx.vin.length/sizeInExpanded - 1" ng-click="currentInExpanded=0; sizeInExpanded=tx.vin.length"><i class="glyphicon glyphicon-chevron-down"></i>
             <span translate>Show more</span></button>
         </div>
       </div>
@@ -144,9 +142,9 @@
           </div>
         </div>
         <div class="showmore_collapse text-left" data-ng-show="tx.voutSimple.length > 5" data-ng-class="{ 'hidden': itemsExpanded}">
-          <button type="button" class="btn btn-info btn-sm" ng-hide="sizeOutNoExpanded != tx.voutSimple.length" ng-click="currentOutNoExpanded=0; sizeOutNoExpanded=5"><i class="glyphicon glyphicon-chevron-up"></i> 
+          <button type="button" class="btn btn-info btn-sm" ng-hide="sizeOutNoExpanded != tx.voutSimple.length" ng-click="currentOutNoExpanded=0; sizeOutNoExpanded=5"><i class="glyphicon glyphicon-chevron-up"></i>
             <span translate>Show less</span></button>
-          <button type="button" class="btn btn-info btn-sm" ng-hide="currentOutNoExpanded >= tx.voutSimple.length/sizeOutNoExpanded - 1" ng-click="currentOutNoExpanded=0; sizeOutNoExpanded=tx.voutSimple.length"><i class="glyphicon glyphicon-chevron-down"></i> 
+          <button type="button" class="btn btn-info btn-sm" ng-hide="currentOutNoExpanded >= tx.voutSimple.length/sizeOutNoExpanded - 1" ng-click="currentOutNoExpanded=0; sizeOutNoExpanded=tx.voutSimple.length"><i class="glyphicon glyphicon-chevron-down"></i>
             <span translate>Show more</span></button>
         </div>
       </div>
@@ -175,7 +173,6 @@
               <div class="small">
                 <p><strong>scriptPubKey</strong></p>
                 <span class="col-md-11 text-muted ellipsis">{{vout.scriptPubKey.asm}}</span>
-                <span class="btn-copy col-md-1" clip-copy="vout.scriptPubKey.asm"></span>
               </div>
           </div>
         </div>
@@ -194,7 +191,6 @@
 
 <div class="well well-sm bgwhite ellipsis" data-ng-if="itemsExpanded && !block.hash && tx.blockhash">
   <strong translate>Included in Block</strong> <a class="text-muted" href="block/{{tx.blockhash}}">{{tx.blockhash}}</a>
-  <span class="btn-copy" clip-copy="tx.blockhash"></span>
 </div>
 
 <div class="line-top row" data-ng-hide="!tx">

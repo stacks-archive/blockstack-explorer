@@ -12,4 +12,8 @@ angular.module('insight')
       var delimiter = delimiter || ',';
       return input.split(delimiter);
     }
+  }).filter('satoshisToBtc', function() {
+    return function(input) {
+      return input / 100000000.0;
+    }
   });

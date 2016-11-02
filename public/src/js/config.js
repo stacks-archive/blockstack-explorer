@@ -19,11 +19,29 @@ angular.module('insight').config(function($routeProvider) {
       templateUrl: 'views/transaction.html',
       title: 'Bitcoin Transaction '
     }).
+    when('/names', {
+      redirectTo: 'names/id'
+    }).
+    when('/names/:namespaceId', {
+      controller: 'NamesListController',
+      templateUrl: 'views/names.html',
+      title: 'Names in .'
+    }).
     when('/name/:domainName', {
       controller: 'NamesController',
-      templateUrl: 'views/name.html'
+      templateUrl: 'views/name.html',
+      title: 'Name '
     }).
-    when('/', {
+    when('/nameops/:blockHeight', {
+      controller: 'NameopsController',
+      templateUrl: 'views/nameops_block.html',
+      title: 'Name Operations in Block #'
+    }).
+    when('/namespace/:id', {
+      controller: 'NamespaceController',
+      templateUrl: 'views/namespace.html',
+      title: 'Namespace '
+    }).when('/', {
       templateUrl: 'views/index.html',
       title: 'Home'
     }).

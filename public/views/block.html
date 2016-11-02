@@ -15,7 +15,6 @@
                 <strong>Hash</strong> {{block.hash}}
             </p>
             <div class="col-md-1 text-left">
-                <span class="btn-copy" clip-copy="block.hash"></span>
             </div>
           </div>
         </div>
@@ -37,9 +36,8 @@
   </div>
   <div data-ng-if="block.hash">
     <div class="well well-sm ellipsis">
-      <strong>BlockHash</strong> 
+      <strong>BlockHash</strong>
       <span class="txid text-muted">{{block.hash}}</span>
-      <span class="btn-copy" clip-copy="block.hash"></span>
     </div>
     <h2 translate>Summary</h2>
     <div class="row">
@@ -60,7 +58,7 @@
           <tr>
             <td><strong translate>Block Reward</strong></td>
             <td class="text-right text-muted">{{$root.currency.getConvertion(block.reward) || block.reward + ' BTC'}}</td>
-          </tr> 
+          </tr>
           <tr>
             <td><strong translate>Timestamp</strong></td>
             <td class="text-right text-muted">{{block.time * 1000 | date:'medium'}}</td>
@@ -75,7 +73,6 @@
             <td><strong>Merkle Root</strong></td>
             <td class="text-right text-muted">
               <div class="ellipsis">
-                <span class="btn-copy" clip-copy="block.merkleroot"></span>
                 <span>{{block.merkleroot}}</span>
               </div>
             </td>
@@ -110,6 +107,13 @@
             <td> <strong>Nonce</strong></td>
             <td class="text-right text-muted">{{block.nonce}}</td>
           </tr>
+          <tr data-ng-if="block.height" data-ng-controller="NameopsController" data-ng-init="loadBlock(block.height)">
+            <td> <strong translate>Number of Name Operations</strong></td>
+            <td class="text-right"><a data-ng-show="nameops" href="nameops/{{block.height}}">{{nameops.length}}</a>
+              <span data-ng-show="loadingNameops" class="loader-gif"></span>
+              <abbr data-ng-cloak title="Blockstack Core only processes Bitcoin blocks with 6 or more confirmations." data-ng-show="unprocessedBlock" data-ng-cloak>Unprocessed Block</abbr>
+            </td>
+          </tr>
           <tr data-ng-show="block.nextblockhash">
             <td><strong translate>Next Block</strong></td>
             <td class="text-right"><a href="block/{{block.nextblockhash}}">{{block.height+1}}</a></td>
@@ -125,4 +129,3 @@
   </div>
 
 </section>
-

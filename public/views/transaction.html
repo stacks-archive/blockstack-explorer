@@ -4,17 +4,16 @@
     <div class="container" data-ng-if="!hideSNavbar">
       <div class="col-md-6 col-lg-7 text-left">
           <h3 translate>Transaction</h3>
-          <div class="ellipsis"> 
-            <small>{{tx.txid}}</small> 
-            <span class="btn-copy" clip-copy="tx.txid"></span>
+          <div class="ellipsis">
+            <small>{{tx.txid}}</small>
           </div>
       </div>
       <div class="col-md-6 col-lg-5 text-right">
         <span data-ng-show="tx.confirmations" class="txvalues
-          txvalues-success">{{tx.confirmations}} 
+          txvalues-success">{{tx.confirmations}}
           <span translate>Confirmations</span>
         </span>
-        <span data-ng-show="!tx.confirmations" 
+        <span data-ng-show="!tx.confirmations"
           class="txvalues txvalues-danger" translate>Unconfirmed Transaction!</span>
         <span class="txvalues txvalues-primary">{{$root.currency.getConvertion(tx.valueOut) || tx.valueOut + ' BTC' }}</span>
       </div>
@@ -27,10 +26,10 @@
     </div>
   </div>
   <div data-ng-if="tx.txid">
-    <h1><span translate>Transaction</span> 
+    <h1><span translate>Transaction</span>
       <small data-ng-show="from_vin || from_vout">
-        <span data-ng-show="from_vin" translate>Input</span> 
-        <span data-ng-show="from_vout" translate>Output</span> 
+        <span data-ng-show="from_vin" translate>Input</span>
+        <span data-ng-show="from_vout" translate>Output</span>
         <span>{{v_index}}</span>
       </small>
     </h1>
@@ -41,9 +40,8 @@
     </div>
     <div data-ng-if="tx.txid">
       <div class="well well-sm ellipsis">
-        <strong translate>Transaction</strong> 
+        <strong translate>Transaction</strong>
         <span class="txid text-muted">{{tx.txid}}</span>
-        <span class="btn-copy" clip-copy="tx.txid"></span>
       </div>
       <h2 translate>Summary</h2>
       <table class="table" style="table-layout: fixed">
@@ -68,7 +66,7 @@
         </tr>
         <tr>
           <td><strong translate>Included in Block</strong></td>
-          <td data-ng-show="tx.blockhash" class="text-muted text-right"> 
+          <td data-ng-show="tx.blockhash" class="text-muted text-right">
             <div class="ellipsis">
               <a href="block/{{tx.blockhash}}">{{tx.blockhash}}</a>
             </div>
@@ -82,7 +80,6 @@
           <td><strong>Coinbase</strong></td>
           <td class="text-muted text-right">
             <div class="ellipsis">
-                <span class="btn-copy ng-isolate-scope" clip-copy="tx.vin[0].coinbase"></span>
                 <span class="ng-binding">{{tx.vin[0].coinbase}}</span>
             </div>
           </td>

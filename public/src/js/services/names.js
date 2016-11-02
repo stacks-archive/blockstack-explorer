@@ -2,9 +2,34 @@
 
 angular.module('insight.names')
   .factory('Name',
-    function($resource) {
-    return $resource('https://api.onename.com/v1/users/:domainName', {
+    function($resource, Global) {
+      return $resource(window.blockstackApiPrefix + '/get_name_blockchain_history/:domainName', {
       domainName: '@domainName'
+    }, {
+      get: {
+        method: 'GET',
+        interceptor: {
+          response: function (res) {
+
+            var nameops = Global.convertHistoryToArray(res.data)
+            var result = nameops[0];
+            result.history  = nameops;
+
+            return result;
+          },
+          responseError: function (res) {
+            if (res.status === 404) {
+              return res;
+            }
+          }
+        }
+      }
+    });
+  }).factory('NamesInNamespace',
+    function($resource) {
+      return $resource(window.blockstackApiPrefix + '/get_names_in_namespace/:namespaceId/:pageNum', {
+      namespaceId: '@namespaceId',
+      pageNum: '@pageNum'
     }, {
       get: {
         method: 'GET',
@@ -20,4 +45,4 @@ angular.module('insight.names')
         }
       }
     });
-  })
+  });

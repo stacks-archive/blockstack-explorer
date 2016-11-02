@@ -3,32 +3,39 @@
 </div>
 <div data-ng-include src="'views/includes/connection.html'"></div>
 <section data-ng-controller="IndexController" data-ng-init="index()">
+  <div class="alert alert-info" data-ng-show="blocksTilFork > 1">
+    <strong><ng-pluralize count="blocksTilFork" when="{'1': '1 block',
+                       'other': '{{blocksTilFork}} blocks'}"></ng-pluralize></strong> until Blockstack Core hard fork to version 0.14 at <strong>block #{{forkBlockHeight}}</strong>. <a href="https://blog.blockstack.org/blockstack-core-v0-14-0-release-aad748f46d#.1x5cwhyvp" target="_blank">Learn more...</a>
+  </div>
   <div class="container">
     <div id="home" class="row">
       <div class="col-xs-12 col-md-8">
 
         <div id="search-form-mobile" class="visible-xs" data-ng-include src="'views/includes/search.html'"></div>
 
-        <h1 translate>Latest Blocks</h1>
+        <h1 translate>Latest Processed Blocks</h1>
         <table class="table table-hover table-striped" style="table-layout: fixed">
           <thead>
             <tr>
               <th translate>Height</th>
               <th translate>Age</th>
+              <th class="text-right" translate>Name Operations</th>
               <th class="text-right"><span class="ellipsis" translate>Transactions</span></th>
-              <th class="text-right hidden-xs"><span class="ellipsis" translate>Mined by</span></th>
               <th class="text-right" translate>Size</th>
             </tr>
           </thead>
           <tbody>
-          <tr data-ng-show="!blocks.length"><td colspan="4" translate>Waiting for blocks...</td></tr>
+          <tr data-ng-show="!blocks.length"><td colspan="5" translate>Waiting for blocks...</td></tr>
           <tr class="fader" data-ng-repeat='b in blocks'>
             <td>
               <a href="block/{{b.hash}}">{{b.height}}</a>
             </td>
             <td><span class="ellipsis">{{humanSince(b.time)}}</span></td>
+            <td class="text-right" data-ng-if="b.height" data-ng-controller="NameopsController" data-ng-init="loadBlock(b.height)">
+            <a data-ng-show="!loadingNameops" href="nameops/{{b.height}}">{{nameops.length}}</a>
+            <span data-ng-show="loadingNameops" class="loader-gif"></span>
+            </td>
             <td class="text-right">{{b.txlength}}</td>
-            <td class="text-right hidden-xs"><a href="{{b.poolInfo.url}}" title="{{b.poolInfo.poolName}}" target="_blank" data-ng-show="b.poolInfo">{{b.poolInfo.poolName}}</a></td>
             <td class="text-right">{{b.size}}</td>
           </tr>
           </tbody>
@@ -36,48 +43,45 @@
         <div class="btn-more">
           <a href="blocks" class="btn btn-default" translate>See all blocks</a>
         </div>
-
-        <h2 translate>Latest Transactions</h2>
-
-        <table class="table table-hover table-striped" style="table-layout: fixed;">
-          <thead>
-            <tr>
-              <th>Hash</th>
-              <th class="text-right" translate>Value Out</th>
+      </div>
+      <div class="col-xs-12 col-md-4 col-gray"  data-ng-controller="NamespaceController"  data-ng-init="listAll()">
+          <h2 translate>Namespaces</h2>
+          <table class="table table-hover table-striped" style="table-layout: fixed;">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th class="text-right" translate>Names</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-show="!namespaces"><td colspan="2" translate>Loading namespaces...</td></tr>
+            <tr class="fader" data-ng-repeat='namespace in namespaces'>
+              <td>
+                <a href="namespace/{{namespace.id}}">{{namespace.id}}</a>
+              </td>
+              <td class="text-right">
+                <a href="names/{{namespace.id}}">{{namespace.numberOfNames}}</a>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-          <tr data-ng-show="!txs.length"><td colspan="3" translate>Waiting for transactions...</td></tr>
-          <tr class="fader" data-ng-repeat='tx in txs'>
-            <td>
-              <a class="ellipsis" href="tx/{{tx.txid}}">{{tx.txid}}</a>
-            </td>
-            <td class="text-right"><span class="ellipsis">{{$root.currency.getConvertion(tx.valueOut) || tx.valueOut + ' BTC'}}</span></td>
-          </tr>
-          </tbody>
-        </table>
-
+            </tbody>
+          </table>
+          <h2 translate>Consensus</h2>
+          <table class="table" data-ng-controller="NodeInfoController" data-ng-init="getInfo()">
+            <thead>
+              <tr>
+                <th translate>Block</th>
+                <th class="text-right" translate>Consensus Hash</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{nodeInfo.last_block_processed}}</td>
+                <td class="text-right ellipsis">{{nodeInfo.consensus}}</td>
+              </tr>
+            </tbody>
+          </table>
       </div>
 
-      <div class="col-xs-12 col-md-4 col-gray">
-        <h2 translate>About</h2>
-        <p translate>
-          <strong>blockstack explorer</strong> is an <a href="https://insight.is/"
-          target="_blank">open-source Bitcoin blockchain explorer</a> with complete REST and websocket APIs that can be used for writing web wallets and other apps that need more advanced blockchain queries than provided by bitcoind RPC. Check out the <a href="http://github.com/blockstack/blockstack-explorer" target="_blank">source code</a>.
-        </p>
-        <p translate>
-          <strong>blockstack explorer</strong> is still in development, so be sure to report any bugs and provide feedback for improvement at our <a href="https://github.com/blockstack/blockstack-explorer/issues" target="_blank">github issue tracker</a>.
-        </p>
-        <div id="powered" class="row">
-          <div class="powered-text">
-            <small class="text-muted" translate>Powered by</small>
-          </div>
-          <a href="http://bitcore.io" target="_blank" class="bitcore" title="Bitcore"></a>
-          <a href="http://angularjs.org" target="_blank" class="angularjs" title="AngularJS"></a>
-          <a href="https://code.google.com/p/leveldb/" target="_blank" class="leveldb" title="LevelDB"></a>
-          <a href="http://nodejs.org" target="_blank" class="nodejs" title="NodeJs"></a>
-        </div>
-      </div> <!-- END OF COL-3 -->
     </div>
   </div>
 </section>

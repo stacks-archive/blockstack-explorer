@@ -31,5 +31,8 @@
   </div>
   <h1 data-ng-show="numberOfNames && namespaceId"><span translate>Names:</span> <a href="namespace/{{namespaceId}}">.{{namespaceId}}</a> <span translate>namespace</span>
   <small>{{numberOfNames}} <span translate>names</span></small></h1>
+  <span data-ng-repeat="namespace in namespaces">
+    <a href="names/{{namespace.id}}" class="btn btn-primary btn-lg" data-ng-class="{active: namespace.id == namespaceId}"><span>.{{namespace.id}}</span></a>
+  </span>
   <div data-ng-include src="'views/names/list.html'" when-scrolled="loadMore()"></div>
 </section>

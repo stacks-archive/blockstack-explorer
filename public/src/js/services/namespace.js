@@ -2,7 +2,7 @@
 
 angular.module('insight.names')
   .factory('Namespace',
-    function($resource) {
+    function($resource, Global) {
       return $resource(window.blockstackApiPrefix + '/get_namespace_blockchain_record/:id', {
       id: '@id'
     }, {
@@ -10,7 +10,9 @@ angular.module('insight.names')
         method: 'GET',
         interceptor: {
           response: function (res) {
-            return res.data;
+            var result = res.data;
+            result.history =  Global.convertHistoryToArray(res.data.history);
+            return result;
           },
           responseError: function (res) {
             if (res.status === 404) {

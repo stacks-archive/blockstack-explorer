@@ -72,5 +72,16 @@
         </table>
       </div>
     </div>
+    <div>
+      <h2 translate>History</h2>
+      <div class="alert alert-warning"
+        data-ng-show="record.history.length == 0"
+        translate>This namespace has no history!</div>
+      <div data-ng-if="record.history.length > 0">
+        <div data-ng-repeat="nameop in record.history">
+          <div class="block-tx" data-ng-include src="'views/nameop/nameop_history.html'"</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

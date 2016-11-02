@@ -9,7 +9,7 @@ function($scope, $rootScope, $routeParams, $location, Global, Namespace) {
     Namespace.get({
       id: id
     }, function(response) {
-
+      $rootScope.titleDetail = id;
       $scope.record = response;
       $scope.loading = false;
 

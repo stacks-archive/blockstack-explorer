@@ -44,6 +44,16 @@ def get_name_blockchain_history(fqu):
     except Exception as e:
         return jsonify(str(e)), 500
 
+@app.route('/get_names_in_namespace/<namespace>/<offset>/<count>', methods=['GET'])
+@crossdomain(origin='*')
+def get_names_in_namespace(namespace, offset, count):
+    try:
+        reply = {}
+        reply['names'] = bs_client.get_names_in_namespace(namespace, int(offset), int(count))
+        return jsonify(reply), 200
+    except Exception as e:
+        return jsonify(str(e)), 500
+
 @app.route('/get_names_owned_by_address/<address>', methods=['GET'])
 @crossdomain(origin='*')
 def get_names_owned_by_address(address):
@@ -79,6 +89,16 @@ def get_namespace_blockchain_record(id):
     try:
         blockchain_record = bs_client.get_namespace_blockchain_record(id)
         return jsonify(blockchain_record), 200
+    except Exception as e:
+        return jsonify(str(e)), 500
+
+@app.route('/get_num_names_in_namespace/<id>', methods=['GET'])
+@crossdomain(origin='*')
+def get_num_names_in_namespace(id):
+    try:
+        reply = {}
+        reply["count"] = bs_client.get_num_names_in_namespace(id)
+        return jsonify(reply), 200
     except Exception as e:
         return jsonify(str(e)), 500
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import math
 import os
 
 from flask import Flask, jsonify
@@ -44,12 +45,18 @@ def get_name_blockchain_history(fqu):
     except Exception as e:
         return jsonify(str(e)), 500
 
-@app.route('/get_names_in_namespace/<namespace>/<offset>/<count>', methods=['GET'])
+@app.route('/get_names_in_namespace/<namespace>/<page_num>', methods=['GET'])
 @crossdomain(origin='*')
-def get_names_in_namespace(namespace, offset, count):
+def get_names_in_namespace(namespace, page_num):
     try:
+        NAMES_PER_PAGE = 50
+
+        offset = int(page_num) * NAMES_PER_PAGE
+        count = NAMES_PER_PAGE
+
         reply = {}
-        reply['names'] = bs_client.get_names_in_namespace(namespace, int(offset), int(count))
+        reply['names'] = bs_client.get_names_in_namespace(namespace, offset, count)
+        reply['total_pages'] = int(math.ceil(bs_client.get_num_names_in_namespace(namespace) / float(NAMES_PER_PAGE)))
         return jsonify(reply), 200
     except Exception as e:
         return jsonify(str(e)), 500

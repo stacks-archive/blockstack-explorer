@@ -30,8 +30,10 @@
     </div>
   </div>
   <h1>{{nameRecord.domainName}}</h1>
-  <div class="text-muted" data-ng-if="!nameRecord">
-    <span translate>Loading name record</span>  <span class="loader-gif"></span>
+  <div class="progress progress-striped active" data-ng-if="!nameRecord">
+    <div class="progress-bar progress-bar-info" style="width: 100%">
+      <span translate>Loading name...</span>
+    </div>
   </div>
   <div data-ng-if="nameRecord">
     <div class="well well-sm ellipsis">

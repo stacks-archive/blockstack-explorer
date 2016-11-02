@@ -2,7 +2,7 @@
 
 angular.module('insight.names')
   .factory('Name',
-    function($resource) {
+    function($resource, Global) {
       return $resource(window.blockstackApiPrefix + '/get_name_blockchain_history/:domainName', {
       domainName: '@domainName'
     }, {
@@ -25,4 +25,24 @@ angular.module('insight.names')
         }
       }
     });
-  })
+  }).factory('NamesInNamespace',
+    function($resource) {
+      return $resource(window.blockstackApiPrefix + '/get_names_in_namespace/:namespaceId/:pageNum', {
+      namespaceId: '@namespaceId',
+      pageNum: '@pageNum'
+    }, {
+      get: {
+        method: 'GET',
+        interceptor: {
+          response: function (res) {
+            return res.data;
+          },
+          responseError: function (res) {
+            if (res.status === 404) {
+              return res;
+            }
+          }
+        }
+      }
+    });
+  });

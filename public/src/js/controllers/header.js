@@ -11,6 +11,9 @@ angular.module('insight.system').controller('HeaderController',
     };
 
     $scope.menu = [{
+      'title': 'Names',
+      'link': 'names'
+    }, {
       'title': 'Blocks',
       'link': 'blocks'
     }, {

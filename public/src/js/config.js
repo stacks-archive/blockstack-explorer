@@ -20,8 +20,12 @@ angular.module('insight').config(function($routeProvider) {
       title: 'Bitcoin Transaction '
     }).
     when('/names', {
+      redirectTo: 'names/id'
+    }).
+    when('/names/:namespaceId', {
       controller: 'NamesListController',
-      templateUrl: 'views/names.html'
+      templateUrl: 'views/names.html',
+      title: 'Names in .'
     }).
     when('/name/:domainName', {
       controller: 'NamesController',

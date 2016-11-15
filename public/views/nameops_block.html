@@ -30,9 +30,11 @@
       </a>
     </div>
   </div>
-  <h1>Block #{{blockHeight}} <small>Name Operations</small></h1>
-  <div class="text-muted" data-ng-if="!block.hash || !nameops || !nodeInfo">
-    <span translate>Loading Block Information</span>  <span class="loader-gif"></span>
+  <h1 data-ng-if="block.hash && nameops && nodeInfo">Block #{{blockHeight}} <small>Name Operations</small></h1>
+  <div class="progress progress-striped active" data-ng-if="!(block.hash && nameops && nodeInfo)">
+    <div class="progress-bar progress-bar-info" style="width: 100%">
+      <span translate>Loading block information...</span>
+    </div>
   </div>
   <div data-ng-if="block.hash && nameops && nodeInfo">
     <div class="well well-sm ellipsis">

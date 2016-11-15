@@ -1,5 +1,34 @@
 <div data-ng-include src="'views/includes/connection.html'"></div>
 <section data-ng-controller="BlocksController" data-ng-init="list()">
+  <div class="secondary_navbar hidden-xs hidden-sm" scroll data-ng-class="{'hidden': !secondaryNavbar}" data-ng-show="blocks" data-ng-init="hideSNavbar=0">
+    <div class="container" data-ng-if="!hideSNavbar">
+      <div class="row">
+        <div class="col-md-1">
+          <a  href="blocks-date/{{pagination.prev}}"><span class="lead glyphicon glyphicon-chevron-left"></span></a>
+        </div>
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-5">
+              <h3 class="text-left"><span translate>Blocks</span> <small><span translate>by date.</span> {{detail}} {{before}}</small></h3>
+            </div>
+            <p class="col-md-6 ellipsis text-left">
+            </p>
+            <div class="col-md-1 text-left">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <a href="blocks-date/{{pagination.next}}" data-ng-show="!pagination.isToday"><span class="lead glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+      </div>
+    </div> <!-- END OF CONTAINER -->
+    <div class="hide_snavbar">
+      <a href="#" data-ng-click="hideSNavbar=!hideSNavbar">
+        <span data-ng-show="hideSNavbar"><span class="text-muted glyphicon glyphicon-chevron-down"></span></span>
+        <span data-ng-show="!hideSNavbar"><span class="text-muted glyphicon glyphicon-chevron-up"></span></span>
+      </a>
+    </div>
+  </div>
   <div class="row">
     <div class="col-xs-12">
       <div class="page-header">
@@ -19,7 +48,7 @@
               <span class="hidden-xs" translate>Name Operations</span>
               <span class="visible-xs" translate>Name Ops</span>
             </th>
-            <th class="text-right" translate>
+            <th class="text-right">
               <span class="hidden-xs" translate>Transactions</span>
               <span class="visible-xs" translate>Txns</span>
             </th>

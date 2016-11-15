@@ -30,13 +30,15 @@
       </a>
     </div>
   </div>
-  <h1>Block #{{block.height}}</h1>
-  <div class="text-muted" data-ng-if="!block.hash">
-    <span translate>Loading Block Information</span>  <span class="loader-gif"></span>
+  <h1 data-ng-if="block.height">Block #{{block.height}}</h1>
+  <div class="progress progress-striped active" data-ng-if="!block.hash">
+    <div class="progress-bar progress-bar-info" style="width: 100%">
+      <span translate>Loading block information...</span>
+    </div>
   </div>
   <div data-ng-if="block.hash">
     <div class="well well-sm ellipsis">
-      <strong>BlockHash</strong>
+      <strong translate>BlockHash</strong>
       <span class="txid text-muted">{{block.hash}}</span>
     </div>
     <h2 translate>Summary</h2>
@@ -51,8 +53,8 @@
           <tr>
             <td><strong translate>Height</strong></td>
             <td class="text-right text-muted">{{block.height}}
-              <span data-ng-show="block.isMainChain" class="text-success">(Mainchain)</span>
-              <span data-ng-show="!block.isMainChain" class="text-danger"> <span class="glyphicon glyphicon-warning-sign"></span> (Orphaned)</span>
+              <span data-ng-show="block.isMainChain" class="text-success">(<span translate>Mainchain</span>)</span>
+              <span data-ng-show="!block.isMainChain" class="text-danger"> <span class="glyphicon glyphicon-warning-sign"></span> (<span translate>Orphaned</span>)</span>
             </td>
           </tr>
           <tr>

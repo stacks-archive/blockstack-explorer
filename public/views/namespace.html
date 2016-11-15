@@ -30,8 +30,10 @@
     </div>
   </div>
   <h1><span translate>Namespace:</span> {{record.namespace_id}}</h1>
-  <div class="text-muted" data-ng-if="!record">
-    <span translate>Loading namespace record</span>  <span class="loader-gif"></span>
+  <div class="progress progress-striped active" data-ng-if="!record">
+    <div class="progress-bar progress-bar-info" style="width: 100%">
+      <span translate>Loading namespace blockchain record...</span>
+    </div>
   </div>
   <div data-ng-if="record">
     <div class="well well-sm ellipsis">

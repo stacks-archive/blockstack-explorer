@@ -1,6 +1,6 @@
 <div class="connection-status container" data-ng-controller="ConnectionController">
 
-  <div class="alert alert-danger" 
+  <div class="alert alert-danger"
     data-ng-show="!serverOnline || !clienteOnline || !apiOnline"
     data-ng-init="getConnStatus()">
 
@@ -11,7 +11,7 @@
     </p>
 
     <p data-ng-show="!serverOnline" translate>
-      Can't connect to insight server. Attempting to reconnect... 
+      Can't connect to explorer server. Attempting to reconnect... 
     </p>
 
     <p data-ng-show="!clienteOnline" translate>

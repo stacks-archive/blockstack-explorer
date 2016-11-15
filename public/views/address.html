@@ -17,8 +17,10 @@
     </div>
   </div>
   <h1><span translate>Address</span> <small data-ng-show="address.addrStr">{{$root.currency.getConvertion(address.balance) || address.balance + ' BTC'}}</small></h1>
-  <div class="text-muted" data-ng-if="!address.addrStr">
-    <span translate>Loading Address Information</span> <span class="loader-gif"></span>
+  <div class="progress progress-striped active" data-ng-if="!address.addrStr">
+    <div class="progress-bar progress-bar-info" style="width: 100%">
+      <span translate>Loading address information...</span>
+    </div>
   </div>
   <div data-ng-if="address.addrStr">
     <div class="well well-sm ellipsis">
@@ -72,7 +74,12 @@
   </div>
   <h2 translate>Names owned</h2>
   <div class="row" data-ng-if="address.addrStr" data-ng-controller="OwnedController" data-ng-init="init(address.addrStr)">
-    <div class="col-md-10">
+    <div class="progress progress-striped active" data-ng-if="!names">
+      <div class="progress-bar progress-bar-info" style="width: 100%">
+        <span translate>Loading names...</span>
+      </div>
+    </div>
+    <div class="col-md-10" data-ng-if="names">
       <table class="table">
         <tbody>
         <tr ng-repeat="name in names">

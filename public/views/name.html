@@ -91,8 +91,10 @@
     </div>
     <div>
       <h2 translate>Zone File</h2>
-      <div class="text-muted" data-ng-if="!zonefile && loading">
-        <span translate>Loading name record</span>  <span class="loader-gif"></span>
+      <div class="progress progress-striped active" data-ng-if="!zonefile && loading">
+        <div class="progress-bar progress-bar-info" style="width: 100%">
+          <span translate>Loading zone file...</span>
+        </div>
       </div>
       <div class="alert alert-warning"
         data-ng-show="!zonefile && !loading"

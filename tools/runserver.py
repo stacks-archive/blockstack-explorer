@@ -9,7 +9,7 @@ from flask_crossdomain import crossdomain
 
 from blockstack_client import client as bs_client
 import blockstack_client
-session = bs_client.session(server_host="node.blockstack.org", server_port=6264, set_global=True)
+session = bs_client.session(server_host="localhost", server_port=6264, set_global=True)
 
 app = Flask(__name__)
 

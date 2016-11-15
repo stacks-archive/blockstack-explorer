@@ -1,0 +1,11 @@
+<div class="progress progress-striped active" data-ng-if="!pagination.current">
+  <div class="progress-bar progress-bar-info" style="width: 100%">
+    <span translate>Loading selected date...</span>
+  </div>
+</div>
+<div data-ng-if="pagination.current">
+  <div class="">
+    <a class="btn btn-primary pull-left" href="blocks-date/{{pagination.prev}}"><small>&larr; {{pagination.prev}}</small></a>
+    <a class="btn btn-primary pull-right" href="blocks-date/{{pagination.next}}" data-ng-show="!pagination.isToday"><small>{{pagination.next}} &rarr;</small></a>
+  </div>
+</div>

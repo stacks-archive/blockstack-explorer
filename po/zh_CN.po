@@ -1,0 +1,683 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: public/views/transaction/tx.html
+msgid "(Input unconfirmed)"
+msgstr ""
+
+#: public/views/404.html
+msgid "404 Page not found :("
+msgstr "404 找不到页面 :-("
+
+#: public/views/address.html public/views/messages_verify.html
+msgid "Address"
+msgstr ""
+
+#: public/views/index.html
+msgid "Age"
+msgstr ""
+
+#: public/views/messages_verify.html
+msgid "An error occured in the verification process."
+msgstr ""
+
+#: public/views/transaction_sendraw.html
+msgid "An error occured:<br>{{error}}"
+msgstr ""
+
+#: public/views/messages_verify.html
+msgid "Bitcoin comes with a way of signing arbitrary messages."
+msgstr ""
+
+#: public/views/status.html
+msgid "Bitcoin node information"
+msgstr ""
+
+#: public/views/status.html
+msgid "Bitcoin Sync Status"
+msgstr "比特币同步状态"
+
+#: public/views/includes/footer.html
+msgid "Bitcore"
+msgstr ""
+
+#: public/views/block.html public/views/index.html
+#: public/views/nameops_block.html
+msgid "Block"
+msgstr "区块"
+
+#: public/views/block.html
+msgid "Block Reward"
+msgstr "区块奖励"
+
+#: public/views/block_list.html public/views/dummy-translations.html
+#: public/views/status.html
+msgid "Blocks"
+msgstr "区块"
+
+#: public/views/status.html
+msgid "Blockstack Core Status"
+msgstr "Blockstack Core状态"
+
+#: public/views/transaction_sendraw.html
+msgid "Broadcast Raw Transaction"
+msgstr ""
+
+#: public/views/includes/footer.html
+msgid "broadcast transaction"
+msgstr ""
+
+#: public/views/block_list.html
+msgid "by date."
+msgstr "按日。"
+
+#: public/views/includes/connection.html
+msgid ""
+"Can't connect to bitcoind to get live updates from the p2p network. (Tried "
+"connecting to bitcoind at {{host}}:{{port}} and failed.)"
+msgstr ""
+
+#: public/views/includes/connection.html
+msgid "Can't connect to insight server. Attempting to reconnect..."
+msgstr ""
+
+#: public/views/includes/connection.html
+msgid "Can't connect to internet. Please, check your connection."
+msgstr ""
+
+#: public/views/status.html
+msgid "Complete"
+msgstr ""
+
+#: public/views/transaction.html public/views/transaction/tx.html
+msgid "Confirmations"
+msgstr "确认"
+
+#: public/views/status.html
+msgid "Connections to other nodes"
+msgstr ""
+
+#: public/views/index.html public/views/status.html
+msgid "Consensus"
+msgstr "共知"
+
+#: public/views/index.html
+msgid "Consensus Hash"
+msgstr "共知哈希"
+
+#: public/views/status.html
+msgid "Current Blockchain Tip (insight)"
+msgstr ""
+
+#: public/views/status.html
+msgid "Current Sync Status"
+msgstr ""
+
+#: public/views/transaction.html
+msgid "Details"
+msgstr "详细"
+
+#: public/views/block.html
+msgid "Difficulty"
+msgstr ""
+
+#: public/views/transaction/tx.html
+msgid "Double spent attempt detected. From tx:"
+msgstr ""
+
+#: public/views/messages_verify.html
+msgid "Error message:"
+msgstr ""
+
+#: public/views/includes/connection.html
+msgid "Error!"
+msgstr ""
+
+#: public/views/name.html
+msgid "Expires"
+msgstr "过期"
+
+#: public/views/status.html
+msgid "Explorer Status"
+msgstr " 区块链浏览器状态"
+
+#: public/views/namespace.html public/views/transaction/tx.html
+msgid "Fee"
+msgstr "费用"
+
+#: public/views/transaction.html
+msgid "Fee Rate"
+msgstr ""
+
+#: public/views/address.html
+msgid "Final Balance"
+msgstr ""
+
+#: public/views/status.html
+msgid "Finish Date"
+msgstr ""
+
+#: public/views/name.html
+msgid "First Registered"
+msgstr "首次注册"
+
+#: public/views/transaction/tx.html
+msgid "first seen at"
+msgstr ""
+
+#: public/views/404.html
+msgid "Go to home"
+msgstr ""
+
+#: public/views/block.html public/views/block_list.html public/views/index.html
+msgid "Height"
+msgstr "区块高度"
+
+#: public/views/name.html public/views/namespace.html
+msgid "History"
+msgstr "历史"
+
+#: public/views/name.html
+msgid "Import Txn"
+msgstr ""
+
+#: public/views/name.html
+msgid "Importer"
+msgstr ""
+
+#: public/views/transaction.html public/views/transaction/tx.html
+msgid "Included in Block"
+msgstr ""
+
+#: public/views/transaction/tx.html
+msgid "Incoherence in levelDB detected:"
+msgstr ""
+
+#: public/views/status.html
+msgid "Info Errors"
+msgstr ""
+
+#: public/views/status.html
+msgid "Initial Block Chain Height"
+msgstr ""
+
+#: public/views/transaction.html
+msgid "Input"
+msgstr ""
+
+#: public/views/status.html
+msgid "Last Block"
+msgstr ""
+
+#: public/views/status.html
+msgid "Last Block Hash (Bitcoind)"
+msgstr ""
+
+#: public/views/status.html
+msgid "Last block processed"
+msgstr ""
+
+#: public/views/status.html
+msgid "Last block seen"
+msgstr ""
+
+#: public/views/name.html
+msgid "Last Renewed"
+msgstr "续订日期"
+
+#: public/views/index.html
+msgid "Latest Processed Blocks"
+msgstr "最近处理过区块"
+
+#: public/views/address.html
+msgid "Loading Address Information"
+msgstr ""
+
+#: public/views/block.html public/views/nameops_block.html
+msgid "Loading Block Information"
+msgstr ""
+
+#: public/views/name.html
+msgid "Loading name record"
+msgstr ""
+
+#: public/views/name.html
+msgid "Loading name..."
+msgstr "正在下载名字信息"
+
+#: public/views/names/list.html
+msgid "Loading names..."
+msgstr "正在下载名字信息"
+
+#: public/views/namespace.html
+msgid "Loading namespace record"
+msgstr ""
+
+#: public/views/index.html
+msgid "Loading namespaces..."
+msgstr ""
+
+#: public/views/block_list.html
+msgid "Loading Selected Date..."
+msgstr ""
+
+#: public/views/transaction.html
+msgid "Loading Transaction Details"
+msgstr ""
+
+#: public/views/transaction/list.html
+msgid "Loading Transactions..."
+msgstr ""
+
+#: public/views/messages_verify.html public/views/transaction_sendraw.html
+#: public/views/includes/infoStatus.html
+msgid "Loading..."
+msgstr "正在下载"
+
+#: public/views/messages_verify.html
+msgid "Message"
+msgstr ""
+
+#: public/views/transaction/tx.html
+msgid "mined"
+msgstr ""
+
+#: public/views/block.html public/views/block_list.html
+msgid "Mined by"
+msgstr "矿池"
+
+#: public/views/block_list.html
+msgid "mined on:"
+msgstr ""
+
+#: public/views/transaction.html
+msgid "Mined Time"
+msgstr ""
+
+#: public/views/status.html
+msgid "Mining Difficulty"
+msgstr ""
+
+#: public/views/nameops_block.html
+msgid "Name Imports"
+msgstr "名字倒入"
+
+#: public/views/block_list.html public/views/index.html
+msgid "Name Operations"
+msgstr "名字操作"
+
+#: public/views/nameops_block.html
+msgid "Name Preorders"
+msgstr "名字预订"
+
+#: public/views/nameops_block.html
+msgid "Name Registrations"
+msgstr "名字注册"
+
+#: public/views/nameops_block.html
+msgid "Name Transfers"
+msgstr "名字转卖"
+
+#: public/views/nameops_block.html
+msgid "Name Updates"
+msgstr "名字更新"
+
+#: public/views/names.html
+msgid "names"
+msgstr "个名字"
+
+#: public/views/index.html
+msgid "Names"
+msgstr "名字"
+
+#: public/views/address.html
+msgid "Names owned"
+msgstr ""
+
+#: public/views/names.html
+msgid "Names:"
+msgstr "名字："
+
+#: public/views/names.html
+msgid "namespace"
+msgstr "命名空间"
+
+#: public/views/nameops_block.html
+msgid "Namespace Preorders"
+msgstr "命名空间预订"
+
+#: public/views/nameops_block.html
+msgid "Namespace Reveals"
+msgstr "命名空间揭示"
+
+#: public/views/namespace.html
+msgid "Namespace:"
+msgstr "命名空间："
+
+#: public/views/index.html
+msgid "Namespaces"
+msgstr "命名空间"
+
+#: public/views/status.html
+msgid "Network"
+msgstr ""
+
+#: public/views/block.html public/views/nameops_block.html
+msgid "Next Block"
+msgstr "下区块"
+
+#: public/views/namespace.html
+msgid "No"
+msgstr ""
+
+#: public/views/block_list.html
+msgid "No blocks yet."
+msgstr ""
+
+#: public/views/transaction/tx.html
+msgid "No Inputs (Newly Generated Coins)"
+msgstr ""
+
+#: public/views/includes/search.html
+msgid "No matching records found!"
+msgstr ""
+
+#: public/views/address.html
+msgid "No. Transactions"
+msgstr ""
+
+#: public/views/block.html
+msgid "Number of Name Operations"
+msgstr ""
+
+#: public/views/block.html
+msgid "Number Of Transactions"
+msgstr ""
+
+#: public/views/nameop/nameop.html
+msgid "Op Fee"
+msgstr "操作费用"
+
+#: public/views/nameops_block.html
+msgid "Operations"
+msgstr "操作"
+
+#: public/views/transaction.html
+msgid "Output"
+msgstr ""
+
+#: public/views/name.html public/views/namespace.html
+msgid "Preordered"
+msgstr "预订高度"
+
+#: public/views/block.html public/views/nameops_block.html
+msgid "Previous Block"
+msgstr "上区块"
+
+#: public/views/includes/footer.html
+msgid "Processed"
+msgstr ""
+
+#: public/views/status.html
+msgid "Protocol version"
+msgstr "协议版本"
+
+#: public/views/status.html
+msgid "Proxy setting"
+msgstr ""
+
+#: public/views/transaction_sendraw.html
+msgid "Raw transaction data"
+msgstr ""
+
+#: public/views/transaction_sendraw.html
+msgid "Raw transaction data must be a valid hexadecimal string."
+msgstr ""
+
+#: public/views/namespace.html
+msgid "Ready"
+msgstr ""
+
+#: public/views/namespace.html
+msgid "Ready block"
+msgstr ""
+
+#: public/views/transaction.html
+msgid "Received Time"
+msgstr ""
+
+#: public/views/redirect.html
+msgid "Redirecting..."
+msgstr ""
+
+#: public/views/name.html
+msgid "Revoked"
+msgstr ""
+
+#: public/views/includes/search.html
+msgid "Search for name, block, transaction or address"
+msgstr "按名字，区块，交易或地址搜索"
+
+#: public/views/index.html
+msgid "See all blocks"
+msgstr "查看所有区块"
+
+#: public/views/includes/footer.html
+msgid "Seen"
+msgstr ""
+
+#: public/views/transaction_sendraw.html
+msgid "Send transaction"
+msgstr ""
+
+#: public/views/transaction/tx.html
+msgid "Show all"
+msgstr ""
+
+#: public/views/transaction/tx.html
+msgid "Show input"
+msgstr ""
+
+#: public/views/transaction/tx.html
+msgid "Show less"
+msgstr ""
+
+#: public/views/transaction/tx.html
+msgid "Show more"
+msgstr ""
+
+#: public/views/messages_verify.html
+msgid "Signature"
+msgstr ""
+
+#: public/views/block_list.html public/views/index.html
+#: public/views/transaction.html
+msgid "Size"
+msgstr "大小"
+
+#: public/views/block.html
+msgid "Size (bytes)"
+msgstr "大小（字节）"
+
+#: public/views/status.html
+msgid "Skipped Blocks (previously synced)"
+msgstr ""
+
+#: public/views/status.html
+msgid "Start Date"
+msgstr ""
+
+#: public/views/dummy-translations.html
+msgid "Status"
+msgstr "状态"
+
+#: public/views/block.html public/views/name.html
+#: public/views/nameops_block.html public/views/namespace.html
+#: public/views/transaction.html
+msgid "Summary"
+msgstr "简介"
+
+#: public/views/address.html
+msgid "Summary <small>confirmed</small>"
+msgstr ""
+
+#: public/views/status.html
+msgid "Sync Progress"
+msgstr ""
+
+#: public/views/status.html
+msgid "Sync Type"
+msgstr "同步类型"
+
+#: public/views/status.html
+msgid "Synced Blocks"
+msgstr "同步区块"
+
+#: public/views/messages_verify.html
+msgid "The message failed to verify."
+msgstr ""
+
+#: public/views/messages_verify.html
+msgid "The message is verifiably from {{verification.address}}."
+msgstr ""
+
+#: public/views/nameops_block.html
+msgid "There are no name operations in this block."
+msgstr ""
+
+#: public/views/names/list.html
+msgid "There are no names in this namespace."
+msgstr ""
+
+#: public/views/transaction/list.html
+msgid "There are no transactions involving this address."
+msgstr ""
+
+#: public/views/transaction_sendraw.html
+msgid ""
+"This form can be used to broadcast a raw transaction in hex format over\n"
+"        the Bitcoin network."
+msgstr ""
+
+#: public/views/messages_verify.html
+msgid ""
+"This form can be used to verify that a message comes from\n"
+"        a specific Bitcoin address."
+msgstr ""
+
+#: public/views/name.html
+msgid "This name has no history!"
+msgstr ""
+
+#: public/views/name.html
+msgid "This name has no zone file!"
+msgstr ""
+
+#: public/views/namespace.html
+msgid "This namespace has no history!"
+msgstr ""
+
+#: public/views/status.html
+msgid "Time Offset"
+msgstr ""
+
+#: public/views/block.html public/views/block_list.html
+#: public/views/nameops_block.html
+msgid "Timestamp"
+msgstr "时间戳"
+
+#: public/views/block_list.html
+msgid "Today"
+msgstr "今天"
+
+#: public/views/nameops_block.html
+msgid "Total Operations"
+msgstr ""
+
+#: public/views/address.html
+msgid "Total Received"
+msgstr ""
+
+#: public/views/address.html
+msgid "Total Sent"
+msgstr ""
+
+#: public/views/transaction.html
+msgid "Transaction"
+msgstr "交易"
+
+#: public/views/transaction_sendraw.html
+msgid "Transaction succesfully broadcast.<br>Transaction id: {{txid}}"
+msgstr ""
+
+#: public/views/address.html public/views/block.html
+#: public/views/block_list.html public/views/index.html
+msgid "Transactions"
+msgstr "交易"
+
+#: public/views/transaction/tx.html
+msgid "Type"
+msgstr ""
+
+#: public/views/address.html
+msgid "Unconfirmed"
+msgstr ""
+
+#: public/views/transaction.html public/views/transaction/tx.html
+msgid "Unconfirmed Transaction!"
+msgstr ""
+
+#: public/views/address.html
+msgid "Unconfirmed Txs Balance"
+msgstr ""
+
+#: public/views/block_list.html
+msgid "Unprocessed"
+msgstr "未处理"
+
+#: public/views/name.html
+msgid "Value Hash"
+msgstr ""
+
+#: public/views/messages_verify.html
+msgid "Verify"
+msgstr ""
+
+#: public/views/includes/footer.html
+msgid "verify message"
+msgstr ""
+
+#: public/views/messages_verify.html
+msgid "Verify signed message"
+msgstr ""
+
+#: public/views/block.html public/views/status.html
+msgid "Version"
+msgstr ""
+
+#: public/views/block_list.html public/views/index.html
+msgid "Waiting for blocks..."
+msgstr ""
+
+#: public/views/namespace.html
+msgid "Yes"
+msgstr ""
+
+#: public/views/name.html
+msgid "Zone File"
+msgstr ""
+
+#: public/views/status.html
+msgid "Zone file count"
+msgstr ""

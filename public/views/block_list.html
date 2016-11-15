@@ -54,7 +54,7 @@
           <td>{{b.time * 1000 | date:'medium'}}</td>
           <td data-ng-if="b.height" data-ng-controller="NameopsController" data-ng-init="loadBlock(b.height)" data-ng-class="{'text-muted': unprocessedBlock}">
           <a data-ng-show="!unprocessedBlock" href="nameops/{{b.height}}">{{nameops.length}}</a>
-          <abbr title="Blockstack Core only processes Bitcoin blocks with 6 or more confirmations." data-ng-show="unprocessedBlock" data-ng-cloak>Unprocessed</abbr>
+          <abbr title="Blockstack Core only processes Bitcoin blocks with 6 or more confirmations." data-ng-show="unprocessedBlock" data-ng-cloak translate>Unprocessed</abbr>
           <span data-ng-show="loadingNameops" class="loader-gif"></span>
           </td>
           <td class="text-right">{{b.txlength}}</td>

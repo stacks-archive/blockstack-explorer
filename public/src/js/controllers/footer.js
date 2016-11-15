@@ -21,11 +21,14 @@ angular.module('insight.system').controller('FooterController',
       name: 'English',
       isoCode: 'en',
     }, {
-      name: 'Spanish',
+      name: 'Español',
       isoCode: 'es',
     }, {
-      name: 'Japanese',
+      name: '日本語',
       isoCode: 'ja',
+    }, {
+      name: '简体中文',
+      isoCode: 'zh_CN',
     }];
 
     $scope.setLanguage = function(isoCode) {

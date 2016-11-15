@@ -545,6 +545,7 @@ margin-left: 0;
 .btn-expand {
   color: #9b9b9b;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 .btn-copy:hover, .btn-expand:hover {

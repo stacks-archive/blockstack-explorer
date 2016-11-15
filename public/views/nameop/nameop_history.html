@@ -1,24 +1,16 @@
 <div class="row" data-ng-hide="!nameop">
-  <div class="col-xs-8 col-lg-8">
-    <div class="ellipsis">
-      <a class="btn-expand" title="Show/Hide items details" data-ng-click="itemsExpanded = !itemsExpanded">
-        <span class="glyphicon glyphicon-plus-sign" data-ng-class="{'glyphicon-minus-sign': itemsExpanded}"></span>
-      </a>
+  <div class="col-xs-6">
+    <a class="btn-expand" title="Show/Hide items details" data-ng-click="itemsExpanded = !itemsExpanded">
+      <span class="glyphicon glyphicon-plus-sign" data-ng-class="{'glyphicon-minus-sign': itemsExpanded}"></span>
+    </a>
 
-      <a href="nameops/{{nameop.blockHeight}}" class="txvalues txvalues-default">Block #{{nameop.blockHeight}}</a>
-      <a href="tx/{{nameop.txid}}" class="txvalues txvalues-default">{{nameop.opcode}}</a>
-      <span data-ng-show="nameop.value_hash" title="Value hash"
-        class="txvalues txvalues-default ellipsis" style="text-transform: none;">{{ nameop.value_hash}} </span>
-
-
-    </div>
+    <a href="nameops/{{nameop.blockHeight}}" class="history-item history-item-default">Block #{{nameop.blockHeight}}</a>
   </div>
-  <div class="col-xs-4 col-lg-4 text-right">
-    <a data-ng-show="nameop.address" class="txvalues txvalues-default"
-    title="Owner" style="text-transform: none;" href="address/{{nameop.address}}">{{nameop.address}}</a>
-
+  <div class="col-xs-6 text-right">
+      <a href="tx/{{nameop.txid}}" class="history-item history-item-default">{{nameop.opcode}}</a>
   </div>
 </div>
+
 
 <div class="row" data-ng-hide="!itemsExpanded">
   <div class="name-history">

@@ -5,23 +5,23 @@
         <span class="glyphicon glyphicon-plus-sign" data-ng-class="{'glyphicon-minus-sign': itemsExpanded}"></span>
       </a>
 
-      <a href="tx/{{nameop.txid}}" class="txvalues txvalues-default">#{{nameop.vtxindex}}</a>
+      <a href="tx/{{nameop.txid}}" class="hidden-xs txvalues txvalues-default">#{{nameop.vtxindex}}</a>
       <a href="tx/{{nameop.txid}}" class="txvalues txvalues-default">{{nameop.opcode}}</a>
       <span data-ng-show="nameop.name" class="txvalues txvalues-default" style="text-transform: none;"><a data-ng-href="name/{{nameop.name}}">{{nameop.name}}</a></span>
       <span data-ng-show="nameop.namespace_id" class="txvalues txvalues-default" style="text-transform: none;"><a data-ng-href="namespace/{{nameop.namespace_id}}">{{nameop.namespace_id}}</a></span>
-      <a class="txvalues txvalues-default" style="text-transform: none;" href="address/{{nameop.address}}">{{nameop.address}}</a>
+      <a class="hidden-xs txvalues txvalues-default" style="text-transform: none;" href="address/{{nameop.address}}">{{nameop.address}}</a>
 
 
     </div>
   </div>
   <div class="col-xs-3 col-lg-3 text-right">
     <span data-ng-show="!isNaN(parseFloat(nameop.op_fee))"
-      class="txvalues txvalues-default"><span translate>Op Fee</span>: {{$root.currency.getConvertion((nameop.op_fee | satoshisToBtc))}} </span>
+      class="hidden-xs txvalues txvalues-default"><span translate>Op Fee</span>: {{$root.currency.getConvertion((nameop.op_fee | satoshisToBtc))}} </span>
   </div>
 </div>
 
 <div class="row" data-ng-hide="!itemsExpanded">
-  <div class="well">
+  <div class="name-history">
     <dl class="dl-horizontal" ng-repeat="(key, value) in nameop">
       <dt>
         {{key}}

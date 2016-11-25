@@ -20,6 +20,7 @@ As root:
 Install Node
 
 `curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -`
+
 `apt-get install -y nodejs`
 
 Create a directory to hold your installation:
@@ -35,7 +36,9 @@ Create your bitcore node:
 Install insight-api and blockstack-explorer:
 
 `cd /data/blockstack-bitcore/`
+
 `./node_modules/.bin/bitcore-node install insight-api`
+
 `./node_modules/.bin/bitcore-node install git+https://github.com/blockstack/blockstack-explorer.git#master`
 
 Start bitcore & wait a long time while your bitcore-indexed Bitcoin node is created:
@@ -56,11 +59,13 @@ You should run this in the same virtualenv as your blockstack-cli installation.
 You'll need to install a couple additional packages:
 
 `pip install --upgrade Flask`
+
 `pip install --upgrade flask-crossdomain`
 
 Run the explorer api as follows:
 
 `cd tools/`
+
 `./runserver.py`
 
 This will start the explorer api on port 5000.
@@ -74,8 +79,11 @@ to do development on the explorer.
 To point your bitcore-node to a local explorer repository, you'll need to make a symlink to the local copy:
 
 `cd /data/blockstack-bitcore/`
+
 `./node_modules/.bin/bitcore-node stop`
+
 `rm -Rf ./node_modules/insight-ui`
+
 `ln -s <path-to-checkout-out-blockstack-explore-repo> ./node_modules/insight-ui`
 
 Next, you'll need to edit `public/index.html` so that the web app knows the path

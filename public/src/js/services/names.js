@@ -45,4 +45,23 @@ angular.module('insight.names')
         }
       }
     });
+  }).factory('NameRecord',
+    function($resource) {
+      return $resource(window.blockstackApiPrefix + '/get_name_blockchain_record/:domainName', {
+      domainName: '@domainName'
+    }, {
+      get: {
+        method: 'GET',
+        interceptor: {
+          response: function (res) {
+            return res.data;
+          },
+          responseError: function (res) {
+            if (res.status === 404) {
+              return res;
+            }
+          }
+        }
+      }
+    });
   });

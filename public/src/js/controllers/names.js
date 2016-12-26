@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('insight.names').controller('NamesController',
-function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile) {
+function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile, NameRecord) {
   $scope.global = Global;
   $scope.loading = false;
 
@@ -31,6 +31,13 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile) {
       }, function(response) {
         $scope.zonefile = response;
         $scope.loading = false;
+      });
+
+
+      NameRecord.get({
+        domainName: domainName
+      }, function(response) {
+         $scope.nameRecord.expire_block = response.expire_block
       });
 
     }, function(e) {

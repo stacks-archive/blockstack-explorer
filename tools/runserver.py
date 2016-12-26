@@ -40,6 +40,18 @@ def get_name_blockchain_history(fqu):
     except Exception as e:
         return jsonify(str(e)), 500
 
+@app.route('/get_name_blockchain_record/<fqu>', methods=['GET'])
+@crossdomain(origin='*')
+def get_name_blockchain_record(fqu):
+    try:
+        blockchain_record = bs_client.get_name_blockchain_record(fqu)
+        if blockchain_record == {}:
+            return jsonify({'error': 'Not found'}), 404, {'Cache-Control': 'public, max-age=300'}
+        else:
+            return jsonify(blockchain_record), 200, {'Cache-Control': 'public, max-age=300'}
+    except Exception as e:
+        return jsonify(str(e)), 500
+
 @app.route('/get_names_in_namespace/<namespace>/<page_num>', methods=['GET'])
 @crossdomain(origin='*')
 def get_names_in_namespace(namespace, page_num):

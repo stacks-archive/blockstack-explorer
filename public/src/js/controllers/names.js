@@ -46,7 +46,8 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile, Na
       if (e.status === 400) {
         $rootScope.flashMessage = 'Invalid Domain Name: ' + $routeParams.domainName;
       } else if (e.status === 404) {
-        $rootScope.flashMessage = 'Name Not Found'
+        $scope.domainNameNotFound = domainName
+        $scope.loading = false
       } else {
         $rootScope.flashMessage = 'Error loading name ' + domainName;
       }

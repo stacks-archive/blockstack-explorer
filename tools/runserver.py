@@ -45,7 +45,7 @@ def get_name_blockchain_history(fqu):
 def get_name_blockchain_record(fqu):
     try:
         blockchain_record = bs_client.get_name_blockchain_record(fqu)
-        if blockchain_record == {}:
+        if 'error' in blockchain_record:
             return jsonify({'error': 'Not found'}), 404, {'Cache-Control': 'public, max-age=300'}
         else:
             return jsonify(blockchain_record), 200, {'Cache-Control': 'public, max-age=300'}

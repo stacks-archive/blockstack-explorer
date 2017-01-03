@@ -29,18 +29,17 @@
       </a>
     </div>
   </div>
-  <h1>{{nameRecord.domainName}}</h1>
   <div class="jumbotron" data-ng-if="domainNameNotFound">
     <h1>Ooops!</h1>
     <h2 translate class="text-muted">The name {{domainNameNotFound}} doesn't exist.</h2>
     <p><a translate href="/" class="pull-right">Go to home</a></p>
   </div>
-
   <div class="progress progress-striped active" data-ng-if="!nameRecord && !domainNameNotFound">
     <div class="progress-bar progress-bar-info" style="width: 100%">
       <span translate>Loading name...</span>
     </div>
   </div>
+  <h1 data-ng-if="nameRecord">{{nameRecord.domainName}}</h1>
   <div data-ng-if="nameRecord">
     <div class="well well-sm ellipsis">
       <strong>Owner</strong>

@@ -19,7 +19,8 @@ function($scope, $rootScope, $routeParams, $location, Global, Namespace) {
       if (e.status === 400) {
         $rootScope.flashMessage = 'Invalid namespace: ' + id;
       } else if (e.status === 404) {
-        $rootScope.flashMessage = 'Namespace Not Found'
+        $scope.namespaceNotFound = id
+        $scope.loading = false
       } else {
         $rootScope.flashMessage = 'Error loading namespace ' + id;
       }

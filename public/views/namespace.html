@@ -29,13 +29,18 @@
       </a>
     </div>
   </div>
-  <h1><span translate>Namespace:</span> {{record.namespace_id}}</h1>
-  <div class="progress progress-striped active" data-ng-if="!record">
+  <div class="jumbotron" data-ng-if="namespaceNotFound">
+    <h1>Ooops!</h1>
+    <h2 translate class="text-muted">The namespace .{{namespaceNotFound}} doesn't exist.</h2>
+    <p><a translate href="/" class="pull-right">Go to home</a></p>
+  </div>
+  <div class="progress progress-striped active" data-ng-if="!record && !namespaceNotFound">
     <div class="progress-bar progress-bar-info" style="width: 100%">
       <span translate>Loading namespace blockchain record...</span>
     </div>
   </div>
   <div data-ng-if="record">
+    <h1><span translate>Namespace:</span> .{{record.namespace_id}}</h1>
     <div class="well well-sm ellipsis">
       <strong>Registerer</strong>
       <span class="txid text-muted"><a href="address/{{record.address}}">{{record.address}}</a></span>

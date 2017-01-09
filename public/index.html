@@ -10,7 +10,11 @@
 	<meta name="keywords" content="blockstack, name operations, transactions, blocks, address, block chain, decentralized internet">
 	<meta name="description" content="Blockstack Explorer. View detailed information on all Blockstack name operations and names. {{ $root.title + $root.titleDetail }}">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-	<link href="https://fonts.googleapis.com/css?family=Raleway:400,100,100italic,200italic,200,300,300italic,400italic,800italic,800,700italic,700,600,600italic,500italic,500" rel="stylesheet" type="text/css">
+  <script type="text/javascript">
+ WebFontConfig = {
+   google: { families: [ 'Source+Code+Pro:300,400,500,600,700', 'Lato:300,300i,400,400i,700,700i' ], }
+ };
+</script>
 	<link rel="stylesheet" href="css/main.min.css">
 </head>
 <body ng-cloak class="ng-cloak">
@@ -26,5 +30,15 @@
 	<script src="js/vendors.min.js"></script>
 	<script src="js/angularjs-all.min.js"></script>
 	<script src="js/main.min.js"></script>
+  <script>
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = 'https://cdnjs.cloudflare.com/ajax/libs/webfont/1.5.18/webfontloader.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })();
+  </script>
 </body>
 </html>

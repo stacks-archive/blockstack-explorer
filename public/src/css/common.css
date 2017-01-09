@@ -5,19 +5,23 @@
 
 html,
 body {
-  color: #1a1a1a;
-  font-family: 'Raleway', sans-serif;
+  color: #19191a;
+  font-family: 'Lato', sans-serif;
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  color: #1a1a1a;
-  font-family: 'Raleway', sans-serif;
+  color: #19191a;
+  font-family: 'Source Code Pro', sans-serif;
 }
 
 a {
-  color: #982DC1;
+  color: #95889C;
+}
+
+a:hover {
+  color: #9A21C5;
 }
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
 .ng-cloak, .x-ng-cloak,
@@ -27,9 +31,9 @@ a {
 
 /* Styling for the ngProgress itself */
 #ngProgress {
-  background-color: #481F61 !important;
+  background-color: #41294E !important;
   box-shadow: none !important;
-  color: #1a1a1a !important;
+  color: #19191a !important;
   height: 3px !important;
   margin: 0;
   opacity: 0;
@@ -118,10 +122,10 @@ margin-left: 0;
 }
 
 .navbar-default .navbar-toggle .icon-bar { background-color: #fff; }
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {background-color: #1a1a1a;}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {background-color: #19191a;}
 
 .navbar-default {
-  background-color: #52246D;
+  background-color: #270f34;
   margin: 0;
   border: 0;
 }
@@ -137,7 +141,7 @@ margin-left: 0;
 .navbar-default .navbar-nav>.active>a:focus,
 .navbar-default .navbar-nav>li>a:focus {
   background-color: #fff;
-  color: ##52246D;
+  color: #270f34;
 }
 
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>.active>a:hover {
@@ -166,12 +170,12 @@ margin-left: 0;
 }
 
 .navbar-default .navbar-brand img {
-  width: 95px;
+  width: 164px;
   margin-top: -4px;
 }
 
 .navbar-form .form-control {
-  background-color: #481F61;
+  background-color: #41294E;
   border-radius: 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -271,7 +275,7 @@ margin-left: 0;
 }
 
 .block-id {
-  background-color: #1a1a1a;
+  background-color: #19191a;
   border: 3px solid #FFFFFF;
   margin: 0 auto;
   width: 165px;
@@ -315,11 +319,15 @@ margin-left: 0;
 }
 
 .btn {
-  border-radius: 0.3rem;
+  border-radius: .25rem;
+  -webkit-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 .btn-primary {
-  background-color: #982DC1;
-  border: 1px solid #982DC1;
+  background-color: #95889C;
+  border: 1px solid #95889C;
+  color: #fff;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active,
@@ -330,11 +338,16 @@ margin-left: 0;
 .btn-danger.active, .open .dropdown-toggle.btn-danger {
   background-color: #53206f;
   border: 1px solid transparent;
-  color: #fff;
+  color: #9A21C5;
 }
 
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
   background-color: #fff;
+  color: #9A21C5;
+}
+
+.btn-primary:active, .btn-primary.active {
+  color: #fff;
 }
 
 .btn-default {
@@ -365,7 +378,7 @@ margin-left: 0;
 }
 
 .txvalues-primary {
-  background-color: #52246D;
+  background-color: #270f34;
 }
 
 .txvalues-default {
@@ -402,18 +415,19 @@ margin-left: 0;
   border-radius: .25em;
 }
 
-.progress-bar-info { background-color: #52246D; }
+.progress-bar-info { background-color: #270f34; }
 
 /* Set the fixed height of the footer here */
 #footer {
-  background-color: #1a1a1a;
+  background-color: #19191a;
   color: #fff;
   height: 200px;
   overflow: hidden;
 }
 
 #footer img {
-  width: 95px;
+  width: 120px;
+  padding-top: 8px
 }
 
 #footer .links {
@@ -522,7 +536,7 @@ margin-left: 0;
 .badge-info { background-color: #3a87ad; }
 .badge-info:hover { background-color: #2d6987; }
 .badge-inverse { background-color: #333333; }
-.badge-inverse:hover { background-color: #1a1a1a; }
+.badge-inverse:hover { background-color: #19191a; }
 
 .status .t {
   color: white;
@@ -567,7 +581,7 @@ margin-left: 0;
 }
 
 .tx-id {
-  background-color: #1a1a1a;
+  background-color: #19191a;
   border: 3px solid #FFFFFF;
   margin: 0 auto;
   width: 165px;
@@ -844,7 +858,7 @@ a.v_highlight_more {
   }
   .txvalues-primary {
     background: none;
-    color: #52246D;
+    color: #270f34;
   }
   .txvalues-default {
     background: none;

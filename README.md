@@ -47,6 +47,74 @@ Start bitcore & wait a long time while your bitcore-indexed Bitcoin node is crea
 
 Depending on your disk speed and machine speed, this process can take days.
 
+#### Making this setup production ready
+
+In production, we've had difficulty with `bitcore-node` occasionally dying. In this
+section, we'll discuss how to make sure the explorer processes get restarted
+if they die.
+
+In the default configuration described above, starting your `bitcore-node` also starts
+a `bitcoind` node. When this happens, `bitcoind` usually lives on and restarting
+`bitcore-node` fails since it can't start another `bitcoind` process on the same
+port.
+
+The solution is to start `bitcoind` externally.
+
+To do this,
+modify  `/data/blockstack-bitcore/bitcore-node.json` as follows:
+
+```JSON
+{
+  "network": "livenet",
+  "port": 3001,
+  "services": [
+    "bitcoind",
+    "insight-api",
+    "insight-ui",
+    "web"
+  ],
+  "servicesConfig": {
+    "bitcoind": {
+      "connect": [
+        {
+		"rpcuser": "bitcoin",
+		"rpcpassword": "local321",
+		"zmqpubrawtx": "tcp://127.0.0.1:28332"
+        }
+       ]
+    }
+  }
+}
+```
+
+Now, when you start your `bitcore-node`, it will expect to find a `bitcoind` process
+already available on localhost with the default ports.
+
+We use [pm2](https://github.com/Unitech/pm2) to keep an eye on our explorer processes
+and make sure they start at boot and restart if there's a problem.
+
+To install `pm2`:
+
+`sudo npm install pm2 -g`
+
+Move the 3 scripts found in `tools/deployment` in this repo to `/data/blockstack-bitcore`
+
+Run the following to start the explorer processes and set them to start on boot:
+
+```
+pm2 start start_bitcoin.sh --name="bitcoind"
+pm2 start start_bitcore.sh --name="bitcore"
+pm2 start start_blockstack.sh --name="blockstack-server"
+pm2 save
+pm2 startup
+```
+
+If you're not running the explorer as root, the command `pm2 startup`
+will fail and provide you a command to run as with `sudo` that will
+make sure `pm2` and the explorer proceses start at boot.
+
+
+
 ### Setup a local copy of explorer api
 
 Once your node is synced, you'll need to run a local copy of the explorer api script.

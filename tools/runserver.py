@@ -139,6 +139,16 @@ def ping():
     except Exception as e:
         return jsonify(str(e)), 500
 
+@app.route('/lookup/<domain_name>', methods=['GET'])
+@crossdomain(origin='*')
+def lookup(domain_name):
+    try:
+        reply = {}
+        reply[domain_name] = blockstack_client.profile.get_name_profile(domain_name)
+        return jsonify(reply), 200, {'Cache-Control': 'public, max-age=300'}
+    except Exception as e:
+        return jsonify(str(e)), 500
+
 def runserver():
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port,threaded=True)

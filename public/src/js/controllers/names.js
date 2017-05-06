@@ -19,10 +19,13 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile, Na
     Name.get({
       domainName: domainName
     }, function(response) {
-      var nameRecord = response;
-      nameRecord.dataRecord = "";
-      nameRecord.domainName = domainName;
-      nameRecord.ownerAddress = nameRecord.address;
+      var nameRecord = Object.assign({},
+        response,
+      {
+        dataRecord: '',
+        domainName: domainName,
+        ownerAddress: response.address
+      });
 
       $rootScope.titleDetail = nameRecord.domainName;
       $scope.nameRecord = nameRecord;

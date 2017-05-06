@@ -12,7 +12,7 @@ angular.module('insight.names')
           response: function (res) {
 
             var nameops = Global.convertHistoryToArray(res.data)
-            var result = nameops[0];
+            var result = Object.assign({}, nameops[0]);
             result.history  = nameops;
 
             return result;

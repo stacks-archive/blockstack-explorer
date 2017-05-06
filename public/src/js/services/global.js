@@ -14,7 +14,7 @@ angular.module('insight.system')
           for (var key in history) {
             if (history.hasOwnProperty(key)) {
                 for(var i = 0; i < history[key].length; i++) {
-                  var nameop = history[key][i];
+                  var nameop = Object.assign({}, history[key][i]);
                   nameop.blockHeight = parseInt(key);
                   nameops.push(nameop);
                 }

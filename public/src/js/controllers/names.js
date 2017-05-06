@@ -38,7 +38,6 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile, Na
         domainName: domainName
       }, function(response) {
         $scope.person = new blockstack.Person(response[domainName][0])
-        console.log($scope.person)
       })
 
 

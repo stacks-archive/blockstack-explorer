@@ -1,0 +1,7 @@
+<a data-ng-href="{{getAccountUrl(account)}}" data-toggle="tooltip"
+              title="{{webAccountTypes[account.service].label}}">
+  <span class="fa-stack fa-lg">
+    <i class="fa fa-stack-1x" data-ng-class="{{webAccountTypes[account.service].iconClass}}"></i>
+  </span>
+  <span class="app-account-identifier">{{account.identifier}}</span>
+</a>

@@ -64,4 +64,23 @@ angular.module('insight.names')
         }
       }
     });
+  }).factory('Profile',
+    function($resource) {
+      return $resource(window.blockstackApiPrefix + '/lookup/:domainName', {
+      domainName: '@domainName'
+    }, {
+      get: {
+        method: 'GET',
+        interceptor: {
+          response: function (res) {
+            return res.data;
+          },
+          responseError: function (res) {
+            if (res.status === 404) {
+              return res;
+            }
+          }
+        }
+      }
+    });
   });

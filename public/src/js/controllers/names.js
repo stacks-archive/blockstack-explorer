@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('insight.names').controller('NamesController',
-function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile, NameRecord) {
+function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile, NameRecord, Profile) {
   $scope.global = Global;
   $scope.loading = false;
+  $scope.webAccountTypes = Global.getWebAccountTypes()
 
   var _findName = function(domainName) {
     $scope.loading = true;
@@ -33,6 +34,13 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile, Na
         $scope.loading = false;
       });
 
+      Profile.get({
+        domainName: domainName
+      }, function(response) {
+        $scope.person = new blockstack.Person(response[domainName][0])
+        console.log($scope.person)
+      })
+
 
       NameRecord.get({
         domainName: domainName
@@ -57,6 +65,16 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile, Na
 
   $scope.findThis = function() {
     _findName($routeParams.domainName);
+  };
+
+  $scope.getAccountUrl = function(account) {
+    if(account.service === 'pgp') {
+      return account.contentUrl
+    } else {
+      var webAccountTypes = Global.getWebAccountTypes()
+      var urlTemplate = webAccountTypes[account.service].urlTemplate
+      return urlTemplate.replace('{identifier}', account.identifier)
+    }
   };
 
 });

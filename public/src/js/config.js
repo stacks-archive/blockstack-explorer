@@ -97,3 +97,12 @@ angular.module('insight')
       $anchorScroll();
     });
   });
+
+  angular.module('insight')
+  .config( [
+    '$compileProvider',
+    function( $compileProvider )
+    {
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto|ob|blockstack):/);
+    }
+])

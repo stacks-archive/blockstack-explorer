@@ -83,4 +83,31 @@ angular.module('insight.names')
         }
       }
     });
+  }).factory('Verifications',
+    function($resource) {
+      return $resource('https://core.blockstack.org/v2/users/:domainName', {
+      domainName: '@domainName'
+    }, {
+      get: {
+        method: 'GET',
+        interceptor: {
+          response: function (res) {
+            const domainName = Object.keys(res.data)[0]
+            const verificationsArray = res.data[domainName].verifications
+            const verificationsObject = {}
+
+            for(var i = 0; i < verificationsArray.length; i++) {
+              const verification = verificationsArray[i]
+              verificationsObject[verification.service] = verification
+            }
+            return verificationsObject;
+          },
+          responseError: function (res) {
+            if (res.status === 404) {
+              return res;
+            }
+          }
+        }
+      }
+    });
   });

@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('insight.names').controller('NamesController',
-function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile, NameRecord, Profile) {
+function($scope, $rootScope, $routeParams, $location, Global, Name,
+  Zonefile, NameRecord, Profile, Verifications) {
   $scope.global = Global;
   $scope.loading = false;
   $scope.webAccountTypes = Global.getWebAccountTypes()
@@ -41,7 +42,14 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, Zonefile, Na
         domainName: domainName
       }, function(response) {
         $scope.person = new blockstack.Person(response[domainName][0])
+        Verifications.get({
+          domainName: domainName
+        }, function(response) {
+          $scope.verifications = response
+        })
       })
+
+
 
 
       NameRecord.get({

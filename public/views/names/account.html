@@ -1,6 +1,8 @@
 <a data-ng-href="{{getAccountUrl(account)}}" data-toggle="tooltip"
               title="{{webAccountTypes[account.service].label}}" target="_blank">
   <span class="fa-stack fa-lg">
+    <i class="fa fa-certificate fa-stack-2x fa-green"
+    data-ng-hide="!verifications[account.service].valid"}></i>
     <i class="fa fa-stack-1x {{webAccountTypes[account.service].iconClass}}"></i>
   </span>
   <span class="app-account-identifier">{{account.identifier}}</span>

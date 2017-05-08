@@ -1,4 +1,4 @@
-<div>
+<div ng-show="hasDisplayableProfile()">
   <div class="container-fluid pro-wrap m-t-50">
     <div class="col-sm-4">
       <div class="pro-container col-sm-12"><div class="pro-avatar m-b-20">
@@ -24,4 +24,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div ng-hide="hasDisplayableProfile()" class='alert alert-info' translate>
+    There isn't any useful profile information to display for this name.
+    <span ng-show="!zonefile"> This is probably because this name doesn't
+      have a zone file.</span>
   </div>

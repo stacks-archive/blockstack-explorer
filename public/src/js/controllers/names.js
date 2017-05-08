@@ -87,4 +87,16 @@ function($scope, $rootScope, $routeParams, $location, Global, Name,
     }
   };
 
+  $scope.hasDisplayableProfile = function() {
+    if($scope.person) {
+      if($scope.person.name() || $scope.person.description() || $scope.person.address()) {
+        return true
+      }
+      var profile = $scope.person.profile()
+      if((profile && profile.account) && profile.account.length > 0) {
+        return true
+      }
+    }
+  }
+  return false
 });

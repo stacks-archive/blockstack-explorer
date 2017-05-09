@@ -16,9 +16,6 @@ angular.module('insight.system').controller('HeaderController',
     }, {
       'title': 'Blocks',
       'link': 'blocks'
-    }, {
-      'title': 'Status',
-      'link': 'status'
     }];
 
     $scope.openScannerModal = function() {

@@ -27,15 +27,16 @@ angular.module('insight.names')
     });
   }).factory('NamesInNamespace',
     function($resource) {
-      return $resource(window.blockstackApiPrefix + '/get_names_in_namespace/:namespaceId/:pageNum', {
+      return $resource(window.blockstackApiPrefix + '/namespaces/:namespaceId/names?page=:pageNum', {
       namespaceId: '@namespaceId',
       pageNum: '@pageNum'
     }, {
       get: {
         method: 'GET',
+        isArray: true,
         interceptor: {
           response: function (res) {
-            return res.data;
+            return {names: res.data};
           },
           responseError: function (res) {
             if (res.status === 404) {

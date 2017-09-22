@@ -3,7 +3,7 @@
 angular.module('insight.names')
   .factory('Owned',
     function($resource) {
-      return $resource(window.blockstackApiPrefix + '/get_names_owned_by_address/:address', {
+      return $resource(window.blockstackApiPrefix + '/addresses/bitcoin/:address', {
       address: '@address'
     }, {
       get: {

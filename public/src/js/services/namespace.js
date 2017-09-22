@@ -16,8 +16,6 @@ angular.module('insight.names')
             for (var i = 0; i < res.data.length; i++) {
               results.push({id: res.data[i]})
             }
-            // console.log('results')
-            // console.log(results)
             return results;
           },
           responseError: function (res) {

@@ -6,6 +6,7 @@ function($scope, $rootScope, $routeParams, $location, Namespace, NamesInNamespac
 
   var pageNum = 0;
   var pagesTotal = 1;
+  var hasMore = true;
   $scope.names = [];
 
   var _listNamesInNamespace = function(namespaceId) {
@@ -43,7 +44,7 @@ function($scope, $rootScope, $routeParams, $location, Namespace, NamesInNamespac
 
   //Load more transactions for pagination
   $scope.loadMore = function() {
-    if (pageNum < pagesTotal && !$scope.loadingNames) {
+    if (hasMore && !$scope.loadingNames) {
       $scope.loadingNames = true;
       NamesInNamespace.get({
         namespaceId: $scope.namespaceId,
@@ -56,7 +57,7 @@ function($scope, $rootScope, $routeParams, $location, Namespace, NamesInNamespac
   var _paginate = function(data) {
     $scope.loadingNames = false;
 
-    pagesTotal = data.total_pages;
+    hasMore = data.names.length > 0 ? true : false
     pageNum += 1;
     data.names.forEach(function(name) {
       $scope.names.push(name);

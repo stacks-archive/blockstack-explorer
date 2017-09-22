@@ -3,7 +3,7 @@
 angular.module('insight.names')
   .factory('Name',
     function($resource, Global) {
-      return $resource(window.blockstackApiPrefix + '/get_name_blockchain_history/:domainName', {
+      return $resource(window.blockstackApiPrefix + '/names/:domainName/history', {
       domainName: '@domainName'
     }, {
       get: {

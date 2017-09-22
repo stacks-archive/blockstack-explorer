@@ -26,10 +26,11 @@
 		<section class="container" data-ng-view></section>
 	</div>
 	<div id="footer" role="navigation" data-ng-include="'views/includes/footer.html'"></div>
-  <script language="javascript">window.apiPrefix = '/api';</script>
+  <script language="javascript">window.apiPrefix = '/insight-api';</script>
 <!-- <script language="javascript">window.blockstackApiPrefix = 'https://explorer-api.appartisan.com';</script> -->
 <!-- <script language="javascript">window.blockstackApiPrefix = 'https://localhost:5000';</script>  -->
-	<script language="javascript">window.blockstackApiPrefix = 'https://core.blockstack.org/v1';</script>
+	<!-- <script language="javascript">window.blockstackApiPrefix = 'https://core.blockstack.org/v1';</script> -->
+	<script language="javascript">window.blockstackApiPrefix = '/core-api/v1';</script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="js/vendors.min.js"></script>
 	<script src="js/angularjs-all.min.js"></script>

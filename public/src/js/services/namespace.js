@@ -3,18 +3,21 @@
 angular.module('insight.names')
   .factory('Namespace',
     function($resource, Global) {
-      return $resource(window.blockstackApiPrefix + '/get_namespace_blockchain_record/:id', {
+      return $resource(window.blockstackApiPrefix + '/namespaces/:id', {
       id: '@id'
     }, {
       all: {
         method: 'GET',
-        url: (window.blockstackApiPrefix + '/get_all_namespaces'),
+        isArray: true,
+        url: (window.blockstackApiPrefix + '/namespaces'),
         interceptor: {
           response: function (res) {
             var results = [];
-            for (var i = 0; i < res.data.namespaces.length; i++) {
-              results.push({id: res.data.namespaces[i]})
+            for (var i = 0; i < res.data.length; i++) {
+              results.push({id: res.data[i]})
             }
+            // console.log('results')
+            // console.log(results)
             return results;
           },
           responseError: function (res) {
@@ -26,7 +29,9 @@ angular.module('insight.names')
       },
       getNumberOfNames: {
         method: 'GET',
-        url: (window.blockstackApiPrefix + '/get_num_names_in_namespace/:id'),
+        // temporary endpoint until name_count endpoint is implemented in core API
+        url: 'https://explorer-api.appartisan.com/get_num_names_in_namespace/:id',
+        // url: (window.blockstackApiPrefix + '/get_num_names_in_namespace/:id'),
         interceptor: {
           response: function (res) {
             return res.data;
@@ -40,7 +45,6 @@ angular.module('insight.names')
       },
       get: {
         method: 'GET',
-        url: (window.blockstackApiPrefix + '/get_namespace_blockchain_record/:id'),
         interceptor: {
           response: function (res) {
             var result = res.data;

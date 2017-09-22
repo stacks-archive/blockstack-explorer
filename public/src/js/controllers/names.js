@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('insight.names').controller('NamesController',
-function($scope, $rootScope, $routeParams, $location, Global, Name,
-  NameRecord, Profile, Verifications) {
+function($scope, $rootScope, $routeParams, $location, Global, Name, NameHistory,
+  Profile, Verifications) {
   $scope.global = Global;
   $scope.loading = false;
   $scope.webAccountTypes = Global.getWebAccountTypes()
@@ -17,7 +17,7 @@ function($scope, $rootScope, $routeParams, $location, Global, Name,
       $location.path('/');
     }
 
-    Name.get({
+    NameHistory.get({
       domainName: domainName
     }, function(response) {
       var nameRecord = Object.assign({},
@@ -25,8 +25,14 @@ function($scope, $rootScope, $routeParams, $location, Global, Name,
       {
         dataRecord: '',
         domainName: domainName,
-        ownerAddress: response.address
+        ownerAddress: response.address,
       });
+
+      Name.get({
+        domainName: domainName
+      }, function(response) {
+        nameRecord.expire_block = response.names.expire_block
+      })
 
       $rootScope.titleDetail = nameRecord.domainName;
       $scope.nameRecord = nameRecord;
@@ -38,12 +44,6 @@ function($scope, $rootScope, $routeParams, $location, Global, Name,
         $scope.verifications = response[domainName]['verifications']
         $scope.zonefile = response[domainName]['zone_file']
       })
-
-      NameRecord.get({
-        domainName: domainName
-      }, function(response) {
-         $scope.nameRecord.expire_block = response.expire_block
-      });
 
     }, function(e) {
       console.log(e);

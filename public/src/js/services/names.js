@@ -3,6 +3,25 @@
 angular.module('insight.names')
   .factory('Name',
     function($resource, Global) {
+      return $resource(window.blockstackApiPrefix + '/names/:domainName', {
+      domainName: '@domainName'
+    }, {
+      get: {
+        method: 'GET',
+        interceptor: {
+          response: function (res) {
+            return {names: res.data};
+          },
+          responseError: function (res) {
+            if (res.status === 404) {
+              return res;
+            }
+          }
+        }
+      }
+    });
+  }).factory('NameHistory',
+    function($resource, Global) {
       return $resource(window.blockstackApiPrefix + '/names/:domainName/history', {
       domainName: '@domainName'
     }, {
@@ -10,7 +29,7 @@ angular.module('insight.names')
         method: 'GET',
         interceptor: {
           response: function (res) {
-
+            
             var nameops = Global.convertHistoryToArray(res.data)
             var result = Object.assign({}, nameops[0]);
             result.history  = nameops;
@@ -37,25 +56,6 @@ angular.module('insight.names')
         interceptor: {
           response: function (res) {
             return {names: res.data};
-          },
-          responseError: function (res) {
-            if (res.status === 404) {
-              return res;
-            }
-          }
-        }
-      }
-    });
-  }).factory('NameRecord',
-    function($resource) {
-      return $resource(window.blockstackApiPrefix + '/get_name_blockchain_record/:domainName', {
-      domainName: '@domainName'
-    }, {
-      get: {
-        method: 'GET',
-        interceptor: {
-          response: function (res) {
-            return res.data;
           },
           responseError: function (res) {
             if (res.status === 404) {

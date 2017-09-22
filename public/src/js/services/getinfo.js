@@ -3,7 +3,7 @@
 angular.module('insight.getinfo')
   .factory('NodeInfo',
     function($resource) {
-      return $resource(window.blockstackApiPrefix + '/getinfo', {
+      return $resource(window.blockstackApiPrefix + '/blockchains/bitcoin/consensus', {
     }, {
       get: {
         method: 'GET',

@@ -11,11 +11,12 @@ var BLOCKSTACK_GENESIS_BLOCK = 373601;
 var BLOCKSTACK_CORE_V14_FORK_BLOCK_HEIGHT = 436650;
 
 angular.module('insight.system').controller('IndexController',
-  function($scope, $rootScope, Global, getSocket, Blocks, NodeInfo, Nameops) {
+  function($scope, $rootScope, Global, getSocket, Blocks, NodeInfoBlock,
+    NodeInfoConsensus, NodeInfoServer, Nameops) {
     $scope.global = Global;
 
     var _getBlockstackNodeInfo = function() {
-      NodeInfo.get({}, function(response) {
+      NodeInfoBlock.get({}, function(response) {
         $scope.blockstackNodeInfo = response;
         _getBlocks();
         _startSocket();

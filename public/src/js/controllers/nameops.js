@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('insight.nameops').controller('NameopsController',
-function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, BlockByHeight, NodeInfo) {
+function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, BlockByHeight, 
+  NodeInfoBlock, NodeInfoConsensus, NodeInfoServer) {
   $scope.global = Global;
   $scope.loading = false;
 
@@ -55,7 +56,7 @@ function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, Bl
       $location.path('/');
     });
 
-    NodeInfo.get({}, function(response) {
+    NodeInfoBlock.get({}, function(response) {
       $scope.nodeInfo = response;
     }, function(e) {
       console.log(e);
@@ -74,7 +75,7 @@ function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, Bl
   $scope.loadBlock = function(blockHeight) {
     $scope.loadingNameops = true;
     $scope.unprocessedBlock = false;
-    NodeInfo.get({}, function(response) {
+    NodeInfoBlock.get({}, function(response) {
       $scope.nodeInfo = response;
       if(blockHeight <= response.last_block_processed) {
         $scope.unprocessedBlock = false;

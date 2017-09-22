@@ -3,14 +3,14 @@
 angular.module('insight.nameops')
   .factory('Nameops',
     function($resource) {
-      return $resource(window.blockstackApiPrefix + '/get_nameops_at/:blockHeight', {
+      return $resource(window.blockstackApiPrefix + '/blockchains/bitcoin/operations/:blockHeight', {
       blockHeight: '@blockHeight'
     }, {
       get: {
         method: 'GET',
+        isArray: true,
         interceptor: {
           response: function (res) {
-
             var result = res.data;
             result.stats = {
               name_preorders: 0,
@@ -22,8 +22,8 @@ angular.module('insight.nameops')
               namespace_preorders: 0,
               namespace_reveals: 0
             }
-            for (var i = 0; i < result.nameops.length; i++) {
-              switch(result.nameops[i].opcode) {
+            for (var i = 0; i < result.length; i++) {
+              switch(result[i].opcode) {
                 case "NAME_PREORDER":
                   result.stats.name_preorders++;
                   break;

@@ -45,7 +45,7 @@ function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, Bl
 
       $scope.loading = false;
 
-      $scope.nameops = nameops.nameops;
+      $scope.nameops = nameops;
       $scope.stats = nameops.stats;
     }, function(e) {
       console.log(e);

@@ -67,7 +67,7 @@ angular.module('insight.names')
     });
   }).factory('Profile',
     function($resource) {
-      return $resource(window.blockstackApiPrefix + '/lookup/:domainName', {
+      return $resource('https://core.blockstack.org/v2/users/:domainName', {
       domainName: '@domainName'
     }, {
       get: {

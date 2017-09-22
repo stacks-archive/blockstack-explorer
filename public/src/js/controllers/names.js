@@ -2,7 +2,7 @@
 
 angular.module('insight.names').controller('NamesController',
 function($scope, $rootScope, $routeParams, $location, Global, Name,
-  Zonefile, NameRecord, Profile, Verifications) {
+  NameRecord, Profile, Verifications) {
   $scope.global = Global;
   $scope.loading = false;
   $scope.webAccountTypes = Global.getWebAccountTypes()
@@ -31,26 +31,13 @@ function($scope, $rootScope, $routeParams, $location, Global, Name,
       $rootScope.titleDetail = nameRecord.domainName;
       $scope.nameRecord = nameRecord;
 
-      Zonefile.get({
-        domainName: domainName
-      }, function(response) {
-        $scope.zonefile = response;
-        $scope.loading = false;
-      });
-
       Profile.get({
         domainName: domainName
       }, function(response) {
-        $scope.person = new blockstack.Person(response[domainName][0])
-        Verifications.get({
-          domainName: domainName
-        }, function(response) {
-          $scope.verifications = response
-        })
+        $scope.person = new blockstack.Person(response[domainName]['profile'])
+        $scope.verifications = response[domainName]['verifications']
+        $scope.zonefile = response[domainName]['zone_file']
       })
-
-
-
 
       NameRecord.get({
         domainName: domainName

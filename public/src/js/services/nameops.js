@@ -50,7 +50,6 @@ angular.module('insight.nameops')
                   break;
                 }
             }
-            console.log(result)
             return result;
           },
           responseError: function (res) {

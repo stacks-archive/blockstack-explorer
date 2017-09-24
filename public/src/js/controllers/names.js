@@ -2,7 +2,7 @@
 
 angular.module('insight.names').controller('NamesController',
 function($scope, $rootScope, $routeParams, $location, Global, Name, NameHistory,
-  Profile, Verifications) {
+  Profile) {
   $scope.global = Global;
   $scope.loading = false;
   $scope.webAccountTypes = Global.getWebAccountTypes()
@@ -41,8 +41,17 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, NameHistory,
         domainName: domainName
       }, function(response) {
         $scope.person = new blockstack.Person(response[domainName]['profile'])
-        $scope.verifications = response[domainName]['verifications']
         $scope.zonefile = response[domainName]['zone_file']
+
+        var verificationsArray = response[domainName]['verifications']
+        const verificationsObject = {}
+
+        for(var i = 0; i < verificationsArray.length; i++) {
+          const verification = verificationsArray[i]
+          verificationsObject[verification.service] = verification
+        }
+
+        $scope.verifications = verificationsObject
       })
 
     }, function(e) {

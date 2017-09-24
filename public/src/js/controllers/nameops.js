@@ -57,7 +57,22 @@ function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, Bl
     });
 
     NodeInfoBlock.get({}, function(response) {
-      $scope.nodeInfo = response;
+
+      var nodeInfo = Object.assign({}, response)
+
+      NodeInfoConsensus.get({}, function(response) {
+        nodeInfo.consensus = response.consensus_hash
+      }, function(e) {
+        console.log(e)
+      });
+
+      NodeInfoServer.get({}, function(response) {
+        nodeInfo.server_version = response.version
+      }, function(e) {
+        console.log(e)
+      });
+      
+      $scope.nodeInfo = nodeInfo;
     }, function(e) {
       console.log(e);
 
@@ -76,7 +91,23 @@ function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, Bl
     $scope.loadingNameops = true;
     $scope.unprocessedBlock = false;
     NodeInfoBlock.get({}, function(response) {
-      $scope.nodeInfo = response;
+
+      var nodeInfo = Object.assign({}, response)
+
+      NodeInfoConsensus.get({}, function(response) {
+        nodeInfo.consensus = response.consensus_hash
+      }, function(e) {
+        console.log(e)
+      });
+
+      NodeInfoServer.get({}, function(response) {
+        nodeInfo.server_version = response.version
+      }, function(e) {
+        console.log(e)
+      });
+
+      $scope.nodeInfo = nodeInfo;
+
       if(blockHeight <= response.last_block_processed) {
         $scope.unprocessedBlock = false;
         Nameops.get({

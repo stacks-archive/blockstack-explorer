@@ -17,7 +17,16 @@ angular.module('insight.system').controller('IndexController',
 
     var _getBlockstackNodeInfo = function() {
       NodeInfoBlock.get({}, function(response) {
-        $scope.blockstackNodeInfo = response;
+        var nodeInfo = Object.assign({}, response)
+
+        NodeInfoConsensus.get({}, function(response) {
+          nodeInfo.consensus = response.consensus_hash
+        }, function(e) {
+          console.log(e)
+        });
+
+        $scope.blockstackNodeInfo = nodeInfo;
+
         _getBlocks();
         _startSocket();
       }, function(e) {

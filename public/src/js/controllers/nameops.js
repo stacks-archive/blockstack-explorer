@@ -42,12 +42,9 @@ function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, Bl
     Nameops.get({
       blockHeight: blockHeight
     }, function(response) {
-      var nameops = response;
-
       $scope.loading = false;
-
-      $scope.nameops = nameops;
-      $scope.stats = nameops.stats;
+      $scope.nameops = response.nameops;
+      $scope.stats = response.stats;
     }, function(e) {
       console.log(e);
 

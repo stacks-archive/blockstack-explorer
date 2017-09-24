@@ -11,7 +11,7 @@ angular.module('insight.nameops')
         isArray: true,
         interceptor: {
           response: function (res) {
-            var result = res.data;
+            var result = Object.assign({}, {nameops: res.data})
             result.stats = {
               name_preorders: 0,
               name_registrations: 0,
@@ -22,8 +22,8 @@ angular.module('insight.nameops')
               namespace_preorders: 0,
               namespace_reveals: 0
             }
-            for (var i = 0; i < result.length; i++) {
-              switch(result[i].opcode) {
+            for (var i = 0; i < result.nameops.length; i++) {
+              switch(result.nameops[i].opcode) {
                 case "NAME_PREORDER":
                   result.stats.name_preorders++;
                   break;
@@ -50,6 +50,7 @@ angular.module('insight.nameops')
                   break;
                 }
             }
+            console.log(result)
             return result;
           },
           responseError: function (res) {

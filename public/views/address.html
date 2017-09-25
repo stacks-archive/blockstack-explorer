@@ -82,8 +82,18 @@
     <div class="col-md-10" data-ng-if="names">
       <table class="table">
         <tbody>
-        <tr ng-repeat="name in names">
-          <td style="font-size: large"><a href="/name/{{name}}">{{name}}</td>
+        <tr ng-repeat="profile in profiles" ng-init="person = profile.person; verifications = profile.verifications">
+          <td>
+            <span style="font-size: large"><a href="/name/{{profile.domainName}}">{{person.name()}}</a></span>
+            <div ng-show="hasDisplayableProfile(person)">
+              <div data-ng-include src="'views/names/profile-card.html'"></div>
+            </div>
+            <div ng-hide="hasDisplayableProfile(person)" class='alert alert-info' translate>
+              There isn't any useful profile information to display for this name.
+              <span ng-show="!zonefile"> This is probably because this name doesn't
+                have a zone file.</span>
+            </div>
+          </td>
         </tr>
         <tr ng-show="names.length == 0">
           <td style="font-size: large">None</td>

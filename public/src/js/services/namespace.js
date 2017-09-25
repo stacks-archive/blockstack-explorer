@@ -27,12 +27,12 @@ angular.module('insight.names')
       },
       getNumberOfNames: {
         method: 'GET',
-        // temporary endpoint until name_count endpoint is implemented in core API
-        url: 'https://explorer-api.appartisan.com/get_num_names_in_namespace/:id',
-        // url: (window.blockstackApiPrefix + '/get_num_names_in_namespace/:id'),
+        // Use name count for bitcoin blockchain for now
+        url: (window.blockstackApiPrefix + '/blockchains/bitcoin/name_count'),
+        // url: 'https://explorer-api.appartisan.com/get_num_names_in_namespace/:id',
         interceptor: {
           response: function (res) {
-            return res.data;
+            return { count: res.data.names_count }
           },
           responseError: function (res) {
             if (res.status === 404) {

@@ -44,16 +44,15 @@ Use existing blockstack core image
 
 Change the config to use a local node:
 
-~/.blockstack/client.ini
+Edit ~/.blockstack/client.ini, change the protocol, server and port
 
-Change protocol, server and port
-`protocol = http`
-`server = localhost`
-`port = 6264`
-
+`sed -i 's/protocol = https/protocol = http/' ~/.blockstack/client.ini`
+`sed -i 's/server = node.blockstack.org/server = localhost/' ~/.blockstack/client.ini`
+`sed -i 's/port = 6263/port = 6264/' ~/.blockstack/client.ini`
 
 ### Nginx config
 
+```
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -85,5 +84,5 @@ server {
         ssl_certificate_key /etc/letsencrypt/live/explorer.blockstack.org/privkey.pem; # managed by Certbot
         include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
 }
-
+```
 

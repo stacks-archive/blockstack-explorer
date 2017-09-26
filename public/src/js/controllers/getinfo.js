@@ -2,7 +2,7 @@
 
 angular.module('insight.getinfo').controller('NodeInfoController',
 function($scope, $rootScope, $routeParams, $location, Global, NodeInfoBlock,
-  NodeInfoConsensus, NodeInfoServer) {
+  NodeInfoConsensus, NodeInfoServer, NodeZoneFileCount) {
   $scope.global = Global;
   $scope.loading = false;
 
@@ -20,6 +20,12 @@ function($scope, $rootScope, $routeParams, $location, Global, NodeInfoBlock,
 
       NodeInfoServer.get({}, function(response) {
         nodeInfo.server_version = response.version
+      }, function(e) {
+        console.log(e)
+      });
+
+      NodeZoneFileCount.get({}, function(response) {
+        nodeInfo.zonefile_count = response.count
       }, function(e) {
         console.log(e)
       });

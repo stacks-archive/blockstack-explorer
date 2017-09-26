@@ -2,7 +2,7 @@
 
 angular.module('insight.nameops').controller('NameopsController',
 function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, BlockByHeight, 
-  NodeInfoBlock, NodeInfoConsensus, NodeInfoServer) {
+  NodeInfo) {
   $scope.global = Global;
   $scope.loading = false;
 
@@ -53,23 +53,8 @@ function($scope, $rootScope, $routeParams, $location, Global, Nameops, Block, Bl
       $location.path('/');
     });
 
-    NodeInfoBlock.get({}, function(response) {
-
-      var nodeInfo = Object.assign({}, response)
-
-      NodeInfoConsensus.get({}, function(response) {
-        nodeInfo.consensus = response.consensus_hash
-      }, function(e) {
-        console.log(e)
-      });
-
-      NodeInfoServer.get({}, function(response) {
-        nodeInfo.server_version = response.version
-      }, function(e) {
-        console.log(e)
-      });
-      
-      $scope.nodeInfo = nodeInfo;
+    NodeInfo.get({}, function(response) {      
+      $scope.nodeInfo = response;
     }, function(e) {
       console.log(e);
 

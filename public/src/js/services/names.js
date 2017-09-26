@@ -3,7 +3,7 @@
 angular.module('insight.names')
   .factory('Name',
     function($resource, Global) {
-      return $resource(window.blockstackApiPrefix + '/names/:domainName', {
+      return $resource(window.blockstackApiPrefix + '/v1/names/:domainName', {
       domainName: '@domainName'
     }, {
       get: {
@@ -22,7 +22,7 @@ angular.module('insight.names')
     });
   }).factory('NameHistory',
     function($resource, Global) {
-      return $resource(window.blockstackApiPrefix + '/names/:domainName/history', {
+      return $resource(window.blockstackApiPrefix + '/v1/names/:domainName/history', {
       domainName: '@domainName'
     }, {
       get: {
@@ -46,7 +46,7 @@ angular.module('insight.names')
     });
   }).factory('NamesInNamespace',
     function($resource) {
-      return $resource(window.blockstackApiPrefix + '/namespaces/:namespaceId/names?page=:pageNum', {
+      return $resource(window.blockstackApiPrefix + '/v1/namespaces/:namespaceId/names?page=:pageNum', {
       namespaceId: '@namespaceId',
       pageNum: '@pageNum'
     }, {

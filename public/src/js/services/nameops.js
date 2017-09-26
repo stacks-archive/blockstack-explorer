@@ -3,7 +3,7 @@
 angular.module('insight.nameops')
   .factory('Nameops',
     function($resource) {
-      return $resource(window.blockstackApiPrefix + '/blockchains/bitcoin/operations/:blockHeight', {
+      return $resource(window.blockstackApiPrefix + '/v1/blockchains/bitcoin/operations/:blockHeight', {
       blockHeight: '@blockHeight'
     }, {
       get: {

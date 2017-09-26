@@ -25,7 +25,7 @@ angular.module('insight.getinfo')
     });
   }).factory('NodeInfoConsensus',
     function($resource) {
-      return $resource(window.blockstackApiPrefix + '/blockchains/bitcoin/consensus', {
+      return $resource(window.blockstackApiPrefix + '/v1/blockchains/bitcoin/consensus', {
     }, {
       get: {
         method: 'GET',
@@ -43,7 +43,7 @@ angular.module('insight.getinfo')
     });
   }).factory('NodeInfoServer',
     function($resource) {
-      return $resource(window.blockstackApiPrefix + '/node/ping', {
+      return $resource(window.blockstackApiPrefix + '/v1/node/ping', {
     }, {
       get: {
         method: 'GET',

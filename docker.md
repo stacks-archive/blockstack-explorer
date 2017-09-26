@@ -47,7 +47,9 @@ Change the config to use a local node:
 Edit ~/.blockstack/client.ini, change the protocol, server and port
 
 `sed -i 's/protocol = https/protocol = http/' ~/.blockstack/client.ini`
+
 `sed -i 's/server = node.blockstack.org/server = localhost/' ~/.blockstack/client.ini`
+
 `sed -i 's/port = 6263/port = 6264/' ~/.blockstack/client.ini`
 
 ### Nginx config

@@ -10,16 +10,23 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, NameHistory,
   var _findName = function(domainName) {
     $scope.loading = true;
 
-    if (domainName.indexOf('.') > -1) {
-//      domainName = domainName.split('.')[0];
-    } else {
+    var blockstackIDRegex = /^[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/
+
+    if(!blockstackIDRegex.test(domainName)) {
       $rootScope.flashMessage = 'Invalid Name';
-      $location.path('/');
+      $location.path('/')
+      return;
     }
 
     NameHistory.get({
       domainName: domainName
     }, function(response) {
+
+      if(!response.address) {
+        $scope.domainNameNotFound = domainName
+        return;
+      }
+
       var nameRecord = Object.assign({},
         response,
       {

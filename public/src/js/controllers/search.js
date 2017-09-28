@@ -23,18 +23,20 @@ angular.module('insight.search').controller('SearchController',
     $scope.badQuery = false;
     $scope.loading = true;
 
-    // Looks like a blockstack name
-    // FIXME: use proper regex
-    var tokens = q.split(".");
-    if(tokens.length == 2 && tokens[1].length >= 1) {
+    // Check if valid blockstack ID or namespace
+    var blockstackIDRegex = /^[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/
+    var blockstackNamespaceRegex = /^\.[A-Za-z0-9_]+$/
+
+    if(blockstackIDRegex.test(q)) {
       _resetSearch();
-      if(tokens[0].length >= 1) {
-        $location.path('name/' + q );
-        return;
-      } else {
-        $location.path('namespace/' + tokens[1] );
-        return;
-      }
+      $location.path('name/' + q.toLowerCase())
+      return;
+    }
+
+    if(blockstackNamespaceRegex.test(q)) {
+      _resetSearch();
+      $location.path('namespace/' + q.replace('.', '').toLowerCase())
+      return;
     }
 
     Block.get({

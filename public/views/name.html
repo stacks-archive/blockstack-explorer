@@ -49,7 +49,7 @@
     <div ng-show="hasDisplayableProfile(person)">
       <div data-ng-include src="'views/names/profile-card.html'"></div>
     </div>
-    <div ng-hide="hasDisplayableProfile(person)" class='alert alert-info' translate>
+    <div data-ng-show="!hasDisplayableProfile(person) && !loading" class='alert alert-info' translate>
       There isn't any useful profile information to display for this name.
       <span ng-show="!zonefile"> This is probably because this name doesn't
         have a zone file.</span>
@@ -115,7 +115,9 @@
         data-ng-show="!zonefile && !loading"
         translate>This name has no zone file!</div>
       <div class="row" data-ng-if="zonefile">
+        <div class="col-md-12">
           <pre>{{ zonefile }}</pre>
+        </div>
       </div>
     <div>
       <h2 translate>History</h2>

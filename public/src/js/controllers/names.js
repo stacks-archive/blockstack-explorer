@@ -59,6 +59,7 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, NameHistory,
         }
 
         $scope.verifications = verificationsObject
+        $scope.loading = false
       })
 
     }, function(e) {

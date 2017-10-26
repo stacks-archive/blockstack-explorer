@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('insight.names').controller('NamesController',
-function($scope, $rootScope, $routeParams, $location, Global, Name,
-  Zonefile, NameRecord, Profile, Verifications) {
+function($scope, $rootScope, $routeParams, $location, Global, Name, NameHistory,
+  Profile) {
   $scope.global = Global;
   $scope.loading = false;
   $scope.webAccountTypes = Global.getWebAccountTypes()
@@ -10,53 +10,57 @@ function($scope, $rootScope, $routeParams, $location, Global, Name,
   var _findName = function(domainName) {
     $scope.loading = true;
 
-    if (domainName.indexOf('.') > -1) {
-//      domainName = domainName.split('.')[0];
-    } else {
+    var blockstackIDRegex = /^[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/
+
+    if(!blockstackIDRegex.test(domainName)) {
       $rootScope.flashMessage = 'Invalid Name';
-      $location.path('/');
+      $location.path('/')
+      return;
     }
 
-    Name.get({
+    NameHistory.get({
       domainName: domainName
     }, function(response) {
+
+      if(!response.address) {
+        $scope.domainNameNotFound = domainName
+        return;
+      }
+
       var nameRecord = Object.assign({},
         response,
       {
         dataRecord: '',
         domainName: domainName,
-        ownerAddress: response.address
+        ownerAddress: response.address,
       });
+
+      Name.get({
+        domainName: domainName
+      }, function(response) {
+        nameRecord.expire_block = response.names.expire_block
+      })
 
       $rootScope.titleDetail = nameRecord.domainName;
       $scope.nameRecord = nameRecord;
 
-      Zonefile.get({
-        domainName: domainName
-      }, function(response) {
-        $scope.zonefile = response;
-        $scope.loading = false;
-      });
-
       Profile.get({
         domainName: domainName
       }, function(response) {
-        $scope.person = new blockstack.Person(response[domainName][0])
-        Verifications.get({
-          domainName: domainName
-        }, function(response) {
-          $scope.verifications = response
-        })
+        $scope.person = new blockstack.Person(response[domainName]['profile'])
+        $scope.zonefile = response[domainName]['zone_file']
+
+        var verificationsArray = response[domainName]['verifications']
+        const verificationsObject = {}
+
+        for(var i = 0; i < verificationsArray.length; i++) {
+          const verification = verificationsArray[i]
+          verificationsObject[verification.service] = verification
+        }
+
+        $scope.verifications = verificationsObject
+        $scope.loading = false
       })
-
-
-
-
-      NameRecord.get({
-        domainName: domainName
-      }, function(response) {
-         $scope.nameRecord.expire_block = response.expire_block
-      });
 
     }, function(e) {
       console.log(e);

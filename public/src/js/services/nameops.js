@@ -3,15 +3,15 @@
 angular.module('insight.nameops')
   .factory('Nameops',
     function($resource) {
-      return $resource(window.blockstackApiPrefix + '/get_nameops_at/:blockHeight', {
+      return $resource(window.blockstackApiPrefix + '/v1/blockchains/bitcoin/operations/:blockHeight', {
       blockHeight: '@blockHeight'
     }, {
       get: {
         method: 'GET',
+        isArray: true,
         interceptor: {
           response: function (res) {
-
-            var result = res.data;
+            var result = Object.assign({}, {nameops: res.data})
             result.stats = {
               name_preorders: 0,
               name_registrations: 0,

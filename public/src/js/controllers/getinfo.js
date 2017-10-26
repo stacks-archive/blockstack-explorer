@@ -8,15 +8,13 @@ function($scope, $rootScope, $routeParams, $location, Global, NodeInfo) {
   $scope.getInfo = function() {
     $scope.loading = true;
 
-
-    NodeInfo.get({}, function(response) {
-      $scope.nodeInfo = response;
+    NodeInfo .get({}, function(response) {
+      $scope.nodeInfo = response
     }, function(e) {
       console.log(e);
-
       $rootScope.flashMessage = 'Error loading Blockstack node info';
-
     });
+
   };
 
 });

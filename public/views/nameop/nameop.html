@@ -8,13 +8,14 @@
       <a href="tx/{{nameop.txid}}" class="hidden-xs txvalues txvalues-default">#{{nameop.vtxindex}}</a>
       <a href="tx/{{nameop.txid}}" class="txvalues txvalues-default">{{nameop.opcode}}</a>
       <span data-ng-show="nameop.name" class="txvalues txvalues-default" style="text-transform: none;"><a data-ng-href="name/{{nameop.name}}">{{nameop.name}}</a></span>
-      <span data-ng-show="nameop.namespace_id" class="txvalues txvalues-default" style="text-transform: none;"><a data-ng-href="namespace/{{nameop.namespace_id}}">{{nameop.namespace_id}}</a></span>
+      <span data-ng-show="nameop.namespace_id" class="hidden-xs txvalues txvalues-default" style="text-transform: none;"><a data-ng-href="namespace/{{nameop.namespace_id}}">{{nameop.namespace_id}}</a></span>
       <a class="hidden-xs txvalues txvalues-default" style="text-transform: none;" href="address/{{nameop.address}}">{{nameop.address}}</a>
 
 
     </div>
   </div>
   <div class="col-xs-3 col-lg-3 text-right">
+    <span data-ng-show="nameop.name" class="hidden-sm hidden-md hidden-lg txvalues txvalues-default" style="text-transform: none;line-height:22px;"><a data-ng-href="name/{{nameop.name}}">{{nameop.name}}</a></span>
     <span data-ng-show="!isNaN(parseFloat(nameop.op_fee))"
       class="hidden-xs txvalues txvalues-default"><span translate>Op Fee</span>: {{$root.currency.getConvertion((nameop.op_fee | satoshisToBtc))}} </span>
   </div>

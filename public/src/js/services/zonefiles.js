@@ -3,7 +3,7 @@
 angular.module('insight.zonefiles')
   .factory('Zonefile',
     function($resource) {
-      return $resource(window.blockstackApiPrefix + '/get_name_zonefile/:domainName', {
+      return $resource(window.blockstackApiPrefix + '/v1/names/:domainName/zonefile', {
       domainName: '@domainName'
     }, {
       get: {

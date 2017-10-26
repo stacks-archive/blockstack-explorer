@@ -8,7 +8,7 @@
 	<meta name="fragment" content="!">
 	<title data-ng-bind="$root.title + $root.titleDetail + ' | Blockstack Explorer'">Blockstack</title>
 	<meta name="keywords" content="blockstack, name operations, transactions, blocks, address, block chain, decentralized internet">
-	<meta name="description" content="Blockstack Explorer. View detailed information on all Blockstack name operations and names. {{ $root.title + $root.titleDetail }}">
+	<meta name="description" content="Blockstack Explorer. View detailed information on all Blockstack name operations and names. ">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <script type="text/javascript">
  WebFontConfig = {
@@ -26,9 +26,10 @@
 		<section class="container" data-ng-view></section>
 	</div>
 	<div id="footer" role="navigation" data-ng-include="'views/includes/footer.html'"></div>
-  <script language="javascript">window.apiPrefix = '/api';</script>
-<script language="javascript">window.blockstackApiPrefix = 'https://explorer-api.appartisan.com';</script>
-<!--<script language="javascript">window.blockstackApiPrefix = 'http://localhost:5000';</script> -->
+  <script language="javascript">window.apiPrefix = '/insight-api';</script>
+<!-- <script language="javascript">window.blockstackApiPrefix = 'https://explorer-api.appartisan.com';</script> -->
+	<script language="javascript">window.blockstackApiPrefix = 'https://core.blockstack.org/';</script>
+	<!-- <script language="javascript">window.blockstackApiPrefix = 'https://core.technofractal.com/';</script> -->
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="js/vendors.min.js"></script>
 	<script src="js/angularjs-all.min.js"></script>

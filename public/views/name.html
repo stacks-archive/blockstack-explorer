@@ -45,8 +45,15 @@
       <strong>Owner</strong>
       <span class="txid text-muted"><a href="address/{{nameRecord.address}}">{{nameRecord.address}}</a></span>
     </div>
-    <!-- stort profile card -->
-    <div data-ng-include src="'views/names/profile-card.html'"></div>
+    <!-- start profile card -->
+    <div ng-show="hasDisplayableProfile(person)">
+      <div data-ng-include src="'views/names/profile-card.html'"></div>
+    </div>
+    <div data-ng-show="!hasDisplayableProfile(person) && !loading" class='alert alert-info' translate>
+      There isn't any useful profile information to display for this name.
+      <span ng-show="!zonefile"> This is probably because this name doesn't
+        have a zone file.</span>
+    </div>
     <!-- end profile card -->
     <h2 translate>Summary</h2>
     <div class="row">
@@ -108,7 +115,9 @@
         data-ng-show="!zonefile && !loading"
         translate>This name has no zone file!</div>
       <div class="row" data-ng-if="zonefile">
+        <div class="col-md-12">
           <pre>{{ zonefile }}</pre>
+        </div>
       </div>
     <div>
       <h2 translate>History</h2>

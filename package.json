@@ -39,7 +39,10 @@
     "front-end"
   ],
   "bitcoreNode": "bitcore-node",
-  "dependencies": {},
+  "dependencies": {
+    "es6-promise": "^4.1.1",
+    "isomorphic-fetch": "^2.2.1"
+  },
   "devDependencies": {
     "bower": "~1.2.8",
     "grunt": "~0.4.2",

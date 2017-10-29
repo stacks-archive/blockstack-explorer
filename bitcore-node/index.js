@@ -3,6 +3,7 @@
 var BaseService = require('./service');
 var inherits = require('util').inherits;
 var fs = require('fs');
+var metadataRoutes = require('./../server/controllers/metadata')
 
 var InsightUI = function(options) {
   BaseService.call(this, options);
@@ -33,6 +34,8 @@ InsightUI.prototype.getRoutePrefix = function() {
 
 InsightUI.prototype.setupRoutes = function(app, express) {
   var self = this;
+
+  app.use('/metadata', metadataRoutes(express));
 
   app.use('/', function(req, res, next){
     if (req.headers.accept && req.headers.accept.indexOf('text/html') !== -1 &&

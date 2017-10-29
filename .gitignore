@@ -47,3 +47,6 @@ public/css/main.css
 README.html
 po/*
 !po/*.po
+
+._.DS_Store
+._*

@@ -58,9 +58,7 @@ const metadataRoutes = function(express) {
             <meta name="twitter:image" content="${photo}" />
           </head>
           <body>
-          ${fullName}
-          ${description}
-          ${photo}
+          <script>window.location.replace("${ogUrl}")</script>
           </body>
           </html>`)
         return;
@@ -123,7 +121,7 @@ const metadataRoutes = function(express) {
         }
 
         const ogUrl = `http://${req.header('host')}/address/${address}`
-        
+
         res.header('Content-Type', 'text/html')
         .send(`
           <html>
@@ -140,9 +138,7 @@ const metadataRoutes = function(express) {
             <meta name="twitter:image" content="${photo}" />
           </head>
           <body>
-          ${fullName}
-          ${description}
-          ${photo}
+          <script>window.location.replace("${ogUrl}")</script>
           </body>
           </html>`)
         return;

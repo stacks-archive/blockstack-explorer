@@ -37,16 +37,14 @@ InsightUI.prototype.setupRoutes = function(app, express) {
 
   app.use('/metadata', metadataRoutes(express));
 
-  app.use('/', function(req, res, next){
-    if (req.headers.accept && req.headers.accept.indexOf('text/html') !== -1 &&
-      req.headers["X-Requested-With"] !== 'XMLHttpRequest'
-    ) {
-      res.setHeader('Content-Type', 'text/html');
-      res.send(self.indexFile);
-    } else {
-      express.static(__dirname + '/../public')(req, res, next);
-    }
+  app.use(express.static(__dirname + '/../public'));
+
+  // if not in found, fall back to indexFile (404 is handled client-side)
+  app.use(function(req, res) {
+    res.setHeader('Content-Type', 'text/html');
+    res.send(self.indexFile);
   });
+
 };
 
 InsightUI.prototype.filterIndexHTML = function(data) {

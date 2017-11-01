@@ -41,7 +41,7 @@ module.exports = function(grunt) {
         dest: 'public/js/main.js'
       },
       css: {
-        src: ['public/lib/bootstrap/dist/css/bootstrap.min.css', 'public/src/css/**/*.css'],
+        src: ['node_modules/bootstrap/dist/css/bootstrap.min.css', 'public/src/css/**/*.css'],
         dest: 'public/css/main.css'
       }
     },

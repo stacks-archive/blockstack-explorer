@@ -4,7 +4,7 @@ angular.module('insight.names').controller('OwnedController',
 function($scope, $rootScope, $routeParams, $location, Global, Owned, Profile) {
   $scope.global = Global;
   $scope.loading = false;
-  $scope.webAccountTypes = Global.getWebAccountTypes()
+  $scope.webAccountTypes = Global.getWebAccountTypes();
 
   $scope.init = function(address) {
     Owned.get({
@@ -57,6 +57,30 @@ function($scope, $rootScope, $routeParams, $location, Global, Owned, Profile) {
     }
   };
   
+  $scope.getServiceString = function(service) {
+    if (service === 'ssh' || service === 'pgp' || service === 'bitcoin' || service === 'ethereum') {
+      return service;
+    } else {
+      return '@' + service;
+    }
+  }
+
+  $scope.getIdentifierString = function (service, identifier) {
+    if (service === 'ssh' || service === 'pgp' || service === 'bitcoin' || service === 'ethereum') {
+      return identifier.substring(0, 60) + ((identifier && identifier.length > 60) ? '...' : '');
+    } else {
+      return identifier;
+    }
+  }
+
+  $scope.shouldVerify = function (service) {
+    if (service === 'ssh' || service === 'pgp' || service === 'bitcoin' || service === 'ethereum') {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   $scope.hasDisplayableProfile = function(person) {
     if(person) {
       if(person.name() || person.description() || person.address()) {

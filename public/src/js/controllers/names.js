@@ -5,7 +5,7 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, NameHistory,
   Profile) {
   $scope.global = Global;
   $scope.loading = false;
-  $scope.webAccountTypes = Global.getWebAccountTypes()
+  $scope.webAccountTypes = Global.getWebAccountTypes();
 
   var _findName = function(domainName) {
     $scope.loading = true;
@@ -90,6 +90,30 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, NameHistory,
       return urlTemplate.replace('{identifier}', account.identifier)
     }
   };
+
+  $scope.getServiceString = function(service) {
+    if (service === 'ssh' || service === 'pgp' || service === 'bitcoin' || service === 'ethereum') {
+      return service;
+    } else {
+      return '@' + service;
+    }
+  }
+
+  $scope.getIdentifierString = function (service, identifier) {
+    if (service === 'ssh' || service === 'pgp' || service === 'bitcoin' || service === 'ethereum') {
+      return identifier.substring(0, 60) + ((identifier && identifier.length > 60) ? '...' : '');
+    } else {
+      return identifier;
+    }
+  }
+
+  $scope.shouldVerify = function (service) {
+    if (service === 'ssh' || service === 'pgp' || service === 'bitcoin' || service === 'ethereum') {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   $scope.hasDisplayableProfile = function() {
     if($scope.person) {

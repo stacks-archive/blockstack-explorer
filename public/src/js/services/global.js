@@ -43,7 +43,7 @@ angular.module('insight.system')
               label: 'Instagram', iconClass: 'fa-instagram', social: true,
               urlTemplate: 'https://instagram.com/{identifier}'
             },
-            'linkedin': {
+            'linkedIn': {
               label: 'LinkedIn', iconClass: 'fa-linkedin', social: true,
               urlTemplate: 'https://www.linkedin.com/in/{identifier}'
             },
@@ -75,7 +75,7 @@ angular.module('insight.system')
               label: 'StackOverflow', iconClass: 'fa-stack-overflow', social: true,
               urlTemplate: 'http://stackoverflow.com/users/{identifier}'
             },
-            'hacker-news': {
+            'hackerNews': {
               label: 'Hacker News', iconClass: 'fa-hacker-news', social: true,
               urlTemplate: 'https://news.ycombinator.com/user?id={identifier}'
             },

@@ -1,9 +1,16 @@
 <a data-ng-href="{{getAccountUrl(account)}}" data-toggle="tooltip"
               title="{{webAccountTypes[account.service].label}}" target="_blank">
-  <span class="fa-stack fa-lg">
-    <i class="fa fa-certificate fa-stack-2x fa-green"
-    data-ng-hide="!verifications[account.service].valid"}></i>
-    <i class="fa fa-stack-1x {{webAccountTypes[account.service].iconClass}}"></i>
+  <span class="fa-lg">
+    <i class="fa fa-fw {{webAccountTypes[account.service].iconClass}}"></i>
   </span>
-  <span class="app-account-identifier">{{account.identifier}}</span>
+  <span class="app-account-identifier">{{getIdentifierString(account.service, account.identifier)}}</span>
+  <span class="app-account-service">{{getServiceString(account.service)}}</span>
+  <span class="fa-lg float-right verification-status">
+  	<i class="fa fa-check-circle" data-ng-hide="!verifications[account.service].valid"}></i>
+  	<span data-ng-if="shouldVerify(account.service)">
+  		<span data-ng-hide="verifications[account.service].valid" class="badge badge-unverified">
+  			Unverified
+  		</span>
+  	</span>
+  </span>
 </a>

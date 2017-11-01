@@ -43,24 +43,7 @@ const metadataRoutes = function(express) {
         const ogUrl = `http://${req.header('host')}/name/${name}`
 
         res.header('Content-Type', 'text/html')
-        .send(`
-          <html>
-          <head>
-            <title>${ogTitle}</title>
-            <meta property="og:title" content="${ogTitle}" />
-            <meta property="og:description" content="${ogDescription}" />
-            <meta property="og:image" content="${photo}" />
-            <meta property="og:url" content="${ogUrl}" />
-            <meta property="og:type" content="profile" />
-            <meta name='twitter:card' content='summary' />
-            <meta name="twitter:title" content="${ogTitle}" />
-            <meta name="twitter:description" content="${ogDescription}" />
-            <meta name="twitter:image" content="${photo}" />
-          </head>
-          <body>
-          <script>window.location.replace("${ogUrl}")</script>
-          </body>
-          </html>`)
+        .send(generateMetadataPage(ogTitle, ogDescription, photo, ogUrl))
         return;
       })
       .catch(function(err){
@@ -83,7 +66,13 @@ const metadataRoutes = function(express) {
       	const names = data.names;
 
       	if(names === undefined || names.length === 0){
-      		return Promise.reject({ message: 'Address does not own any names' });
+          const ogTitle = 'Blockstack Identity Address'
+          const ogDescription = `${address} is an identity address on Blockstack, a new internet for decentralized apps. `
+          const photo = 'http://' + req.header('host') + '/img/og-square.png'
+          const ogUrl = `http://${req.header('host')}/address/${address}`
+          res.header('Content-Type', 'text/html')
+          .send(generateMetadataPage(ogTitle, ogDescription, photo, ogUrl))
+          return;
       	}
 
       	const name = data.names[0]
@@ -123,24 +112,7 @@ const metadataRoutes = function(express) {
         const ogUrl = `http://${req.header('host')}/address/${address}`
 
         res.header('Content-Type', 'text/html')
-        .send(`
-          <html>
-          <head>
-            <title>${ogTitle}</title>
-            <meta property="og:title" content="${ogTitle}" />
-            <meta property="og:description" content="${ogDescription}" />
-            <meta property="og:image" content="${photo}" />
-            <meta property="og:url" content="${ogUrl}" />
-            <meta property="og:type" content="profile" />
-            <meta name='twitter:card' content='summary' />
-            <meta name="twitter:title" content="${ogTitle}" />
-            <meta name="twitter:description" content="${ogDescription}" />
-            <meta name="twitter:image" content="${photo}" />
-          </head>
-          <body>
-          <script>window.location.replace("${ogUrl}")</script>
-          </body>
-          </html>`)
+        .send(generateMetadataPage(ogTitle, ogDescription, photo, ogUrl))
         return;
       })
       .catch(function(err){
@@ -150,6 +122,28 @@ const metadataRoutes = function(express) {
   });
 
   return routes
+}
+
+const generateMetadataPage = function(ogTitle, ogDescription, photo, ogUrl) {
+  return `
+    <html>
+      <head>
+        <title>${ogTitle}</title>
+        <meta property="og:title" content="${ogTitle}" />
+        <meta property="og:description" content="${ogDescription}" />
+        <meta property="og:image" content="${photo}" />
+        <meta property="og:url" content="${ogUrl}" />
+        <meta property="og:type" content="profile" />
+        <meta name='twitter:card' content='summary' />
+        <meta name="twitter:title" content="${ogTitle}" />
+        <meta name="twitter:description" content="${ogDescription}" />
+        <meta name="twitter:image" content="${photo}" />
+      </head>
+      <body>
+      <script>window.location.replace("${ogUrl}")</script>
+      </body>
+      </html>
+    `
 }
 
 module.exports = metadataRoutes;

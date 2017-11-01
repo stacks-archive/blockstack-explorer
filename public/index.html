@@ -22,7 +22,14 @@
 </head>
 <body ng-cloak class="ng-cloak">
 	<div id="wrap">
-		<div class="navbar navbar-default navbar-fixed-top" data-ng-include="'views/includes/header.html'" role='navigation'></div>
+   		<div class="alert-banner">
+          <a href="http://blockstack.com" target="_blank" class="alert alert-primary alert-dismissible show text-center text-white" role="alert">
+            <div>
+              <span>Introducing the <strong>Blockstack Token</strong> &nbsp;&nbsp; › &nbsp; <strong>Learn more</strong></span>
+            </div>
+          </a>
+        </div>
+		<div class="navbar navbar-default" data-ng-include="'views/includes/header.html'" role='navigation'></div>
 		<section class="container" data-ng-view></section>
 	</div>
 	<div id="footer" role="navigation" data-ng-include="'views/includes/footer.html'"></div>

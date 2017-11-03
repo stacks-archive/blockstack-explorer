@@ -782,6 +782,10 @@ a.v_highlight_more {
   color:#fff;
 }
 
+.alert-banner .alert {
+  border-radius:0;
+}
+
 /* ID card */
 .idcard{position:relative;border:.0625rem solid rgba(229,229,229,1);border-radius:.25rem;}
 .dim{color:#7b7b7b;}
@@ -817,9 +821,10 @@ div.card-avatar.profile-list-avatar img{max-width:48px;}
 .card-wrapper{padding-left:0;}
 .pro-wrap{font-family:'Lato',sans-serif;-webkit-font-smoothing:antialiased;max-width:1180px;background-color:#fff;padding:35px 0px;font-weight:300;}
 div.pro-avatar img{max-width:58px;}
+.pro-avatar {background-color:#000;background-image:url("/img/avatar.png");background-position:center;background-size:58px 58px;width:58px;height:58px;border-radius:29px;}
 .pro-card-name{font-size:1.8rem;color:#222222;font-weight:500;}
 .pro-card-body{display:block;margin-bottom:30px;font-size:1.2rem;color:#222222;font-weight:700;}
-.pro-container{padding-top:1.5rem;}
+.pro-container{padding-top:1.5rem;padding-left:0;}
 .fa-green{color: #1d9d74;}
 .pro-wrap i.fa {margin-left: inherit;margin-top: inherit;}
 .social-account{line-height:26px;}
@@ -958,6 +963,10 @@ div.pro-avatar img{max-width:58px;}
   }
   .btn-expand {
     font-size: 18px;
+  }
+  .profile-right-col-fill {
+    min-height:auto;
+    font-size:13px;
   }
 }
 

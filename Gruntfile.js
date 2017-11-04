@@ -40,6 +40,10 @@ module.exports = function(grunt) {
         src: ['public/src/js/app.js', 'public/src/js/controllers/*.js', 'public/src/js/services/*.js', 'public/src/js/directives.js', 'public/src/js/filters.js', 'public/src/js/config.js', 'public/src/js/init.js', 'public/src/js/translations.js'],
         dest: 'public/js/main.js'
       },
+      mixpanel: {
+        src: ['public/src/js/mixpanel/mixpanel.js'],
+        dest: 'public/js/mixpanel.js'        
+      },
       css: {
         src: ['node_modules/bootstrap/dist/css/bootstrap.min.css', 'public/src/css/**/*.css'],
         dest: 'public/css/main.css'

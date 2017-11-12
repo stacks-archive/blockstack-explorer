@@ -971,6 +971,9 @@ div.pro-avatar img{max-width:58px;}
     min-height:auto;
     font-size:13px;
   }
+  .banner-time{
+    font-size:16px;
+  }
 }
 
 @media (max-width: 375px) {
@@ -978,6 +981,13 @@ div.pro-avatar img{max-width:58px;}
     padding-left: 0.1em;
     padding-right: 0.1em;
     font-size: 11px;
+  }
+  .alert-banner {
+    height:90px;
+    line-height:30px;
+  }
+  #ngProgress-container {
+    top: 140px;
   }
 }
 

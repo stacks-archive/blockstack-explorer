@@ -91,6 +91,14 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, NameHistory,
     }
   };
 
+  $scope.getAccountProofUrl = function(account) {
+    if(account.service === 'pgp') {
+      return account.contentUrl
+    } else {
+      return account.proofUrl
+    }
+  }
+
   $scope.getServiceString = function(service) {
     if (service === 'ssh' || service === 'pgp' || service === 'bitcoin' || service === 'ethereum') {
       return service;

@@ -26,7 +26,8 @@ angular.module('insight',[
   'insight.status',
   'insight.connection',
   'insight.currency',
-  'insight.messages'
+  'insight.messages',
+  'insight.countdown'
 ]);
 
 angular.module('insight.system', []);
@@ -43,3 +44,4 @@ angular.module('insight.status', []);
 angular.module('insight.connection', []);
 angular.module('insight.currency', []);
 angular.module('insight.messages', []);
+angular.module('insight.countdown', []);

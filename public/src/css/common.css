@@ -986,6 +986,9 @@ div.pro-avatar img{max-width:58px;}
     height:90px;
     line-height:30px;
   }
+  .banner-timer-wrap {
+    margin-left:0;
+  }
   #ngProgress-container {
     top: 140px;
   }

@@ -28,7 +28,7 @@ angular.module('insight.names')
       getNumberOfNames: {
         method: 'GET',
         // Use name count for bitcoin blockchain for now
-        url: (window.blockstackApiPrefix + '/v1/blockchains/bitcoin/name_count'),
+        url: (window.blockstackApiPrefix + '/v1/blockchains/bitcoin/name_count?all=1'),
         // url: 'https://explorer-api.appartisan.com/get_num_names_in_namespace/:id',
         interceptor: {
           response: function (res) {

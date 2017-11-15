@@ -3,13 +3,13 @@
 angular.module('insight.countdown').controller('CountdownController', 
 function($scope, $interval) {
 	function calculateTimeRemaining() {
-		const registrationEndDate = "Wednesday, November 15 2017 15:00:00 EDT"
+		const registrationEndDate = "Wednesday, November 15 2017 15:00:00 EST"
 		const endDate = moment(registrationEndDate);
 		const remainingHours =  endDate.diff(moment(), 'hours')
 		const remainingMinutes = endDate.diff(moment(), 'minutes')
-		$scope.days = Math.floor(remainingHours/24);
-		$scope.hours = remainingHours - $scope.days*24;
-		$scope.minutes = remainingMinutes - remainingHours*60;
+		$scope.days = Math.max(0, Math.floor(remainingHours/24));
+		$scope.hours = Math.max(remainingHours - $scope.days*24);
+		$scope.minutes = Math.max(remainingMinutes - remainingHours*60);
 	}
 
 	calculateTimeRemaining();

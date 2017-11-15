@@ -8,8 +8,8 @@ function($scope, $interval) {
 		const remainingHours =  endDate.diff(moment(), 'hours')
 		const remainingMinutes = endDate.diff(moment(), 'minutes')
 		$scope.days = Math.max(0, Math.floor(remainingHours/24));
-		$scope.hours = Math.max(remainingHours - $scope.days*24);
-		$scope.minutes = Math.max(remainingMinutes - remainingHours*60);
+		$scope.hours = Math.max(0, remainingHours - $scope.days*24);
+		$scope.minutes = Math.max(0, remainingMinutes - remainingHours*60);
 	}
 
 	calculateTimeRemaining();

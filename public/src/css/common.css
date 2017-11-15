@@ -848,6 +848,16 @@ div.pro-avatar img{max-width:58px;}
   border: 1px solid #e3e3e3;
 }
 
+.intro a:link,
+.intro a:active,
+.intro a:visited {
+  color:#2c96ff;
+}
+
+.intro a:hover {
+  color:#2378cc;
+}
+
 @media (max-width: 991px) {
   .status {
     display: none;

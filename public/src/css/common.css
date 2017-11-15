@@ -851,6 +851,7 @@ div.pro-avatar img{max-width:58px;}
 .intro a:link,
 .intro a:active,
 .intro a:visited {
+  font-weight: bold;
   color:#2c96ff;
 }
 

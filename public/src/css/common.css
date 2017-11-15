@@ -840,6 +840,7 @@ div.pro-avatar img{max-width:58px;}
 /* Blockstack Intro */
 .intro {
   font-size:18px;
+  margin-top:-10px;
   margin-bottom:45px;
   background-color:#f4f4f4;
   border-radius:3px;

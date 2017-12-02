@@ -17,8 +17,6 @@
     </div>
   </div>
 
-  <div data-ng-include src="'views/includes/intro.html'"></div>
-
   <h1><span translate>Address</span> <small data-ng-show="address.addrStr">{{$root.currency.getConvertion(address.balance) || address.balance + ' BTC'}}</small></h1>
   <div class="progress progress-striped active" data-ng-if="!address.addrStr">
     <div class="progress-bar progress-bar-info" style="width: 100%">

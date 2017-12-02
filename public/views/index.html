@@ -9,10 +9,6 @@
   </div>
   <div class="container">
     <div id="home" class="row">
-      <div class="col-xs-12 col-lg-12"
-        <div data-ng-include src="'views/includes/intro.html'"></div>
-      </div>
-
       <div class="col-xs-12 col-lg-8">
 
         <div id="search-form-mobile" class="visible-xs" data-ng-include src="'views/includes/search.html'"></div>
@@ -48,7 +44,7 @@
           <a href="blocks" class="btn btn-default" translate>See all blocks</a>
         </div>
       </div>
-      <div class="col-xs-12 col-lg-4 col-gray"  data-ng-controller="NamespaceController"  data-ng-init="listAll()">
+      <div class="col-xs-12 col-lg-4 col-gray m20t"  data-ng-controller="NamespaceController"  data-ng-init="listAll()">
           <h2 translate>Namespaces</h2>
           <table class="table table-hover table-striped" style="table-layout: fixed;">
             <thead>

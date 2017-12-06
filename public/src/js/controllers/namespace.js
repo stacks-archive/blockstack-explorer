@@ -34,7 +34,10 @@ function($scope, $rootScope, $routeParams, $location, Global, Namespace) {
       for (var i = 0; i < namespaces.length; i++) {
         $scope.counter = i;
         Namespace.getNumberOfNames({id: namespaces[i].id}, function(countResponse) {
-          namespaces[$scope.counter].numberOfNames = countResponse.count;
+          // namespaces[$scope.counter].numberOfNames = countResponse.count;
+          if (namespaces[0].id === 'id') {
+            namespaces[0].numberOfNames = countResponse.count
+          }
         });
       }
       $scope.namespaces = namespaces;

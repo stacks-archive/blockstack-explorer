@@ -3,7 +3,7 @@
 angular.module('insight.getinfo')
   .factory('NodeInfo',
     function($resource) {
-      return $resource('/blockstack-node/RPC2', {
+      return $resource(blockstackNode + '/RPC2', {
     }, {
       get: {
         method: 'POST',

@@ -10,7 +10,7 @@ function($scope, $rootScope, $routeParams, $location, Global, Name, NameHistory,
   var _findName = function(domainName) {
     $scope.loading = true;
 
-    var blockstackIDRegex = /^[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/
+    var blockstackIDRegex = /^([A-Za-z0-9_]+\.){1,2}[A-Za-z0-9_]+$/  
 
     if(!blockstackIDRegex.test(domainName)) {
       $rootScope.flashMessage = 'Invalid Name';

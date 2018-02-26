@@ -24,7 +24,7 @@ angular.module('insight.search').controller('SearchController',
     $scope.loading = true;
 
     // Check if valid blockstack ID or namespace
-    var blockstackIDRegex = /^[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/
+    var blockstackIDRegex = /^([A-Za-z0-9_]+\.){1,2}[A-Za-z0-9_]+$/
     var blockstackNamespaceRegex = /^\.[A-Za-z0-9_]+$/
 
     if(blockstackIDRegex.test(q)) {

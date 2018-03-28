@@ -311,7 +311,7 @@ msgstr ""
 
 #: public/views/nameops_block.html
 msgid "Name Imports"
-msgstr "名字倒入"
+msgstr "名字导入"
 
 #: public/views/block_list.html public/views/index.html
 msgid "Name Operations"

@@ -1,0 +1,37 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "babel",
+    "jest"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowTaggedTemplates": true
+      }
+    ],
+    "no-underscore-dangle": [
+      0
+    ]
+  },
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "globals": {
+    "gtag": true
+  }
+}

@@ -1,10 +1,10 @@
-module.exports = {
-  webpack: (config) => {
-    // Fixes npm packages that depend on `fs` module
-    config.node = {
-      fs: 'empty'
-    }
+const path = require('path');
+const webpackConfig = require('./webpack.config');
 
-    return config
-  }
-}
+module.exports = {
+  webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
+    config.resolve = webpackConfig.resolve;
+    return config;
+  },
+  webpackDevMiddleware: (config) => config,
+};

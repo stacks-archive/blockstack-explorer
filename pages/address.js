@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link'
 import { withRouter } from 'next/router'
+import ReactChartkick, { LineChart } from 'react-chartkick'
+import Chart from 'chart.js'
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -10,6 +12,8 @@ import Head from '../components/head'
 import Nav from '../components/nav'
 
 import { Card } from '../styled/card';
+
+ReactChartkick.addAdapter(Chart)
 
 class Address extends React.Component {
   render() {
@@ -30,6 +34,9 @@ class Address extends React.Component {
                 <Typography variant="button">1144.013 STX</Typography>
               </Typography>
             </Card>
+          </Grid>
+          <Grid item xs={6}>
+            <LineChart />
           </Grid>
         </Grid>
       </>

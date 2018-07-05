@@ -29,13 +29,9 @@ function Nav(props) {
         <Grid item xs={12}>
           <AppBar position="static">
             <Toolbar>
-              <IconButton  color="inherit" aria-label="Menu">
-                <MenuIcon />
-              </IconButton>
               <Typography variant="title" color="inherit" >
                 Stacks Explorer
               </Typography>
-              <Button color="inherit">Login</Button>
             </Toolbar>
           </AppBar>
         </Grid>

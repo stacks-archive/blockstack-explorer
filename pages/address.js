@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link'
-import { withRouter } from 'next/router'
 import ReactChartkick, { LineChart } from 'react-chartkick'
 import Chart from 'chart.js'
 
@@ -16,9 +15,17 @@ import { Card } from '../styled/card';
 ReactChartkick.addAdapter(Chart)
 
 class Address extends React.Component {
+  static getInitialProps({ req, reduxStore }) {
+    const {
+      params: { address },
+    } = req;
+
+    return { address };
+  }
+
   render() {
-    const { address } = this.props.router.query;
-    console.log(this.props);
+    const { address } = this.props;
+
     return (
       <>
         <Head title="Address" />
@@ -44,4 +51,4 @@ class Address extends React.Component {
   }
 }
 
-export default withRouter(Address);
+export default Address;

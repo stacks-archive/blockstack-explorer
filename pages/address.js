@@ -41,14 +41,28 @@ class Address extends React.Component {
             <Card>
               <Typography variant="display1" gutterBottom>Account Details</Typography>
               <Typography variant="button" gutterBottom>{account.address}</Typography>
+
               <Typography variant="body1" gutterBottom>
                 Balance: 
-                <Typography variant="button">1144.013 STX</Typography>
+                <Typography variant="button">{account.value} STACKS</Typography>
+              </Typography>
+
+              <Typography variant="body1" gutterBottom>
+                Vesting Total:
+                <Typography variant="button">{account.vesting_total} STACKS</Typography>
+              </Typography>
+
+              <Typography variant="body1" gutterBottom>
+                Balance after vesting:
+                <Typography variant="button">{account.vesting_total + account.value} STACKS</Typography>
               </Typography>
             </Card>
           </Grid>
           <Grid item xs={6}>
-            <LineChart />
+            <Typography variant="title" align="center">
+              Token Vesting
+            </Typography>
+            <LineChart data={account.vesting} xtitle="Block Height" yaxis="Tokens Received"/>
           </Grid>
         </Grid>
       </>

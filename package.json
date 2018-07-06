@@ -37,6 +37,6 @@
     "eslint-scope": "^3.7.1"
   },
   "engines": {
-    "node": "10.5.0"
+    "node": "8.x.x"
   }
 }

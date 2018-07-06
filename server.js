@@ -1,6 +1,7 @@
 const express = require('express');
 const next = require('next');
 const LRUCache = require('lru-cache');
+const basicAuth = require('express-basic-auth')
 
 const genesis = require('./data/mock-genesis');
 
@@ -60,6 +61,12 @@ async function renderAndCache(req, res, pagePath) {
 
 app.prepare().then(() => {
   const server = express();
+
+  if (!dev) {
+    server.use(basicAuth({
+      users: { 'admin': process.env.AUTH_PASSWORD }
+    }))
+  }
 
   server.set('views', './common/server-views');
   server.set('view engine', 'pug');

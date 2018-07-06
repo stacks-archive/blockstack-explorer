@@ -62,7 +62,7 @@ class Address extends React.Component {
             <Typography variant="title" align="center">
               Token Vesting
             </Typography>
-            <LineChart data={account.vesting} xtitle="Block Height" yaxis="Tokens Received"/>
+            <LineChart data={account.vesting} xtitle="Block Height" ytitle="Tokens Received"/>
           </Grid>
         </Grid>
       </>

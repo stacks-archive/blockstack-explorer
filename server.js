@@ -62,12 +62,12 @@ async function renderAndCache(req, res, pagePath) {
 app.prepare().then(() => {
   const server = express();
 
-  if (!dev) {
-    server.use(basicAuth({
-      users: { 'admin': process.env.AUTH_PASSWORD },
-      challenge: true,
-    }))
-  }
+  // if (!dev) {
+  //   server.use(basicAuth({
+  //     users: { 'admin': process.env.AUTH_PASSWORD },
+  //     challenge: true,
+  //   }))
+  // }
 
   server.set('views', './common/server-views');
   server.set('view engine', 'pug');

@@ -4,7 +4,8 @@
     "prod": "NODE_ENV=production node server.js",
     "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "heroku-postbuild": "next build"
   },
   "dependencies": {
     "@material-ui/core": "^1.3.1",
@@ -32,8 +33,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
-    "eslint-scope": "^3.7.1",
-    "heroku-postbuild": "next build"
+    "eslint-scope": "^3.7.1"
   },
   "engines": {
     "node": "10.2.1"

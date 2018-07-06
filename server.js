@@ -2,10 +2,9 @@ const express = require('express');
 const next = require('next');
 const LRUCache = require('lru-cache');
 
-const dev = process.env.NODE_ENV !== 'production';
+const genesis = require('./data/mock-genesis');
 
-// const { getApps } = require('./common/lib/api');
-// const RSSController = require('./common/controllers/rss-controller');
+const dev = process.env.NODE_ENV !== 'production';
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const app = next({ dev });
@@ -37,9 +36,7 @@ async function renderAndCache(req, res, pagePath) {
   }
 
   try {
-    // const data = await getApps(apiServer);
-    // data.apiServer = apiServer;
-    const data = {};
+    const data = { rows: genesis.rows };
 
     // If not let's render the page into HTML
     const html = await app.renderToHTML(req, res, pagePath, data);

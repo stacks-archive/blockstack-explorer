@@ -64,7 +64,8 @@ app.prepare().then(() => {
 
   if (!dev) {
     server.use(basicAuth({
-      users: { 'admin': process.env.AUTH_PASSWORD }
+      users: { 'admin': process.env.AUTH_PASSWORD },
+      challenge: true,
     }))
   }
 

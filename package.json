@@ -1,7 +1,8 @@
 {
   "name": "create-next-example-app",
   "scripts": {
-    "dev": "next",
+    "prod": "NODE_ENV=production node server.js",
+    "dev": "node server.js",
     "build": "next build",
     "start": "next start"
   },

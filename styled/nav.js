@@ -1,7 +1,7 @@
 import Styled from 'styled-components';
 import Input from '@material-ui/core/Input';
 
-export const Search = {
+const Search = {
   Input: Styled(Input)`
     margin-right: 20px;
     margin-left: 100px;
@@ -14,9 +14,16 @@ export const Search = {
   `
 }
 
-export const Title = {
+const Title = {
   Link: Styled.a`
     color: white;
     text-decoration: none;
   `
 }
+
+const Nav = {
+  Title,
+  Search,
+}
+
+export default Nav;

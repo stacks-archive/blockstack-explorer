@@ -9,7 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Router from 'next/router';
 import Link from 'next/link';
 
-import { Search, Title } from '@styled/nav';
+import StyledNav from '@styled/nav';
 
 const onEnter = (event) => {
   if (event.key === 'Enter') {
@@ -26,13 +26,13 @@ function Nav() {
           <AppBar position="static">
             <Toolbar>
               <Link href="/">
-                <Title.Link href="/">
+                <StyledNav.Title.Link href="/">
                   <Typography variant="title" color="inherit" >
                     Stacks Explorer
                   </Typography>
-                </Title.Link>
+                </StyledNav.Title.Link>
               </Link>
-              <Search.Input placeholder="search" onKeyUp={onEnter}/>
+              <StyledNav.Search.Input placeholder="search" onKeyUp={onEnter}/>
             </Toolbar>
           </AppBar>
         </Grid>

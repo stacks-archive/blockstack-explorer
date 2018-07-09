@@ -13,3 +13,10 @@ export const Search = {
     }
   `
 }
+
+export const Title = {
+  Link: Styled.a`
+    color: white;
+    text-decoration: none;
+  `
+}

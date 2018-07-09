@@ -6,9 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Router from 'next/router'
+import Router from 'next/router';
+import Link from 'next/link';
 
-import { Search } from '@styled/nav';
+import { Search, Title } from '@styled/nav';
 
 const onEnter = (event) => {
   if (event.key === 'Enter') {
@@ -24,9 +25,13 @@ function Nav() {
         <Grid item xs={12}>
           <AppBar position="static">
             <Toolbar>
-              <Typography variant="title" color="inherit" >
-                Stacks Explorer
-              </Typography>
+              <Link href="/">
+                <Title.Link href="/">
+                  <Typography variant="title" color="inherit" >
+                    Stacks Explorer
+                  </Typography>
+                </Title.Link>
+              </Link>
               <Search.Input placeholder="search" onKeyUp={onEnter}/>
             </Toolbar>
           </AppBar>

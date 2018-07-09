@@ -4,7 +4,7 @@
     "prod": "NODE_ENV=production node server.js",
     "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "heroku-postbuild": "next build"
   },
   "dependencies": {

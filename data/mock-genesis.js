@@ -1,5 +1,7 @@
+const crypto = require("crypto");
+
 const randomAddress = () => {
-  return Math.random().toString(36).substring(24);
+  return crypto.randomBytes(20).toString('hex');
 }
 
 const rows = [];
@@ -24,7 +26,7 @@ for (let index = 0; index < count; index++) {
     type: 'STACKS',
     value: total,
     vesting: vesting,
-    vestingTotal: vestingTotal,
+    vesting_total: vestingTotal,
   });
 }
 

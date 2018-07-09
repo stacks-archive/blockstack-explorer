@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,22 +6,18 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Router from 'next/router'
 
-const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  flex: {
-    flex: 1,
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20,
-  },
-};
+import { Search } from '@styled/nav';
 
-function Nav(props) {
-  // const { classes } = props;
+const onEnter = (event) => {
+  if (event.key === 'Enter') {
+    const address = event.target.value;
+    Router.push(`/address/${address}`);
+  }
+}
+
+function Nav() {
   return (
     <div>
       <Grid container>
@@ -32,6 +27,7 @@ function Nav(props) {
               <Typography variant="title" color="inherit" >
                 Stacks Explorer
               </Typography>
+              <Search.Input placeholder="search" onKeyUp={onEnter}/>
             </Toolbar>
           </AppBar>
         </Grid>
@@ -39,9 +35,5 @@ function Nav(props) {
     </div>
   );
 }
-
-Nav.propTypes = {
-  // classes: PropTypes.object.isRequired,
-};
 
 export default Nav;

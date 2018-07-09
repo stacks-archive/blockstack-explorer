@@ -8,7 +8,8 @@ module.exports = {
       '@common': path.resolve(__dirname, 'common'),
       '@pages': path.resolve(__dirname, 'pages'),
       '@utils': path.resolve(__dirname, 'utils'),
-      '@stores': path.resolve(__dirname, 'stores')
+      '@stores': path.resolve(__dirname, 'stores'),
+      '@styled': path.resolve(__dirname, 'styled')
     },
   },
 };

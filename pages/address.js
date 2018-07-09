@@ -29,42 +29,51 @@ class Address extends React.Component {
   }
 
   render() {
-    const { account } = this.props;
+    const { account, address } = this.props;
 
     return (
       <>
         <Head title="Account" />
         <Nav />
         <br/>
-        <Grid container>
-          <Grid item xs={6}>
-            <Card>
-              <Typography variant="display1" gutterBottom>Account Details</Typography>
-              <Typography variant="button" gutterBottom>{account.address}</Typography>
+        {account ? (
+          <Grid container>
+            <Grid item xs={6}>
+              <Card>
+                <Typography variant="display1" gutterBottom>Account Details</Typography>
+                <Typography variant="button" gutterBottom>{account.address}</Typography>
 
-              <Typography variant="body1" gutterBottom>
-                Balance: 
+                <Typography variant="body1" gutterBottom>
+                  Balance:
                 <Typography variant="button">{account.value} STACKS</Typography>
-              </Typography>
+                </Typography>
 
-              <Typography variant="body1" gutterBottom>
-                Vesting Total:
+                <Typography variant="body1" gutterBottom>
+                  Vesting Total:
                 <Typography variant="button">{account.vesting_total} STACKS</Typography>
-              </Typography>
+                </Typography>
 
-              <Typography variant="body1" gutterBottom>
-                Balance after vesting:
+                <Typography variant="body1" gutterBottom>
+                  Balance after vesting:
                 <Typography variant="button">{account.vesting_total + account.value} STACKS</Typography>
-              </Typography>
-            </Card>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="title" align="center">
-              Token Vesting
+                </Typography>
+              </Card>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="title" align="center">
+                Token Vesting
             </Typography>
-            <LineChart data={account.vesting} xtitle="Block Height" ytitle="Tokens Received"/>
+              <LineChart data={account.vesting} xtitle="Block Height" ytitle="Tokens Received" />
+            </Grid>
           </Grid>
-        </Grid>
+        ) : (
+          <Grid item xs={12}>
+            <Typography align="center" variant="display1">
+              Sorry, no account was found with the address:
+              <Typography variant="button">{address}</Typography>
+            </Typography>
+          </Grid>
+        )}
       </>
     )
   }
@@ -73,6 +82,7 @@ class Address extends React.Component {
 
 const mapStateToProps = (state) => ({
   account: state.accounts.selectedAccount,
+  address: state.accounts.selectedAddress,
 });
 
 function mapDispatchToProps(dispatch) {

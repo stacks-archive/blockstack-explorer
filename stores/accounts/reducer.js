@@ -14,6 +14,7 @@ const makeReducer = (data) => {
   } else {
     const emptyState = {
       selectedAccount: null,
+      selectedAddress: null,
     }
 
     initialState = defaults(data.accounts, emptyState);
@@ -25,6 +26,7 @@ const makeReducer = (data) => {
         return {
           ...state,
           selectedAccount: state.accountsByAddress[action.address],
+          selectedAddress: action.address,
         }
       }
       default:

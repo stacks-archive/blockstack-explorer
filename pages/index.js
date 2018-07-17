@@ -7,8 +7,12 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
+import { Flex, Box } from 'grid-styled'
+
 import Head from '../components/head'
 import Nav from '../components/nav'
+
+import { Card } from '../styled/card';
 
 const accountRow = (account) => {
   return (
@@ -36,18 +40,24 @@ const Home = ({ accounts }) => {
     <div>
       <Head title="Home" />
       <Nav />
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Address</TableCell>
-            <TableCell>Initial Value</TableCell>
-            <TableCell>Vesting Total</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {accountRows}
-        </TableBody>
-      </Table>
+      <Flex>
+        <Box width={1} m={3}>
+          <Card>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Address</TableCell>
+                  <TableCell>Initial Value</TableCell>
+                  <TableCell>Vesting Total</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {accountRows}
+              </TableBody>
+            </Table>
+          </Card>
+        </Box>
+      </Flex>
     </div>
   )
 }

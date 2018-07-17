@@ -1,7 +1,7 @@
 const express = require('express');
 const next = require('next');
 const LRUCache = require('lru-cache');
-const basicAuth = require('express-basic-auth')
+const basicAuth = require('express-basic-auth');
 
 const genesis = require('./data/mock-genesis');
 
@@ -81,6 +81,10 @@ app.prepare().then(() => {
   // Use the `renderAndCache` utility defined below to serve pages
   server.get('/', (req, res) => {
     renderAndCache(req, res, '/');
+  });
+
+  server.get('/global', (req, res) => {
+    renderAndCache(req, res, '/global');
   });
 
   server.get('/address/:address', (req, res) => {

@@ -12,13 +12,15 @@ import { Card } from '../styled/card';
 ReactChartkick.addAdapter(Chart)
 
 const getTotals = (accounts) => {
+  const addresses = Object.keys(accounts);
   const totals = {
     initalValue: 0,
     vestedValues: 0,
     vestedAtBlocks: {},
+    addressCount: addresses.length,
   };
 
-  Object.keys(accounts).forEach(address => {
+  addresses.forEach(address => {
     const account = accounts[address];
     totals.initalValue += account.value;
     totals.vestedValues += account.vesting_total;
@@ -35,9 +37,10 @@ const Global = ({ totals }) => (
   <>
     <Head />
     <Nav />
-    <Flex>
-      <Box width={1/2} m={3}>
+    <Flex flexWrap="wrap">
+      <Box width={1/2} p={3}>
         <Card>
+          <Typography variant="display1" gutterBottom>Global Statistics</Typography>
           <Typography variant="body1" gutterBottom>
             Initial Total:
             <Typography variant="button">{totals.initalValue} STACKS</Typography>
@@ -47,9 +50,14 @@ const Global = ({ totals }) => (
             Total from vesting:
             <Typography variant="button">{totals.vestedValues} STACKS</Typography>
           </Typography>
+
+          <Typography variant="body1" gutterBottom>
+            Total accounts:
+            <Typography variant="button">{totals.addressCount}</Typography>
+          </Typography>
         </Card>
       </Box>
-      <Box width={1/2} m={3}>
+      <Box width={1/2} p={3}>
         <Card>
           <LineChart data={totals.vestedAtBlocks} xtitle="Block Height" ytitle="Tokens Received" />
         </Card>

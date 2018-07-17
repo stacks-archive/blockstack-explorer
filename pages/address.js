@@ -3,6 +3,7 @@ import Link from 'next/link'
 import ReactChartkick, { LineChart } from 'react-chartkick'
 import Chart from 'chart.js'
 import { connect } from 'react-redux';
+import { Flex, Box } from 'grid-styled';
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -37,8 +38,8 @@ class Address extends React.Component {
         <Nav />
         <br/>
         {account ? (
-          <Grid container>
-            <Grid item xs={6}>
+          <Flex flexWrap="wrap">
+            <Box width={[1, 1, 1/2]} p={3}>
               <Card>
                 <Typography variant="display1" gutterBottom>Account Details</Typography>
                 <Typography variant="button" gutterBottom>{account.address}</Typography>
@@ -58,21 +59,25 @@ class Address extends React.Component {
                 <Typography variant="button">{account.vesting_total + account.value} STACKS</Typography>
                 </Typography>
               </Card>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="title" align="center">
-                Token Vesting
-            </Typography>
-              <LineChart data={account.vesting} xtitle="Block Height" ytitle="Tokens Received" />
-            </Grid>
-          </Grid>
+            </Box>
+            <Box width={[1, 1, 1/2]} p={3}>
+              <Card>
+                <Typography variant="title" align="center">
+                  Token Vesting
+                </Typography>
+                <LineChart data={account.vesting} xtitle="Block Height" ytitle="Tokens Received" />
+              </Card>
+            </Box>
+          </Flex>
         ) : (
-          <Grid item xs={12}>
-            <Typography align="center" variant="display1">
-              Sorry, no account was found with the address:
-              <Typography variant="button">{address}</Typography>
-            </Typography>
-          </Grid>
+          <Flex>
+            <Box width={1} m={4}>
+              <Typography align="center" variant="display1">
+                Sorry, no account was found with the address:
+                <Typography variant="button">{address}</Typography>
+              </Typography>
+            </Box>
+          </Flex>
         )}
       </>
     )

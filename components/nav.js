@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,7 +17,7 @@ const onEnter = (event) => {
     const address = event.target.value;
     Router.push(`/address/${address}`);
   }
-}
+};
 
 function Nav() {
   return (
@@ -27,12 +28,17 @@ function Nav() {
             <Toolbar>
               <Link href="/">
                 <StyledNav.Title.Link href="/">
-                  <Typography variant="title" color="inherit" >
+                  <Typography variant="title" color="inherit">
                     Stacks Explorer
                   </Typography>
                 </StyledNav.Title.Link>
               </Link>
-              <StyledNav.Search.Input placeholder="search" onKeyUp={onEnter}/>
+              <StyledNav.Search.Input placeholder="search" onKeyUp={onEnter} />
+              <Link href="/global">
+                <Button color="inherit" href="/global">
+                  Global Stats
+                </Button>
+              </Link>
             </Toolbar>
           </AppBar>
         </Grid>

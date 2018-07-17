@@ -1,4 +1,5 @@
-import Link from 'next/link'
+import React from 'react';
+import Link from 'next/link';
 import { connect } from 'react-redux';
 
 import Table from '@material-ui/core/Table';
@@ -7,35 +8,31 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
-import { Flex, Box } from 'grid-styled'
+import { Flex, Box } from 'grid-styled';
 
-import Head from '../components/head'
-import Nav from '../components/nav'
+import Head from '../components/head';
+import Nav from '../components/nav';
 
 import { Card } from '../styled/card';
 
-const accountRow = (account) => {
-  return (
-    <TableRow key={account.address}>
-      <Link href={`/address/${account.address}`}>
-        <TableCell>
-          <a href={`/address/${account.address}`}>{account.address}</a>
-        </TableCell>
-      </Link>
-      <TableCell>{account.value}</TableCell>
-      <TableCell>{account.vesting_total}</TableCell>
-    </TableRow>
-  )
-}
+const accountRow = (account) => (
+  <TableRow key={account.address}>
+    <Link href={`/address/${account.address}`}>
+      <TableCell>
+        <a href={`/address/${account.address}`}>{account.address}</a>
+      </TableCell>
+    </Link>
+    <TableCell>{account.value}</TableCell>
+    <TableCell>{account.vesting_total}</TableCell>
+  </TableRow>
+);
 
 const Home = ({ accounts }) => {
   const accountRows = [];
-  for (const address in accounts) {
-    if (accounts.hasOwnProperty(address)) {
-      const account = accounts[address];
-      accountRows.push(accountRow(account));
-    }
-  }
+  Object.keys(accounts).forEach((address) => {
+    const account = accounts[address];
+    accountRows.push(accountRow(account));
+  });
   return (
     <div>
       <Head title="Home" />
@@ -51,16 +48,14 @@ const Home = ({ accounts }) => {
                   <TableCell>Vesting Total</TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
-                {accountRows}
-              </TableBody>
+              <TableBody>{accountRows}</TableBody>
             </Table>
           </Card>
         </Box>
       </Flex>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => ({
   accounts: state.accounts.accountsByAddress,

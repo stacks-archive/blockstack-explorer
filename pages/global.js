@@ -1,74 +1,62 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Flex, Box } from 'grid-styled';
 import Typography from '@material-ui/core/Typography';
-import ReactChartkick, { LineChart } from 'react-chartkick'
-import Chart from 'chart.js'
+import ReactChartkick, { LineChart } from 'react-chartkick';
+import Chart from 'chart.js';
 
-import Head from '../components/head'
-import Nav from '../components/nav'
+import Head from '../components/head';
+import Nav from '../components/nav';
 import { Card } from '../styled/card';
 
-ReactChartkick.addAdapter(Chart)
+import { fetchTotals } from '@client/api';
 
-const getTotals = (accounts) => {
-  const addresses = Object.keys(accounts);
-  const totals = {
-    initalValue: 0,
-    vestedValues: 0,
-    vestedAtBlocks: {},
-    addressCount: addresses.length,
-  };
+ReactChartkick.addAdapter(Chart);
 
-  addresses.forEach(address => {
-    const account = accounts[address];
-    totals.initalValue += account.value;
-    totals.vestedValues += account.vesting_total;
-    Object.keys(account.vesting).forEach(block => {
-      totals.vestedAtBlocks[block] = totals.vestedAtBlocks[block] || 0;
-      totals.vestedAtBlocks[block] += account.vesting[block];
-    })
-  });
+class Global extends React.Component {
+  static async getInitialProps() {
+    const totals = await fetchTotals();
+    return {
+      totals,
+    };
+  }
 
-  return totals;
+  render() {
+    const { totals } = this.props;
+    return (
+      <>
+        <Head />
+        <Nav />
+        <Flex flexWrap="wrap">
+          <Box width={1 / 2} p={3}>
+            <Card>
+              <Typography variant="display1" gutterBottom>
+                Global Statistics
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Initial Total:
+                <Typography variant="button">{totals.initalValue} STACKS</Typography>
+              </Typography>
+
+              <Typography variant="body1" gutterBottom>
+                Total from vesting:
+                <Typography variant="button">{totals.vestedValues} STACKS</Typography>
+              </Typography>
+
+              <Typography variant="body1" gutterBottom>
+                Total accounts:
+                <Typography variant="button">{totals.addressCount}</Typography>
+              </Typography>
+            </Card>
+          </Box>
+          <Box width={1 / 2} p={3}>
+            <Card>
+              <LineChart data={totals.vestedAtBlocks} xtitle="Block Height" ytitle="Tokens Received" />
+            </Card>
+          </Box>
+        </Flex>
+      </>
+    );
+  }
 }
 
-const Global = ({ totals }) => (
-  <>
-    <Head />
-    <Nav />
-    <Flex flexWrap="wrap">
-      <Box width={1/2} p={3}>
-        <Card>
-          <Typography variant="display1" gutterBottom>Global Statistics</Typography>
-          <Typography variant="body1" gutterBottom>
-            Initial Total:
-            <Typography variant="button">{totals.initalValue} STACKS</Typography>
-          </Typography>
-
-          <Typography variant="body1" gutterBottom>
-            Total from vesting:
-            <Typography variant="button">{totals.vestedValues} STACKS</Typography>
-          </Typography>
-
-          <Typography variant="body1" gutterBottom>
-            Total accounts:
-            <Typography variant="button">{totals.addressCount}</Typography>
-          </Typography>
-        </Card>
-      </Box>
-      <Box width={1/2} p={3}>
-        <Card>
-          <LineChart data={totals.vestedAtBlocks} xtitle="Block Height" ytitle="Tokens Received" />
-        </Card>
-      </Box>
-    </Flex>
-  </>
-);
-
-const mapStateToProps = (state) => ({
-  accounts: state.accounts.accountsByAddress,
-  totals: getTotals(state.accounts.accountsByAddress),
-});
-
-export default connect(mapStateToProps)(Global);
+export default Global;

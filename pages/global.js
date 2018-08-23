@@ -50,7 +50,7 @@ class Global extends React.Component {
           </Box>
           <Box width={1 / 2} p={3}>
             <Card>
-              <LineChart data={totals.vestedAtBlocks} xtitle="Block Height" ytitle="Tokens Received" />
+              <LineChart data={totals.cumulativeVestedAtBlocks} xtitle="Block Height" ytitle="Tokens Received" />
             </Card>
           </Box>
         </Flex>

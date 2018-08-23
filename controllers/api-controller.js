@@ -4,9 +4,9 @@ const { getTotals } = require('../lib/addresses');
 
 const makeAPIController = (accounts) => {
   const APIController = express.Router();
+  const totals = getTotals(accounts);
 
   APIController.get('/accounts/global', (req, res) => {
-    const totals = getTotals(accounts);
     res.json(totals);
   });
 

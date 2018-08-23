@@ -1,5 +1,5 @@
-import makeReducer from './reducer';
+import reducer from './reducer';
 
 export default {
-  makeReducer: makeReducer,
+  reducer,
 };

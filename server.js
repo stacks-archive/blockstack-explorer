@@ -1,9 +1,11 @@
 const express = require('express');
 const next = require('next');
 const LRUCache = require('lru-cache');
-const basicAuth = require('express-basic-auth');
+require('dotenv').config();
+// const basicAuth = require('express-basic-auth');
 
-const genesis = require('./data/mock-genesis');
+const { getAccounts } = require('./lib/addresses');
+const APIController = require('./controllers/api-controller');
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -29,18 +31,18 @@ async function renderAndCache(req, res, pagePath) {
   const key = getCacheKey(req);
 
   // If we have a page in the cache, let's serve it
-  if (ssrCache.has(key) && !dev) {
-    res.setHeader('x-cache', 'HIT');
-    console.log('cache hit');
-    res.send(ssrCache.get(key));
-    return;
-  }
+  // if (ssrCache.has(key) && !dev) {
+  //   res.setHeader('x-cache', 'HIT');
+  //   console.log('cache hit');
+  //   res.send(ssrCache.get(key));
+  //   return;
+  // }
 
   try {
-    const data = { rows: genesis.rows };
+    // const data = { rows: genesis.rows };
 
     // If not let's render the page into HTML
-    const html = await app.renderToHTML(req, res, pagePath, data);
+    const html = await app.renderToHTML(req, res, pagePath, {});
 
     // Something is wrong with the request, let's skip the cache
     if (res.statusCode !== 200) {
@@ -52,61 +54,73 @@ async function renderAndCache(req, res, pagePath) {
     ssrCache.set(key, html);
 
     res.setHeader('x-cache', 'MISS');
-    console.log('cache miss');
+    // console.log('cache miss');
     res.send(html);
   } catch (err) {
     app.renderError(err, req, res, pagePath);
   }
 }
 
-app.prepare().then(() => {
-  const server = express();
+const setup = async () => {
+  try {
+    await app.prepare();
+    const accounts = await getAccounts();
+    console.log(`${Object.keys(accounts).length} accounts`);
+    console.log(accounts[Object.keys(accounts)[0]]);
 
-  // if (!dev) {
-  //   server.use(basicAuth({
-  //     users: { 'admin': process.env.AUTH_PASSWORD },
-  //     challenge: true,
-  //   }))
-  // }
+    const server = express();
 
-  server.set('views', './common/server-views');
-  server.set('view engine', 'pug');
+    // if (!dev) {
+    //   server.use(basicAuth({
+    //     users: { 'admin': process.env.AUTH_PASSWORD },
+    //     challenge: true,
+    //   }))
+    // }
 
-  server.use((req, res, _next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', '*');
-    _next();
-  });
+    server.set('views', './common/server-views');
+    server.set('view engine', 'pug');
 
-  // Use the `renderAndCache` utility defined below to serve pages
-  server.get('/', (req, res) => {
-    renderAndCache(req, res, '/');
-  });
+    server.use((req, res, _next) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Headers', '*');
+      _next();
+    });
 
-  server.get('/global', (req, res) => {
-    renderAndCache(req, res, '/global');
-  });
+    // Use the `renderAndCache` utility defined below to serve pages
+    server.get('/', (req, res) => {
+      renderAndCache(req, res, '/');
+    });
 
-  server.get('/address/:address', (req, res) => {
-    renderAndCache(req, res, '/address');
-  });
+    server.get('/global', (req, res) => {
+      renderAndCache(req, res, '/global');
+    });
 
-  server.get('/clear-cache', (req, res) => {
-    if (req.query.key === process.env.API_KEY) {
-      console.log('Clearing cache from API');
-      ssrCache.reset();
-      res.json({ success: true });
-    } else {
-      res.status(400).json({ success: false });
-    }
-  });
+    server.get('/address/:address', (req, res) => {
+      renderAndCache(req, res, '/address');
+    });
 
-  // server.use('/rss', RSSController);
+    server.get('/clear-cache', (req, res) => {
+      if (req.query.key === process.env.API_KEY) {
+        console.log('Clearing cache from API');
+        ssrCache.reset();
+        res.json({ success: true });
+      } else {
+        res.status(400).json({ success: false });
+      }
+    });
 
-  server.get('*', (req, res) => handle(req, res));
+    // server.use('/rss', RSSController);
+    server.use('/api', APIController(accounts));
 
-  server.listen(port, (err) => {
-    if (err) throw err;
-    console.log(`> Ready on http://localhost:${port}`);
-  });
-});
+    server.get('*', (req, res) => handle(req, res));
+
+    server.listen(port, (err) => {
+      if (err) throw err;
+      console.log(`> Ready on http://localhost:${port}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+setup();

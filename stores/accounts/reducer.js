@@ -1,40 +1,34 @@
-import defaults from 'lodash/defaults';
-
 import * as constants from './constants';
 
-const makeReducer = (data) => {
-  let initialState = {};
-  // console.log('data',data);
-
-  if (data.rows) {
-    initialState.accountsByAddress = {}
-    data.rows.forEach((account) => {
-      initialState.accountsByAddress[account.address] = account;
-    });
-  } else {
-    const emptyState = {
-      selectedAccount: null,
-      selectedAddress: null,
-    }
-
-    initialState = defaults(data.accounts, emptyState);
-  }
-
-  const reducer = (state = initialState, action) => {
-    switch (action.type) {
-      case constants.SELECT_ACCOUNT: {
-        return {
-          ...state,
-          selectedAccount: state.accountsByAddress[action.address],
-          selectedAddress: action.address,
-        }
-      }
-      default:
-        return state;
-    }
-  };
-
-  return reducer;
+const initialState = {
+  selectedAddress: null,
+  selectedAccount: null,
 };
 
-export default makeReducer;
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case constants.SELECT_ACCOUNT: {
+      return {
+        ...state,
+        selectedAccount: state.accountsByAddress[action.address],
+        selectedAddress: action.address,
+      };
+    }
+    case constants.SELECTING_ACCOUNT: {
+      return {
+        ...state,
+        selectedAddress: action.address,
+      };
+    }
+    case constants.SELECTED_ACCOUNT: {
+      return {
+        ...state,
+        selectedAccount: action.account,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+export default reducer;

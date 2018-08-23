@@ -3,5 +3,5 @@ import Styled from 'styled-components';
 import MaterialInput from '@material-ui/core/Input';
 
 export const Input = Styled(MaterialInput)`
-  width: 66%;
+  width: ${({ width }) => width || '100%'};
 `;

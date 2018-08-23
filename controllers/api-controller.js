@@ -2,16 +2,16 @@ const express = require('express');
 
 const { getTotals } = require('../lib/addresses');
 
-const makeAPIController = (accounts) => {
+const makeAPIController = (Genesis) => {
   const APIController = express.Router();
-  const totals = getTotals(accounts);
+  const totals = getTotals(Genesis);
 
   APIController.get('/accounts/global', (req, res) => {
     res.json(totals);
   });
 
   APIController.get('/accounts/:address', (req, res) => {
-    const account = accounts[req.params.address];
+    const account = Genesis.accountsByAddress[req.params.address];
 
     res.json(account);
   });

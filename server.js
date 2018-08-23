@@ -64,9 +64,9 @@ async function renderAndCache(req, res, pagePath) {
 const setup = async () => {
   try {
     await app.prepare();
-    const accounts = await getAccounts();
-    console.log(`${Object.keys(accounts).length} accounts`);
-    console.log(accounts[Object.keys(accounts)[0]]);
+    const Genesis = await getAccounts();
+    console.log(`${Genesis.accounts.length} accounts`);
+    console.log(Genesis.accounts[0]);
 
     const server = express();
 
@@ -110,7 +110,7 @@ const setup = async () => {
     });
 
     // server.use('/rss', RSSController);
-    server.use('/api', APIController(accounts));
+    server.use('/api', APIController(Genesis));
 
     server.get('*', (req, res) => handle(req, res));
 

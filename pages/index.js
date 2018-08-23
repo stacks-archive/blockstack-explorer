@@ -30,7 +30,7 @@ const Home = () => (
           <Text fontSize={2} my={3}>
             Enter an address to view details.
           </Text>
-          <Input my={3} placeholder="Enter a Stacks Address" autoFocus onKeyUp={onEnter} />
+          <Input my={3} placeholder="Enter a Stacks Address" autoFocus onKeyUp={onEnter} width="66%"  />
         </Card>
       </Box>
     </Flex>

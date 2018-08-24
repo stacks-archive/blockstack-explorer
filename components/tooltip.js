@@ -14,6 +14,7 @@ export default ({ payload }) => {
     <Tooltip>
       <Text>{moment(data.block).format('MMMM Do YYYY')}</Text>
       <Text>{data.usdFormatted}</Text>
+      <Text>{data.stacks} Stacks</Text>
     </Tooltip>
   );
 };

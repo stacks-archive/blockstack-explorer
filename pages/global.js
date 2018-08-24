@@ -52,6 +52,7 @@ class Global extends React.Component {
       converted.push({
         block: parseInt(block, 10),
         usd: USD,
+        stacks: accounting.formatNumber(total * 10e-6),
         usdFormatted: accounting.formatMoney(USD),
       });
       // converted[block] = USD;

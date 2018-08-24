@@ -1,12 +1,7 @@
-import styled from 'styled-components';
-import Paper from '@material-ui/core/Paper';
-import { margin, padding, width } from 'styled-system';
-// import { Card as RebassCard } from 'rebass';
+import { Card as RebassCard } from 'rebass';
 
-export const Card = styled(Paper)`
+export const Card = RebassCard.extend`
   padding: 30px;
   text-align: ${({ textAlign }) => textAlign || 'left'};
-  ${margin};
-  ${padding};
-  ${width};
+  box-shadow: 0 0 2px gray;
 `;

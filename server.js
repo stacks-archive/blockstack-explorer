@@ -1,11 +1,16 @@
 const express = require('express');
 const next = require('next');
 const LRUCache = require('lru-cache');
+const passport = require('passport');
+const session = require('express-session');
 require('dotenv').config();
-// const basicAuth = require('express-basic-auth');
 
 const { getAccounts } = require('./lib/addresses');
-const APIController = require('./controllers/api-controller');
+const makeAPIController = require('./controllers/api-controller');
+const makeAppController = require('./controllers/app-controller');
+const Auth = require('./lib/authentication');
+
+passport.use(Auth);
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -19,63 +24,36 @@ const ssrCache = new LRUCache({
   maxAge: dev ? 1000 * 30 : 1000 * 60 * 60, // 1hour
 });
 
-/*
- * NB: make sure to modify this to take into account anything that should trigger
- * an immediate page change (e.g a locale stored in req.session)
- */
-function getCacheKey(req) {
-  return `${req.url}`;
-}
-
-async function renderAndCache(req, res, pagePath) {
-  const key = getCacheKey(req);
-
-  // If we have a page in the cache, let's serve it
-  // if (ssrCache.has(key) && !dev) {
-  //   res.setHeader('x-cache', 'HIT');
-  //   console.log('cache hit');
-  //   res.send(ssrCache.get(key));
-  //   return;
-  // }
-
-  try {
-    // const data = { rows: genesis.rows };
-
-    // If not let's render the page into HTML
-    const html = await app.renderToHTML(req, res, pagePath, {});
-
-    // Something is wrong with the request, let's skip the cache
-    if (res.statusCode !== 200) {
-      res.send(html);
-      return;
-    }
-
-    // Let's cache this page
-    ssrCache.set(key, html);
-
-    res.setHeader('x-cache', 'MISS');
-    // console.log('cache miss');
-    res.send(html);
-  } catch (err) {
-    app.renderError(err, req, res, pagePath);
-  }
-}
-
 const setup = async () => {
   try {
     await app.prepare();
     const Genesis = await getAccounts();
     console.log(`${Genesis.accounts.length} accounts`);
-    console.log(Genesis.accounts[0]);
 
     const server = express();
 
-    // if (!dev) {
-    //   server.use(basicAuth({
-    //     users: { 'admin': process.env.AUTH_PASSWORD },
-    //     challenge: true,
-    //   }))
-    // }
+    server.use(
+      session({
+        secret: 'SECRET',
+        resave: true,
+        saveUninitialized: true,
+        cookie: {
+          httpOnly: false,
+          maxAge: 1000 * 60 * 60 * 24 * 365,
+        },
+      }),
+    );
+
+    passport.serializeUser((user, done) => {
+      done(null, user);
+    });
+
+    passport.deserializeUser((user, done) => {
+      done(null, user);
+    });
+
+    server.use(passport.initialize());
+    server.use(passport.session());
 
     server.set('views', './common/server-views');
     server.set('view engine', 'pug');
@@ -86,17 +64,18 @@ const setup = async () => {
       _next();
     });
 
-    // Use the `renderAndCache` utility defined below to serve pages
-    server.get('/', (req, res) => {
-      renderAndCache(req, res, '/');
+    server.get('/login', (req, res) => {
+      console.log(req.user);
+      handle(req, res);
     });
-
-    server.get('/global', (req, res) => {
-      renderAndCache(req, res, '/global');
-    });
-
-    server.get('/address/:address', (req, res) => {
-      renderAndCache(req, res, '/address');
+    server.post('/auth', (req, res, _next) => {
+      req.login({ admin: true }, (error) => {
+        if (error) {
+          console.log(error);
+          return _next(error);
+        }
+        return res.json({ success: true });
+      });
     });
 
     server.get('/clear-cache', (req, res) => {
@@ -110,7 +89,11 @@ const setup = async () => {
     });
 
     // server.use('/rss', RSSController);
-    server.use('/api', APIController(Genesis));
+    server.use('/api', makeAPIController(Genesis));
+
+    server.use('/app', makeAppController(app, ssrCache));
+
+    server.get('/', (req, res) => res.redirect('/app'));
 
     server.get('*', (req, res) => handle(req, res));
 

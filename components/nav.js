@@ -15,7 +15,7 @@ import StyledNav from '@styled/nav';
 const onEnter = (event) => {
   if (event.key === 'Enter') {
     const address = event.target.value;
-    Router.push(`/address/${address}`);
+    Router.push(`/app/address/${address}`);
   }
 };
 
@@ -26,15 +26,15 @@ function Nav() {
         <Grid item xs={12}>
           <AppBar position="static">
             <Toolbar>
-              <Link href="/">
-                <StyledNav.Title.Link href="/">
+              <Link href="/app">
+                <StyledNav.Title.Link href="/app">
                   <Typography variant="title" color="inherit">
                     Stacks Explorer
                   </Typography>
                 </StyledNav.Title.Link>
               </Link>
               <StyledNav.Search.Input placeholder="search" onKeyUp={onEnter} />
-              <Link href="/global">
+              <Link href="/app/global">
                 <Button color="inherit" href="/global">
                   Global Stats
                 </Button>

@@ -13,10 +13,13 @@
     "accounting": "^0.4.1",
     "babel-plugin-styled-components": "^1.5.1",
     "chart.js": "^1.1.1",
+    "connect": "^3.6.6",
+    "cookie-session": "^2.0.0-beta.3",
     "cross-fetch": "^2.2.2",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-basic-auth": "^1.1.5",
+    "express-session": "^1.15.6",
     "fs-extra": "^7.0.0",
     "grid-styled": "^5.0.2",
     "hoist-non-react-statics": "^2.5.5",
@@ -24,6 +27,9 @@
     "moment": "^2.22.2",
     "next": "^6.1.1",
     "numeral": "^2.0.6",
+    "passport": "^0.4.0",
+    "passport-http": "^0.3.0",
+    "passport-local": "^1.0.0",
     "polished": "^1.9.3",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
@@ -57,5 +63,15 @@
   },
   "engines": {
     "node": "10.5.0"
+  },
+  "nodemonConfig": {
+    "verbose": true,
+    "ignore": [
+      ".next/*",
+      ".next",
+      "pages/*",
+      "components/*",
+      "styled/*"
+    ]
   }
 }

@@ -37,6 +37,7 @@ const setup = async () => {
         secret: 'SECRET',
         resave: false,
         saveUninitialized: true,
+        proxy: true,
         cookie: {
           httpOnly: false,
           maxAge: 1000 * 60 * 60 * 24 * 365,

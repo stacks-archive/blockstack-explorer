@@ -40,6 +40,7 @@ const setup = async () => {
         cookie: {
           httpOnly: false,
           maxAge: 1000 * 60 * 60 * 24 * 365,
+          secure: !dev,
         },
       }),
     );

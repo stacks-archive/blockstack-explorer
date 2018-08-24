@@ -2,9 +2,6 @@ import React from 'react';
 import { Flex, Box } from 'grid-styled';
 import { Text } from 'rebass';
 import Typography from '@material-ui/core/Typography';
-// import ReactChartkick, { LineChart } from 'react-chartkick';
-// import Chart from 'chart.js';
-// import { Line as LineChart } from 'react-chartjs';
 import {
   LineChart,
   YAxis,

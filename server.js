@@ -70,12 +70,15 @@ const setup = async () => {
       handle(req, res);
     });
     server.post('/auth', (req, res, _next) => {
+      console.log('logging in');
       req.login({ admin: true }, (error) => {
         if (error) {
           console.log(error);
           return _next(error);
         }
-        return res.json({ success: true });
+        console.log('login success');
+        res.json({ success: true });
+        return _next();
       });
     });
 

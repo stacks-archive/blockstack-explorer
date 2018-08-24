@@ -35,7 +35,7 @@ const setup = async () => {
     server.use(
       session({
         secret: 'SECRET',
-        resave: true,
+        resave: false,
         saveUninitialized: true,
         cookie: {
           httpOnly: false,

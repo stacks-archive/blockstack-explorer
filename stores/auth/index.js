@@ -26,10 +26,9 @@ const submitAuth = (username, password) =>
       // }, 5000);
       const url = `/auth?username=${username}&password=${password}`;
       console.log(url);
-      const request = await fetch(url, {
+      await fetch(url, {
         method: 'POST',
       });
-      const json = await request.json();
       dispatch(submittedAuth());
     } catch (error) {
       console.log(error);

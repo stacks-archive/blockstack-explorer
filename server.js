@@ -70,17 +70,28 @@ const setup = async () => {
       console.log(req.user);
       handle(req, res);
     });
+
+    server.get('/logout', (req, res) => {
+      req.logout();
+      res.redirect('/login');
+    });
+
     server.post('/auth', (req, res, _next) => {
-      console.log('logging in');
-      req.login({ admin: true }, (error) => {
-        if (error) {
-          console.log(error);
-          return _next(error);
-        }
-        console.log('login success');
-        res.json({ success: true });
+      if (req.query.password === process.env.ADMIN_PASSWORD) {
+        req.login({ admin: true }, (error) => {
+          if (error) {
+            console.log(error);
+            return _next(error);
+          }
+          console.log('login success');
+          res.json({ success: true });
+          return _next();
+        });
+      } else {
+        res.status(400);
+        res.json({ success: false });
         return _next();
-      });
+      }
     });
 
     server.get('/clear-cache', (req, res) => {

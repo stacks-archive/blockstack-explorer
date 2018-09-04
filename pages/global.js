@@ -70,7 +70,7 @@ class Global extends React.Component {
         <Head />
         <Nav />
         <Flex flexWrap="wrap">
-          <Box width={1 / 2} p={3}>
+          <Box width={[1, 1, 1 / 2]} p={3}>
             <Card>
               <Typography variant="body1" gutterBottom>
                 Enter a conversion rate of Stacks per USD.
@@ -101,7 +101,7 @@ class Global extends React.Component {
               </Typography>
             </Card>
           </Box>
-          <Box width={1 / 2} p={3}>
+          <Box width={[1, 1, 1 / 2]} p={3}>
             <Card>
               <Text textAlign="center">Vesting Over Time</Text>
               <ResponsiveContainer height={500}>

@@ -104,7 +104,6 @@ const setup = async () => {
       }
     });
 
-    // server.use('/rss', RSSController);
     server.use('/api', makeAPIController(Genesis));
 
     server.use('/app', makeAppController(app, ssrCache));

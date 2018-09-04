@@ -20,10 +20,6 @@ const submitAuth = (username, password) =>
   async function innerSubmitAuth(dispatch) {
     dispatch(submittingAuth());
     try {
-      // console.log(username, password);
-      // setTimeout(() => {
-      //   dispatch(submittedAuth());
-      // }, 5000);
       const url = `/auth?username=${username}&password=${password}`;
       console.log(url);
       await fetch(url, {

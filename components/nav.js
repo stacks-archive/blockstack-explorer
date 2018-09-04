@@ -33,7 +33,7 @@ function Nav() {
                   </Typography>
                 </StyledNav.Title.Link>
               </Link>
-              <StyledNav.Search.Input placeholder="search" onKeyUp={onEnter} />
+              {/* <StyledNav.Search.Input placeholder="search" onKeyUp={onEnter} /> */}
               <Link href="/app/global">
                 <Button color="inherit" href="/global">
                   Global Stats

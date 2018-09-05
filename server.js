@@ -3,6 +3,7 @@ const next = require('next');
 const LRUCache = require('lru-cache');
 const passport = require('passport');
 const session = require('express-session');
+const secure = require('express-force-https');
 require('dotenv').config();
 
 const { getAccounts } = require('./lib/addresses');
@@ -31,6 +32,10 @@ const setup = async () => {
     console.log(`${Genesis.accounts.length} accounts`);
 
     const server = express();
+
+    if (!dev) {
+      server.use(secure);
+    }
 
     server.use(
       session({

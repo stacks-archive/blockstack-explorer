@@ -1,5 +1,5 @@
 const express = require('express');
-const passport = require('passport');
+const { track } = require('../lib/analytics');
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -12,8 +12,6 @@ function getCacheKey(req) {
 }
 
 const makeAppController = (app, cache) => {
-  const handle = app.getRequestHandler();
-
   async function renderAndCache(req, res, pagePath) {
     const key = getCacheKey(req);
 
@@ -58,11 +56,13 @@ const makeAppController = (app, cache) => {
     renderAndCache(req, res, '/');
   });
 
-  AppController.get('/global', (req, res) => {
+  AppController.get('/global', async (req, res) => {
+    track('view_global', req);
     renderAndCache(req, res, '/global');
   });
 
   AppController.get('/address/:address', (req, res) => {
+    track('view_address', req, { address: req.params.address });
     renderAndCache(req, res, '/address');
   });
 

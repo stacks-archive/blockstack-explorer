@@ -4,6 +4,7 @@ const LRUCache = require('lru-cache');
 const passport = require('passport');
 const session = require('express-session');
 const secure = require('express-force-https');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
 const { getAccounts } = require('./lib/addresses');
@@ -12,6 +13,7 @@ const makeAppController = require('./controllers/app-controller');
 const Auth = require('./lib/authentication');
 
 passport.use(Auth);
+mongoose.connect(process.env.MONGODB_URI);
 
 const dev = process.env.NODE_ENV !== 'production';
 

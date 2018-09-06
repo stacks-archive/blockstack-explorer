@@ -32,6 +32,9 @@ const setup = async () => {
     await app.prepare();
     const Genesis = await getAccounts();
     console.log(`${Genesis.accounts.length} accounts`);
+    console.log(
+      `${Genesis.accounts.length - Object.keys(Genesis.accountsByAddress).length} accounts without an address`,
+    );
 
     const server = express();
 

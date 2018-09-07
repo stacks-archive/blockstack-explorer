@@ -92,6 +92,16 @@ class Address extends React.Component {
                 </Type.p>
                 <code>{accounting.formatNumber(account.vesting_total * 10e-7)}</code>
 
+                <Type.p fontSize="12px" mb={0} mt={3}>
+                  Transfering tokens is locked until:
+                </Type.p>
+                <Type.p mb={0} mt={1}>
+                  <code>{moment(account.transferUnlockDate).format('dddd, MMMM Do YYYY')}</code>
+                </Type.p>
+                <Type.p mb={0} mt={1}>
+                  <code>Bitcoin Block #{account.lock_send}</code>
+                </Type.p>
+
                 {/* <Typography variant="body1" gutterBottom>
                   Vesting Total:
                   <Typography variant="button">

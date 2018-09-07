@@ -55,12 +55,12 @@ class Address extends React.Component {
     const converted = [];
     Object.keys(cumulativeVestedAtBlocks).forEach((block) => {
       const total = cumulativeVestedAtBlocks[block];
-      const USD = total * stacksUSD * 10e-6;
+      const USD = total * stacksUSD * 10e-7;
       // console.log(total, USD);
       converted.push({
         block: parseInt(block, 10),
         usd: USD,
-        stacks: accounting.formatNumber(total * 10e-6),
+        stacks: accounting.formatNumber(total * 10e-7),
         usdFormatted: accounting.formatMoney(USD),
       });
       // converted[block] = USD;
@@ -105,10 +105,10 @@ class Address extends React.Component {
                 <Typography variant="body1" gutterBottom>
                   Vesting Total:
                   <Typography variant="button">
-                    {accounting.formatNumber(account.vesting_total * 10e-6)} STACKS
+                    {accounting.formatNumber(account.vesting_total * 10e-7)} STACKS
                   </Typography>
                   <Typography variant="button">
-                    {accounting.formatMoney(account.vesting_total * 10e-6 * this.state.stacksUSD)} USD
+                    {accounting.formatMoney(account.vesting_total * 10e-7 * this.state.stacksUSD)} USD
                   </Typography>
                 </Typography>
               </Card>

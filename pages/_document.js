@@ -3,6 +3,8 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import { injectGlobal, ServerStyleSheet } from 'styled-components';
 import { normalize } from 'polished';
 
+import fonts from '../lib/fonts';
+
 /**
  * Reset our styles
  */
@@ -14,14 +16,15 @@ ${normalize()};
   box-sizing: border-box;
 }
 body, html{
-font-family: 'Lato', sans-serif;
-background:#eeefef;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background:#eeefef;
 }
-h1, h2, h3, h4, h5, h6{
-font-family: 'Roboto Slab', serif;
-margin: 0;
-padding: 0;
-}
+// h1, h2, h3, h4, h5, h6{
+//   font-family: 'Plex';
+//   margin: 0;
+//   padding: 0;
+// }
+${fonts}
 `;
 
 export default class MyDocument extends Document {
@@ -35,9 +38,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <html lang="en">
-        <Head>
-          {this.props.styleTags}
-        </Head>
+        <Head>{this.props.styleTags}</Head>
         <body>
           <Main />
           <NextScript />

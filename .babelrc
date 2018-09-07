@@ -17,7 +17,8 @@
           "@pages": "./pages",
           "@common": "./common",
           "@utils": "./utils",
-          "@client": "./lib/client"
+          "@client": "./lib/client",
+          "@styled": "./styled"
         }
       }
     ]

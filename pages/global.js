@@ -82,10 +82,6 @@ class Global extends React.Component {
               <Typography variant="display1" gutterBottom>
                 Global Statistics
               </Typography>
-              <Typography variant="body1" gutterBottom>
-                Initial Total:
-                <Typography variant="button">{totals.initalValue} STACKS</Typography>
-              </Typography>
 
               <Typography variant="body1" gutterBottom>
                 Total from vesting:

@@ -2,13 +2,14 @@ import React from 'react';
 import Router from 'next/router';
 import { connect } from 'react-redux';
 
-import { Flex, Box, Text } from 'rebass';
+import { Flex, Box } from 'rebass';
 
 import Head from '../components/head';
 import Nav from '../components/nav';
 
 import { Card } from '../styled/card';
 import { Input } from '../styled/input';
+import { Type } from '../styled/typography';
 
 const onEnter = (event) => {
   if (event.key === 'Enter') {
@@ -24,12 +25,12 @@ const Home = () => (
     <Flex alignItems="center">
       <Box width={[1, 3 / 4]} m="auto" mt={4} textAlign="center">
         <Card textAlign="center" p={10}>
-          <Text fontSize={4} my={3}>
+          <Type.h1 my={3} fontWeight={500}>
             Welcome to the Stacks genesis block explorer
-          </Text>
-          <Text fontSize={2} my={3}>
+          </Type.h1>
+          <Type.p fontSize={2} my={3}>
             Enter an address to view details.
-          </Text>
+          </Type.p>
           <Input my={3} placeholder="Enter a Stacks Address" autoFocus onKeyUp={onEnter} width="66%" />
         </Card>
       </Box>

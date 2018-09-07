@@ -36,6 +36,11 @@ const Pre = styled.pre`
   ${baseProps};
 `;
 
+const Small = styled.small`
+  font-size: 12px;
+  ${baseProps};
+`;
+
 Body.p = P;
 Body.span = Span;
 Body.strong = Strong;
@@ -45,5 +50,6 @@ Body.ol = Ol;
 Body.li = Li;
 Body.oli = Li;
 Body.pre = Pre;
+Body.small = Small;
 
 export default Body;

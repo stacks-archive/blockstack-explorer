@@ -14,12 +14,11 @@ import accounting from 'accounting';
 import moment from 'moment';
 import numeral from 'numeral';
 
-import Typography from '@material-ui/core/Typography';
-
 import Head from '../components/head';
 import Nav from '../components/nav';
 import Tooltip from '../components/tooltip';
 import { Input } from '../styled/input';
+import { Type } from '@styled/typography';
 
 import { Card } from '../styled/card';
 
@@ -36,7 +35,7 @@ class Address extends React.Component {
   };
 
   state = {
-    stacksUSD: 0.12,
+    stacksUSD: 0,
   };
 
   static async getInitialProps({ req }) {
@@ -74,35 +73,26 @@ class Address extends React.Component {
 
     return (
       <>
-        <Head title="Account" />
+        <Head title="Address" />
         <Nav />
         <br />
         {account ? (
           <Flex flexWrap="wrap">
-            <Box width={[1, 1, 1 / 2]} p={3}>
-              <Card mb={1}>
-                <Typography variant="body1" gutterBottom>
-                  Enter a conversion rate of Stacks per USD.
-                </Typography>
-                <Input
-                  value={this.state.stacksUSD}
-                  onChange={(evt) => this.setState({ stacksUSD: evt.target.value })}
-                />
-              </Card>
+            <Box width={1} p={3}>
               <Card>
-                <Typography variant="display1" gutterBottom>
-                  Account Details
-                </Typography>
-                <Typography variant="button" gutterBottom>
-                  {account.address}
-                </Typography>
+                <Type.h1 mb={3}>Address Details</Type.h1>
 
-                <Typography variant="body1" gutterBottom>
-                  Balance:
-                  <Typography variant="button">{account.value} STACKS</Typography>
-                </Typography>
+                <Type.p fontSize="12px" mb={0} mt={3}>
+                  STACKS Address:
+                </Type.p>
+                <code>{account.address}</code>
 
-                <Typography variant="body1" gutterBottom>
+                <Type.p fontSize="12px" mb={0} mt={4}>
+                  Total STACKS After vesting:
+                </Type.p>
+                <code>{accounting.formatNumber(account.vesting_total * 10e-7)}</code>
+
+                {/* <Typography variant="body1" gutterBottom>
                   Vesting Total:
                   <Typography variant="button">
                     {accounting.formatNumber(account.vesting_total * 10e-7)} STACKS
@@ -110,12 +100,25 @@ class Address extends React.Component {
                   <Typography variant="button">
                     {accounting.formatMoney(account.vesting_total * 10e-7 * this.state.stacksUSD)} USD
                   </Typography>
-                </Typography>
+                </Typography> */}
               </Card>
             </Box>
-            <Box width={[1, 1, 1 / 2]} p={3}>
-              <Card>
-                <Text textAlign="center">Vesting Over Time</Text>
+
+            <Box width={[1]} p={3}>
+              <Card mb={1}>
+                <Type.h2>Vesting Visualization Tool</Type.h2>
+                <Type.p>You can use this tool to visualize how many STACKS you'll vest over time.</Type.p>
+                <Type.p>
+                  For convenience purposes, you can enter a conversion rate in the field below, and we'll calculate USD
+                  balances based on that conversion rate.
+                </Type.p>
+                <Type.p>Enter a conversion rate of Stacks per USD.</Type.p>
+                <Input
+                  value={this.state.stacksUSD}
+                  mb={5}
+                  onChange={(evt) => this.setState({ stacksUSD: evt.target.value })}
+                />
+                <Type.p textAlign="center">Vesting Over Time</Type.p>
                 <ResponsiveContainer height={500}>
                   <LineChart data={convertedCumulative} margin={{ top: 15, right: 15, bottom: 15, left: 15 }}>
                     <XAxis

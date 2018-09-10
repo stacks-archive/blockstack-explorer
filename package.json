@@ -31,6 +31,7 @@
     "mongoose": "^5.2.13",
     "next": "^6.1.1",
     "numeral": "^2.0.6",
+    "papaparse": "^4.6.0",
     "passport": "^0.4.0",
     "passport-http": "^0.3.0",
     "passport-local": "^1.0.0",

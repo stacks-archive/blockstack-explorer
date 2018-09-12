@@ -60,7 +60,7 @@ class Address extends React.Component {
         block: parseInt(block, 10),
         usd: USD,
         stacks: accounting.formatNumber(total * 10e-7),
-        usdFormatted: accounting.formatMoney(USD),
+        usdFormatted: accounting.formatMoney(USD, '$', 0),
       });
       // converted[block] = USD;
     });

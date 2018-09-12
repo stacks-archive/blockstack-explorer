@@ -53,7 +53,7 @@ class Global extends React.Component {
         block: parseInt(block, 10),
         usd: USD,
         stacks: accounting.formatNumber(total * 10e-7),
-        usdFormatted: accounting.formatMoney(USD),
+        usdFormatted: accounting.formatMoney(USD, '$', 0),
       });
       // converted[block] = USD;
     });
@@ -87,7 +87,7 @@ class Global extends React.Component {
                 Total:
                 <Typography variant="button">{accounting.formatNumber(totals.vestedValues * 10e-7)} STACKS</Typography>
                 <Typography variant="button">
-                  {accounting.formatMoney(totals.vestedValues * 10e-7 * this.state.stacksUSD)} USD
+                  {accounting.formatMoney(totals.vestedValues * 10e-7 * this.state.stacksUSD, '$', 0)} USD
                 </Typography>
               </Typography>
 

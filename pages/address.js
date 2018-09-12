@@ -80,7 +80,7 @@ class Address extends React.Component {
           <Flex flexWrap="wrap">
             <Box width={1} p={3}>
               <Card>
-                <Type.h1 mb={3}>Address Details</Type.h1>
+                <Type.h1 mb={3}>Investment Details</Type.h1>
 
                 <Type.p fontSize="12px" mb={0} mt={3}>
                   STACKS Address:
@@ -88,12 +88,12 @@ class Address extends React.Component {
                 <code>{account.address}</code>
 
                 <Type.p fontSize="12px" mb={0} mt={4}>
-                  Total STACKS After vesting:
+                  Total STACKS purchased:
                 </Type.p>
                 <code>{accounting.formatNumber(account.vesting_total * 10e-7)}</code>
 
                 <Type.p fontSize="12px" mb={0} mt={3}>
-                  Transfering tokens is locked until:
+                  Your ability to transfer tokens unlocks on:
                 </Type.p>
                 <Type.p mb={0} mt={1}>
                   <code>{moment(account.transferUnlockDate).format('dddd, MMMM Do YYYY')}</code>
@@ -117,11 +117,8 @@ class Address extends React.Component {
             <Box width={[1]} p={3}>
               <Card mb={1}>
                 <Type.h2>Vesting Visualization Tool</Type.h2>
-                <Type.p>You can use this tool to visualize how many STACKS you'll vest over time.</Type.p>
-                <Type.p>
-                  For convenience purposes, you can enter a conversion rate in the field below, and we'll calculate USD
-                  balances based on that conversion rate.
-                </Type.p>
+                <Type.p>This tool shows how your STACKS will vest over time.</Type.p>
+                <Type.p>Enter a conversion rate in the field below to see the USD equivalent of your Stacks.</Type.p>
                 <Type.p>Enter a conversion rate of Stacks per USD.</Type.p>
                 <Input
                   value={this.state.stacksUSD}

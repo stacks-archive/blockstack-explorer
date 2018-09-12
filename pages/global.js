@@ -84,7 +84,7 @@ class Global extends React.Component {
               </Typography>
 
               <Typography variant="body1" gutterBottom>
-                Total from vesting:
+                Total:
                 <Typography variant="button">{accounting.formatNumber(totals.vestedValues * 10e-7)} STACKS</Typography>
                 <Typography variant="button">
                   {accounting.formatMoney(totals.vestedValues * 10e-7 * this.state.stacksUSD)} USD

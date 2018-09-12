@@ -29,7 +29,7 @@ const Home = () => (
             Welcome to the Stacks Genesis Block Explorer
           </Type.h1>
           <Type.p fontSize={2} my={3}>
-            Enter an address to view details.
+            Enter your Stacks address here.
           </Type.p>
           <Input my={3} placeholder="Enter a Stacks Address" autoFocus onKeyUp={onEnter} width="66%" />
         </Card>

@@ -105,7 +105,7 @@ class Global extends React.Component {
                   <XAxis
                     dataKey="block"
                     type="number"
-                    tickFormatter={(block) => moment(block).format('YYYY/MM/DD')}
+                    tickFormatter={(block) => moment(block).format('MM/DD/YYYY')}
                     domain={['dataMin', 'dataMax']}
                     label={{ value: 'Date', position: 'insideBottom', offset: -10 }}
                   />

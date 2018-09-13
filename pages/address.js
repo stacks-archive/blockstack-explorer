@@ -96,7 +96,11 @@ class Address extends React.Component {
                   Your ability to transfer tokens unlocks on:
                 </Type.p>
                 <Type.p mb={0} mt={1}>
-                  <code>{moment(account.transferUnlockDate).format('dddd, MMMM Do YYYY')}</code>
+                  <code>
+                    {moment(account.transferUnlockDate)
+                      .utcOffset('-05:00')
+                      .format('dddd, MMMM Do YYYY')}
+                  </code>
                 </Type.p>
                 <Type.p mb={0} mt={1}>
                   <code>Bitcoin Block #{account.lock_send}</code>

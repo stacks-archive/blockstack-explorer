@@ -7,7 +7,9 @@ const { blockToTime } = require('../lib/addresses');
 const run = async () => {
   let accounts = await fs.readJson('./data/genesis.json');
   accounts = accounts.map((account) => ({
-    lock_send_date: moment(blockToTime(account.lock_send)).format(),
+    lock_send_date: moment(blockToTime(account.lock_send))
+      .utcOffset('-05:00')
+      .format(),
     ...account,
   }));
   const csv = papaparse.unparse(accounts);

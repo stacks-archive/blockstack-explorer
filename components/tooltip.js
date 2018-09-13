@@ -12,7 +12,11 @@ export default ({ payload }) => {
   }
   return (
     <Tooltip>
-      <Text>{moment(data.block).format('MM/DD/YYYY')}</Text>
+      <Text>
+        {moment(data.block)
+          .utcOffset('-05:00')
+          .format('MM/DD/YYYY')}
+      </Text>
       <Text>{data.usdFormatted}</Text>
       <Text>{data.stacks} Stacks</Text>
     </Tooltip>

@@ -19,6 +19,7 @@ import numeral from 'numeral';
 import Head from '../components/head';
 import Nav from '../components/nav';
 import Tooltip from '../components/tooltip';
+import Footer from '../components/footer';
 import { Input } from '../styled/input';
 import { Card } from '../styled/card';
 import { Type } from '../styled/typography';
@@ -117,6 +118,7 @@ class Global extends React.Component {
             </Card>
           </Box>
         </Flex>
+        <Footer />
       </>
     );
   }

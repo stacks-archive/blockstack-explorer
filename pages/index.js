@@ -6,7 +6,7 @@ import { Flex, Box } from 'rebass';
 
 import Head from '../components/head';
 import Nav from '../components/nav';
-// import Footer from '../components/footer';
+import Footer from '../components/footer';
 
 import { Card } from '../styled/card';
 import { Input } from '../styled/input';
@@ -24,7 +24,7 @@ const Home = () => (
     <Head title="Home" />
     <Nav />
     <Flex alignItems="center">
-      <Box width={[1, 3 / 4]} m="auto" mt={4} textAlign="center">
+      <Box width={[1, 3 / 4]} m="auto" mt={6} mb={4} textAlign="center">
         <Card textAlign="center" p={10}>
           <Type.h1 my={3} fontWeight={500}>
             Welcome to the block explorer for the draft Stacks genesis block.
@@ -36,6 +36,7 @@ const Home = () => (
         </Card>
       </Box>
     </Flex>
+    <Footer />
   </div>
 );
 

@@ -22,6 +22,8 @@ const Title = {
   Logo: Styled.div`
     float: left;
     svg {
+      ${({ inverse }) => inverse && 'fill: #fff;'}
+      ${({ inverse }) => inverse && 'margin-right: 10px;'}
       display: block;
       height: 36px;
       width: 36px;

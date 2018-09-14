@@ -1,11 +1,14 @@
 import React from 'react';
 
 import Logo from '@components/logo';
+import { Footer, Container } from '@styled/footer';
 
-const Footer = () => (
-  <footer>
-    <Logo />
-  </footer>
+const FooterComponent = () => (
+  <Footer>
+    <Container>
+      <Logo inverse />
+    </Container>
+  </Footer>
 );
 
-export default Footer;
+export default FooterComponent;

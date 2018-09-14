@@ -17,6 +17,7 @@ import numeral from 'numeral';
 import Head from '../components/head';
 import Nav from '../components/nav';
 import Tooltip from '../components/tooltip';
+import Footer from '../components/footer';
 import { Input } from '../styled/input';
 import { Type } from '@styled/typography';
 
@@ -111,7 +112,7 @@ class Address extends React.Component {
 
             <Box width={[1]} p={3}>
               <Card mb={1}>
-                <Type.h2>Vesting Visualization Tool</Type.h2>
+                <Type.h2>Unlocking Visualization Tool</Type.h2>
                 <Type.p>This tool shows how your Stacks tokens will unlock over time.</Type.p>
                 <Type.p>Enter a conversion rate in the field below to see the USD equivalent of your Stacks.</Type.p>
                 <Type.p>Enter a conversion rate of Stacks per USD.</Type.p>
@@ -152,6 +153,7 @@ class Address extends React.Component {
             </Box>
           </Flex>
         )}
+        <Footer />
       </>
     );
   }

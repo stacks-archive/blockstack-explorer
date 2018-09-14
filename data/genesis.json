@@ -1517,7 +1517,7 @@
         "vesting_total": 50000000000
     }, 
     {
-        "address": "SP00000000000000000005F6SXMAZ", 
+        "address": "not_distributed_1883c2bb68270739a6499387b9e9187d86c93c961ad57e70176e9bfdcc6f7326", 
         "lock_send": 555265, 
         "metadata": "1883c2bb68270739a6499387b9e9187d86c93c961ad57e70176e9bfdcc6f7326", 
         "receive_whitelisted": true, 
@@ -3232,7 +3232,7 @@
         "vesting_total": 208255000000
     }, 
     {
-        "address": "SP0000000000000000000BH1AS4HH", 
+        "address": "not_distributed_756b6ccbedbdd2a807348f905fb78909c4de725fccd8e7f5092123c1f8612ced", 
         "lock_send": 552673, 
         "metadata": "756b6ccbedbdd2a807348f905fb78909c4de725fccd8e7f5092123c1f8612ced", 
         "receive_whitelisted": true, 
@@ -6557,7 +6557,7 @@
         "vesting_total": 41667000000
     }, 
     {
-        "address": "SP0000000000000000000QDS160NK", 
+        "address": "not_distributed_b252bcc174d055387b6f1583394f47e0f31bd3dbb892cc7d1c574cc90663091b", 
         "lock_send": 552673, 
         "metadata": "b252bcc174d055387b6f1583394f47e0f31bd3dbb892cc7d1c574cc90663091b", 
         "receive_whitelisted": true, 
@@ -6627,7 +6627,7 @@
         "vesting_total": 550464000000
     }, 
     {
-        "address": "SP0000000000000000000QM6T34KH", 
+        "address": "not_distributed_a128db30fc2e5324cc886263ac106749ac93b527e838a4e80ace1e0055f33ebd", 
         "lock_send": 555265, 
         "metadata": "a128db30fc2e5324cc886263ac106749ac93b527e838a4e80ace1e0055f33ebd", 
         "receive_whitelisted": true, 
@@ -7152,7 +7152,7 @@
         "vesting_total": 259037000000
     }, 
     {
-        "address": "SP0000000000000000000SHJ9YA78", 
+        "address": "not_distributed_a01f6b6d0025ebfad5e9c9faaf9bc396c2e54faef9a0674d400ec6763af7d0dc", 
         "lock_send": 552673, 
         "metadata": "a01f6b6d0025ebfad5e9c9faaf9bc396c2e54faef9a0674d400ec6763af7d0dc", 
         "receive_whitelisted": true, 
@@ -7572,7 +7572,7 @@
         "vesting_total": 83333000000
     }, 
     {
-        "address": "SP0000000000000000000V2JVG8B1", 
+        "address": "not_distributed_5e1eeebc52c42d3e582f5d656cc206bd9397e864e9159013474f051892006b59", 
         "lock_send": 552673, 
         "metadata": "5e1eeebc52c42d3e582f5d656cc206bd9397e864e9159013474f051892006b59", 
         "receive_whitelisted": true, 
@@ -9322,7 +9322,7 @@
         "vesting_total": 25000000000
     }, 
     {
-        "address": "SP00000000000000000011AZM6YVP", 
+        "address": "not_distributed_a00c05bd6b4c8c498a8e3fd192497aaacf96dd378d8433a2ca688d52ec487957", 
         "lock_send": 552673, 
         "metadata": "a00c05bd6b4c8c498a8e3fd192497aaacf96dd378d8433a2ca688d52ec487957", 
         "receive_whitelisted": true, 
@@ -9392,7 +9392,7 @@
         "vesting_total": 41800000000
     }, 
     {
-        "address": "SP00000000000000000011KEV8833", 
+        "address": "not_distributed_644421cb92d884d356f2e46424ac228012a9064ee127d68113c5473ac3e352d0", 
         "lock_send": 555265, 
         "metadata": "644421cb92d884d356f2e46424ac228012a9064ee127d68113c5473ac3e352d0", 
         "receive_whitelisted": true, 
@@ -10442,7 +10442,7 @@
         "vesting_total": 25000000000
     }, 
     {
-        "address": "SP00000000000000000015BANJEZM", 
+        "address": "not_distributed_39bb19b465546edab3b797333f20a269b9989061fd84b9c910c05d01de0c6c3c", 
         "lock_send": 552673, 
         "metadata": "39bb19b465546edab3b797333f20a269b9989061fd84b9c910c05d01de0c6c3c", 
         "receive_whitelisted": true, 
@@ -11562,7 +11562,7 @@
         "vesting_total": 83333000000
     }, 
     {
-        "address": "SP000000000000000000198RNMWH1", 
+        "address": "not_distributed_6f8d9acad4225ddb62b3707e9b01230ca4668f92aab0374a786b9cc1c78a04ca", 
         "lock_send": 555265, 
         "metadata": "6f8d9acad4225ddb62b3707e9b01230ca4668f92aab0374a786b9cc1c78a04ca", 
         "receive_whitelisted": true, 
@@ -12122,7 +12122,7 @@
         "vesting_total": 25000000000
     }, 
     {
-        "address": "SP0000000000000000001B8D57ZE4", 
+        "address": "not_distributed_eaaed37d79ad1174c66161321843ecec08108e581f4d420c92a39d769380a0c9", 
         "lock_send": 555265, 
         "metadata": "eaaed37d79ad1174c66161321843ecec08108e581f4d420c92a39d769380a0c9", 
         "receive_whitelisted": true, 
@@ -12682,7 +12682,7 @@
         "vesting_total": 1651824000000
     }, 
     {
-        "address": "SP0000000000000000001D97WMV2H", 
+        "address": "not_distributed_b13aa5aec36ae8e7ecc711f626543ea58efb1c635866b79f96d6f1badfaa1323", 
         "lock_send": 555265, 
         "metadata": "b13aa5aec36ae8e7ecc711f626543ea58efb1c635866b79f96d6f1badfaa1323", 
         "receive_whitelisted": true, 
@@ -14152,7 +14152,7 @@
         "vesting_total": 25000000000
     }, 
     {
-        "address": "SP0000000000000000001JG4430BK", 
+        "address": "not_distributed_927dd3b7bea6c1e6c5ffa7aa2dfeec763ebdbcfc34ec0e90290a07f8af65e176", 
         "lock_send": 555265, 
         "metadata": "927dd3b7bea6c1e6c5ffa7aa2dfeec763ebdbcfc34ec0e90290a07f8af65e176", 
         "receive_whitelisted": true, 
@@ -14852,7 +14852,7 @@
         "vesting_total": 1666667000000
     }, 
     {
-        "address": "SP0000000000000000001N10NK617", 
+        "address": "not_distributed_870711ec5b47584b5f08abb9d14c3584fcb2506872ba6f41d8c6e615496cf51d", 
         "lock_send": 555265, 
         "metadata": "870711ec5b47584b5f08abb9d14c3584fcb2506872ba6f41d8c6e615496cf51d", 
         "receive_whitelisted": true, 
@@ -14887,7 +14887,7 @@
         "vesting_total": 83333000000
     }, 
     {
-        "address": "SP0000000000000000001N6GZDZQA", 
+        "address": "not_distributed_f89d94e2a0dd1f8bb72e6bbe40bd334b491cb02d1afcb9dd7beb3a33e6e31ef4", 
         "lock_send": 552673, 
         "metadata": "f89d94e2a0dd1f8bb72e6bbe40bd334b491cb02d1afcb9dd7beb3a33e6e31ef4", 
         "receive_whitelisted": true, 
@@ -15727,7 +15727,7 @@
         "vesting_total": 25000000000
     }, 
     {
-        "address": "SP0000000000000000001R49JSSTS", 
+        "address": "not_distributed_a425bfc92df33747db18ff7738b99539cbf453ffe48cc9dbdcdc7e1eddfbbd77", 
         "lock_send": 555265, 
         "metadata": "a425bfc92df33747db18ff7738b99539cbf453ffe48cc9dbdcdc7e1eddfbbd77", 
         "receive_whitelisted": true, 
@@ -16392,7 +16392,7 @@
         "vesting_total": 41667000000
     }, 
     {
-        "address": "SP0000000000000000001THDWXHMS", 
+        "address": "not_distributed_ca4395c215496d797f0b1fececcad548db14bda94267cabb7fd2d3533dd24bc4", 
         "lock_send": 552673, 
         "metadata": "ca4395c215496d797f0b1fececcad548db14bda94267cabb7fd2d3533dd24bc4", 
         "receive_whitelisted": true, 
@@ -16987,7 +16987,7 @@
         "vesting_total": 83333000000
     }, 
     {
-        "address": "SP0000000000000000001WMFJWZM7", 
+        "address": "not_distributed_5d92ce65425f55d795cdaebc5eb72cb80e01c7151b29c98e848ef29d8fd62b0d", 
         "lock_send": 552673, 
         "metadata": "5d92ce65425f55d795cdaebc5eb72cb80e01c7151b29c98e848ef29d8fd62b0d", 
         "receive_whitelisted": true, 
@@ -17967,7 +17967,7 @@
         "vesting_total": 83333000000
     }, 
     {
-        "address": "SP000000000000000000205X9EVX6", 
+        "address": "not_distributed_48436568bed776bf71ab88374d6747f3466277e6dff5150992da9f6a461ad86a", 
         "lock_send": 555265, 
         "metadata": "48436568bed776bf71ab88374d6747f3466277e6dff5150992da9f6a461ad86a", 
         "receive_whitelisted": true, 
@@ -19717,7 +19717,7 @@
         "vesting_total": 83333000000
     }, 
     {
-        "address": "SP00000000000000000026D3DVHVR", 
+        "address": "not_distributed_db358580b47c5dd80727f309e9716e710f1d38e4a769f961a25dd430759b7064", 
         "lock_send": 552673, 
         "metadata": "db358580b47c5dd80727f309e9716e710f1d38e4a769f961a25dd430759b7064", 
         "receive_whitelisted": true, 
@@ -20382,7 +20382,7 @@
         "vesting_total": 41667000000
     }, 
     {
-        "address": "SP00000000000000000028SQZCM1J", 
+        "address": "not_distributed_b3935136c54f988df4c016be1c162802e59836f67ac2ba295da87cfce97fbed6", 
         "lock_send": 555265, 
         "metadata": "b3935136c54f988df4c016be1c162802e59836f67ac2ba295da87cfce97fbed6", 
         "receive_whitelisted": true, 
@@ -21292,9 +21292,9 @@
         "vesting_total": 41667000000
     }, 
     {
-        "address": "SP0000000000000000002C1N2Y1S9", 
+        "address": "SP37T64JW7TP9DN1Y8XTQ2HBB8FAPBC2NF89XHGB5", 
         "lock_send": 552673, 
-        "metadata": "fff32e977c9986235701b6ada980c9894a92c2f3875b4953ef849b098df36c6e", 
+        "metadata": "94c86d63544faa851e04549d31715794ff592a2bf626cc5afcd6a60e5470afc7", 
         "receive_whitelisted": true, 
         "type": "STACKS", 
         "value": 0, 
@@ -24092,7 +24092,7 @@
         "vesting_total": 100000000000
     }, 
     {
-        "address": "SP0000000000000000002P0CCYW63", 
+        "address": "not_distributed_73a260c98500b5f0c9c7140e28498ded8ede7956e12ceb4e14ff870b46ab3724", 
         "lock_send": 555265, 
         "metadata": "73a260c98500b5f0c9c7140e28498ded8ede7956e12ceb4e14ff870b46ab3724", 
         "receive_whitelisted": true, 
@@ -24897,53 +24897,6 @@
         "vesting_total": 83333000000
     }, 
     {
-        "address": "SP0000000000000000002RWDEK1HM", 
-        "lock_send": 552673, 
-        "metadata": "481e86bb9b966e93055fead37e74fdd7371442cb8388a04be90cb0f6f5815b07", 
-        "receive_whitelisted": true, 
-        "type": "STACKS", 
-        "value": 0, 
-        "vesting": {
-            "543745": 1388888888889, 
-            "548065": 1388888888889, 
-            "552385": 1388888888889, 
-            "556705": 1388888888889, 
-            "561025": 1388888888889, 
-            "565345": 1388888888889, 
-            "569665": 1388888888889, 
-            "573985": 1388888888889, 
-            "578305": 1388888888889, 
-            "582625": 1388888888889, 
-            "586945": 1388888888889, 
-            "591265": 1388888888889, 
-            "595585": 1388888888889, 
-            "599905": 1388888888889, 
-            "604225": 1388888888889, 
-            "608545": 1388888888889, 
-            "612865": 1388888888889, 
-            "617185": 1388888888889, 
-            "621505": 1388888888889, 
-            "625825": 1388888888889, 
-            "630145": 1388888888889, 
-            "634465": 1388888888889, 
-            "638785": 1388888888889, 
-            "643105": 1388888888889, 
-            "647425": 1388888888889, 
-            "651745": 1388888888889, 
-            "656065": 1388888888889, 
-            "660385": 1388888888889, 
-            "664705": 1388888888889, 
-            "669025": 1388888888889, 
-            "673345": 1388888888889, 
-            "677665": 1388888888889, 
-            "681985": 1388888888888, 
-            "686305": 1388888888888, 
-            "690625": 1388888888888, 
-            "694945": 1388888888888
-        }, 
-        "vesting_total": 50000000000000
-    }, 
-    {
         "address": "SP3NPK76AR58ZWTQG2PPFT4122HRX9FH8DZBVBNVP", 
         "lock_send": 555265, 
         "metadata": "8f057949c25fbf210afeb7e130dde2528e6b37a65f26871d9392d00e0d3d2c58", 
@@ -24979,7 +24932,7 @@
         "vesting_total": 41697000000
     }, 
     {
-        "address": "SP0000000000000000002S7KSNHFS", 
+        "address": "not_distributed_f99df6ac3b85c83997067c6485487dc0fbd2a55c474446f5c5bb917a1518f968", 
         "lock_send": 555265, 
         "metadata": "f99df6ac3b85c83997067c6485487dc0fbd2a55c474446f5c5bb917a1518f968", 
         "receive_whitelisted": true, 
@@ -25399,7 +25352,7 @@
         "vesting_total": 83047000000
     }, 
     {
-        "address": "SP0000000000000000002TPC6M1AX", 
+        "address": "not_distributed_fc9ee9324486393c23c4ab5525b2416657257d712ece48a654ee3cbc23c29b32", 
         "lock_send": 555265, 
         "metadata": "fc9ee9324486393c23c4ab5525b2416657257d712ece48a654ee3cbc23c29b32", 
         "receive_whitelisted": true, 
@@ -26414,7 +26367,7 @@
         "vesting_total": 25000000000
     }, 
     {
-        "address": "SP0000000000000000002YAQBFFV6", 
+        "address": "not_distributed_e221e0d54820896190882ff209eb2bc3121e19426c5071f4e59e3a34b8e1070d", 
         "lock_send": 555265, 
         "metadata": "e221e0d54820896190882ff209eb2bc3121e19426c5071f4e59e3a34b8e1070d", 
         "receive_whitelisted": true, 
@@ -27359,7 +27312,7 @@
         "vesting_total": 125000000000
     }, 
     {
-        "address": "SP00000000000000000031M6JP8DY", 
+        "address": "not_distributed_82f13b8f1aeaf671e7e0de18bc7d325fe024ba915f2607b86163e743f78c5529", 
         "lock_send": 555265, 
         "metadata": "82f13b8f1aeaf671e7e0de18bc7d325fe024ba915f2607b86163e743f78c5529", 
         "receive_whitelisted": true, 
@@ -28024,7 +27977,7 @@
         "vesting_total": 166667000000
     }, 
     {
-        "address": "SP0000000000000000003426JT1F6", 
+        "address": "not_distributed_b15a2c8d7347788a30d90edbf93ef96881f88976b74e7515f1ba65538199b875", 
         "lock_send": 555265, 
         "metadata": "b15a2c8d7347788a30d90edbf93ef96881f88976b74e7515f1ba65538199b875", 
         "receive_whitelisted": true, 
@@ -30124,6 +30077,65 @@
         "vesting_total": 41678000000
     }, 
     {
+        "address": "not_distributed_481e86bb9b966e93055fead37e74fdd7371442cb8388a04be90cb0f6f5815b07", 
+        "lock_send": 552673, 
+        "metadata": "481e86bb9b966e93055fead37e74fdd7371442cb8388a04be90cb0f6f5815b07", 
+        "receive_whitelisted": true, 
+        "type": "STACKS", 
+        "value": 0, 
+        "vesting": {
+            "543745": 1041666666667, 
+            "548065": 1041666666667, 
+            "552385": 1041666666667, 
+            "556705": 1041666666667, 
+            "561025": 1041666666667, 
+            "565345": 1041666666667, 
+            "569665": 1041666666667, 
+            "573985": 1041666666667, 
+            "578305": 1041666666667, 
+            "582625": 1041666666667, 
+            "586945": 1041666666667, 
+            "591265": 1041666666667, 
+            "595585": 1041666666667, 
+            "599905": 1041666666667, 
+            "604225": 1041666666667, 
+            "608545": 1041666666667, 
+            "612865": 1041666666667, 
+            "617185": 1041666666667, 
+            "621505": 1041666666667, 
+            "625825": 1041666666667, 
+            "630145": 1041666666667, 
+            "634465": 1041666666667, 
+            "638785": 1041666666667, 
+            "643105": 1041666666667, 
+            "647425": 1041666666667, 
+            "651745": 1041666666667, 
+            "656065": 1041666666667, 
+            "660385": 1041666666667, 
+            "664705": 1041666666667, 
+            "669025": 1041666666667, 
+            "673345": 1041666666667, 
+            "677665": 1041666666667, 
+            "681985": 1041666666666, 
+            "686305": 1041666666666, 
+            "690625": 1041666666666, 
+            "694945": 1041666666666, 
+            "699265": 1041666666666, 
+            "703585": 1041666666666, 
+            "707905": 1041666666666, 
+            "712225": 1041666666666, 
+            "716545": 1041666666666, 
+            "720865": 1041666666666, 
+            "725185": 1041666666666, 
+            "729505": 1041666666666, 
+            "733825": 1041666666666, 
+            "738145": 1041666666666, 
+            "742465": 1041666666666, 
+            "746785": 1041666666666
+        }, 
+        "vesting_total": 50000000000000
+    }, 
+    {
         "address": "SP3ZZXZQX2PDV5VV53GNTMTK02SBR0YGJJAEQ1PEN", 
         "lock_send": 554545, 
         "metadata": "8f8fe13831e494f2c771b28dcc369c0ab19568121e4e1560f32dbc7f8acf0179", 
@@ -30229,7 +30241,7 @@
         "vesting_total": 208333000000
     }, 
     {
-        "address": "SP0000000000000000003BW73BQM8", 
+        "address": "not_distributed_e89eca71373f5dfae38ae712f297c2ccfaf1f01dd62fbcf7f7a30eeaf3c74218", 
         "lock_send": 562753, 
         "metadata": "e89eca71373f5dfae38ae712f297c2ccfaf1f01dd62fbcf7f7a30eeaf3c74218", 
         "receive_whitelisted": true, 
@@ -31944,7 +31956,7 @@
         "vesting_total": 41396702842
     }, 
     {
-        "address": "SP0000000000000000003J02QXQ8N", 
+        "address": "not_distributed_27401c4ffcd3239c671c9b1a8d624d2704f6d4ea345fc64edb4c8662489e4f26", 
         "lock_send": 560161, 
         "metadata": "27401c4ffcd3239c671c9b1a8d624d2704f6d4ea345fc64edb4c8662489e4f26", 
         "receive_whitelisted": true, 
@@ -32084,7 +32096,7 @@
         "vesting_total": 1000000000000
     }, 
     {
-        "address": "SP0000000000000000003JJ0K949V", 
+        "address": "not_distributed_42abc4c75e32d90e58d4eafdb843ca3e9b3beefd68665ce8f892e0ff8bf656b1", 
         "lock_send": 543781, 
         "metadata": "42abc4c75e32d90e58d4eafdb843ca3e9b3beefd68665ce8f892e0ff8bf656b1", 
         "receive_whitelisted": true, 
@@ -32131,7 +32143,7 @@
         "vesting_total": 89321100000000
     }, 
     {
-        "address": "SP0000000000000000003JNQNCS6Y", 
+        "address": "not_distributed_8f41793ecf9197e65bed1bf0febbfeb777185c11de86765e639eedd84bef1205", 
         "lock_send": 543781, 
         "metadata": "8f41793ecf9197e65bed1bf0febbfeb777185c11de86765e639eedd84bef1205", 
         "receive_whitelisted": true, 
@@ -32178,7 +32190,7 @@
         "vesting_total": 89321100000000
     }, 
     {
-        "address": "SP0000000000000000003JR1CN07J", 
+        "address": "not_distributed_0d682e26a34f568392d9f2a016f3dc020d446b90ed112f7e50330f0d1b5e4315", 
         "lock_send": 543781, 
         "metadata": "0d682e26a34f568392d9f2a016f3dc020d446b90ed112f7e50330f0d1b5e4315", 
         "receive_whitelisted": true, 
@@ -32601,7 +32613,7 @@
         "vesting_total": 6317982000000
     }, 
     {
-        "address": "SP0000000000000000003KYZJSKMC", 
+        "address": "not_distributed_59777bc1f870443d12dce18bbe52e952a06d0bad2e32c0c7d1c4b3edc2f948e6", 
         "lock_send": 547093, 
         "metadata": "59777bc1f870443d12dce18bbe52e952a06d0bad2e32c0c7d1c4b3edc2f948e6", 
         "receive_whitelisted": true, 
@@ -32648,7 +32660,7 @@
         "vesting_total": 402380000000
     }, 
     {
-        "address": "SP0000000000000000003M1WCD2YY", 
+        "address": "not_distributed_682998797bfa02028a78b86aae8411c455f321949885d6c678acc931af7d72aa", 
         "lock_send": 547093, 
         "metadata": "682998797bfa02028a78b86aae8411c455f321949885d6c678acc931af7d72aa", 
         "receive_whitelisted": true, 
@@ -32695,7 +32707,7 @@
         "vesting_total": 47496227000000
     }, 
     {
-        "address": "SP0000000000000000003M6DQDWXX", 
+        "address": "not_distributed_7793d500beb7136a9b936a5b1d7b3a45bdf1a892497b0681bcbacf62bceb5c8a", 
         "lock_send": 547093, 
         "metadata": "7793d500beb7136a9b936a5b1d7b3a45bdf1a892497b0681bcbacf62bceb5c8a", 
         "receive_whitelisted": true, 
@@ -32742,7 +32754,7 @@
         "vesting_total": 2417226000000
     }, 
     {
-        "address": "SP0000000000000000003MADR9RJ5", 
+        "address": "not_distributed_f78c2bed4a76abd2540179fc6521c3623e74782883d17a7c48e035f400fbebeb", 
         "lock_send": 547093, 
         "metadata": "f78c2bed4a76abd2540179fc6521c3623e74782883d17a7c48e035f400fbebeb", 
         "receive_whitelisted": true, 
@@ -32789,7 +32801,7 @@
         "vesting_total": 351037000000
     }, 
     {
-        "address": "SP0000000000000000003MCBPZ7VE", 
+        "address": "not_distributed_4ff2c94782cfd24924891b0497fc282be32055cd102e990932d81b36333f9e8e", 
         "lock_send": 547093, 
         "metadata": "4ff2c94782cfd24924891b0497fc282be32055cd102e990932d81b36333f9e8e", 
         "receive_whitelisted": true, 
@@ -32836,7 +32848,7 @@
         "vesting_total": 2526974000000
     }, 
     {
-        "address": "SP0000000000000000003MGYQMK3B", 
+        "address": "not_distributed_7bc9ba20fbf4937dbef1d2a6c4cf0974399f38b8fdfe6b1be782e3bd60b541f9", 
         "lock_send": 547093, 
         "metadata": "7bc9ba20fbf4937dbef1d2a6c4cf0974399f38b8fdfe6b1be782e3bd60b541f9", 
         "receive_whitelisted": true, 
@@ -33071,7 +33083,7 @@
         "vesting_total": 804761000000
     }, 
     {
-        "address": "SP0000000000000000003N44J37H8", 
+        "address": "not_distributed_4bd9c50c37759ba2fa66547fc48bda2aa6effa18437eb1cb8681527b840fcc4b", 
         "lock_send": 546661, 
         "metadata": "4bd9c50c37759ba2fa66547fc48bda2aa6effa18437eb1cb8681527b840fcc4b", 
         "receive_whitelisted": true, 

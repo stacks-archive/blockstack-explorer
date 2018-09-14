@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 
 import StyledNav from '@styled/nav';
 import { Type } from '@styled/typography';
-
-import { Logo, LogoType } from '@components/svgs';
+import Logo from '@components/logo';
 
 function Nav({ global }) {
   return (
@@ -17,10 +16,7 @@ function Nav({ global }) {
           <StyledNav.Bar>
             <StyledNav.Bar.Inner>
               <Link href="/app">
-                <StyledNav.Title.Link href="/app">
-                  <StyledNav.Title.Logo>{Logo()}</StyledNav.Title.Logo>
-                  <StyledNav.Title.LogoType>{LogoType()}</StyledNav.Title.LogoType>
-                </StyledNav.Title.Link>
+                <Logo />
               </Link>
               {/* <StyledNav.Search.Input placeholder="search" onKeyUp={onEnter} /> */}
               {global && (

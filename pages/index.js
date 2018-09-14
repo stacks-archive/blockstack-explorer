@@ -6,6 +6,7 @@ import { Flex, Box } from 'rebass';
 
 import Head from '../components/head';
 import Nav from '../components/nav';
+import Footer from '../components/footer';
 
 import { Card } from '../styled/card';
 import { Input } from '../styled/input';
@@ -35,6 +36,7 @@ const Home = () => (
         </Card>
       </Box>
     </Flex>
+    <Footer />
   </div>
 );
 

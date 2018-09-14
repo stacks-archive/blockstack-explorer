@@ -75,7 +75,7 @@ class Address extends React.Component {
       <Wrap>
         <Wrap.Inner>
           <Head title="Address" />
-          <Nav global />
+          <Nav global={!!account} />
           <br />
           {account ? (
           <Flex flexWrap="wrap" justifyContent="center">
@@ -128,7 +128,7 @@ class Address extends React.Component {
                   />
                   <Type.p textAlign="center">Vesting Over Time</Type.p>
                   <ResponsiveContainer height={500}>
-                    <LineChart data={convertedCumulative} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
+                    <LineChart data={this.convertedTotals()} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
                       <XAxis
                         dataKey="block"
                         type="number"
@@ -152,10 +152,10 @@ class Address extends React.Component {
           ) : (
             <Flex>
               <Box width={1} m={4}>
-                <Typography align="center" variant="display1">
-                  Sorry, no account was found with the address:
-                  <Typography variant="button">{address}</Typography>
-                </Typography>
+                <Type.h1 textAlign="center">Sorry, no account was found with the address:</Type.h1>
+                <Type.h3 textAlign="center">
+                  <code>{address}</code>
+                </Type.h3>
               </Box>
             </Flex>
           )}

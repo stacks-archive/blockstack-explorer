@@ -52,7 +52,7 @@ class Home extends React.Component {
               <Card textAlign="center" p={10}>
                 <Card.HeaderBig>
                   <Type.h2 my={3} fontWeight={500} color="#fff">
-                    Welcome to the block explorer for the draft Stacks Genesis Block.
+                    Welcome to the block explorer for <br/>the draft Stacks Genesis Block.
                   </Type.h2>
                 </Card.HeaderBig>
                 <Card.Content>

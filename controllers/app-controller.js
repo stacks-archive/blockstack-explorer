@@ -42,14 +42,14 @@ const makeAppController = (app, cache) => {
 
   const AppController = express.Router();
 
-  function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-      return next();
-    }
-    return res.redirect('/login');
-  }
+  // function ensureAuthenticated(req, res, next) {
+  //   if (req.isAuthenticated()) {
+  //     return next();
+  //   }
+  //   return res.redirect('/login');
+  // }
 
-  AppController.use(ensureAuthenticated);
+  // AppController.use(ensureAuthenticated);
 
   // Use the `renderAndCache` utility defined below to serve pages
   AppController.get('/', (req, res) => {

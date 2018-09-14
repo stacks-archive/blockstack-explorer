@@ -5,15 +5,15 @@ import { connect } from 'react-redux';
 import { Flex, Box } from 'rebass';
 
 
-import Head from '../components/head';
-import Nav from '../components/nav';
-import Footer from '../components/footer';
+import Head from '@components/head';
+import Nav from '@components/nav';
+import Footer from '@components/footer';
 
-import Wrap from '../styled/wrap';
-import Card from '../styled/card';
-import Button from '../styled/button';
-import { Input } from '../styled/input';
-import { Type } from '../styled/typography';
+import Wrap from '@styled/wrap';
+import Card from '@styled/card';
+import Button from '@styled/button';
+import { Input } from '@styled/input';
+import { Type } from '@styled/typography';
 
 
 

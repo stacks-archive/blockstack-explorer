@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Box, Text } from 'rebass';
+import { Flex, Box } from 'rebass';
 import PropTypes from 'prop-types';
 import {
   LineChart,
@@ -14,16 +14,16 @@ import accounting from 'accounting';
 import moment from 'moment';
 import numeral from 'numeral';
 
-import Head from '../components/head';
-import Nav from '../components/nav';
-import Tooltip from '../components/tooltip';
-import Footer from '../components/footer';
-import { Input } from '../styled/input';
+import Head from '@components/head';
+import Nav from '@components/nav';
+import Tooltip from '@components/tooltip';
+import Footer from '@components/footer';
+import { Input } from '@styled/input';
 import { Type } from '@styled/typography';
 
-import Card from '../styled/card';
-import Wrap from '../styled/wrap';
-import Disclaimer from '../components/disclaimer';
+import Card from '@styled/card';
+import Wrap from '@styled/wrap';
+import Disclaimer from '@components/disclaimer';
 import { fetchAccount } from '@client/api';
 
 class Address extends React.Component {

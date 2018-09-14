@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Router from 'next/router';
 
-import Head from '../components/head';
-import Nav from '../components/nav';
-import Card from '../styled/card';
-import { Input } from '../styled/input';
+import Head from '@components/head';
+import Nav from '@components/nav';
+import Card from '@styled/card';
+import { Input } from '@styled/input';
 
 import { Actions as AuthActions } from '@stores/auth';
 

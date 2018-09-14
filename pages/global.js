@@ -14,15 +14,15 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import numeral from 'numeral';
 
-import Head from '../components/head';
-import Nav from '../components/nav';
-import Tooltip from '../components/tooltip';
-import Footer from '../components/footer';
-import Disclaimer from '../components/disclaimer';
-import { Input } from '../styled/input';
-import Card from '../styled/card';
-import { Type } from '../styled/typography';
-import Wrap from '../styled/wrap';
+import Head from '@components/head';
+import Nav from '@components/nav';
+import Tooltip from '@components/tooltip';
+import Footer from '@components/footer';
+import Disclaimer from '@components/disclaimer';
+import { Input } from '@styled/input';
+import Card from '@styled/card';
+import { Type } from '@styled/typography';
+import Wrap from '@styled/wrap';
 import { fetchTotals } from '@client/api';
 
 class Global extends React.Component {

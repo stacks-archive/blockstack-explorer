@@ -1,4 +1,6 @@
-{
+require('babel-register')
+
+module.exports = {
   "extends": [
     "airbnb",
     "plugin:prettier/recommended"
@@ -49,7 +51,8 @@
           "@pages": "./pages",
           "@common": "./common",
           "@utils": "./utils",
-          "@client": "./lib/client"
+          "@client": "./lib/client",
+          "@styled": "./styled"
         }
       }
     }

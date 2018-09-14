@@ -1,5 +1,5 @@
 import React from 'react';
-import { Type } from '../styled/typography';
+import { Type } from '@styled/typography';
 
 const Disclaimer = () => (
   <Type.p fontSize="15px" pt={3}>

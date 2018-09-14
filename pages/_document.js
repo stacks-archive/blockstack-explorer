@@ -18,6 +18,12 @@ ${normalize()};
 body, html{
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background:#eeefef;
+  height:100%;
+  margin:0;
+}
+#__next{
+  height:100%;
+  margin:0;
 }
 // h1, h2, h3, h4, h5, h6{
 //   font-family: 'Plex';

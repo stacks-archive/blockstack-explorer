@@ -4,7 +4,10 @@ import { Input as RebassInput } from 'rebass';
 
 export const Input = Styled(RebassInput)`
   width: ${({ width }) => width || '100%'};
-  border: 1px solid #c5c5c5;
+  padding: 18px 28px;
+  background-color: #f3f3f3;
+  border: 1px solid #efefef;
+  font-size: 15px;
 `;
 
 Input.defaultProps = {

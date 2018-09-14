@@ -21,9 +21,9 @@ import Nav from '../components/nav';
 import Tooltip from '../components/tooltip';
 import Footer from '../components/footer';
 import { Input } from '../styled/input';
-import { Card } from '../styled/card';
+import Card from '../styled/card';
 import { Type } from '../styled/typography';
-
+import Wrap from '../styled/wrap';
 import { fetchTotals } from '@client/api';
 
 class Global extends React.Component {
@@ -68,58 +68,71 @@ class Global extends React.Component {
   render() {
     const totals = this.convertedTotals();
     return (
-      <>
-        <Head />
-        <Nav />
-        <Flex flexWrap="wrap">
-          <Box width={[1, 1, 1 / 2]} p={3}>
-            <Card>
-              <Type.p>Enter a conversion rate of Stacks per USD.</Type.p>
-              <Input value={this.state.stacksUSD} onChange={(evt) => this.setState({ stacksUSD: evt.target.value })} />
-            </Card>
-            <br />
-            <Card>
-              <Type.h1>Global Statistics</Type.h1>
+      <Wrap>
+        <Wrap.Inner>
+          <Head />
+          <Nav />
+          <Flex flexWrap="wrap" justifyContent="center">
+            <Box width={[1, 1, 1 / 4]} pt={5}>
+              <Card>
+                <Card.Header>
+                <Type.h3 color="#fff">Global Statistics</Type.h3>
+                </Card.Header>
+                <Card.Content>
+                <Type.p fontSize="15px" fontWeight={500} mb={0} mt={2}>
+                  Total
+                </Type.p>
+                <Type.p fontSize="23px" mt={2} mb={2}>{accounting.formatNumber(totals.vestedValues * 10e-7)} STACKS</Type.p>
+                <Type.p fontSize="23px" mt={0}>{accounting.formatMoney(totals.vestedValues * 10e-7 * this.state.stacksUSD, '$', 0)} USD</Type.p>
 
-              <Type.p fontSize="12px" mb={0} mt={3}>
-                Total:
-              </Type.p>
-              <code>{accounting.formatNumber(totals.vestedValues * 10e-7)} STACKS</code>
+                <Type.p fontSize="15px" fontWeight={500} mb={0} mt={2}>
+                  Total accounts
+                </Type.p>
+                <Type.p fontSize="23px" mt={2}>{totals.addressCount}</Type.p>
+                </Card.Content>
+              </Card>
               <br />
-              <code>{accounting.formatMoney(totals.vestedValues * 10e-7 * this.state.stacksUSD, '$', 0)} USD</code>
+              <Card>
+                <Card.Content>
+                  <Type.p>Enter a conversion rate of USD per Stack token.</Type.p>
+                  <Input value={this.state.stacksUSD} onChange={(evt) => this.setState({ stacksUSD: evt.target.value })} />
+                </Card.Content>
+              </Card>
+            </Box>
+            <Box width={[1, 1, 2 / 4]} pt={5} pl={4} pb={5}>
+              <Card>
+                <Card.Content>
+                  <Text textAlign="center">Vesting Over Time</Text>
+                  <ResponsiveContainer height={500}>
+                    <LineChart data={totals.convertedCumulative} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
+                      <XAxis
+                        dataKey="block"
+                        type="number"
+                        tickFormatter={(block) => moment(block).format('MM/DD/YYYY')}
+                        domain={['dataMin', 'dataMax']}
+                        label={{ value: 'Date', position: 'insideBottom', offset: -23 }}
+                      />
+                      <Line dataKey="usd" />
+                      <TooltipContainer content={Tooltip} />
+                      <YAxis
+                        tickFormatter={(usd) => numeral(usd).format('0a')}
+                        label={{ value: 'Market Cap ($USD)', angle: -90, position: 'insideLeft', offset: -18 }}
+                      />
+                      <CartesianGrid />
+                    </LineChart>
+                  </ResponsiveContainer>
 
-              <Type.p fontSize="12px" mb={0} mt={3}>
-                Total accounts:
-              </Type.p>
-              <code>{totals.addressCount}</code>
-            </Card>
-          </Box>
-          <Box width={[1, 1, 1 / 2]} p={3}>
-            <Card>
-              <Text textAlign="center">Vesting Over Time</Text>
-              <ResponsiveContainer height={500}>
-                <LineChart data={totals.convertedCumulative} margin={{ top: 15, right: 15, bottom: 15, left: 15 }}>
-                  <XAxis
-                    dataKey="block"
-                    type="number"
-                    tickFormatter={(block) => moment(block).format('MM/DD/YYYY')}
-                    domain={['dataMin', 'dataMax']}
-                    label={{ value: 'Date', position: 'insideBottom', offset: -10 }}
-                  />
-                  <Line dataKey="usd" />
-                  <TooltipContainer content={Tooltip} />
-                  <YAxis
-                    tickFormatter={(usd) => numeral(usd).format('0a')}
-                    label={{ value: 'Market Cap ($USD)', angle: -90, position: 'insideLeft', offset: -5 }}
-                  />
-                  <CartesianGrid />
-                </LineChart>
-              </ResponsiveContainer>
-            </Card>
-          </Box>
-        </Flex>
+                  <Type.p fontSize="15px" pt={3}>
+                    The above tool shows the market cap for tokens released in the Genesis Block only. The mining process, when turned on, will release more tokens. See the Blockstack tokenpaper link for details.
+                  </Type.p>
+                </Card.Content>
+              </Card>
+            </Box>
+          </Flex>
+          <Wrap.Push></Wrap.Push>
+        </Wrap.Inner>
         <Footer />
-      </>
+      </Wrap>
     );
   }
 }

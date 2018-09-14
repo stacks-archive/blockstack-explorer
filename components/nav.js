@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-
+import { Flex, Box } from 'rebass';
 import StyledNav from '@styled/nav';
 import { Type } from '@styled/typography';
 import Logo from '@components/logo';
@@ -14,18 +14,21 @@ function Nav({ global }) {
         <Grid item xs={12}>
           {/* <AppBar position="static" colorPrimary={{ backgroundColor: 'rgb(32, 12, 43)' }}> */}
           <StyledNav.Bar>
-            <StyledNav.Bar.Inner>
-              <Link href="/app">
-                <Logo />
-              </Link>
-              {/* <StyledNav.Search.Input placeholder="search" onKeyUp={onEnter} /> */}
-              {global && (
-                <Link href="/app/global">
-                  <a>Global Stats</a>
+            <Box width={[1, 3 / 4]} m="auto" textAlign="center">
+              <StyledNav.Bar.Inner>
+                <Link href="/app">
+                  <Logo inverse/>
                 </Link>
-              )}
-            </StyledNav.Bar.Inner>
+                {/* <StyledNav.Search.Input placeholder="search" onKeyUp={onEnter} /> */}
+                {global && (
+                  <Link href="/app/global">
+                    <a>Global Stats</a>
+                  </Link>
+                )}
+              </StyledNav.Bar.Inner>
+            </Box>
           </StyledNav.Bar>
+          
           {/* </AppBar> */}
         </Grid>
       </Grid>

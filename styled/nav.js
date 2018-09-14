@@ -21,6 +21,7 @@ const Title = {
   `,
   Logo: Styled.div`
     float: left;
+    margin-top: 35px;
     svg {
       ${({ inverse }) => inverse && 'fill: #fff;'}
       ${({ inverse }) => inverse && 'margin-right: 10px;'}
@@ -32,7 +33,7 @@ const Title = {
   LogoType: Styled.div`
     float: left;
     position: relative;
-    top: 7px;
+    top: 42px;
     margin-left: 5px;
     margin-right: 20px;
     svg {
@@ -49,11 +50,13 @@ const Bar = Styled.header`
   width: 100%;
   flex-shrink: 0;
   flex-direction: column;
+  line-height:100px;
 `;
 
 Bar.Inner = Styled.div`
-  min-height: 64px;
-  padding: 10px 24px;
+  min-height: 100px;
+  padding: 10px 0px;
+  line-height:100px;
   color: white;
   a, a:visited {
     color: white;
@@ -61,8 +64,7 @@ Bar.Inner = Styled.div`
     position: relative;
     text-transform: uppercase;
     font-weight: 600;
-    top: 10px;
-    margin-left: 15px;
+    margin-left: 20px;
     font-family: 'Plex', monospace;
   }
 `;

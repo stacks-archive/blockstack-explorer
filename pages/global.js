@@ -130,7 +130,7 @@ class Global extends React.Component {
                     </LineChart>
                   </ResponsiveContainer>
 
-                  <Disclaimer />
+                  <Disclaimer global />
                 </Card.Content>
               </Card>
             </Box>

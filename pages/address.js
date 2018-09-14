@@ -87,21 +87,21 @@ class Address extends React.Component {
                   </Card.Header>
                   <Card.Content>
                     <Type.p fontSize="15px" fontWeight={500} mb={0} mt={2}>
-                      Stacks address
+                      Stacks address:
                     </Type.p>
                     <Type.p fontSize="23px" mt={2}>
                       {account.address}
                     </Type.p>
 
                     <Type.p fontSize="15px" fontWeight={500} mb={0} mt={4}>
-                      Total Stacks tokens owned by this address
+                      Total Stacks tokens owned by this address:
                     </Type.p>
                     <Type.p fontSize="23px" mt={1}>
                       {accounting.formatNumber(account.vesting_total * 10e-7)}
                     </Type.p>
 
                     <Type.p fontSize="15px" fontWeight={500} mb={0} mt={4}>
-                      Your ability to transfer tokens unlocks on
+                      Your ability to transfer tokens unlocks on:
                     </Type.p>
 
                     <Type.p fontSize="23px" mt={1} mb={0}>

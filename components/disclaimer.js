@@ -1,7 +1,7 @@
 import React from 'react';
 import { Type } from '@styled/typography';
 
-const Disclaimer = () => (
+const Disclaimer = ({ global = false }) => (
   <Type.p fontSize="15px" pt={3}>
     <Type.strong>Disclaimer:</Type.strong>{' '}
     <Type.span style={{ fontStyle: 'italic' }}>
@@ -15,6 +15,13 @@ const Disclaimer = () => (
       No graph, chart, or formula can in and of itself determine which securities or other investments to buy or sell or
       when to buy or sell them. Potential investors should not rely on this or any other graph when making such
       determinations.
+      {global && (
+        <>
+          <br/>
+          <br/>
+          The above tool shows the market cap for tokens released in the Genesis Block only. The mining process, when turned on, will release more tokens. See the <a href="https://blockstack.org/tokenpaper.pdf">Blockstack Token Whitepaper</a> for details.
+        </>
+      )}
     </Type.span>
   </Type.p>
 );

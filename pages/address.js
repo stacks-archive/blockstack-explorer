@@ -83,12 +83,12 @@ class Address extends React.Component {
                 <Type.h1 mb={3}>Address Details</Type.h1>
 
                 <Type.p fontSize="12px" mb={0} mt={3}>
-                  STACKS Address:
+                  Stacks tokens Address:
                 </Type.p>
                 <code>{account.address}</code>
 
                 <Type.p fontSize="12px" mb={0} mt={4}>
-                  Total STACKS owned by this address:
+                  Total Stacks tokens owned by this address:
                 </Type.p>
                 <code>{accounting.formatNumber(account.vesting_total * 10e-7)}</code>
 
@@ -112,7 +112,7 @@ class Address extends React.Component {
             <Box width={[1]} p={3}>
               <Card mb={1}>
                 <Type.h2>Vesting Visualization Tool</Type.h2>
-                <Type.p>This tool shows how your STACKS will unlock over time.</Type.p>
+                <Type.p>This tool shows how your Stacks tokens will unlock over time.</Type.p>
                 <Type.p>Enter a conversion rate in the field below to see the USD equivalent of your Stacks.</Type.p>
                 <Type.p>Enter a conversion rate of Stacks per USD.</Type.p>
                 <Input

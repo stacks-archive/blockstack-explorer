@@ -115,6 +115,11 @@ class Global extends React.Component {
                   <CartesianGrid />
                 </LineChart>
               </ResponsiveContainer>
+              <Type.p mt={3}>
+                The above tool shows the market cap for tokens released in the genesis block only. The mining process,
+                when turned on, will release more tokens. See the{' '}
+                <a href="https://blockstack.org/tokenpaper.pdf">Blockstack tokenpaper</a> for details.
+              </Type.p>
             </Card>
           </Box>
         </Flex>

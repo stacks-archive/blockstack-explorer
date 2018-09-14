@@ -83,7 +83,7 @@ class Address extends React.Component {
                 <Type.h1 mb={3}>Address Details</Type.h1>
 
                 <Type.p fontSize="12px" mb={0} mt={3}>
-                  Stacks tokens Address:
+                  Stacks Address:
                 </Type.p>
                 <code>{account.address}</code>
 

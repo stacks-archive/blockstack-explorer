@@ -122,8 +122,9 @@ class Global extends React.Component {
                     </LineChart>
                   </ResponsiveContainer>
 
+
                   <Type.p fontSize="15px" pt={3}>
-                    The above tool shows the market cap for tokens released in the Genesis Block only. The mining process, when turned on, will release more tokens. See the Blockstack tokenpaper link for details.
+                    The above tool shows the market cap for tokens released in the Genesis Block only. The mining process, when turned on, will release more tokens. See the <a href="https://blockstack.org/tokenpaper.pdf">Blockstack Token Whitepaper</a> for details.
                   </Type.p>
                 </Card.Content>
               </Card>

@@ -25,9 +25,13 @@ export const doSelectAccount = (address) =>
     }
     url += `/api/accounts/${address}`;
     console.log(url);
-    const request = await fetch(url);
-    const account = await request.json();
-    // console.log(account);
-    dispatch(selectedAccount(account));
+    try {
+      const request = await fetch(url);
+      const account = await request.json();
+      // console.log(account);
+      dispatch(selectedAccount(account));
+    } catch (error) {
+      dispatch(selectedAccount(null));
+    }
     return true;
   };

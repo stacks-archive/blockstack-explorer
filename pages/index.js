@@ -25,7 +25,6 @@ class Home extends React.Component {
   };
 
   onEnter(event) {
-    console.log('here')
     if (event.key === 'Enter') {
       const address = event.target.value;
       Router.push(`/app/address/${address}`);

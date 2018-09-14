@@ -70,7 +70,6 @@ class Address extends React.Component {
 
   render() {
     const { account, address } = this.props;
-    const convertedCumulative = this.convertedTotals();
 
     return (
       <Wrap>
@@ -87,7 +86,7 @@ class Address extends React.Component {
                 </Card.Header>
                 <Card.Content>
                   <Type.p fontSize="15px" fontWeight={500} mb={0} mt={2}>
-                    Stacks tokens address
+                    Stacks address
                   </Type.p>
                   <Type.p fontSize="23px" mt={2}>{account.address}</Type.p>
 
@@ -113,7 +112,6 @@ class Address extends React.Component {
                 </Card.Content>
               </Card>
             </Box>
-
             <Box width={[1, 1, 3/4]} pt={4} pb={5}>
               <Card>
                 <Card.Header>

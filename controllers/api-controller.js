@@ -16,7 +16,11 @@ const makeAPIController = (Genesis) => {
   APIController.get('/accounts/:address', (req, res) => {
     const account = Genesis.accountsByAddress[req.params.address];
 
-    res.json(account);
+    if (account) {
+      res.json(account);
+    } else {
+      res.status(404).send('Missing Account');
+    }
   });
 
   return APIController;

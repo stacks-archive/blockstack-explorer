@@ -27,7 +27,7 @@ const Home = () => (
       <Box width={[1, 3 / 4]} m="auto" mt={6} mb={4} textAlign="center">
         <Card textAlign="center" p={10}>
           <Type.h1 my={3} fontWeight={500}>
-            Welcome to the block explorer for the draft Stacks genesis block.
+            Welcome to the block explorer for the draft Stacks Genesis Block.
           </Type.h1>
           <Type.p fontSize={2} my={3}>
             Enter your Stacks address here.

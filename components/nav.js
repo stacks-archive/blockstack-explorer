@@ -1,13 +1,14 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 import StyledNav from '@styled/nav';
 import { Type } from '@styled/typography';
 
 import { Logo, LogoType } from '@components/svgs';
 
-function Nav() {
+function Nav({ global }) {
   return (
     <div>
       <Grid container>
@@ -22,9 +23,11 @@ function Nav() {
                 </StyledNav.Title.Link>
               </Link>
               {/* <StyledNav.Search.Input placeholder="search" onKeyUp={onEnter} /> */}
-              <Link href="/app/global">
-                <a>Global Stats</a>
-              </Link>
+              {global && (
+                <Link href="/app/global">
+                  <a>Global Stats</a>
+                </Link>
+              )}
             </StyledNav.Bar.Inner>
           </StyledNav.Bar>
           {/* </AppBar> */}
@@ -33,5 +36,13 @@ function Nav() {
     </div>
   );
 }
+
+Nav.propTypes = {
+  global: PropTypes.bool,
+};
+
+Nav.defaultProps = {
+  global: false,
+};
 
 export default Nav;

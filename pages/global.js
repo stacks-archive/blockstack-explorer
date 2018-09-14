@@ -21,6 +21,7 @@ import Nav from '../components/nav';
 import Tooltip from '../components/tooltip';
 import { Input } from '../styled/input';
 import { Card } from '../styled/card';
+import { Type } from '../styled/typography';
 
 import { fetchTotals } from '@client/api';
 
@@ -72,29 +73,24 @@ class Global extends React.Component {
         <Flex flexWrap="wrap">
           <Box width={[1, 1, 1 / 2]} p={3}>
             <Card>
-              <Typography variant="body1" gutterBottom>
-                Enter a conversion rate of Stacks per USD.
-              </Typography>
+              <Type.p>Enter a conversion rate of Stacks per USD.</Type.p>
               <Input value={this.state.stacksUSD} onChange={(evt) => this.setState({ stacksUSD: evt.target.value })} />
             </Card>
             <br />
             <Card>
-              <Typography variant="display1" gutterBottom>
-                Global Statistics
-              </Typography>
+              <Type.h1>Global Statistics</Type.h1>
 
-              <Typography variant="body1" gutterBottom>
+              <Type.p fontSize="12px" mb={0} mt={3}>
                 Total:
-                <Typography variant="button">{accounting.formatNumber(totals.vestedValues * 10e-7)} STACKS</Typography>
-                <Typography variant="button">
-                  {accounting.formatMoney(totals.vestedValues * 10e-7 * this.state.stacksUSD, '$', 0)} USD
-                </Typography>
-              </Typography>
+              </Type.p>
+              <code>{accounting.formatNumber(totals.vestedValues * 10e-7)} STACKS</code>
+              <br />
+              <code>{accounting.formatMoney(totals.vestedValues * 10e-7 * this.state.stacksUSD, '$', 0)} USD</code>
 
-              <Typography variant="body1" gutterBottom>
+              <Type.p fontSize="12px" mb={0} mt={3}>
                 Total accounts:
-                <Typography variant="button">{totals.addressCount}</Typography>
-              </Typography>
+              </Type.p>
+              <code>{totals.addressCount}</code>
             </Card>
           </Box>
           <Box width={[1, 1, 1 / 2]} p={3}>

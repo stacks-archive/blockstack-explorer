@@ -74,13 +74,13 @@ class Address extends React.Component {
     return (
       <>
         <Head title="Address" />
-        <Nav />
+        <Nav global />
         <br />
         {account ? (
           <Flex flexWrap="wrap">
             <Box width={1} p={3}>
               <Card>
-                <Type.h1 mb={3}>Investment Details</Type.h1>
+                <Type.h1 mb={3}>Address Details</Type.h1>
 
                 <Type.p fontSize="12px" mb={0} mt={3}>
                   STACKS Address:
@@ -88,7 +88,7 @@ class Address extends React.Component {
                 <code>{account.address}</code>
 
                 <Type.p fontSize="12px" mb={0} mt={4}>
-                  Total STACKS purchased:
+                  Total STACKS owned by this address:
                 </Type.p>
                 <code>{accounting.formatNumber(account.vesting_total * 10e-7)}</code>
 
@@ -97,31 +97,22 @@ class Address extends React.Component {
                 </Type.p>
                 <Type.p mb={0} mt={1}>
                   <code>
+                    Approximately{' '}
                     {moment(account.transferUnlockDate)
                       .utcOffset('-05:00')
                       .format('dddd, MMMM Do YYYY')}
                   </code>
                 </Type.p>
-                <Type.p mb={0} mt={1}>
-                  <code>Bitcoin Block #{account.lock_send}</code>
+                <Type.p fontSize="12px" mb={0} mt={1}>
+                  (The exact time depends on the respective block confirmation on the blockchain.)
                 </Type.p>
-
-                {/* <Typography variant="body1" gutterBottom>
-                  Vesting Total:
-                  <Typography variant="button">
-                    {accounting.formatNumber(account.vesting_total * 10e-7)} STACKS
-                  </Typography>
-                  <Typography variant="button">
-                    {accounting.formatMoney(account.vesting_total * 10e-7 * this.state.stacksUSD)} USD
-                  </Typography>
-                </Typography> */}
               </Card>
             </Box>
 
             <Box width={[1]} p={3}>
               <Card mb={1}>
                 <Type.h2>Vesting Visualization Tool</Type.h2>
-                <Type.p>This tool shows how your STACKS will vest over time.</Type.p>
+                <Type.p>This tool shows how your STACKS will unlock over time.</Type.p>
                 <Type.p>Enter a conversion rate in the field below to see the USD equivalent of your Stacks.</Type.p>
                 <Type.p>Enter a conversion rate of Stacks per USD.</Type.p>
                 <Input

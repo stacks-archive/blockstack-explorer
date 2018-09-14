@@ -23,6 +23,7 @@ import { Type } from '@styled/typography';
 
 import Card from '../styled/card';
 import Wrap from '../styled/wrap';
+import Disclaimer from '../components/disclaimer';
 import { fetchAccount } from '@client/api';
 
 class Address extends React.Component {
@@ -151,6 +152,7 @@ class Address extends React.Component {
                         <CartesianGrid />
                       </LineChart>
                     </ResponsiveContainer>
+                    <Disclaimer />
                   </Card.Content>
                 </Card>
               </Box>

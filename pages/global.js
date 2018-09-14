@@ -1,7 +1,5 @@
 import React from 'react';
 import { Flex, Box } from 'grid-styled';
-import { Text } from 'rebass';
-import Typography from '@material-ui/core/Typography';
 import {
   LineChart,
   YAxis,
@@ -20,6 +18,7 @@ import Head from '../components/head';
 import Nav from '../components/nav';
 import Tooltip from '../components/tooltip';
 import Footer from '../components/footer';
+import Disclaimer from '../components/disclaimer';
 import { Input } from '../styled/input';
 import Card from '../styled/card';
 import { Type } from '../styled/typography';
@@ -76,33 +75,42 @@ class Global extends React.Component {
             <Box width={[1, 1, 1 / 4]} pt={5}>
               <Card>
                 <Card.Header>
-                <Type.h3 color="#fff">Global Statistics</Type.h3>
+                  <Type.h3 color="#fff">Global Statistics</Type.h3>
                 </Card.Header>
                 <Card.Content>
-                <Type.p fontSize="15px" fontWeight={500} mb={0} mt={2}>
-                  Total
-                </Type.p>
-                <Type.p fontSize="23px" mt={2} mb={2}>{accounting.formatNumber(totals.vestedValues * 10e-7)} STACKS</Type.p>
-                <Type.p fontSize="23px" mt={0}>{accounting.formatMoney(totals.vestedValues * 10e-7 * this.state.stacksUSD, '$', 0)} USD</Type.p>
+                  <Type.p fontSize="15px" fontWeight={500} mb={0} mt={2}>
+                    Total
+                  </Type.p>
+                  <Type.p fontSize="23px" mt={2} mb={2}>
+                    {accounting.formatNumber(totals.vestedValues * 10e-7)} STACKS
+                  </Type.p>
+                  <Type.p fontSize="23px" mt={0}>
+                    {accounting.formatMoney(totals.vestedValues * 10e-7 * this.state.stacksUSD, '$', 0)} USD
+                  </Type.p>
 
-                <Type.p fontSize="15px" fontWeight={500} mb={0} mt={2}>
-                  Total accounts
-                </Type.p>
-                <Type.p fontSize="23px" mt={2}>{totals.addressCount}</Type.p>
+                  <Type.p fontSize="15px" fontWeight={500} mb={0} mt={2}>
+                    Total accounts
+                  </Type.p>
+                  <Type.p fontSize="23px" mt={2}>
+                    {totals.addressCount}
+                  </Type.p>
                 </Card.Content>
               </Card>
               <br />
               <Card>
                 <Card.Content>
                   <Type.p>Enter a conversion rate of USD per Stack token.</Type.p>
-                  <Input value={this.state.stacksUSD} onChange={(evt) => this.setState({ stacksUSD: evt.target.value })} />
+                  <Input
+                    value={this.state.stacksUSD}
+                    onChange={(evt) => this.setState({ stacksUSD: evt.target.value })}
+                  />
                 </Card.Content>
               </Card>
             </Box>
             <Box width={[1, 1, 2 / 4]} pt={5} pl={4} pb={5}>
               <Card>
                 <Card.Content>
-                  <Text textAlign="center">Vesting Over Time</Text>
+                  <Type.h3 textAlign="center">Vesting Over Time</Type.h3>
                   <ResponsiveContainer height={500}>
                     <LineChart data={totals.convertedCumulative} margin={{ top: 30, right: 30, bottom: 30, left: 30 }}>
                       <XAxis
@@ -122,15 +130,12 @@ class Global extends React.Component {
                     </LineChart>
                   </ResponsiveContainer>
 
-
-                  <Type.p fontSize="15px" pt={3}>
-                    The above tool shows the market cap for tokens released in the Genesis Block only. The mining process, when turned on, will release more tokens. See the <a href="https://blockstack.org/tokenpaper.pdf">Blockstack Token Whitepaper</a> for details.
-                  </Type.p>
+                  <Disclaimer />
                 </Card.Content>
               </Card>
             </Box>
           </Flex>
-          <Wrap.Push></Wrap.Push>
+          <Wrap.Push />
         </Wrap.Inner>
         <Footer />
       </Wrap>

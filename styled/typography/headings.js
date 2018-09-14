@@ -14,6 +14,7 @@ import {
   maxWidth,
   display,
   space,
+  fontStyle,
 } from 'styled-system';
 
 export const baseProps = css`
@@ -33,6 +34,7 @@ export const baseProps = css`
   ${borderRadius};
   ${maxWidth};
   ${space};
+  ${fontStyle};
 `;
 
 const headerProps = css`

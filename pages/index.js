@@ -26,8 +26,7 @@ class Home extends React.Component {
 
   onEnter(event) {
     if (event.key === 'Enter') {
-      const address = event.target.value;
-      Router.push(`/app/address/${address}`);
+      this.submit()
     }
   }
 
@@ -37,8 +36,9 @@ class Home extends React.Component {
     })
   }
 
-  submit(event) {
-    Router.push(`/app/address/${this.state.address}`);
+  submit() {
+    const { address } = this.state;
+    Router.push(`/app/address/${address.trim()}`);
   }
 
   render() {
@@ -59,8 +59,14 @@ class Home extends React.Component {
                   <Type.p fontSize={3} my={3}>
                     Enter your Stacks address below to look up your allocation
                   </Type.p>
-                  <Input my={3} value={this.state.address} placeholder="eg. SPNN289GPP5HQA5ZF2FKQKJM3K2MPNPDD6QYA2J5" autoFocus onKeyUp={this.onEnter} onChange={this.onChange.bind(this)} width="66%" />
-                  <Button onClick={this.submit.bind(this)}>Submit</Button>
+                  <Input my={3} 
+                    value={this.state.address} 
+                    placeholder="eg. SPNN289GPP5HQA5ZF2FKQKJM3K2MPNPDD6QYA2J5" 
+                    autoFocus 
+                    onKeyUp={(evt) => this.onEnter(evt)} 
+                    onChange={(evt) => this.setState({ address: evt.target.value })} 
+                    width="66%" />
+                  <Button onClick={() => this.submit()}>Submit</Button>
                 </Card.Content>
               </Card>
             </Box>

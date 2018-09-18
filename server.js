@@ -2,7 +2,7 @@ const express = require('express');
 const next = require('next');
 const LRUCache = require('lru-cache');
 const passport = require('passport');
-const session = require('express-session');
+const session = require('cookie-session');
 const secure = require('express-force-https');
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -44,15 +44,9 @@ const setup = async () => {
 
     server.use(
       session({
-        secret: 'SECRET',
-        resave: false,
-        saveUninitialized: true,
-        proxy: true,
-        cookie: {
-          httpOnly: false,
-          maxAge: 1000 * 60 * 60 * 24 * 365,
-          secure: !dev,
-        },
+        name: 'session',
+        keys: ['SECRET'],
+        maxAge: 24 * 60 * 60 * 1000 * 365 // 1 year
       }),
     );
 

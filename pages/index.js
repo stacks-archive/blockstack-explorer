@@ -64,7 +64,12 @@ class Home extends React.Component {
                     onChange={(evt) => this.setState({ address: evt.target.value })} 
                     width="66%" />
                   <Button onClick={() => this.submit()}>Submit</Button>
-                  <Type.p my={3} fontSize={1}>
+                  <Type.p mt={3} mb={1} fontSize={1}>
+                    If you submitted your wallet through CoinList, please make sure your
+                    <br/>
+                    public address matches the one listed on your CoinList dashboard.
+                  </Type.p>
+                  <Type.p mt={1} mb={3} fontSize={1}>
                     New versions of the genesis block are published roughly every 24 hours. 
                     <br/>
                     If you recently submitted an address or edits, please check back tomorrow.

@@ -77,11 +77,7 @@ class Home extends React.Component {
       </Wrap>
     )
   }
-// );
+
 }
 
-const mapStateToProps = () => ({
-  // accounts: state.accounts.accountsByAddress,
-});
-
-export default connect(mapStateToProps)(Home);
+export default Home;

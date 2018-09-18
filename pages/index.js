@@ -65,9 +65,9 @@ class Home extends React.Component {
                     width="66%" />
                   <Button onClick={() => this.submit()}>Submit</Button>
                   <Type.p mt={3} mb={1} fontSize={1}>
-                    If you submitted your wallet through CoinList, please make sure your
+                    If you submitted your wallet through CoinList, please make sure your public address
                     <br/>
-                    public address matches the one listed on your CoinList dashboard.
+                    matches the one listed in your CoinList account under “Purchases” and then “Distributions.”
                   </Type.p>
                   <Type.p mt={1} mb={3} fontSize={1}>
                     New versions of the genesis block are published roughly every 24 hours. 

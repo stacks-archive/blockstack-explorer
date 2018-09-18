@@ -2,8 +2,7 @@ import React from 'react';
 import Router from 'next/router';
 import { connect } from 'react-redux';
 
-import { Flex, Box } from 'rebass';
-
+import { Flex, Box } from 'grid-styled';
 
 import Head from '@components/head';
 import Nav from '@components/nav';
@@ -14,8 +13,6 @@ import Card from '@styled/card';
 import Button from '@styled/button';
 import { Input } from '@styled/input';
 import { Type } from '@styled/typography';
-
-
 
 class Home extends React.Component {
 // const Home = () => (
@@ -67,6 +64,11 @@ class Home extends React.Component {
                     onChange={(evt) => this.setState({ address: evt.target.value })} 
                     width="66%" />
                   <Button onClick={() => this.submit()}>Submit</Button>
+                  <Type.p my={3} fontSize={1}>
+                    New versions of the genesis block are published roughly every 24 hours. 
+                    <br/>
+                    If you recently submitted an address or edits, please check back tomorrow.
+                  </Type.p>
                 </Card.Content>
               </Card>
             </Box>

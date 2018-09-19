@@ -27,19 +27,16 @@ const run = async () => {
   const addressVisitsWithIP = addressVisits.map((event) => {
     const { address } = event.metadata;
     const createdAt = moment(event.createdAt).format('YYYY/MM/DD HH:mm a Z')
-    const ip = event.ip.slice(7);
-    // const geo = geoip.lookup(ip);
-    // let city, region, country = null;
-    // const { city, region, country } = geo || {};
-    // if (geo) {
-    //   console.log('works', ip)
-    // } else {
-    //   console.log(ip)
-    // }
+    const ip = event.ip;
+    const geo = geoip.lookup(ip);
+    const { city, country } = geo || {};
+    // if (geo) console.log(geo)
     return {
       ip,
       createdAt,
-      address
+      address,
+      city,
+      country
     }
   })
 

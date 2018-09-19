@@ -7152,9 +7152,9 @@
         "vesting_total": 259037000000
     }, 
     {
-        "address": "not_distributed_a01f6b6d0025ebfad5e9c9faaf9bc396c2e54faef9a0674d400ec6763af7d0dc", 
+        "address": "SP24AFQEDS4HR26P2NFBYH0VPCXHJ637QMC6ABFK5", 
         "lock_send": 552673, 
-        "metadata": "a01f6b6d0025ebfad5e9c9faaf9bc396c2e54faef9a0674d400ec6763af7d0dc", 
+        "metadata": "9bce7e9bd4edb0e069bd39c37bb6053c1aedcb783a0e0832d9effd49fa6d5c28", 
         "receive_whitelisted": true, 
         "type": "STACKS", 
         "value": 0, 
@@ -11562,9 +11562,9 @@
         "vesting_total": 83333000000
     }, 
     {
-        "address": "not_distributed_6f8d9acad4225ddb62b3707e9b01230ca4668f92aab0374a786b9cc1c78a04ca", 
+        "address": "SP2DXNAYTEEK7N5BKDMZTYWREW6JQG05AEDYWYEDD", 
         "lock_send": 555265, 
-        "metadata": "6f8d9acad4225ddb62b3707e9b01230ca4668f92aab0374a786b9cc1c78a04ca", 
+        "metadata": "a3498338c1e8d01e5c345dff68fd38027496869070ddee321a420bcc38fda777", 
         "receive_whitelisted": true, 
         "type": "STACKS", 
         "value": 0, 
@@ -26426,9 +26426,9 @@
         "vesting_total": 25000000000
     }, 
     {
-        "address": "not_distributed_e221e0d54820896190882ff209eb2bc3121e19426c5071f4e59e3a34b8e1070d", 
+        "address": "SP19RBWB2Q3X7VCMWAZQ9935WYA4P9AHF08KEK6M", 
         "lock_send": 555265, 
-        "metadata": "e221e0d54820896190882ff209eb2bc3121e19426c5071f4e59e3a34b8e1070d", 
+        "metadata": "18c4ed571ee0ea6d402639bab74ee61233aa4dc265f944d79ba50958c65e8c12", 
         "receive_whitelisted": true, 
         "type": "STACKS", 
         "value": 0, 

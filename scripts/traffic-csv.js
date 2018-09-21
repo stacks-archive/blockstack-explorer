@@ -30,7 +30,6 @@ const run = async () => {
     const ip = event.ip;
     const geo = geoip.lookup(ip);
     const { city, country } = geo || {};
-    // if (geo) console.log(geo)
     return {
       ip,
       createdAt,
@@ -43,8 +42,6 @@ const run = async () => {
   const visitsCSV = papa.unparse(addressVisitsWithIP);
 
   await fs.writeFile('./data/visits.csv', visitsCSV);
-
-  // console.log(addressVisitsWithIP[0])
 }
 
 run().catch((e) => {

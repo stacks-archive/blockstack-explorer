@@ -12230,9 +12230,9 @@
         "vesting_total": 29167000000
     }, 
     {
-        "address": "SP1DNF4V54VTBTWEG7563CDETMWR3AC0R379FGAKA", 
+        "address": "SP7HTPM1B7QABPYK3MYNE5JXWX0WFAMZB99WK2FS", 
         "lock_send": 555265, 
-        "metadata": "58d95b8bc3be0a4b109286de3c6b8b2000cbb1592dbd654b0031885a21ba89c9", 
+        "metadata": "7308e42dd85064b20809226d547f1cc9aacee0ca786f8874bee075be56dca5bd", 
         "receive_whitelisted": true, 
         "type": "STACKS", 
         "value": 0, 
@@ -23815,9 +23815,9 @@
         "vesting_total": 33333000000
     }, 
     {
-        "address": "SP30YCXZ4596FW3YCR6A3H8ZWZ78XDP02VNA5Y36", 
+        "address": "SP2222XRS1NQ4E0766526QTHF0QRNW332SBH11R03", 
         "lock_send": 555265, 
-        "metadata": "b204d0d381c92d7afe787aaa85fb977fa3f49b6aa28cf2da13a609b92d1eda9a", 
+        "metadata": "cd376037e4ed31a372e84652a2255284622f7f9f45a0093e3e80023431dcac9c", 
         "receive_whitelisted": true, 
         "type": "STACKS", 
         "value": 0, 

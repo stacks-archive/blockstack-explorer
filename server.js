@@ -10,6 +10,7 @@ require('dotenv').config();
 const { getAccounts } = require('./lib/addresses');
 const makeAPIController = require('./controllers/api-controller');
 const makeAppController = require('./controllers/app-controller');
+const makeAdminController = require('./controllers/admin-controller');
 const Auth = require('./lib/authentication');
 
 passport.use(Auth);
@@ -111,6 +112,7 @@ const setup = async () => {
     server.use('/api', makeAPIController(Genesis));
 
     server.use('/app', makeAppController(app, ssrCache));
+    server.use('/admin', makeAdminController(app));
 
     server.get('/', (req, res) => res.redirect('/app'));
 

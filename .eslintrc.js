@@ -5,9 +5,6 @@ module.exports = {
     "airbnb",
     "plugin:prettier/recommended"
   ],
-  "plugins": [
-    "babel",
-  ],
   "rules": {
     "react/jsx-filename-extension": [
       1,

@@ -15,6 +15,11 @@ ${normalize()};
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
 }
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300,400,500,Roboto:400,700');
+@font-face {
+  font-family: "Futura Heavy";
+  src: url(/static/assets/fonts/futura-heavy.ttf);
+}
 body, html{
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background:#eeefef;
@@ -24,6 +29,9 @@ body, html{
 #__next{
   height:100%;
   margin:0;
+}
+a {
+  text-decoration: none;
 }
 // h1, h2, h3, h4, h5, h6{
 //   font-family: 'Plex';

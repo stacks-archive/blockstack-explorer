@@ -2,7 +2,7 @@ import React from 'react';
 import Router from 'next/router';
 import { connect } from 'react-redux';
 
-import { Flex, Box } from 'grid-styled';
+import { Flex, Box } from 'blockstack-ui';
 
 import Head from '@components/head';
 import Nav from '@components/nav';

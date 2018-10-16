@@ -22,9 +22,9 @@ ${normalize()};
 }
 body, html{
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background:#eeefef;
-  height:100%;
-  margin:0;
+  background: #F1F6F9;
+  height: 100%;
+  margin: 0;
 }
 #__next{
   height:100%;

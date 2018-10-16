@@ -1,4 +1,4 @@
-import { fetchName, fetchAddress, fetchTX } from '../lib/client/core-api';
+import { fetchName, fetchAddress, fetchTX, fetchNameOps } from '../lib/client/core-api';
 
 describe('fetchName', () => {
   test('fetches a profile', async t => {
@@ -25,8 +25,6 @@ describe('fetchName', () => {
 describe('fetchAddress', () => {
   test('fetches an address', async t => {
     const address = await fetchAddress('1G8XTwZkUzu7DJYDW4oA4JX5shnW8LcpC2');
-    // console.log(address)yeah
-    // expect(address).not.toBeNull();
     expect(address.names[0]).toEqual('hankstoever.id')
     t()
   });
@@ -38,3 +36,13 @@ test('fetches a TX', async t => {
   expect(tx.vout[0].scriptPubKey.hex).toBe('6a3c69643a68616e6b73746f657665722e69640000000000000000000000000000000000000000000000daa4437cd303d5c751b62a4c25ece524889b0b81');
   t();
 });
+
+test('fetches all recent name ops', async (t) => {
+  const nameOps = await fetchNameOps();
+  console.log(nameOps[0]);
+  expect(nameOps[0].name).not.toBeFalsy();
+  expect(nameOps[0].time).not.toBeFalsy();
+  expect(nameOps[0].timeAgo).not.toBeFalsy();
+  t();
+  // console.log(nameOps.length)
+}, 30000);

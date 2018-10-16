@@ -5,6 +5,7 @@ const passport = require('passport');
 const session = require('cookie-session');
 const secure = require('express-force-https');
 const mongoose = require('mongoose');
+const { decorateApp } = require('@awaitjs/express');
 require('dotenv').config();
 
 const { getAccounts } = require('./lib/addresses');
@@ -37,7 +38,7 @@ const setup = async () => {
       `${Genesis.accounts.length - Object.keys(Genesis.accountsByAddress).length} accounts without an address`,
     );
 
-    const server = express();
+    const server = decorateApp(express());
 
     if (!dev) {
       server.use(secure);

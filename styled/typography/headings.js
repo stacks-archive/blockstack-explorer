@@ -18,7 +18,7 @@ import {
 } from 'styled-system';
 
 export const baseProps = css`
-  color: rgba(20, 33, 68, 1);
+  color: #211f6d;
   ${color};
   ${fontSize};
   ${fontWeight};
@@ -38,7 +38,7 @@ export const baseProps = css`
 `;
 
 const headerProps = css`
-  font-family: 'Plex', monospace;
+  font-weight: 500;
   ${baseProps};
 `;
 const H1 = styled.h1`

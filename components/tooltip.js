@@ -1,11 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 import { Text } from 'rebass';
-
 import { Tooltip } from '@styled/tooltip';
 
 export default ({ payload }) => {
-  // console.log(payload);
   const data = payload[0] && payload[0].payload;
   if (!data) {
     return <div />;

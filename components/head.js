@@ -1,5 +1,6 @@
+import React from 'react';
 import NextHead from 'next/head';
-import { string } from 'prop-types';
+import PropTypes from 'prop-types';
 
 const defaultDescription = '';
 const defaultOGURL = '';
@@ -24,15 +25,14 @@ const Head = (props) => (
     <meta property="og:image" content={props.ogImage || defaultOGImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
   </NextHead>
 );
 
 Head.propTypes = {
-  title: string,
-  description: string,
-  url: string,
-  ogImage: string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  url: PropTypes.string,
+  ogImage: PropTypes.string,
 };
 
 export default Head;

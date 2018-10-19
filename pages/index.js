@@ -1,11 +1,19 @@
 import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import { Flex, Box, Card } from 'blockstack-ui';
+import { Flex, Type, Box, Card } from 'blockstack-ui';
 import { Section, Cell, Primary, Secondary, Tertiary } from '@styled/list';
-import { Type } from '@styled/typography';
 
 import { fetchNameOperations } from '@client/api';
+
+const CardHeader = ({ title, actions, ...rest }) => (
+  <Flex justifyContent={'space-between'} px={5} py={5} borderBottom={'1px solid'} borderColor={'blue.mid'} {...rest}>
+    <Type color="blue.dark" fontWeight="bold">
+      {title}
+    </Type>
+    {actions ? <Box>{actions}</Box> : null}
+  </Flex>
+);
 
 class Home extends React.Component {
   static async getInitialProps() {
@@ -25,11 +33,15 @@ class Home extends React.Component {
   nameOps() {
     return this.props.nameOperations.map((nameOp) => (
       <Link href={`/names/${nameOp.name}`} passHref key={nameOp.txid}>
-        <Cell>
+        <Flex borderBottom={'1px solid'} borderColor={'blue.mid'} position="relative" px={5} py={4}>
           <Tertiary>{nameOp.timeAgo}</Tertiary>
-          <Primary>{nameOp.name}</Primary>
-          <Secondary>Owned by {nameOp.address}</Secondary>
-        </Cell>
+          <Box>
+            <Type fontSize={2} pb={1} fontWeight={'600'} color={'blue.dark'}>
+              {nameOp.name}
+            </Type>
+            <Secondary>Owned by {nameOp.address}</Secondary>
+          </Box>
+        </Flex>
       </Link>
     ));
   }
@@ -37,8 +49,17 @@ class Home extends React.Component {
   render() {
     return (
       <Flex p={5} flexDirection="row" width={1}>
-        <Card p={0}>
-          <Type.h2>Latest Names Registered</Type.h2>
+        <Card width={1} p={0}>
+          <CardHeader
+            title="Latest Names Registered"
+            actions={
+              <Link href={'/names'}>
+                <Type opacity={0.5} is="a" fontWeight={'bold'} color={'blue.dark'}>
+                  See All
+                </Type>
+              </Link>
+            }
+          />
           {this.nameOps()}
         </Card>
       </Flex>

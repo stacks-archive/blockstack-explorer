@@ -1,5 +1,6 @@
 import React from 'react';
-import { Flex, Box, Text, Button } from 'rebass';
+import { Flex, Box } from 'blockstack-ui';
+import { Text, Button } from 'rebass';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Router from 'next/router';

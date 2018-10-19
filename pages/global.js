@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Box } from 'grid-styled';
+import { Flex, Box } from 'blockstack-ui';
 import {
   LineChart,
   YAxis,

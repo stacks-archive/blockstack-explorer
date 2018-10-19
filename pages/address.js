@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Box } from 'rebass';
+import { Flex, Box } from 'blockstack-ui';
 import PropTypes from 'prop-types';
 import {
   LineChart,
@@ -57,14 +57,12 @@ class Address extends React.Component {
     Object.keys(cumulativeVestedAtBlocks).forEach((block) => {
       const total = cumulativeVestedAtBlocks[block];
       const USD = total * stacksUSD * 10e-7;
-      // console.log(total, USD);
       converted.push({
         block: parseInt(block, 10),
         usd: USD,
         stacks: accounting.formatNumber(total * 10e-7),
         usdFormatted: accounting.formatMoney(USD, '$', 0),
       });
-      // converted[block] = USD;
     });
     return converted;
   }

@@ -1,11 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import { Flex, Box } from 'grid-styled';
-import Head from '@components/head';
-import Nav from '@components/nav';
-import Footer from '@components/footer';
-import Wrap from '@styled/wrap';
+import { Flex, Box, Card } from 'blockstack-ui';
 import { Section, Cell, Primary, Secondary, Tertiary } from '@styled/list';
 import { Type } from '@styled/typography';
 
@@ -16,6 +12,9 @@ class Home extends React.Component {
     const nameOperations = await fetchNameOperations();
     return {
       nameOperations,
+      meta: {
+        title: 'Home',
+      },
     };
   }
 
@@ -37,22 +36,12 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Wrap>
-        <Wrap.Inner>
-          <Head title="Home" />
-          <Nav />
-          <Flex alignItems="row">
-            <Box m={4} width={[1, 0.55]}>
-              <Section>
-                <Type.h2>Latest Names Registered</Type.h2>
-                {this.nameOps()}
-              </Section>
-            </Box>
-          </Flex>
-          <Wrap.Push />
-        </Wrap.Inner>
-        <Footer />
-      </Wrap>
+      <Flex p={5} flexDirection="row" width={1}>
+        <Card p={0}>
+          <Type.h2>Latest Names Registered</Type.h2>
+          {this.nameOps()}
+        </Card>
+      </Flex>
     );
   }
 }

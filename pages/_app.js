@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import withReduxStore from '../lib/with-redux-store';
 import { theme } from 'blockstack-ui';
-
+import { Layout } from '@components/layout';
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'polished';
 import fonts from '../lib/fonts';
@@ -40,13 +40,17 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, reduxStore } = this.props;
 
+    const { meta } = pageProps;
+
     return (
       <Container>
         <>
           <Global />
           <Provider store={reduxStore}>
             <ThemeProvider theme={theme}>
-              <Component {...pageProps} />
+              <Layout meta={meta}>
+                <Component {...pageProps} />
+              </Layout>
             </ThemeProvider>
           </Provider>
         </>

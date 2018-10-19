@@ -1,3 +1,27 @@
+# Blockstack Explorer
+
+## Setup
+
+In order to run this app, you first need to install `redis`. If you're on a Mac, you can install and run redis by running `brew install redis`.
+
+### Pre-caching data
+
+We use redis to pre-cache some data that normally would take quite a few API requests. To pre-cache all data, run:
+
+```bash
+node scripts/run-aggregators.js
+```
+
+You only need to run this script once. To get fresh data, you can run the script again. In production, this script will run on a scheduled basis.
+
+## Running the server
+
+To install packages, run `yarn`.
+
+To run the server, run `yarn start`.
+
+## Next.js Docs
+
 This project was bootstrapped with [Create Next App](https://github.com/segmentio/create-next-app).
 
 Find the most recent version of this guide at [here](https://github.com/segmentio/create-next-app/blob/master/lib/templates/default/README.md). And check out [Next.js repo](https://github.com/zeit/next.js) for the most up-to-date info.

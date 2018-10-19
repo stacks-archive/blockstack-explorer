@@ -21,7 +21,7 @@ export const doSelectAccount = (address) =>
     dispatch(selectingAccount(address));
     let url;
     if (typeof process !== 'undefined') {
-      url = process.env.BASE_URL;
+      url = process.env.BASE_URL || 'http://localhost:3000';
     }
     url += `/api/accounts/${address}`;
     console.log(url);

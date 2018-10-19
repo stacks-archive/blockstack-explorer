@@ -1,52 +1,87 @@
 import React from 'react';
 import Link from 'next/link';
-import StyledNav from '@styled/nav';
+import { SearchIcon } from 'mdi-react';
+import { Flex, Box, Type, Input } from 'blockstack-ui';
 
-export default class Nav extends React.Component {
-  render() {
-    return (
-      <StyledNav.Header>
-        <StyledNav.LogoWrapper>
-          <Link href="/">
-            <a>
-              <span>STAX</span>
-              <span>Explorer</span>
-            </a>
-          </Link>
-        </StyledNav.LogoWrapper>
-        <div>
-          <StyledNav.Search.Icon src="/static/assets/search.svg" />
-          <StyledNav.Search.Input
-            type="text"
-            placeholder="Find address, block, name or transaction by ID"
-            spellcheck="false"
-          />
-        </div>
-        <StyledNav.Navigation.Nav>
-          <StyledNav.Navigation.Ul>
-            <StyledNav.Navigation.Li>
-              <Link passHref href="/addresses">
-                <StyledNav.Navigation.a>Addresses</StyledNav.Navigation.a>
-              </Link>
-            </StyledNav.Navigation.Li>
-            <StyledNav.Navigation.Li>
-              <Link passHref href="/blocks">
-                <StyledNav.Navigation.a>Blocks</StyledNav.Navigation.a>
-              </Link>
-            </StyledNav.Navigation.Li>
-            <StyledNav.Navigation.Li>
-              <Link passHref href="/names">
-                <StyledNav.Navigation.a>Names</StyledNav.Navigation.a>
-              </Link>
-            </StyledNav.Navigation.Li>
-            <StyledNav.Navigation.Li>
-              <Link passHref href="/transactions">
-                <StyledNav.Navigation.a>Transactions</StyledNav.Navigation.a>
-              </Link>
-            </StyledNav.Navigation.Li>
-          </StyledNav.Navigation.Ul>
-        </StyledNav.Navigation.Nav>
-      </StyledNav.Header>
-    );
-  }
-}
+const Header = ({ ...rest }) => (
+  <Flex
+    alignItems="center"
+    backgroundImage="url(/static/assets/background.svg)"
+    backgroundRepeat="no-repeat"
+    bg="blue.dark"
+    flexDirection={['column', 'column', 'row']}
+    {...rest}
+  />
+);
+
+const Logo = ({ ...rest }) => (
+  <Box display={['block', 'block', 'none', 'block']} style={{ flexShrink: 0 }} pl={5} py={5} {...rest}>
+    <Link href="/">
+      <Box is="a">
+        <Type
+          fontWeight="bold"
+          color="white"
+          letterSpacing={1.25}
+          fontSize={3}
+          style={{
+            textTransform: 'uppercase',
+          }}
+        >
+          Explorer
+        </Type>
+      </Box>
+    </Link>
+  </Box>
+);
+
+const Search = ({ ...rest }) => (
+  <Box position={'relative'} width={[1, 'auto']} px={[4]} {...rest}>
+    <Flex
+      right={'20px'}
+      color="blue.dark"
+      alignItems={'center'}
+      justifyContent={'center'}
+      position="absolute"
+      height="100%"
+      px={3}
+      opacity={0.45}
+    >
+      <SearchIcon />
+    </Flex>
+    <Input
+      minWidth={['100%', '500px']}
+      type="text"
+      placeholder="Find address, block, name or transaction by ID"
+      spellCheck="false"
+    />
+  </Box>
+);
+
+const items = [
+  { path: '/addresses', label: 'Addresses' },
+  { path: '/blocks', label: 'Blocks' },
+  { path: '/names', label: 'Names' },
+  { path: '/transactions', label: 'Transactions' },
+];
+
+const Navigation = ({ ...rest }) => (
+  <Flex {...rest} py={5}>
+    {items.map(({ label, path }, i) => (
+      <Link key={i} passHref href={path}>
+        <Type px={4} is="a" color="blue.mid">
+          {label}
+        </Type>
+      </Link>
+    ))}
+  </Flex>
+);
+
+const NavBar = ({ ...rest }) => (
+  <Header {...rest}>
+    <Logo />
+    <Search />
+    <Navigation />
+  </Header>
+);
+
+export default NavBar;

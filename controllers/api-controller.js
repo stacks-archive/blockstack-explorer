@@ -29,8 +29,8 @@ const makeAPIController = (Genesis) => {
     const nameOperations = await NameOpsAggregator.get();
     res.json({
       nameOperations,
-    })
-  })
+    });
+  });
 
   return APIController;
 };

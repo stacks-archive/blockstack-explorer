@@ -69,7 +69,7 @@ const Nav = {
       &::placeholder {
         color: rgba(255, 255, 255, 0.8);
       }
-    `
+    `,
   },
   Navigation: {
     Nav: Styled.nav`
@@ -97,9 +97,9 @@ const Nav = {
       height: 100%;
       text-align: center;
       padding: 32px 24px;
-    `
-  }
-}
+    `,
+  },
+};
 
 export default Nav;
 

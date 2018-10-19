@@ -26,66 +26,58 @@ export default class Nav extends React.Component {
           <StyledNav.Navigation.Ul>
             <StyledNav.Navigation.Li>
               <Link passHref href="/addresses">
-                <StyledNav.Navigation.a>
-                  Addresses
-                </StyledNav.Navigation.a>
+                <StyledNav.Navigation.a>Addresses</StyledNav.Navigation.a>
               </Link>
             </StyledNav.Navigation.Li>
             <StyledNav.Navigation.Li>
               <Link passHref href="/blocks">
-                <StyledNav.Navigation.a>
-                  Blocks
-                </StyledNav.Navigation.a>
+                <StyledNav.Navigation.a>Blocks</StyledNav.Navigation.a>
               </Link>
             </StyledNav.Navigation.Li>
             <StyledNav.Navigation.Li>
               <Link passHref href="/names">
-                <StyledNav.Navigation.a>
-                  Names
-                </StyledNav.Navigation.a>
+                <StyledNav.Navigation.a>Names</StyledNav.Navigation.a>
               </Link>
             </StyledNav.Navigation.Li>
             <StyledNav.Navigation.Li>
               <Link passHref href="/transactions">
-                <StyledNav.Navigation.a>
-                  Transactions
-                </StyledNav.Navigation.a>
+                <StyledNav.Navigation.a>Transactions</StyledNav.Navigation.a>
               </Link>
             </StyledNav.Navigation.Li>
           </StyledNav.Navigation.Ul>
         </StyledNav.Navigation.Nav>
       </StyledNav.Header>
-    )
+    );
   }
 }
 
 // function Nav({ global }) {
-  // return (
-  //   <header>
-  //     <Grid container>
-  //       <Grid item xs={12}>
-  //         {/* <AppBar position="static" colorPrimary={{ backgroundColor: 'rgb(32, 12, 43)' }}> */}
-  //         <StyledNav.Bar>
-  //           <Box width={[1, 3 / 4]} m="auto" textAlign="center">
-  //             <StyledNav.Bar.Inner>
-  //               <Link href="/app">
-  //                 <Logo inverse/>
-  //               </Link>
-  //               {/* <StyledNav.Search.Input placeholder="search" onKeyUp={onEnter} /> */}
-  //               {global && (
-  //                 <Link href="/app/global">
-  //                   <a>Global Stats</a>
-  //                 </Link>
-  //               )}
-  //             </StyledNav.Bar.Inner>
-  //           </Box>
-  //         </StyledNav.Bar>
+// return (
+//   <header>
+//     <Grid container>
+//       <Grid item xs={12}>
+//         {/* <AppBar position="static" colorPrimary={{ backgroundColor: 'rgb(32, 12, 43)' }}> */}
+//         <StyledNav.Bar>
+//           <Box width={[1, 3 / 4]} m="auto" textAlign="center">
+//             <StyledNav.Bar.Inner>
+//               <Link href="/app">
+//                 <Logo inverse/>
+//               </Link>
+//               {/* <StyledNav.Search.Input placeholder="search" onKeyUp={onEnter} /> */}
+//               {global && (
+//                 <Link href="/app/global">
+//                   <a>Global Stats</a>
+//                 </Link>
+//               )}
+//             </StyledNav.Bar.Inner>
+//           </Box>
+//         </StyledNav.Bar>
 
-  //         {/* </AppBar> */}
-  //       </Grid>
-  //     </Grid>
-  //   </header>
-  // );
+//         {/* </AppBar> */}
+//       </Grid>
+//     </Grid>
+//   </header>
+// );
 // }
 
 // Nav.propTypes = {

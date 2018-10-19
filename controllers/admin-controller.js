@@ -21,7 +21,7 @@ const makeAdminController = (app) => {
   });
 
   AdminController.get('/data/visits', async (req, res) => {
-    console.log('making visits')
+    console.log('making visits');
     const visits = await makeVisitsCSV();
     res.setHeader('Content-disposition', 'attachment; filename=visits.csv');
     res.set('Content-Type', 'text/csv');

@@ -1,5 +1,5 @@
 import Styled from 'styled-components';
-import { space, display } from 'styled-system'; 
+import { space, display } from 'styled-system';
 
 const Button = Styled.button`
 	padding: 18px 28px;

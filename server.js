@@ -50,7 +50,7 @@ const setup = async () => {
       session({
         name: 'session',
         keys: ['SECRET'],
-        maxAge: 24 * 60 * 60 * 1000 * 365 // 1 year
+        maxAge: 24 * 60 * 60 * 1000 * 365, // 1 year
       }),
     );
 

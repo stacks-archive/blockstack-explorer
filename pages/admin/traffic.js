@@ -12,14 +12,14 @@ export default class AdminTraffic extends React.Component {
   downloadVisits = async () => {
     const res = await fetch('/admin/data/visits');
     const csv = await res.blob();
-    download(csv, 'visits.csv')
-  }
+    download(csv, 'visits.csv');
+  };
 
   downloadUnvisited = async () => {
     const res = await fetch('/admin/data/unvisited');
     const csv = await res.blob();
-    download(csv, 'unvisited.csv')
-  }
+    download(csv, 'unvisited.csv');
+  };
 
   render() {
     return (
@@ -29,7 +29,9 @@ export default class AdminTraffic extends React.Component {
           <Nav global />
           <Flex flexWrap="wrap" justifyContent="center">
             <Box width={1} pt={4} px={5}>
-              <Type.h2 textAlign="center" mb={4}>Admin Dashboard</Type.h2>
+              <Type.h2 textAlign="center" mb={4}>
+                Admin Dashboard
+              </Type.h2>
               <Button display="block" mx="auto" onClick={this.downloadVisits}>
                 <Type.span fontSize="18px" color="#fff">
                   Download Visited Addresses
@@ -45,6 +47,6 @@ export default class AdminTraffic extends React.Component {
           </Flex>
         </Wrap.Inner>
       </Wrap>
-    )
+    );
   }
 }

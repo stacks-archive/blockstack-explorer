@@ -4,21 +4,33 @@
 
 In order to run this app, you first need to install `redis`. If you're on a Mac, you can install and run redis by running `brew install redis`.
 
+### Setting up redis
+
+After installing redis, run
+
+```
+yarn redis
+```
+
+To start a default instance of redis.
+
+## First Time Use
+
 ### Pre-caching data
 
 We use redis to pre-cache some data that normally would take quite a few API requests. To pre-cache all data, run:
 
 ```bash
-node scripts/run-aggregators.js
+yarn setup
 ```
 
 You only need to run this script once. To get fresh data, you can run the script again. In production, this script will run on a scheduled basis.
 
-## Running the server
+## Development
 
-To install packages, run `yarn`.
+The packages will have been installed after running `yarn setup`.
 
-To run the server, run `yarn start`.
+To run the dev server, run `yarn dev`.
 
 ## Next.js Docs
 
@@ -127,7 +139,7 @@ export default () => (
       }
     `}</style>
   </div>
-)
+);
 ```
 
 Read more about [Next's CSS features](https://github.com/zeit/next.js#css).
@@ -139,30 +151,28 @@ We recommend keeping React components in `./components` and they should look lik
 ### `./components/simple.js`
 
 ```jsx
-const Simple = () => (
-  <div>Simple Component</div>
-)
+const Simple = () => <div>Simple Component</div>;
 
-export default Simple // don't forget to export default!
+export default Simple; // don't forget to export default!
 ```
 
 ### `./components/complex.js`
 
 ```jsx
-import { Component } from 'react'
+import { Component } from 'react';
 
 class Complex extends Component {
   state = {
-    text: 'World'
-  }
+    text: 'World',
+  };
 
-  render () {
-    const { text } = this.state
-    return <div>Hello {text}</div>
+  render() {
+    const { text } = this.state;
+    return <div>Hello {text}</div>;
   }
 }
 
-export default Complex // don't forget to export default!
+export default Complex; // don't forget to export default!
 ```
 
 ## Fetching Data
@@ -172,16 +182,16 @@ You can fetch data in `pages` components using `getInitialProps` like this:
 ### `./pages/stars.js`
 
 ```jsx
-const Page = (props) => <div>Next stars: {props.stars}</div>
+const Page = (props) => <div>Next stars: {props.stars}</div>;
 
 Page.getInitialProps = async ({ req }) => {
-  const res = await fetch('https://api.github.com/repos/zeit/next.js')
-  const json = await res.json()
-  const stars = json.stargazers_count
-  return { stars }
-}
+  const res = await fetch('https://api.github.com/repos/zeit/next.js');
+  const json = await res.json();
+  const stars = json.stargazers_count;
+  return { stars };
+};
 
-export default Page
+export default Page;
 ```
 
 For the initial page load, `getInitialProps` will execute on the server only. `getInitialProps` will only be executed on the client when navigating to a different route via the `Link` component or using the routing APIs.
@@ -199,34 +209,33 @@ Typically you start your next server with `next start`. It's possible, however, 
 This example makes `/a` resolve to `./pages/b`, and `/b` resolve to `./pages/a`:
 
 ```jsx
-const { createServer } = require('http')
-const { parse } = require('url')
-const next = require('next')
+const { createServer } = require('http');
+const { parse } = require('url');
+const next = require('next');
 
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const handle = app.getRequestHandler()
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
+const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   createServer((req, res) => {
     // Be sure to pass `true` as the second argument to `url.parse`.
     // This tells it to parse the query portion of the URL.
-    const parsedUrl = parse(req.url, true)
-    const { pathname, query } = parsedUrl
+    const parsedUrl = parse(req.url, true);
+    const { pathname, query } = parsedUrl;
 
     if (pathname === '/a') {
-      app.render(req, res, '/b', query)
+      app.render(req, res, '/b', query);
     } else if (pathname === '/b') {
-      app.render(req, res, '/a', query)
+      app.render(req, res, '/a', query);
     } else {
-      handle(req, res, parsedUrl)
+      handle(req, res, parsedUrl);
     }
-  })
-  .listen(3000, (err) => {
-    if (err) throw err
-    console.log('> Ready on http://localhost:3000')
-  })
-})
+  }).listen(3000, (err) => {
+    if (err) throw err;
+    console.log('> Ready on http://localhost:3000');
+  });
+});
 ```
 
 Then, change your `start` script to `NODE_ENV=production node server.js`.
@@ -241,9 +250,9 @@ To configure the syntax highlighting in your favorite text editor, head to the [
 
 [now](https://zeit.co/now) offers a zero-configuration single-command deployment.
 
-1. Install the `now` command-line tool either via the recommended [desktop tool](https://zeit.co/download) or via node with `npm install -g now`.
+1.  Install the `now` command-line tool either via the recommended [desktop tool](https://zeit.co/download) or via node with `npm install -g now`.
 
-2. Run `now` from your project directory. You will see a **now.sh** URL in your output like this:
+2.  Run `now` from your project directory. You will see a **now.sh** URL in your output like this:
 
     ```
     > Ready! https://your-project-dirname-tpspyhtdtk.now.sh (copied to clipboard)

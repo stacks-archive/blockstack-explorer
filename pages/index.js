@@ -1,19 +1,12 @@
 import React from 'react';
-import fetch from 'cross-fetch';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-
 import { Flex, Box } from 'grid-styled';
-
 import Head from '@components/head';
 import Nav from '@components/nav';
 import Footer from '@components/footer';
-
 import Wrap from '@styled/wrap';
 import { Section, Cell, Primary, Secondary, Tertiary } from '@styled/list';
-// import Card from '@styled/card';
-// import Button from '@styled/button';
-// import { Input } from '@styled/input';
 import { Type } from '@styled/typography';
 
 import { fetchNameOperations } from '@client/api';

@@ -17,9 +17,11 @@ const Disclaimer = ({ global = false }) => (
       determinations.
       {global && (
         <>
-          <br/>
-          <br/>
-          The above tool shows the market cap for tokens released in the Genesis Block only. The mining process, when turned on, will release more tokens. See the <a href="https://blockstack.org/tokenpaper.pdf">Blockstack Token Whitepaper</a> for details.
+          <br />
+          <br />
+          The above tool shows the market cap for tokens released in the Genesis Block only. The mining process, when
+          turned on, will release more tokens. See the{' '}
+          <a href="https://blockstack.org/tokenpaper.pdf">Blockstack Token Whitepaper</a> for details.
         </>
       )}
     </Type.span>

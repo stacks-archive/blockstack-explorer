@@ -1,11 +1,6 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
-import PropTypes from 'prop-types';
-import { Flex, Box } from 'rebass';
 import StyledNav from '@styled/nav';
-import { Type } from '@styled/typography';
-import Logo from '@components/logo';
 
 export default class Nav extends React.Component {
   render() {
@@ -85,7 +80,7 @@ export default class Nav extends React.Component {
   //             </StyledNav.Bar.Inner>
   //           </Box>
   //         </StyledNav.Bar>
-          
+
   //         {/* </AppBar> */}
   //       </Grid>
   //     </Grid>

@@ -9,6 +9,7 @@ const Header = ({ ...rest }) => (
     backgroundImage="url(/static/assets/background.svg)"
     backgroundRepeat="no-repeat"
     bg="blue.dark"
+    pr={5}
     flexDirection={['column', 'column', 'row']}
     {...rest}
   />
@@ -35,7 +36,7 @@ const Logo = ({ ...rest }) => (
 );
 
 const Search = ({ ...rest }) => (
-  <Box position={'relative'} width={[1, 'auto']} px={[4]} {...rest}>
+  <Box position={'relative'} width={[1, 0.5, '500px']} px={[4]} {...rest}>
     <Flex
       right={'20px'}
       color="blue.dark"
@@ -49,7 +50,7 @@ const Search = ({ ...rest }) => (
       <SearchIcon />
     </Flex>
     <Input
-      minWidth={['100%', '500px']}
+      minWidth={'100%'}
       type="text"
       placeholder="Find address, block, name or transaction by ID"
       spellCheck="false"
@@ -78,8 +79,10 @@ const Navigation = ({ ...rest }) => (
 
 const NavBar = ({ ...rest }) => (
   <Header {...rest}>
-    <Logo />
-    <Search />
+    <Flex alignItems={'center'}>
+      <Logo />
+      <Search />
+    </Flex>
     <Navigation />
   </Header>
 );

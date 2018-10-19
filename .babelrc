@@ -1,7 +1,5 @@
 {
-  "presets": [
-    "next/babel"
-  ],
+  "presets": ["next/babel"],
   "plugins": [
     "babel-plugin-styled-components",
     [
@@ -21,6 +19,8 @@
           "@styled": "./styled"
         }
       }
-    ]
+    ],
+    "@babel/plugin-transform-regenerator",
+    "@babel/plugin-transform-runtime"
   ]
 }

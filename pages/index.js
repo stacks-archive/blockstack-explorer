@@ -7,11 +7,20 @@ import { Section, Cell, Primary, Secondary, Tertiary } from '@styled/list';
 import { fetchNameOperations } from '@client/api';
 
 const CardHeader = ({ title, actions, ...rest }) => (
-  <Flex justifyContent={'space-between'} px={5} py={5} borderBottom={'1px solid'} borderColor={'blue.mid'} {...rest}>
-    <Type color="blue.dark" fontWeight="bold">
+  <Flex justifyContent={'space-between'} px={4} py={4} borderBottom={'1px solid'} borderColor={'blue.mid'} {...rest}>
+    <Type fontSize={2} fontWeight={500} color="blue.dark">
       {title}
     </Type>
     {actions ? <Box>{actions}</Box> : null}
+  </Flex>
+);
+
+const StatItem = ({ value, label, ...rest }) => (
+  <Flex width={0.5} p={6} flexDirection="column" alignItems="center" {...rest}>
+    <Type color="blue.dark" pb={3} fontSize={6}>
+      {value}
+    </Type>
+    <Type>{label}</Type>
   </Flex>
 );
 
@@ -30,31 +39,42 @@ class Home extends React.Component {
     nameOperations: PropTypes.array.isRequired,
   };
 
-  nameOps() {
+  nameOps = () => {
     return this.props.nameOperations.map((nameOp) => (
       <Link href={`/names/${nameOp.name}`} passHref key={nameOp.txid}>
-        <Flex borderBottom={'1px solid'} borderColor={'blue.mid'} position="relative" px={5} py={4}>
-          <Tertiary>{nameOp.timeAgo}</Tertiary>
+        <Flex
+          borderBottom={'1px solid'}
+          borderColor={'blue.mid'}
+          alignItems={'center'}
+          justifyContent={'space-between'}
+          position="relative"
+          px={4}
+          py={4}
+          color="blue.dark"
+        >
           <Box>
-            <Type fontSize={2} pb={1} fontWeight={'600'} color={'blue.dark'}>
+            <Type fontSize={2} fontWeight={500} pb={1} color={'blue.dark'}>
               {nameOp.name}
             </Type>
             <Secondary>Owned by {nameOp.address}</Secondary>
           </Box>
+          <Type color={'blue.mid'} fontSize={1}>
+            {nameOp.timeAgo}
+          </Type>
         </Flex>
       </Link>
     ));
-  }
+  };
 
   render() {
     return (
-      <Flex p={5} flexDirection="row" width={1}>
-        <Card width={1} p={0}>
+      <Flex p={5} flexDirection="row" alignItems={'flex-start'} width={1}>
+        <Card flexGrow={1} p={0} fontWeight={500} mr={[0, 5]}>
           <CardHeader
             title="Latest Names Registered"
             actions={
               <Link href={'/names'}>
-                <Type opacity={0.5} is="a" fontWeight={'bold'} color={'blue.dark'}>
+                <Type opacity={0.5} is="a" color={'blue.dark'}>
                   See All
                 </Type>
               </Link>
@@ -62,6 +82,21 @@ class Home extends React.Component {
           />
           {this.nameOps()}
         </Card>
+        <Box top={'113px'} position={['static', 'sticky']} flexGrow={1} maxWidth={'500px'}>
+          <Card mb={5} flexGrow={1} p={0} fontWeight={400}>
+            <CardHeader title="Global statistics" />
+            <Flex flexWrap="wrap">
+              <StatItem label="total names" value={'240,829'} />
+              <StatItem label="total names" value={'240,829'} />
+              <StatItem label="total names" value={'240,829'} />
+              <StatItem label="total names" value={'240,829'} />
+            </Flex>
+          </Card>
+          <Card flexGrow={1} p={0} fontWeight={400}>
+            <CardHeader title="Weekly name growth" />
+            <Box p={5}>content</Box>
+          </Card>
+        </Box>
       </Flex>
     );
   }

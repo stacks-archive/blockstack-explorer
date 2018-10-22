@@ -15,7 +15,9 @@ const Layout = ({ meta, children, ...rest }) => (
           pointerEvents: 'none',
         }}
       />
-      {children}
+      <Flex position="relative" flexDirection="column">
+        {children}
+      </Flex>
     </Flex>
   </>
 );

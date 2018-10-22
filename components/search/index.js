@@ -3,9 +3,9 @@ import { SearchIcon } from 'mdi-react';
 import { Flex, Box, Input } from 'blockstack-ui';
 
 const Search = ({ ...rest }) => (
-  <Box position={'relative'} width={[1, 1, '500px']} px={[4]} {...rest}>
+  <Box position={'relative'} width={[1, 1, '500px']} px={[4]} flexGrow={1} {...rest}>
     <Flex
-      right={'20px'}
+      left={'20px'}
       color="blue.light"
       alignItems={'center'}
       justifyContent={'center'}
@@ -19,7 +19,7 @@ const Search = ({ ...rest }) => (
     <Input
       minWidth={'100%'}
       type="text"
-      pr={'48px'}
+      pl={'48px'}
       variant="dark"
       placeholder="Search by address, block, name or transaction"
       spellCheck="false"

@@ -20,7 +20,7 @@ const HeaderBar = ({ ...rest }) => (
 
 const Header = ({ ...rest }) => (
   <HeaderBar {...rest}>
-    <Flex alignItems={'center'} width={[1, 1, 'auto']} flexDirection={['column', 'column', 'row']}>
+    <Flex alignItems={'center'} width={[1, 1, 'auto']} flexDirection={['column', 'column', 'row']} flexGrow={1}>
       <Logo />
       <Search />
     </Flex>

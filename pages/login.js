@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import Router from 'next/router';
 
 import Head from '@components/head';
-import Nav from '@components/nav';
 import Card from '@styled/card';
 import { Input } from '@styled/input';
 
@@ -36,7 +35,6 @@ class Login extends React.Component {
     return (
       <>
         <Head />
-        <Nav />
         <Flex flexWrap="wrap">
           <Box width={1 / 2} p={3} mx="auto" mt={3}>
             <Card textAlign="center">

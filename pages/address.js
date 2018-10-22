@@ -15,7 +15,6 @@ import moment from 'moment';
 import numeral from 'numeral';
 
 import Head from '@components/head';
-import Nav from '@components/nav';
 import Tooltip from '@components/tooltip';
 import Footer from '@components/footer';
 import { Input } from '@styled/input';
@@ -74,7 +73,6 @@ class Address extends React.Component {
       <Wrap>
         <Wrap.Inner>
           <Head title="Address" />
-          <Nav global={!!account} />
           <br />
           {account ? (
             <Flex flexWrap="wrap" justifyContent="center">

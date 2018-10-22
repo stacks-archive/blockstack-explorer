@@ -3,7 +3,6 @@ import { Flex, Box } from 'grid-styled';
 import download from 'downloadjs';
 
 import Head from '@components/head';
-import Nav from '@components/nav';
 import Wrap from '@styled/wrap';
 import { Type } from '@styled/typography';
 import Button from '@styled/button';
@@ -26,7 +25,6 @@ export default class AdminTraffic extends React.Component {
       <Wrap>
         <Wrap.Inner>
           <Head title="Admin" />
-          <Nav global />
           <Flex flexWrap="wrap" justifyContent="center">
             <Box width={1} pt={4} px={5}>
               <Type.h2 textAlign="center" mb={4}>

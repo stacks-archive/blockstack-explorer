@@ -15,7 +15,6 @@ import PropTypes from 'prop-types';
 import numeral from 'numeral';
 
 import Head from '@components/head';
-import Nav from '@components/nav';
 import Tooltip from '@components/tooltip';
 import Footer from '@components/footer';
 import Disclaimer from '@components/disclaimer';
@@ -70,7 +69,6 @@ class Global extends React.Component {
       <Wrap>
         <Wrap.Inner>
           <Head />
-          <Nav />
           <Flex flexWrap="wrap" justifyContent="center">
             <Box width={[1, 1, 1 / 4]} pt={5}>
               <Card>

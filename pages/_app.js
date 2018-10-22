@@ -1,14 +1,15 @@
 import App, { Container } from 'next/app';
 import React from 'react';
 import { withRouter } from 'next/router';
-import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import withReduxStore from '../lib/with-redux-store';
 import { theme } from 'blockstack-ui';
 import { Layout } from '@components/layout';
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'polished';
 import fonts from '../lib/fonts';
+import { fetchNameOperations } from '@client/api';
+
+const { Provider, Consumer } = React.createContext();
 
 /**
  * Reset our styles
@@ -37,16 +38,31 @@ ${fonts}
 `;
 
 class MyApp extends App {
-  render() {
-    const { Component, pageProps, reduxStore } = this.props;
+  static async getInitialProps({ Component, router, ctx }) {
+    let pageProps = {};
 
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
+
+    const nameOperations = await fetchNameOperations();
+    return {
+      pageProps,
+      context: {
+        nameOperations,
+      },
+    };
+  }
+
+  render() {
+    const { Component, pageProps, context } = this.props;
     const { meta } = pageProps;
 
     return (
       <Container>
         <>
           <Global />
-          <Provider store={reduxStore}>
+          <Provider value={context}>
             <ThemeProvider theme={theme}>
               <Layout meta={meta}>
                 <Component {...pageProps} />
@@ -59,4 +75,6 @@ class MyApp extends App {
   }
 }
 
-export default withRouter(withReduxStore(MyApp));
+export { Consumer };
+
+export default withRouter(MyApp);

@@ -42,28 +42,38 @@ const makeAppController = (app, cache) => {
 
   const AppController = express.Router();
 
-  // function ensureAuthenticated(req, res, next) {
-  //   if (req.isAuthenticated()) {
-  //     return next();
-  //   }
-  //   return res.redirect('/login');
-  // }
-
-  // AppController.use(ensureAuthenticated);
-
-  // Use the `renderAndCache` utility defined below to serve pages
-  AppController.get('/', (req, res) => {
-    renderAndCache(req, res, '/');
+  AppController.get('/', async (req, res) => {
+    await renderAndCache(req, res, '/');
   });
 
   AppController.get('/global', async (req, res) => {
     track('view_global', req);
-    renderAndCache(req, res, '/global');
+    await renderAndCache(req, res, '/global');
   });
 
-  AppController.get('/address/:address', (req, res) => {
+  AppController.get('/names', async (req, res) => {
+    track('view_names', req);
+    await renderAndCache(req, res, '/names');
+  });
+
+  AppController.get('/names/:name', async (req, res) => {
+    track('view_names', req, { name: req.params.name });
+    await renderAndCache(req, res, '/names');
+  });
+
+  AppController.get('/address/:address', async (req, res) => {
     track('view_address', req, { address: req.params.address });
-    renderAndCache(req, res, '/address');
+    await renderAndCache(req, res, '/address');
+  });
+
+  AppController.get('/blocks', async (req, res) => {
+    track('view_blocks', req);
+    await renderAndCache(req, res, '/blocks');
+  });
+
+  AppController.get('/blocks/:block', async (req, res) => {
+    track('view_blocks', req, { block: req.params.block });
+    await renderAndCache(req, res, '/blocks');
   });
 
   return AppController;

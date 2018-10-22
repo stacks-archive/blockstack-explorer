@@ -114,10 +114,9 @@ const setup = async () => {
 
     server.use('/api', makeAPIController(Genesis));
 
-    server.use('/app', makeAppController(app, ssrCache));
     server.use('/admin', makeAdminController(app));
 
-    server.get('/', (req, res) => res.redirect('/app'));
+    server.use('/', makeAppController(app, ssrCache));
 
     server.get('*', (req, res) => handle(req, res));
 

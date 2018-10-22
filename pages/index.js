@@ -1,8 +1,29 @@
 import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import { Flex, Type, Box, Card } from 'blockstack-ui';
+import { Flex, Type, Box, Card, theme } from 'blockstack-ui';
 import { Section, Cell, Primary, Secondary, Tertiary } from '@styled/list';
+
+import sys from 'system-components';
+
+const ListItem = sys(
+  {
+    is: Flex,
+    borderBottom: '1px solid',
+    borderColor: 'blue.mid',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    position: 'relative',
+    px: 4,
+    py: 4,
+    color: 'blue.dark',
+  },
+  ({ theme: { colors } }) => ({
+    '&:hover': {
+      background: colors.blue.light,
+    },
+  }),
+);
 
 import { fetchNameOperations } from '@client/api';
 
@@ -42,16 +63,7 @@ class Home extends React.Component {
   nameOps = () => {
     return this.props.nameOperations.map((nameOp) => (
       <Link href={`/names/${nameOp.name}`} passHref key={nameOp.txid}>
-        <Flex
-          borderBottom={'1px solid'}
-          borderColor={'blue.mid'}
-          alignItems={'center'}
-          justifyContent={'space-between'}
-          position="relative"
-          px={4}
-          py={4}
-          color="blue.dark"
-        >
+        <ListItem is={'a'} href={`/names/${nameOp.name}`}>
           <Box>
             <Type fontSize={2} fontWeight={500} pb={1} color={'blue.dark'}>
               {nameOp.name}
@@ -61,7 +73,7 @@ class Home extends React.Component {
           <Type color={'blue.mid'} fontSize={1}>
             {nameOp.timeAgo}
           </Type>
-        </Flex>
+        </ListItem>
       </Link>
     ));
   };

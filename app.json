@@ -8,7 +8,7 @@
     "AUTH_PASSWORD": {
       "required": true
     },
-    "BASE_URL": "https://stacks-explorer.herokuapp.com"
+    "BASE_URL": "https://stacks-explorer-pr-17.herokuapp.com"
   },
   "formation": {
     "web": {

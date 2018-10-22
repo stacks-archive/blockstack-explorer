@@ -12,7 +12,7 @@ function getCacheKey(req) {
 }
 
 const makeAppController = (app, cache) => {
-  async function renderAndCache(req, res, pagePath) {
+  const renderAndCache = async (req, res, pagePath) => {
     const key = getCacheKey(req);
 
     // If we have a page in the cache, let's serve it
@@ -38,44 +38,45 @@ const makeAppController = (app, cache) => {
     } catch (err) {
       app.renderError(err, req, res, pagePath);
     }
-  }
+  };
 
   const AppController = express.Router();
 
+  /**
+   * Routes
+   */
+
+  // Home
   AppController.get('/', async (req, res) => {
     await renderAndCache(req, res, '/');
   });
 
-  AppController.get('/global', async (req, res) => {
-    track('view_global', req);
-    await renderAndCache(req, res, '/global');
-  });
-
+  // Names
   AppController.get('/names', async (req, res) => {
     track('view_names', req);
     await renderAndCache(req, res, '/names');
   });
-
+  // Names: single
   AppController.get('/names/:name', async (req, res) => {
     track('view_names', req, { name: req.params.name });
     await renderAndCache(req, res, '/names');
   });
-
+  // Address: Single
   AppController.get('/address/:address', async (req, res) => {
     track('view_address', req, { address: req.params.address });
     await renderAndCache(req, res, '/address');
   });
-
+  // Blocks
   AppController.get('/blocks', async (req, res) => {
     track('view_blocks', req);
     await renderAndCache(req, res, '/blocks');
   });
-
+  // Blocks: single
   AppController.get('/blocks/:block', async (req, res) => {
     track('view_blocks', req, { block: req.params.block });
     await renderAndCache(req, res, '/blocks');
   });
-
+  // Transaction: single
   AppController.get('/transaction/:transaction', async (req, res) => {
     track('view_transaction', req, { transaction: req.params.transaction });
     await renderAndCache(req, res, '/transaction');

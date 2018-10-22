@@ -10,12 +10,7 @@ const LinkComponent = sys({ is: Type, px: 4, py: 2, color: 'blue.light', opacity
   },
 }));
 
-const items = [
-  { path: '/addresses', label: 'Addresses' },
-  { path: '/blocks', label: 'Blocks' },
-  { path: '/names', label: 'Names' },
-  { path: '/transactions', label: 'Transactions' },
-];
+const items = [{ path: '/blocks', label: 'Blocks' }, { path: '/names', label: 'Names' }];
 
 const Navigation = ({ ...rest }) => (
   <Flex {...rest} py={5}>

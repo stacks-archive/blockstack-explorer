@@ -76,6 +76,11 @@ const makeAppController = (app, cache) => {
     await renderAndCache(req, res, '/blocks');
   });
 
+  AppController.get('/transaction/:transaction', async (req, res) => {
+    track('view_transaction', req, { transaction: req.params.transaction });
+    await renderAndCache(req, res, '/transaction');
+  });
+
   return AppController;
 };
 

@@ -61,7 +61,17 @@ class Home extends React.Component {
 
   nameOps = () => {
     return this.props.nameOperations.map((nameOp) => (
-      <Link href={`/names/${nameOp.name}`} passHref key={nameOp.txid}>
+      <Link
+        href={{
+          pathname: '/names',
+          query: {
+            name: nameOp.name,
+          },
+        }}
+        passHref
+        as={`/names/${nameOp.name}`}
+        key={nameOp.txid}
+      >
         <ListItem is={'a'} href={`/names/${nameOp.name}`}>
           <Box>
             <Box>

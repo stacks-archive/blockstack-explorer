@@ -12,6 +12,7 @@ const HeaderBar = ({ ...rest }) => (
     width={1}
     zIndex={999}
     bg="blue.dark"
+    height={['auto', 'auto', 90]}
     pr={[0, 0, 5]}
     flexDirection={['column', 'column', 'row']}
     {...rest}

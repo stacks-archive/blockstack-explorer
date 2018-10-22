@@ -64,12 +64,16 @@ class Home extends React.Component {
       <Link href={`/names/${nameOp.name}`} passHref key={nameOp.txid}>
         <ListItem is={'a'} href={`/names/${nameOp.name}`}>
           <Box>
-            <Type fontSize={2} fontWeight={500} pb={1} color={'blue.dark'}>
-              {nameOp.name}
-            </Type>
-            <Type fontSize={1} color={'blue.mid'}>
-              Owned by {nameOp.address}
-            </Type>
+            <Box>
+              <Type fontSize={2} fontWeight={500} pb={1} color={'blue.dark'}>
+                {nameOp.name}
+              </Type>
+            </Box>
+            <Box>
+              <Type fontSize={1} color={'blue.mid'}>
+                Owned by {nameOp.address}
+              </Type>
+            </Box>
           </Box>
           <Type color={'blue.mid'} fontSize={1}>
             {nameOp.timeAgo}

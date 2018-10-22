@@ -50,7 +50,6 @@ const makeAppController = (app, cache) => {
   AppController.get('/', async (req, res) => {
     await renderAndCache(req, res, '/');
   });
-
   // Names
   AppController.get('/names', async (req, res) => {
     track('view_names', req);

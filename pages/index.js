@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { Flex, Type, Box, Card, theme } from 'blockstack-ui';
-import { Section, Cell, Primary, Secondary, Tertiary } from '@styled/list';
 
 import sys from 'system-components';
 
@@ -68,7 +67,9 @@ class Home extends React.Component {
             <Type fontSize={2} fontWeight={500} pb={1} color={'blue.dark'}>
               {nameOp.name}
             </Type>
-            <Secondary>Owned by {nameOp.address}</Secondary>
+            <Type fontSize={1} color={'blue.mid'}>
+              Owned by {nameOp.address}
+            </Type>
           </Box>
           <Type color={'blue.mid'} fontSize={1}>
             {nameOp.timeAgo}

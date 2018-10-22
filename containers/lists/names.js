@@ -10,7 +10,7 @@ const NamesList = ({ ...rest }) => (
         ? nameOperations.map((nameOp) => (
             <List.Item
               href={{
-                pathname: '/names',
+                pathname: '/names/single',
                 query: {
                   name: nameOp.name,
                 },

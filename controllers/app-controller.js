@@ -58,7 +58,7 @@ const makeAppController = (app, cache) => {
   // Names: single
   AppController.get('/names/:name', async (req, res) => {
     track('view_names', req, { name: req.params.name });
-    await renderAndCache(req, res, '/names');
+    await renderAndCache(req, res, '/names/single');
   });
   // Address: Single
   AppController.get('/address/:address', async (req, res) => {

@@ -4,7 +4,7 @@ import { Flex, Type, Box } from 'blockstack-ui';
 import { Card } from '@components/card';
 import sys from 'system-components';
 import { NamesList } from '@containers/lists/names';
-
+import { fetchNameOperations } from '@client/api';
 const ListItem = sys(
   {
     is: Flex,
@@ -44,7 +44,9 @@ const StatItem = ({ value, label, ...rest }) => (
 
 class Home extends React.Component {
   static async getInitialProps() {
+    const nameOperations = await fetchNameOperations();
     return {
+      nameOperations,
       meta: {
         title: 'Home',
       },

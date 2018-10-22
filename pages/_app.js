@@ -7,7 +7,6 @@ import { Layout } from '@components/layout';
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'polished';
 import fonts from '../lib/fonts';
-import { fetchNameOperations } from '@client/api';
 
 const { Provider, Consumer } = React.createContext();
 
@@ -45,11 +44,10 @@ class MyApp extends App {
       pageProps = await Component.getInitialProps(ctx);
     }
 
-    const nameOperations = await fetchNameOperations();
     return {
       pageProps,
       context: {
-        nameOperations,
+        ...pageProps,
       },
     };
   }

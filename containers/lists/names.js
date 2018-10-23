@@ -15,7 +15,6 @@ const NamesList = ({ ...rest }) => (
                   name: nameOp.name,
                 },
               }}
-              passHref
               as={`/names/${nameOp.name}`}
               key={nameOp.txid}
             >

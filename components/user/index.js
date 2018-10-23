@@ -54,7 +54,7 @@ const generateAutomaticSubSections = (data, arr = keys, params) => {
   const LinkWrapper = ({ query, ...rest }) => (
     <Link
       href={{
-        path: `/${params.path}/single`,
+        pathname: `/${params.path}/single`,
         query: {
           [params.query]: query,
         },
@@ -135,7 +135,7 @@ const ProfileSection = ({ id, ownerAddress, ...rest }) => (
     <SubSection label="Owner Address">
       <Link
         href={{
-          path: '/address/single',
+          pathname: '/address/single',
           query: {
             address: ownerAddress,
           },

@@ -53,16 +53,16 @@ const SocialItem = ({ service, identifier, proofUrl, ...item }) => {
     </Box>
   ) : null;
 };
-const Social = ({ account, ...rest }) => {
-  if (!account) return null;
-  const itemsWithProofs = [...account.filter((item) => item.proofUrl !== '')];
-  return account ? (
+const Social = ({ account: accounts, ...rest }) => {
+  if (!accounts || (accounts && !accounts.length)) return null;
+  const itemsWithProofs = [...accounts.filter((item) => item.proofUrl !== '')];
+  return (
     <Flex {...rest}>
-      {itemsWithProofs.map((item) => (
+      {accounts.map((item) => (
         <SocialItem {...item} />
       ))}
     </Flex>
-  ) : null;
+  );
 };
 
 export { Social };

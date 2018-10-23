@@ -19,18 +19,17 @@ const AppItem = ({ slug, image, ...rest }) => (
 );
 
 const getAppsArray = (apps, userApps) => {
-  const blockstackApps = apps.apps.filter(({ authentication }) => authentication === 'Blockstack');
   const domains = Object.keys(userApps).map((domain) => extractRootDomain(domain));
   const applist = [];
   domains.forEach((domain) => {
-    const app = blockstackApps.find((appco) => appco.website.includes(domain));
+    const app = apps.find((appco) => appco.website.includes(domain));
     if (app) applist.push(app);
   });
 
   return uniq(applist);
 };
 
-const ConnectedAppsList = ({ ...rest }) => (
+const ConnectedAppsList = ({ wrapper, ...rest }) => (
   <Consumer>
     {({ apps, user }) => {
       if (!apps)
@@ -38,13 +37,15 @@ const ConnectedAppsList = ({ ...rest }) => (
       if (!user.profile.apps) return null;
       const appsList = getAppsArray(apps, user.profile.apps);
       if (appsList.length) {
-        return (
+        const children = (
           <Flex flexWrap="wrap" {...rest}>
             {appsList.map(({ imgixImageUrl, name, Slugs }) => (
               <AppItem slug={Slugs[0].value} title={name} image={imgixImageUrl} />
             ))}
           </Flex>
         );
+
+        return wrapper ? wrapper({ children }) : children;
       }
       return null;
     }}

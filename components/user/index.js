@@ -72,11 +72,14 @@ const BlocksSection = ({ nameRecord, ...rest }) => (
 
 const AppsSection = ({ apps, ...rest }) =>
   apps ? (
-    <Section pb={4} {...rest}>
-      <SubSection label="Apps Used">
-        <ConnectedAppsList pt={2} />
-      </SubSection>
-    </Section>
+    <ConnectedAppsList
+      wrapper={({children}) => (
+        <Section pb={4} {...rest}>
+          <SubSection label="Multiplayer Apps Used" children={children} />
+        </Section>
+      )}
+      pt={2}
+    />
   ) : null;
 
 const ProfileSection = ({ id, ownerAddress, ...rest }) => (

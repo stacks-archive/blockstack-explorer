@@ -8,7 +8,7 @@ const HeaderBar = ({ ...rest }) => (
   <Flex
     alignItems="center"
     backgroundRepeat="no-repeat"
-    position="fixed"
+    position={['static', 'static', 'fixed']}
     width={1}
     zIndex={999}
     bg="blue.dark"

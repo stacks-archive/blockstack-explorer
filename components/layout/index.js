@@ -10,6 +10,7 @@ const Layout = ({ meta, children, ...rest }) => (
     <Flex flexDirection="column">
       <Header
         opacity={0}
+        display={['none', 'none', 'block']}
         position="static"
         style={{
           pointerEvents: 'none',

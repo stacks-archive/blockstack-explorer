@@ -8,8 +8,8 @@ const Title = ({ ...rest }) => (
     <Type fontSize={2} fontWeight={500} pb={1} color={'blue.dark'} {...rest} />
   </Box>
 );
-const Subtitle = ({ ...rest }) => (
-  <Box>
+const Subtitle = ({ overflow, ...rest }) => (
+  <Box maxWidth={'100%'} overflow={overflow}>
     <Type fontSize={1} color={'blue.mid'} {...rest} />
   </Box>
 );

@@ -21,11 +21,20 @@ const HeaderBar = ({ ...rest }) => (
 
 const Header = ({ ...rest }) => (
   <HeaderBar {...rest}>
-    <Flex alignItems={'center'} width={[1, 1, 'auto']} flexDirection={['column', 'column', 'row']} flexGrow={1}>
-      <Logo />
+    <Flex
+      alignItems={'center'}
+      width={[1, 1, 'auto']}
+      flexDirection={['column', 'column', 'row']}
+      pb={[5, 5, 0]}
+      flexGrow={1}
+    >
+      <Flex px={[5, 5, 0]} width={[1, 1, 'auto']} alignItems="center" justifyContent="space-between">
+        <Logo />
+        <Navigation display={['flex', 'flex', 'none']} />
+      </Flex>
       <Search />
     </Flex>
-    <Navigation />
+    <Navigation display={['none', 'none', 'flex']} />
   </HeaderBar>
 );
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex, Box, Card } from 'blockstack-ui';
 import { fetchName } from '@client/api';
 
-class NamesSinglePage extends React.Component {
+class AddressSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
     const id = req && req.params ? req.params.id : query.id;
     const data = await fetchName(id);
@@ -29,4 +29,4 @@ class NamesSinglePage extends React.Component {
   }
 }
 
-export default NamesSinglePage;
+export default AddressSinglePage;

@@ -1,9 +1,21 @@
 import React from 'react';
 import { Flex, Box, Card } from 'blockstack-ui';
 
+import { fetchAddress } from '@client/api';
+
 class AddressesPage extends React.Component {
-  static async getInitialProps() {
+  static async getInitialProps({ req, query }) {
+    const reqData = (req && req.params) || query;
+    const { address, data } = reqData;
+    let addressData = data;
+    if (!addressData) {
+      addressData = await fetchAddress(address);
+    }
     return {
+      address: {
+        id: address,
+        ...addressData,
+      },
       meta: {
         title: 'Addresses',
       },
@@ -13,7 +25,12 @@ class AddressesPage extends React.Component {
   render() {
     return (
       <Flex p={5} flexDirection="row" width={1}>
-        Addresses
+        Address data for {this.props.address.id}
+        <Flex>
+          <pre>
+            <code>{JSON.stringify(this.props.address, null, 2)}</code>
+          </pre>
+        </Flex>
       </Flex>
     );
   }

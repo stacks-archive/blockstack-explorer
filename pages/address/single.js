@@ -4,15 +4,15 @@ import { fetchName } from '@client/api';
 
 class NamesSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
-    const name = req && req.params ? req.params.name : query.name;
-    const data = await fetchName(name);
+    const id = req && req.params ? req.params.id : query.id;
+    const data = await fetchName(id);
     return {
       user: {
-        id: name,
+        id,
         ...data,
       },
       meta: {
-        title: name,
+        title: id,
       },
     };
   }

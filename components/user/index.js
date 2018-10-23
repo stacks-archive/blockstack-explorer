@@ -73,7 +73,7 @@ const BlocksSection = ({ nameRecord, ...rest }) => (
 const AppsSection = ({ apps, ...rest }) =>
   apps ? (
     <ConnectedAppsList
-      wrapper={({children}) => (
+      wrapper={({ children }) => (
         <Section pb={4} {...rest}>
           <SubSection label="Multiplayer Apps Used" children={children} />
         </Section>
@@ -121,15 +121,10 @@ const ViewZoneFileSection = ({ zoneFileUrl, ...rest }) => (
   </Section>
 );
 
-const UserCard = ({
-  nameRecord,
-  profile: { name, description, account, apps },
-  zone_file,
-  id,
-  owner_address,
-  ...rest
-}) => {
+const UserCard = ({ nameRecord, profile, zone_file, id, owner_address, ...rest }) => {
+  if (!profile) return null;
   const { target: zone_file_url } = zone_file.uri[0];
+  const { name, description, account, apps } = profile;
   return (
     <Card {...rest}>
       <IdentitySection id={id} name={name} account={account} description={description} />

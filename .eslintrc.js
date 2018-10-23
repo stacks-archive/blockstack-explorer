@@ -1,4 +1,4 @@
-require('babel-register');
+// require('babel-register');
 
 module.exports = {
   extends: ['airbnb', 'plugin:prettier/recommended'],
@@ -43,6 +43,7 @@ module.exports = {
           '@utils': './utils',
           '@client': './lib/client',
           '@styled': './styled',
+          '@lib': './lib',
         },
       },
     },

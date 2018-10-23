@@ -2,7 +2,7 @@ const express = require('express');
 const { decorateApp } = require('@awaitjs/express');
 const { getTotals } = require('../lib/addresses');
 const NameOpsAggregator = require('../lib/aggregators/name-ops');
-const { fetchName } = require('../lib/client/core-api');
+const { fetchName, fetchTX } = require('../lib/client/core-api');
 
 const makeAPIController = (Genesis) => {
   const APIController = decorateApp(express.Router());
@@ -30,6 +30,11 @@ const makeAPIController = (Genesis) => {
   APIController.getAsync('/names/:name', async (req, res) => {
     const name = await fetchName(req.params.name);
     res.json(name);
+  })
+
+  APIController.getAsync('/transactions/:tx', async (req, res) => {
+    const txInfo = await fetchTX(req.params.tx);
+    res.json(txInfo);
   })
 
   return APIController;

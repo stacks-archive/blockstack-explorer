@@ -21,7 +21,8 @@ const NameOperationsList = ({ items, ...rest }) => (
                 onClick={toggle}
               >
                 <Box maxWidth="calc(100% - 48px)">
-                  <List.Item.Title>{opcode || 'NAME_UPDATE'}</List.Item.Title>
+                  {/*TODO: is this the best thing to do for subdomains?*/}
+                  <List.Item.Title>{opcode || 'Subdomain Registration'}</List.Item.Title>
                   <List.Item.Subtitle overflow="auto">{txid}</List.Item.Subtitle>
                 </Box>
                 <Box>

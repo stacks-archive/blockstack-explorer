@@ -1,18 +1,18 @@
 import React from 'react';
 import { Flex, Box, Card } from 'blockstack-ui';
-import { fetchName } from '@client/api';
+import { fetchAddress } from '@client/api';
 
 class AddressSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
-    const id = req && req.params ? req.params.id : query.id;
-    const data = await fetchName(id);
+    const address = req && req.params ? req.params.address : query.address;
+    const data = await fetchAddress(address);
     return {
-      user: {
-        id,
-        ...data,
+      address: {
+        value: address,
+        data,
       },
       meta: {
-        title: id,
+        title: `Address: ${address}`,
       },
     };
   }
@@ -20,9 +20,9 @@ class AddressSinglePage extends React.Component {
   render() {
     return (
       <Flex p={5} flexDirection="row" width={1}>
-        data for {this.props.user.id}
+        data for {this.props.address.value}
         <pre>
-          <code>{JSON.stringify(this.props.user, null, 2)}</code>
+          <code>{JSON.stringify(this.props.address, null, 2)}</code>
         </pre>
       </Flex>
     );

@@ -71,9 +71,9 @@ const makeAppController = (app, cache) => {
     await renderAndCache(req, res, '/blocks');
   });
   // Blocks: single
-  AppController.get('/blocks/:block', async (req, res) => {
-    track('view_blocks', req, { block: req.params.block });
-    await renderAndCache(req, res, '/blocks');
+  AppController.get('/blocks/:hash', async (req, res) => {
+    track('view_blocks', req, { block: req.params.hash });
+    await renderAndCache(req, res, '/blocks/single');
   });
   // Transaction: single
   AppController.get('/tx/:transaction', async (req, res) => {

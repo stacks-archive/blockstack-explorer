@@ -39,7 +39,7 @@ module.exports = {
           '@containers': './containers',
           '@stores': './stores',
           '@pages': './pages',
-          '@common': './common',
+          '@common': './lib/common',
           '@utils': './utils',
           '@client': './lib/client',
           '@styled': './styled',

@@ -66,10 +66,6 @@ const makeAPIController = (Genesis) => {
 
     const [tx, btcAddress, block] = await Promise.all(fetches);
 
-    console.log(tx);
-    console.log(btcAddress);
-    console.log(block);
-
     if (tx) {
       return res.json({
         pathname: '/transaction',

@@ -57,11 +57,7 @@ const makeAPIController = (Genesis) => {
   APIController.getAsync('/blocks/:hash', async (req, res) => {
     const { hash } = req.params;
     const block = await fetchBlock(hash);
-    const { tx, ...rest } = block;
-    await res.json({
-      ...rest,
-      txCount: tx.length,
-    });
+    await res.json(block);
   });
 
   APIController.getAsync('/search/:query', async (req, res) => {

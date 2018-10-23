@@ -4,6 +4,7 @@ import { Card } from '@components/card';
 import { Social } from '@components/social';
 import { ConnectedAvatar } from '@components/avatar';
 import { ConnectedAppsList } from '@components/apps';
+import Link from 'next/link';
 
 /**
  * Misc visual components
@@ -49,13 +50,35 @@ const keys = [
 /**
  * Pass an object and set of keys and this will render subsections for each
  */
-const generateAutomaticSubSections = (data, arr = keys) => {
+const generateAutomaticSubSections = (data, arr = keys, params) => {
+  const LinkWrapper = ({ query, ...rest }) => (
+    <Link
+      href={{
+        path: `/${params.path}/single`,
+        query: {
+          [params.query]: query,
+        },
+      }}
+      as={`/${params.path}/${query}`}
+      prefetch
+      passHref
+      {...rest}
+    />
+  );
   return arr.map(
     (key, i) =>
       data[key] ? (
         <SubSection label={key} key={i}>
           <Box maxWidth={'100%'} overflow="auto">
-            <Type fontFamily="brand">{data[key]}</Type>
+            {params ? (
+              <LinkWrapper query={data[key]}>
+                <Type is="a" fontFamily="brand">
+                  {data[key]}
+                </Type>
+              </LinkWrapper>
+            ) : (
+              <Type fontFamily="brand">{data[key]}</Type>
+            )}
           </Box>
         </SubSection>
       ) : null,
@@ -79,7 +102,7 @@ const TransactionsSection = ({ nameRecord, ...rest }) => (
 const BlocksSection = ({ nameRecord, ...rest }) => (
   <Section pb={4} pr={4} {...rest}>
     <Box display="grid" gridTemplateColumns="40% 40%">
-      {generateAutomaticSubSections(nameRecord, blockKeys)}
+      {generateAutomaticSubSections(nameRecord, blockKeys, { path: 'blocks', query: 'hash' })}
     </Box>
   </Section>
 );
@@ -110,7 +133,21 @@ const ProfileSection = ({ id, ownerAddress, ...rest }) => (
       <Type>{id}</Type>
     </SubSection>
     <SubSection label="Owner Address">
-      <Type fontFamily="brand">{ownerAddress}</Type>
+      <Link
+        href={{
+          path: '/address/single',
+          query: {
+            address: ownerAddress,
+          },
+        }}
+        as={`/address/${ownerAddress}`}
+        prefetch
+        passHref
+      >
+        <Type is="a" fontFamily="brand">
+          {ownerAddress}
+        </Type>
+      </Link>
     </SubSection>
   </Section>
 );

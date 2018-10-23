@@ -31,7 +31,7 @@ const makeAPIController = (Genesis) => {
   APIController.getAsync('/names/:name', async (req, res) => {
     const { name } = req.params;
     const [person, nameRecord] = await Promise.all([fetchName(name), fetchNameRecord(name)]);
-    res.json({
+    await res.json({
       nameRecord,
       ...person,
     });
@@ -39,26 +39,26 @@ const makeAPIController = (Genesis) => {
 
   APIController.getAsync('/transactions/:tx', async (req, res) => {
     const txInfo = await fetchTX(req.params.tx);
-    res.json(txInfo);
+    await res.json(txInfo);
   });
 
   APIController.getAsync('/addresses/:address', async (req, res) => {
     const { address } = req.params;
     const data = await fetchAddress(address);
-    res.json(data);
+    await res.json(data);
   });
 
   APIController.getAsync('/blocks', async (req, res) => {
     const { date } = req.query;
     const blocks = await BlocksAggregator.fetch(date);
-    res.json(blocks);
+    await res.json(blocks);
   });
 
   APIController.getAsync('/blocks/:hash', async (req, res) => {
     const { hash } = req.params;
     const block = await fetchBlock(hash);
     const { tx, ...rest } = block;
-    res.json({
+    await res.json({
       ...rest,
       txCount: tx.length,
     });

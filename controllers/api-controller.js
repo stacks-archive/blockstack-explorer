@@ -57,18 +57,18 @@ const makeAPIController = (Genesis) => {
   APIController.getAsync('/blocks/:hash', async (req, res) => {
     const { hash } = req.params;
     const block = await fetchBlock(hash);
-    const { tx, ...rest } = block;
-    res.json({
-      ...rest,
-      txCount: tx.length,
-    });
+    res.json(block);
   });
 
   APIController.getAsync('/search/:query', async (req, res) => {
     const { query } = req.params;
-    const fetches = [fetchTX(query), fetchAddress(query)];
+    const fetches = [fetchTX(query), fetchAddress(query), fetchBlock(query)];
 
-    const [tx, btcAddress] = await Promise.all(fetches);
+    const [tx, btcAddress, block] = await Promise.all(fetches);
+
+    console.log(tx);
+    console.log(btcAddress);
+    console.log(block);
 
     if (tx) {
       return res.json({
@@ -84,6 +84,14 @@ const makeAPIController = (Genesis) => {
         as: `/address/${query}`,
         id: query,
         data: btcAddress,
+      });
+    }
+    if (block) {
+      return res.json({
+        pathname: '/blocks/single',
+        as: `/blocks/${block.hash}`,
+        data: block,
+        hash: query,
       });
     }
 

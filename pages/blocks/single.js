@@ -5,14 +5,14 @@ import { fetchBlock } from '@client/api';
 class BlockSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
     const hash = req && req.params ? req.params.hash : query.hash;
-    const data = await fetchBlock(hash);
+    const data = query.data || (await fetchBlock(hash));
     return {
       block: {
         hash,
         ...data,
       },
       meta: {
-        title: `Block ${hash}`,
+        title: `Block ${data.height}`,
       },
     };
   }
@@ -20,7 +20,7 @@ class BlockSinglePage extends React.Component {
   render() {
     return (
       <Flex p={5} flexDirection="row" width={1}>
-        data for {this.props.block.hash}
+        data for {this.props.block.height}
         <Flex>
           <pre>
             <code>{JSON.stringify(this.props.block, null, 2)}</code>

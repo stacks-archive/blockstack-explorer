@@ -2,7 +2,8 @@ const express = require('express');
 const { decorateApp } = require('@awaitjs/express');
 const { getTotals } = require('../lib/addresses');
 const NameOpsAggregator = require('../lib/aggregators/name-ops');
-const { fetchName, fetchTX, fetchAddress, fetchNameRecord } = require('../lib/client/core-api');
+const BlocksAggregator = require('../lib/aggregators/blocks');
+const { fetchName, fetchTX, fetchAddress, fetchNameRecord, fetchBlocks } = require('../lib/client/core-api');
 
 const makeAPIController = (Genesis) => {
   const APIController = decorateApp(express.Router());
@@ -29,7 +30,7 @@ const makeAPIController = (Genesis) => {
 
   APIController.getAsync('/names/:name', async (req, res) => {
     const { name } = req.params;
-    const [person, nameRecord] = await Promise.all([fetchName(name), fetchNameRecord(name)])
+    const [person, nameRecord] = await Promise.all([fetchName(name), fetchNameRecord(name)]);
     res.json({
       nameRecord,
       ...person,
@@ -45,6 +46,12 @@ const makeAPIController = (Genesis) => {
     const { address } = req.params;
     const data = await fetchAddress(address);
     res.json(data);
+  });
+
+  APIController.getAsync('/blocks', async (req, res) => {
+    const { date } = req.query;
+    const blocks = await BlocksAggregator.fetch(date);
+    res.json(blocks);
   });
 
   APIController.getAsync('/search/:query', async (req, res) => {

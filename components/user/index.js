@@ -137,12 +137,16 @@ const ProfileSection = ({ id, ownerAddress, ...rest }) => (
 /**
  * ID and Owner address
  */
-const Addresses = ({ account, ...rest }) =>
-  account ? (
-    <Section pb={4} {...rest}>
-      <NonSocialItems account={account} wrapper={(props) => <Section.Subsection {...props} />} />
-    </Section>
-  ) : null;
+const Addresses = ({ account, ...rest }) => (
+  <NonSocialItems
+    account={account}
+    wrapper={(props) => (
+      <Section pb={4} {...rest}>
+        <Section.Subsection {...props} />
+      </Section>
+    )}
+  />
+);
 
 /**
  * The 'profile' like part of the card, displays avatar, name, desc, and social proofs

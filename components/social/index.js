@@ -70,19 +70,20 @@ const Social = ({ account: accounts, ...rest }) => {
 
 const NonSocialItems = ({ wrapper, account: accounts, ...rest }) => {
   const itemsWithoutProofs = [...accounts.filter((item) => item.proofUrl === '')];
-  const children = (
-    <Box {...rest}>
-      {itemsWithoutProofs.map(
-        (item) =>
-          item.identifier ? (
-            <Flex alignItems={'center'} overflow="auto" maxWidth={'100%'}>
-              <SocialItem {...item} /> <Type fontFamily={'brand'}>{item.identifier}</Type>
-            </Flex>
-          ) : null,
-      )}
-    </Box>
-  );
-  return wrapper({ children });
+  const children =
+    itemsWithoutProofs && itemsWithoutProofs.length ? (
+      <Box {...rest}>
+        {itemsWithoutProofs.map(
+          (item) =>
+            item.identifier ? (
+              <Flex alignItems={'center'} overflow="auto" maxWidth={'100%'}>
+                <SocialItem {...item} /> <Type fontFamily={'brand'}>{item.identifier}</Type>
+              </Flex>
+            ) : null,
+        )}
+      </Box>
+    ) : null;
+  return itemsWithoutProofs && itemsWithoutProofs.length ? wrapper({ children }) : null;
 };
 
 export { Social, NonSocialItems };

@@ -8,7 +8,8 @@ import { NameOperationsList } from '@containers/lists/single-name-operations';
 class NamesSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
     const name = req && req.params ? req.params.name : query.name;
-    const data = await fetchName(name);
+
+    const data = typeof name === 'undefined' ? {} : await fetchName(name);
 
     return {
       user: {

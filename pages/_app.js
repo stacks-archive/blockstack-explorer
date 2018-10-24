@@ -129,13 +129,11 @@ class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {};
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
-
-    // if the profile contains apps, let's fetch app.co apps
     if (!apps) {
       apps = await fetchBlockstackApps();
+    }
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
     }
 
     const props = {

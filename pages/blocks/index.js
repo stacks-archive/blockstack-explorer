@@ -56,8 +56,7 @@ const keys = [
   },
 ];
 
-const getResponsiveIndex = (array) =>
-  console.log([...array.filter((item) => !item.display)]) || [...array.filter((item) => !item.display)];
+const getResponsiveIndex = (array) => [...array.filter((item) => !item.display)];
 
 const Cell = ({ ...rest }) => <Box color="blue.dark" px={4} py={3} {...rest} />;
 

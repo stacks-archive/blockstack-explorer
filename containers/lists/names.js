@@ -7,22 +7,22 @@ const NamesList = ({ ...rest }) => (
   <Consumer>
     {({ nameOperations }) =>
       nameOperations
-        ? nameOperations.map((nameOp) => (
+        ? nameOperations.map(({ name, address, timeAgo }) => (
             <List.Item
               href={{
                 pathname: '/names/single',
                 query: {
-                  name: nameOp.name,
+                  name,
                 },
               }}
-              as={`/names/${nameOp.name}`}
-              key={nameOp.txid}
+              as={`/names/${name}`}
+              key={name}
             >
               <Box>
-                <List.Item.Title>{nameOp.name}</List.Item.Title>
-                <List.Item.Subtitle>Owned by {nameOp.address}</List.Item.Subtitle>
+                <List.Item.Title>{name}</List.Item.Title>
+                {address ? <List.Item.Subtitle>Owned by {address}</List.Item.Subtitle> : null}
               </Box>
-              <List.Item.Subtitle>{nameOp.timeAgo}</List.Item.Subtitle>
+              {timeAgo ? <List.Item.Subtitle>{timeAgo}</List.Item.Subtitle> : null}
             </List.Item>
           ))
         : null

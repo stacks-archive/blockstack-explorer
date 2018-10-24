@@ -1,16 +1,38 @@
 import React from 'react';
-import { Flex, Box, Card } from 'blockstack-ui';
+import { Flex, Box } from 'blockstack-ui';
 import { fetchAddress } from '@client/api';
+import { AddressCard } from '@components/address';
+import { NamesList } from '@containers/lists/names';
+import { Card } from '@components/card';
+import { fetchTX } from '@client/api';
+import { TxList } from '@components/transactions';
 
 class AddressSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
     const address = req && req.params ? req.params.address : query.address;
     const data = await fetchAddress(address);
+    let transactions = [];
+    if (data.transactions && data.transactions.length) {
+      await Promise.all(
+        data.transactions.map(async (_tx) => {
+          const tx = await fetchTX(_tx);
+          transactions.push(tx);
+        }),
+      );
+    }
     return {
       address: {
         value: address,
         data,
       },
+      transactions,
+      nameOperations:
+        data.names && data.names.length
+          ? data.names.map((name) => ({
+              name,
+              address,
+            }))
+          : [],
       meta: {
         title: `Address: ${address}`,
       },
@@ -19,11 +41,18 @@ class AddressSinglePage extends React.Component {
 
   render() {
     return (
-      <Flex p={5} flexDirection="row" width={1}>
-        data for {this.props.address.value}
-        <pre>
-          <code>{JSON.stringify(this.props.address, null, 2)}</code>
-        </pre>
+      <Flex alignItems="flex-start" p={5} flexDirection={['column', 'column', 'row']} width={1}>
+        <AddressCard mr={[0, 0, 5]} maxWidth={['100%', '100%', '380px']} address={this.props.address} />
+        {this.props.nameOperations.length ? (
+          <Card width={1} mb={[5, 5, 0]} title="Names Owned">
+            <NamesList />
+          </Card>
+        ) : null}
+        {this.props.transactions.length ? (
+          <Card width={1} mb={[5, 5, 0]} title="Transactions">
+            <TxList />
+          </Card>
+        ) : null}
       </Flex>
     );
   }

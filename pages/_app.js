@@ -10,6 +10,11 @@ import fonts from '../lib/fonts';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 const { Provider, Consumer } = React.createContext();
+import JavascriptTimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+JavascriptTimeAgo.locale(en)
+
+
 NProgress.configure({
   showSpinner: false,
   minimum: 0.3,

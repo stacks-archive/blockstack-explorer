@@ -63,7 +63,7 @@ const makeAppController = (app, cache) => {
   // Address: Single
   AppController.get('/address/:address', async (req, res) => {
     track('view_address', req, { address: req.params.address });
-    await renderAndCache(req, res, '/address');
+    await renderAndCache(req, res, '/address/single');
   });
   // Blocks
   AppController.get('/blocks', async (req, res) => {

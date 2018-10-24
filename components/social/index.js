@@ -59,13 +59,13 @@ const SocialItem = ({ service, identifier, proofUrl, ...item }) => {
 const Social = ({ account: accounts, ...rest }) => {
   if (!accounts || (accounts && !accounts.length)) return null;
   const itemsWithProofs = [...accounts.filter((item) => item.proofUrl !== '')];
-  return (
+  return itemsWithProofs && itemsWithProofs.length ? (
     <Flex {...rest}>
       {itemsWithProofs.map((item) => (
         <SocialItem {...item} />
       ))}
     </Flex>
-  );
+  ) : null;
 };
 
 const NonSocialItems = ({ wrapper, account: accounts, ...rest }) => {

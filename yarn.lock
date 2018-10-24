@@ -1596,9 +1596,9 @@ binary-extensions@^1.0.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.11.0.tgz#46aa1751fb6a2f93ee5e689bb1087d4b14c6c205"
 
-blockstack-ui@^0.0.20:
-  version "0.0.20"
-  resolved "https://registry.yarnpkg.com/blockstack-ui/-/blockstack-ui-0.0.20.tgz#3b436076755e7ea679af01672094c16c273726f4"
+blockstack-ui@^0.0.22:
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/blockstack-ui/-/blockstack-ui-0.0.22.tgz#0b1367d8caa2230ab8fb51c77c4c3385883ccfa9"
   dependencies:
     clean-element "^1.0.2"
     clean-tag "^2.0.0"
@@ -1608,6 +1608,7 @@ blockstack-ui@^0.0.20:
     react-powerplug "^1.0.0-rc.1"
     regenerator-runtime "^0.12.1"
     styled-system "^3.1.6"
+    system-components "^3.0.1"
 
 bluebird@3.5.1, bluebird@^3.5.1:
   version "3.5.1"

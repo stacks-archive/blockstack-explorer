@@ -164,9 +164,7 @@ const IdentitySection = ({ name, id, description, account, ...rest }) => (
     )}
     {account &&
       account.length && (
-        <Box>
-          <Social pt={4} account={account} />
-        </Box>
+       <Social  pt={4} account={account} />
       )}
   </Section>
 );

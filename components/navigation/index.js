@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Link from 'next/link';
 import { Flex, Type } from 'blockstack-ui';
 
@@ -24,7 +24,7 @@ const LinkComponent = sys(
 
 const items = [{ path: '/blocks', label: 'Blocks' }, { path: '/names', label: 'Names' }];
 
-const Navigation = ({ ...rest }) => (
+const Navigation = memo(({ ...rest }) => (
   <Flex {...rest}>
     {items.map(({ label, path, ...linkProps }, i) => (
       <Link key={i} passHref href={path} prefetch>
@@ -32,6 +32,6 @@ const Navigation = ({ ...rest }) => (
       </Link>
     ))}
   </Flex>
-);
+));
 
 export { Navigation };

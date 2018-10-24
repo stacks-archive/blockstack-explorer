@@ -11,7 +11,7 @@ const getJSON = async (url) => {
 };
 
 const makeUrl = (path) => {
-  const url = process.env.API_URL || 'http://blockstack-explorer-api.herokuapp.com';
+  const url = process.env.API_URL || 'https://blockstack-explorer-api.herokuapp.com';
   return url + path;
 };
 

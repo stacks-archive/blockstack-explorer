@@ -9,18 +9,12 @@ class NamesSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
     const name = req && req.params ? req.params.name : query.name;
     const data = await fetchName(name);
-    let apps = null;
 
-    // if the profile contains apps, let's fetch app.co apps
-    if (data.profile && data.profile.apps) {
-      apps = await fetchBlockstackApps();
-    }
     return {
       user: {
         id: name,
         ...data,
       },
-      apps,
       meta: {
         title: name,
       },

@@ -10,6 +10,7 @@ import fonts from '../common/lib/fonts';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 const { Provider, Consumer } = React.createContext();
+import { fetchBlockstackApps } from '@common/lib/client/api';
 
 NProgress.configure({
   showSpinner: false,
@@ -122,6 +123,8 @@ ${fonts}
 }
 `;
 
+let apps = null;
+
 class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {};
@@ -130,8 +133,16 @@ class MyApp extends App {
       pageProps = await Component.getInitialProps(ctx);
     }
 
+    // if the profile contains apps, let's fetch app.co apps
+    if (pageProps.user && pageProps.user.profile && pageProps.user.apps && !apps) {
+      apps = await fetchBlockstackApps();
+    }
+
     return {
-      pageProps,
+      pageProps: {
+        ...pageProps,
+        apps,
+      },
       context: {
         ...pageProps,
       },

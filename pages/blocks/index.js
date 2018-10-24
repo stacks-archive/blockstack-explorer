@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex, Box, Type, Button } from 'blockstack-ui';
 import { Card } from '@components/card';
 import { List } from '@components/list';
-import { fetchBlocks } from '@client/api';
+import { fetchBlocks } from '@common/lib/client/api';
 
 const SecondaryButton = ({ ...rest }) => (
   <Button

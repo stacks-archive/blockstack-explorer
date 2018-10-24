@@ -1,12 +1,10 @@
 {
   "name": "blockstack-explorer",
   "scripts": {
-    "prod": "NODE_ENV=production node server.js",
-    "dev": "node server.js",
+    "prod": "NODE_ENV=production node server",
+    "dev": "node server",
     "build": "next build",
-    "start": "node server.js",
-    "setup": "yarn && node scripts/run-aggregators.js",
-    "redis": "redis-server /usr/local/etc/redis.conf",
+    "start": "node server",
     "format": "prettier --write \"{,!(node_modules|.next|out)/**/}*.{js,jsx,md,mdx}\" && echo -e '\\033[0;32m'💅 Just use prettier'\\033[0m'",
     "heroku-postbuild": "next build"
   },

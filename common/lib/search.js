@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import { fetchSearch } from '@client/api';
+import { fetchSearch } from '@common/lib/client/api';
 
 // Take a free-form search query (from the navigation),
 // and redirect the user to the right page

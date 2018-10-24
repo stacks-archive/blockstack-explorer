@@ -6,7 +6,7 @@ import { theme } from 'blockstack-ui';
 import { Layout } from '@components/layout';
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'polished';
-import fonts from '../lib/fonts';
+import fonts from '../common/lib/fonts';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 const { Provider, Consumer } = React.createContext();

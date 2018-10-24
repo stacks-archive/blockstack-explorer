@@ -1,10 +1,10 @@
 import React from 'react';
 import { Flex, Box } from 'blockstack-ui';
-import { fetchAddress } from '@client/api';
+import { fetchAddress } from '@common/lib/client/api';
 import { AddressCard } from '@components/address';
 import { NamesList } from '@containers/lists/names';
 import { Card } from '@components/card';
-import { fetchTX } from '@client/api';
+import { fetchTX } from '@common/lib/client/api';
 import { TxList } from '@components/transactions';
 
 class AddressSinglePage extends React.Component {

@@ -2,7 +2,7 @@ import React from 'react';
 import { SearchIcon } from 'mdi-react';
 import { Flex, Box, Input } from 'blockstack-ui';
 
-import { search } from '@lib/search';
+import { search } from '@common/lib/search';
 
 const handleSearch = (event) => {
   if (event.key === 'Enter') {

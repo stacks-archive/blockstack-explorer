@@ -1,8 +1,6 @@
 const express = require('express');
 const next = require('next');
 const LRUCache = require('lru-cache');
-const passport = require('passport');
-const session = require('cookie-session');
 const secure = require('express-force-https');
 const { decorateApp } = require('@awaitjs/express');
 require('dotenv').config();

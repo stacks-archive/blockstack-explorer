@@ -4,7 +4,7 @@ import { Flex, Type, Box } from 'blockstack-ui';
 import { Card } from '@components/card';
 import sys from 'system-components';
 import { NamesList } from '@containers/lists/names';
-import { fetchNameOperations } from '@client/api';
+import { fetchNameOperations } from '@common/lib/client/api';
 const ListItem = sys(
   {
     is: Flex,

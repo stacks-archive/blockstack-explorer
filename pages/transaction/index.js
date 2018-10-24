@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Box, Card } from 'blockstack-ui';
-import { fetchTX } from '@client/api';
+import { fetchTX } from '@common/lib/client/api';
 
 class TransactionSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {

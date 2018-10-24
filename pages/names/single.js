@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Box, Type } from 'blockstack-ui';
 import { Card } from '@components/card';
-import { fetchName, fetchBlockstackApps } from '@client/api';
+import { fetchName, fetchBlockstackApps } from '@common/lib/client/api';
 import { UserCard } from '@components/user';
 import { NameOperationsList } from '@containers/lists/single-name-operations';
 

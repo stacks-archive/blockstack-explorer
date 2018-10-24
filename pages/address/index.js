@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Box, Card } from 'blockstack-ui';
 
-import { fetchAddress } from '@client/api';
+import { fetchAddress } from '@common/lib/client/api';
 
 class AddressesPage extends React.Component {
   static async getInitialProps({ req, query }) {

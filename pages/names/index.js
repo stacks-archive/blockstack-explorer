@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex, Box } from 'blockstack-ui';
 import { NamesList } from '@containers/lists/names';
 import { Card } from '@components/card';
-import { fetchNameOperations } from '@client/api';
+import { fetchNameOperations } from '@common/lib/client/api';
 
 class NamesPage extends React.Component {
   static async getInitialProps({ req, query, ...rest }) {

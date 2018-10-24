@@ -1,5 +1,4 @@
 const express = require('express');
-const { track } = require('../lib/analytics');
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -52,32 +51,26 @@ const makeAppController = (app, cache) => {
   });
   // Names
   AppController.get('/names', async (req, res) => {
-    track('view_names', req);
     await renderAndCache(req, res, '/names');
   });
   // Names: single
   AppController.get('/names/:name', async (req, res) => {
-    track('view_names', req, { name: req.params.name });
     await renderAndCache(req, res, '/names/single');
   });
   // Address: Single
   AppController.get('/address/:address', async (req, res) => {
-    track('view_address', req, { address: req.params.address });
     await renderAndCache(req, res, '/address/single');
   });
   // Blocks
   AppController.get('/blocks', async (req, res) => {
-    track('view_blocks', req);
     await renderAndCache(req, res, '/blocks');
   });
   // Blocks: single
   AppController.get('/blocks/:hash', async (req, res) => {
-    track('view_blocks', req, { block: req.params.hash });
     await renderAndCache(req, res, '/blocks/single');
   });
   // Transaction: single
   AppController.get('/tx/:transaction', async (req, res) => {
-    track('view_transaction', req, { transaction: req.params.transaction });
     await renderAndCache(req, res, '/transaction');
   });
 

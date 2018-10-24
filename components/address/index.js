@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Box, Type, Button } from 'blockstack-ui';
+import { Box, Type } from 'blockstack-ui';
 import { Card } from '@components/card';
 import { Section } from '@components/section';
 import QRCode from 'qrcode.react';

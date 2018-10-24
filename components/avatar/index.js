@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Box } from 'blockstack-ui';
 import { AccountCircleIcon } from 'mdi-react';
-import { getProfileImage } from '@common/lib';
+import { getProfileImage } from '@common';
 import { Consumer } from '@pages/_app';
 
 const Avatar = ({ src, size = 120, ...rest }) => (

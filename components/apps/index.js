@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Box, Type, Button } from 'blockstack-ui';
-import { extractRootDomain, uniq } from '@common/lib';
+import { extractRootDomain, uniq } from '@common';
 import { Consumer } from '@pages/_app';
 
 const AppItem = ({ slug, image, ...rest }) => (

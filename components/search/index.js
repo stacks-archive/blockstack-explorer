@@ -1,12 +1,11 @@
 import React from 'react';
 import { SearchIcon } from 'mdi-react';
 import { Flex, Box, Input } from 'blockstack-ui';
-
 import { search } from '@common/lib/search';
 
-const handleSearch = (event) => {
+const handleSearch = async (event) => {
   if (event.key === 'Enter') {
-    search(event.target.value);
+    await search(event.target.value);
   }
 };
 

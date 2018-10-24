@@ -1,4 +1,4 @@
-import { getJSON, makeUrl } from '../common';
+import { getJSON, makeUrl } from '../../index';
 import fetch from 'cross-fetch';
 
 export const fetchAccount = async (address) => {

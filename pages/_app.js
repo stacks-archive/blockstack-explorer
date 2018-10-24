@@ -10,10 +10,6 @@ import fonts from '../common/lib/fonts';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 const { Provider, Consumer } = React.createContext();
-import JavascriptTimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
-JavascriptTimeAgo.locale(en)
-
 
 NProgress.configure({
   showSpinner: false,
@@ -23,7 +19,6 @@ NProgress.configure({
 });
 
 Router.events.on('routeChangeStart', (url) => {
-  console.log(`Loading: ${url}`);
   NProgress.start();
 });
 Router.events.on('routeChangeComplete', () => NProgress.done());

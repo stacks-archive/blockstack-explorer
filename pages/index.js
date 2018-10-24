@@ -2,36 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import { Flex, Type, Box } from 'blockstack-ui';
 import { Card } from '@components/card';
-import sys from 'system-components';
 import { NamesList } from '@containers/lists/names';
 import { fetchNameOperations } from '@common/lib/client/api';
-const ListItem = sys(
-  {
-    is: Flex,
-    borderBottom: '1px solid',
-    borderColor: 'blue.mid',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    position: 'relative',
-    px: 4,
-    py: 4,
-    color: 'blue.dark',
-  },
-  ({ theme: { colors } }) => ({
-    '&:hover': {
-      background: colors.blue.light,
-    },
-  }),
-);
-
-const CardHeader = ({ title, actions, ...rest }) => (
-  <Flex justifyContent={'space-between'} px={4} py={4} borderBottom={'1px solid'} borderColor={'blue.mid'} {...rest}>
-    <Type fontSize={2} fontWeight={500} color="blue.dark">
-      {title}
-    </Type>
-    {actions ? <Box>{actions}</Box> : null}
-  </Flex>
-);
 
 const StatItem = ({ value, label, ...rest }) => (
   <Flex width={0.5} p={6} flexDirection="column" alignItems="center" {...rest}>

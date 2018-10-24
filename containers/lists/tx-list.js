@@ -1,7 +1,8 @@
 import React from 'react';
-import { List } from '@components/list';
+import { List } from '@components/list/index';
 import { Box } from 'blockstack-ui';
 import { Consumer } from '@pages/_app';
+
 const TxList = ({ ...rest }) => (
   <Consumer>
     {({ transactions }) =>

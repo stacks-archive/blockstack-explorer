@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Box, Type, Button } from 'blockstack-ui';
+import { Box, Type, Button } from 'blockstack-ui';
 import { Card } from '@components/card';
 import { Section } from '@components/section';
 import { Social, NonSocialItems } from '@components/social';

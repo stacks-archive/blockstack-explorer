@@ -2,6 +2,7 @@ const express = require('express');
 const next = require('next');
 const LRUCache = require('lru-cache');
 const secure = require('express-force-https');
+const morgan = require('morgan');
 const { decorateApp } = require('@awaitjs/express');
 require('dotenv').config();
 
@@ -24,6 +25,8 @@ const setup = async () => {
     await app.prepare();
 
     const server = decorateApp(express());
+
+    server.use(morgan('dev'));
 
     if (!dev) {
       server.use(secure);

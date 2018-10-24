@@ -4,16 +4,12 @@ import { fetchTX } from '@common/lib/client/api';
 
 class TransactionSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
-    const reqData = (req && req.params) || query;
-    const { id, data } = reqData;
-    let tx = data;
-    if (!tx) {
-      tx = await fetchTX(id);
-    }
+    const id = req && req.params ? req.params.tx : query.tx;
+    const data = await fetchTX(id);
     return {
       tx: {
         id,
-        ...tx,
+        ...data,
       },
       meta: {
         title: id,

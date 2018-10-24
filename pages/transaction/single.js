@@ -79,8 +79,8 @@ class TransactionSinglePage extends React.Component {
                       prefetch={addr ? true : undefined}
                       passHref={addr ? true : undefined}
                     >
-                      <List.Item.Title height={'1rem'} pb={0} fontFamily="brand">
-                        {addr}
+                      <List.Item.Title height={'1rem'} pb={0}>
+                        <SectionLabel> {addr}</SectionLabel>
                       </List.Item.Title>
                       <List.Item.Title pb={0}>
                         {value} <Type opacity={0.5}>BTC</Type>
@@ -109,8 +109,10 @@ class TransactionSinglePage extends React.Component {
                       passHref={scriptPubKey && scriptPubKey.addresses ? true : undefined}
                       borderBottom={i === vout.length - 1 ? '0' : '1px solid'}
                     >
-                      <List.Item.Title height={'1rem'} pb={0} fontFamily="brand">
-                        {(scriptPubKey && scriptPubKey.addresses && scriptPubKey.addresses[0]) || `Unparsed address`}
+                      <List.Item.Title height={'1rem'} pb={0}>
+                        <SectionLabel>
+                          {(scriptPubKey && scriptPubKey.addresses && scriptPubKey.addresses[0]) || `Unparsed address`}
+                        </SectionLabel>
                       </List.Item.Title>
                       <List.Item.Title pb={0} pl={1}>
                         {value} <Type opacity={0.5}>BTC</Type>

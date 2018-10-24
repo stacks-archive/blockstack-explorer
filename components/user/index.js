@@ -154,18 +154,13 @@ const Addresses = ({ account, ...rest }) => (
 const IdentitySection = ({ name, id, description, account, ...rest }) => (
   <Section py={6} textAlign="center" justifyContent="center" alignItems="center">
     <ConnectedAvatar mb={5} />
-    <Type pb={2} fontSize={4}>
-      {name || id}
-    </Type>
+    <Type fontSize={4}>{name || id}</Type>
     {description && (
-      <Type opacity={0.5} pt={3} px={4} lineHeight={1.5}>
+      <Type opacity={0.5} pt={4} px={4} lineHeight={1.5}>
         {description}
       </Type>
     )}
-    {account &&
-      account.length && (
-       <Social  pt={4} account={account} />
-      )}
+    {account && account.length && <Social pt={4} account={account} />}
   </Section>
 );
 

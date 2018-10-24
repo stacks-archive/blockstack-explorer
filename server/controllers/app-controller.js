@@ -71,7 +71,7 @@ const makeAppController = (app, cache) => {
   });
   // Transaction: single
   AppController.get('/tx/:transaction', async (req, res) => {
-    await renderAndCache(req, res, '/transaction');
+    await renderAndCache(req, res, '/transaction/single');
   });
 
   return AppController;

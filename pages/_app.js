@@ -134,18 +134,18 @@ class MyApp extends App {
     }
 
     // if the profile contains apps, let's fetch app.co apps
-    if (pageProps.user && pageProps.user.profile && pageProps.user.apps && !apps) {
+    if (!apps) {
       apps = await fetchBlockstackApps();
     }
 
+    const props = {
+      ...pageProps,
+      apps,
+    };
+
     return {
-      pageProps: {
-        ...pageProps,
-        apps,
-      },
-      context: {
-        ...pageProps,
-      },
+      pageProps: props,
+      context: props,
     };
   }
 

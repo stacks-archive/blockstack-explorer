@@ -53,7 +53,7 @@ const NameOperationsList = ({ items, ...rest }) => (
                       as={`/tx/${txid}`}
                       key={txid}
                     >
-                      <Button is="a" size="small">
+                      <Button bg="white" is="a" size="small">
                         View Full Transaction
                       </Button>
                     </Link>

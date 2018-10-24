@@ -1,11 +1,9 @@
 import React from 'react';
 import { Flex, Box } from 'blockstack-ui';
 import { fetchBlock } from '@common/lib/client/api';
-import { AddressCard } from '@components/address';
 import { NamesList } from '@containers/lists/names';
 import { TxList } from '@containers/lists/tx-list';
 import { Card } from '@components/card';
-import { fetchTX } from '@common/lib/client/api';
 import { BlockCard } from '@components/block';
 
 class BlocksSinglePage extends React.Component {

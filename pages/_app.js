@@ -35,7 +35,19 @@ ${normalize()};
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   
-      &::-webkit-scrollbar-thumb {
+
+}
+body, html{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: ${theme.colors.blue.light};
+  height: 100%;
+  margin: 0;
+  
+
+}
+body{
+  *{
+    &::-webkit-scrollbar-thumb {
       background: ${darken(0.1, String(theme.colors.blue.mid))};
       border-radius: 4px;
     }
@@ -45,12 +57,7 @@ ${normalize()};
       border-radius: 4px;
       background: ${theme.colors.blue.mid};
     }
-}
-body, html{
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background: ${theme.colors.blue.light};
-  height: 100%;
-  margin: 0;
+  }
 }
 #__next{
   height:100%;

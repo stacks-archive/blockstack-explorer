@@ -8,8 +8,8 @@ const TxList = ({ ...rest }) => (
       transactions
         ? transactions.map(({ txid, time }) => (
             <List.Item key={txid}>
-              <Box>
-                <List.Item.Title>{txid}</List.Item.Title>
+              <Box maxWidth={'calc(100% - 105px)'}>
+                <List.Item.Title overflow="auto">{txid}</List.Item.Title>
               </Box>
               {time ? <List.Item.Subtitle>{time}</List.Item.Subtitle> : null}
             </List.Item>

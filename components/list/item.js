@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { Flex, Box, Type } from 'blockstack-ui';
 import sys from 'system-components';
 
-const Title = ({ ...rest }) => (
-  <Box>
+const Title = ({ overflow, ...rest }) => (
+  <Box maxWidth={'100%'} overflow={overflow}>
     <Type fontSize={2} fontWeight={500} pb={1} color={'blue.dark'} {...rest} />
   </Box>
 );

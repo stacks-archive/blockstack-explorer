@@ -41,18 +41,20 @@ class AddressSinglePage extends React.Component {
 
   render() {
     return (
-      <Flex alignItems="flex-start" p={5} flexDirection={['column', 'column', 'row']} width={1}>
-        <AddressCard mr={[0, 0, 5]} maxWidth={['100%', '100%', '380px']} address={this.props.address} />
-        {this.props.nameOperations.length ? (
-          <Card width={1} mb={[5, 5, 0]} title="Names Owned">
-            <NamesList />
-          </Card>
-        ) : null}
-        {this.props.transactions.length ? (
-          <Card width={1} mb={[5, 5, 0]} title="Transactions">
-            <TxList />
-          </Card>
-        ) : null}
+      <Flex alignItems="flex-start" p={5} flexDirection={['column', 'column', 'row']} flexGrow={1}>
+        <AddressCard mr={[0, 0, 5]} mb={[5, 5, 0]} width={['100%', '100%', '380px']} address={this.props.address} />
+        <Box width={[1, 1, 'calc(100% - 420px)']} flexGrow={1}>
+          {this.props.nameOperations.length ? (
+            <Card width={1} mb={[5, 5, 5]} title="Names Owned">
+              <NamesList />
+            </Card>
+          ) : null}
+          {this.props.transactions.length ? (
+            <Card width={1} mb={[5, 5, 0]} title="Transactions">
+              <TxList />
+            </Card>
+          ) : null}
+        </Box>
       </Flex>
     );
   }

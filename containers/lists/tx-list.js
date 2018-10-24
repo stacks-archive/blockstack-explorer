@@ -8,7 +8,16 @@ const TxList = ({ ...rest }) => (
     {({ transactions }) =>
       transactions
         ? transactions.map(({ txid, time }) => (
-            <List.Item key={txid}>
+            <List.Item
+              href={{
+                pathname: '/transaction/single',
+                query: {
+                  tx: txid,
+                },
+              }}
+              as={`/tx/${txid}`}
+              key={txid}
+            >
               <Box maxWidth={'calc(100% - 105px)'}>
                 <List.Item.Title overflow="auto">{txid}</List.Item.Title>
               </Box>

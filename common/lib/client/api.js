@@ -49,6 +49,19 @@ const fetchNamespaces = async () => {
 };
 
 /**
+ * Fetch all namespaces, including the number of names in that namespace.
+ * @param {string} namespace
+ * @param {string} page
+ */
+const fetchNamespaceNames = async (namespace, page) => {
+  let url = makeUrl(`/api/namespaces/${namespace}`);
+  if (page) {
+    url += `?page=${page}`;
+  }
+  return getJSON(url);
+};
+
+/**
  * Pass a query to search by
  * @param {string} query - the query you want results for
  */
@@ -104,6 +117,7 @@ export {
   fetchName,
   fetchNames,
   fetchNamespaces,
+  fetchNamespaceNames,
   fetchSearch,
   fetchTX,
   fetchAddress,

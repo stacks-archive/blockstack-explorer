@@ -8,11 +8,23 @@ import { TransactionCard } from '@components/transaction';
 import { SectionLabel } from '@components/section';
 import { List } from '@components/list';
 
-const StatItem = ({ ...rest }) => (
-  <Flex flexGrow={1} alignItems="center" flexDirection="column" justifyContent="center" px={5} py={7} {...rest} />
+const StatItem = ({ isLast, ...rest }) => (
+  <Flex
+    borderRight={!isLast ? ['0', '0', '0', '1px solid'] : undefined}
+    borderBottom={!isLast ? ['1px solid', '1px solid', '1px solid', 0] : undefined}
+    borderColor={['blue.mid', 'blue.mid', 'blue.mid', 'blue.mid']}
+    flexGrow={1}
+    width={[1, 1, 1, '33.3333%']}
+    alignItems="center"
+    flexDirection="column"
+    justifyContent="center"
+    px={5}
+    py={7}
+    {...rest}
+  />
 );
 
-const StatValue = ({ ...rest }) => <Type pb={4} fontSize={6} fontWeight={400} color="blue.dark" {...rest} />;
+const StatValue = ({ ...rest }) => <Type pb={4} fontSize={5} fontWeight={400} color="blue.dark" {...rest} />;
 
 class TransactionSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
@@ -37,33 +49,43 @@ class TransactionSinglePage extends React.Component {
         <TransactionCard mr={[0, 0, 5]} mb={[5, 5, 0]} width={['100%', '100%', '380px']} transaction={this.props.tx} />
         <Box width={[1, 1, 'calc(100% - 420px)']} flexGrow={1}>
           <Card width={1} mb={[5, 5, 5]} title="Details">
-            <Flex>
+            <Flex flexDirection={['column', 'column', 'column', 'row']}>
               <StatItem>
-                <StatValue>{valueIn}</StatValue>
+                <StatValue>{valueOut}</StatValue>
                 <SectionLabel>Total Transferred</SectionLabel>
               </StatItem>
               <StatItem>
                 <StatValue>{confirmations}</StatValue>
                 <SectionLabel>Confirmations</SectionLabel>
               </StatItem>
-              <StatItem>
-                <StatValue>{fees}</StatValue>
+              <StatItem isLast>
+                <StatValue>{fees || 0}</StatValue>
                 <SectionLabel>Fees</SectionLabel>
               </StatItem>
             </Flex>
-            <Flex bg="blue.light" borderTop="1px solid" borderBottom="1px solid" borderColor="blue.mid">
-              <Flex flexGrow={1} alignItems="center" justifyContent="center" py={4} px={4}>
-                <Type color="#87acc4">FROM</Type>
-              </Flex>
-              <Flex flexGrow={1} alignItems="center" justifyContent="center" py={4} px={4}>
-                <Type color="#87acc4">TO</Type>
-              </Flex>
-            </Flex>
-            <Flex>
-              <Box width={[1, 0.5]} borderRight={[0, '1px solid']} borderColor={[0, 'blue.mid']} flexGrow={1}>
+            <Flex flexDirection={['column', 'column', 'column', 'row']}>
+              <Box
+                width={[1, 1, 1, 0.5]}
+                borderRight={[0, 0, 0, '1px solid']}
+                borderColor={[0, 'blue.mid']}
+                flexGrow={1}
+              >
+                <Flex
+                  bg="blue.light"
+                  borderTop="1px solid"
+                  borderBottom="1px solid"
+                  borderColor="blue.mid"
+                  flexGrow={1}
+                  alignItems="center"
+                  justifyContent="center"
+                  py={4}
+                  px={4}
+                >
+                  <Type color="#87acc4">FROM</Type>
+                </Flex>
                 {vin &&
                   vin.length &&
-                  vin.map(({ addr, value, txid }) => (
+                  vin.map(({ addr, coinbase, value, txid }) => (
                     <List.Item
                       href={
                         addr
@@ -80,15 +102,30 @@ class TransactionSinglePage extends React.Component {
                       passHref={addr ? true : undefined}
                     >
                       <List.Item.Title height={'1rem'} pb={0}>
-                        <SectionLabel> {addr}</SectionLabel>
+                        <SectionLabel> {coinbase ? 'Mining Reward' : addr}</SectionLabel>
                       </List.Item.Title>
-                      <List.Item.Title pb={0}>
-                        {value} <Type opacity={0.5}>BTC</Type>
-                      </List.Item.Title>
+                      {value && (
+                        <List.Item.Title pb={0}>
+                          {value} <Type opacity={0.5}>BTC</Type>
+                        </List.Item.Title>
+                      )}
                     </List.Item>
                   ))}
               </Box>
-              <Box width={[1, 0.5]} flexGrow={1}>
+              <Box width={[1, 1, 1, 0.5]} flexGrow={1}>
+                <Flex
+                  bg="blue.light"
+                  borderTop={[0, 0, 0, '1px solid']}
+                  borderBottom="1px solid"
+                  borderColor={['blue.mid', 'blue.mid', 'blue.mid', 'blue.mid']}
+                  flexGrow={1}
+                  alignItems="center"
+                  justifyContent="center"
+                  py={4}
+                  px={4}
+                >
+                  <Type color="#87acc4">TO</Type>
+                </Flex>
                 {vout &&
                   vout.length &&
                   vout.map(({ addr, value, scriptPubKey, spentTxId, txid }, i) => (
@@ -123,12 +160,6 @@ class TransactionSinglePage extends React.Component {
               </Box>
             </Flex>
           </Card>
-
-          {/*{this.props.transactions.length ? (*/}
-          {/*<Card width={1} mb={[5, 5, 0]} title="Transactions">*/}
-          {/*<TxList />*/}
-          {/*</Card>*/}
-          {/*) : null}*/}
         </Box>
       </Flex>
     );

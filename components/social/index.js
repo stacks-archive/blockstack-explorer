@@ -1,15 +1,16 @@
 import React from 'react';
-import { Flex, Box } from 'blockstack-ui';
+import { Flex, Box, Type } from 'blockstack-ui';
 import {
   TwitterIcon,
   LinkedinBoxIcon,
   GithubCircleIcon,
   HackernewsIcon,
   InstagramIcon,
-  KeyIcon,
+  SshIcon,
   BitcoinIcon,
   EthereumIcon,
   FacebookBoxIcon,
+  LockIcon,
 } from 'mdi-react';
 
 const getSocialIcon = (service) => {
@@ -23,7 +24,7 @@ const getSocialIcon = (service) => {
     case 'hackerNews':
       return HackernewsIcon;
     case 'ssh':
-      return KeyIcon;
+      return SshIcon;
     case 'instagram':
       return InstagramIcon;
     case 'bitcoin':
@@ -32,6 +33,8 @@ const getSocialIcon = (service) => {
       return EthereumIcon;
     case 'facebook':
       return FacebookBoxIcon;
+    case 'pgp':
+      return LockIcon;
     default:
       return null;
   }
@@ -58,11 +61,28 @@ const Social = ({ account: accounts, ...rest }) => {
   const itemsWithProofs = [...accounts.filter((item) => item.proofUrl !== '')];
   return (
     <Flex {...rest}>
-      {accounts.map((item) => (
+      {itemsWithProofs.map((item) => (
         <SocialItem {...item} />
       ))}
     </Flex>
   );
 };
 
-export { Social };
+const NonSocialItems = ({ wrapper, account: accounts, ...rest }) => {
+  const itemsWithoutProofs = [...accounts.filter((item) => item.proofUrl === '')];
+  const children = (
+    <Box {...rest}>
+      {itemsWithoutProofs.map(
+        (item) =>
+          item.identifier ? (
+            <Flex alignItems={'center'} overflow="auto" maxWidth={'100%'}>
+              <SocialItem {...item} /> <Type fontFamily={'brand'}>{item.identifier}</Type>
+            </Flex>
+          ) : null,
+      )}
+    </Box>
+  );
+  return wrapper({ children });
+};
+
+export { Social, NonSocialItems };

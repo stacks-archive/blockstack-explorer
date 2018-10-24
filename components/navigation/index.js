@@ -13,6 +13,7 @@ const LinkComponent = sys(
     fontWeight: 500,
     color: 'blue.light',
     opacity: 0.5,
+    transition: 1,
   },
   (props) => ({
     '&:hover': {

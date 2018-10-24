@@ -24,6 +24,7 @@ const ListItemComponent = sys(
     position: 'relative',
     px: 4,
     py: 4,
+    transition: 1,
     color: 'blue.dark',
   },
   ({ theme: { colors } }) => ({

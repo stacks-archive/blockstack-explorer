@@ -55,8 +55,10 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Flex p={5} flexDirection="row" alignItems={'flex-start'} width={1}>
+      <Flex p={5} flexDirection={['column', 'column', 'row']} alignItems={'flex-start'} width={1}>
         <Card
+          width={1}
+          mb={[5, 5, 0]}
           title="Latest Names Registered"
           actions={
             <Link href={'/names'}>
@@ -65,12 +67,12 @@ class Home extends React.Component {
               </Type>
             </Link>
           }
-          mr={[0, 5]}
+          mr={[0, 0, 5]}
         >
           <NamesList />
         </Card>
-        <Box top={'113px'} position={['static', 'sticky']} flexGrow={1} maxWidth={'500px'}>
-          <Card title="Global statistics" mr={[0, 5]}>
+        <Box top={'113px'} position={['static', 'sticky']} flexGrow={1} maxWidth={['100%', '100%', '500px']}>
+          <Card title="Global statistics">
             <Flex flexWrap="wrap">
               <StatItem label="total names" value={'240,829'} />
               <StatItem label="total names" value={'240,829'} />

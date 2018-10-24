@@ -1,28 +1,11 @@
 import React from 'react';
 import { Flex, Box, Type, Button } from 'blockstack-ui';
 import { Card } from '@components/card';
-import { Social } from '@components/social';
+import { Section } from '@components/section';
+import { Social, NonSocialItems } from '@components/social';
 import { ConnectedAvatar } from '@components/avatar';
 import { ConnectedAppsList } from '@components/apps';
 import Link from 'next/link';
-
-/**
- * Misc visual components
- */
-const SubSection = ({ label, children, ...rest }) => (
-  <Box pt={4} {...rest}>
-    <Box pb={2}>
-      <SectionLabel>{label}</SectionLabel>
-    </Box>
-    {children}
-  </Box>
-);
-const SectionLabel = ({ ...rest }) => (
-  <Type textTransform="uppercase" letterSpacing={1.25} fontWeight="bold" color="#87acc4" fontSize={'11px'} {...rest} />
-);
-const Section = ({ ...rest }) => (
-  <Flex color="blue.dark" flexDirection="column" px={4} borderBottom="1px solid" borderColor="blue.mid" {...rest} />
-);
 
 /**
  * Keys we want to display
@@ -50,7 +33,7 @@ const keys = [
 /**
  * Pass an object and set of keys and this will render subsections for each
  */
-const generateAutomaticSubSections = (data, arr = keys, params) => {
+const generateAutomaticSections = (data, arr = keys, params) => {
   const LinkWrapper = ({ query, ...rest }) => (
     <Link
       href={{
@@ -68,7 +51,7 @@ const generateAutomaticSubSections = (data, arr = keys, params) => {
   return arr.map(
     (key, i) =>
       data[key] ? (
-        <SubSection label={key} key={i}>
+        <Section.Subsection label={key} key={i}>
           <Box maxWidth={'100%'} overflow="auto">
             {params ? (
               <LinkWrapper query={data[key]}>
@@ -80,7 +63,7 @@ const generateAutomaticSubSections = (data, arr = keys, params) => {
               <Type fontFamily="brand">{data[key]}</Type>
             )}
           </Box>
-        </SubSection>
+        </Section.Subsection>
       ) : null,
   );
 };
@@ -92,7 +75,7 @@ const generateAutomaticSubSections = (data, arr = keys, params) => {
  */
 const TransactionsSection = ({ nameRecord, ...rest }) => (
   <Section pb={4} {...rest}>
-    {generateAutomaticSubSections(nameRecord)}
+    {generateAutomaticSections(nameRecord)}
   </Section>
 );
 
@@ -102,7 +85,7 @@ const TransactionsSection = ({ nameRecord, ...rest }) => (
 const BlocksSection = ({ nameRecord, ...rest }) => (
   <Section pb={4} pr={4} {...rest}>
     <Box display="grid" gridTemplateColumns="40% 40%">
-      {generateAutomaticSubSections(nameRecord, blockKeys, { path: 'blocks', query: 'hash' })}
+      {generateAutomaticSections(nameRecord, blockKeys, { path: 'blocks', query: 'hash' })}
     </Box>
   </Section>
 );
@@ -117,7 +100,7 @@ const AppsSection = ({ apps, ...rest }) =>
     <ConnectedAppsList
       wrapper={({ children }) => (
         <Section pb={4} {...rest}>
-          <SubSection label="Multiplayer Apps Used" children={children} />
+          <Section.Subsection label="Multiplayer Apps Used" children={children} />
         </Section>
       )}
       pt={2}
@@ -129,10 +112,10 @@ const AppsSection = ({ apps, ...rest }) =>
  */
 const ProfileSection = ({ id, ownerAddress, ...rest }) => (
   <Section pb={4} {...rest}>
-    <SubSection label="Blockstack ID">
+    <Section.Subsection label="Blockstack ID">
       <Type>{id}</Type>
-    </SubSection>
-    <SubSection label="Owner Address">
+    </Section.Subsection>
+    <Section.Subsection label="Owner Address">
       <Link
         href={{
           pathname: '/address/single',
@@ -148,9 +131,18 @@ const ProfileSection = ({ id, ownerAddress, ...rest }) => (
           {ownerAddress}
         </Type>
       </Link>
-    </SubSection>
+    </Section.Subsection>
   </Section>
 );
+/**
+ * ID and Owner address
+ */
+const Addresses = ({ account, ...rest }) =>
+  account ? (
+    <Section pb={4} {...rest}>
+      <NonSocialItems account={account} wrapper={(props) => <Section.Subsection {...props} />} />
+    </Section>
+  ) : null;
 
 /**
  * The 'profile' like part of the card, displays avatar, name, desc, and social proofs
@@ -197,6 +189,7 @@ const UserCard = ({ nameRecord, profile, zone_file, id, owner_address, ...rest }
     <Card {...rest}>
       <IdentitySection id={id} name={name} account={account} description={description} />
       <ProfileSection id={id} ownerAddress={owner_address} />
+      <Addresses account={account} />
       <AppsSection apps={apps} />
       <BlocksSection nameRecord={nameRecord} />
       {/*<TransactionsSection nameRecord={nameRecord} />*/}

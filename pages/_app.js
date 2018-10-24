@@ -147,7 +147,7 @@ class MyApp extends App {
         <>
           <Global />
           <Provider value={context}>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={{ ...theme, transitions: ['unset', '.34s all cubic-bezier(.19,1,.22,1)'] }}>
               <Layout meta={meta}>
                 <Component {...pageProps} />
               </Layout>

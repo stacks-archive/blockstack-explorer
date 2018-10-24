@@ -4,17 +4,23 @@ import { extractRootDomain, uniq } from '@lib/common';
 import { Consumer } from '@pages/_app';
 
 const AppItem = ({ slug, image, ...rest }) => (
-  <Box
-    is="a"
+  <Flex
+    is={slug ? 'a' : 'div'}
     href={`https://app.co/app/${slug}`}
     target="_blank"
     mr={2}
-    bg={'blue.mid'}
+    bg={'blue.dark'}
     mb={2}
     size={42}
     backgroundImage={`url(${image})`}
     borderRadius={10}
     backgroundSize="cover"
+    alignItems="center"
+    justifyContent="center"
+    color="white"
+    fontWeight={500}
+    boxShadow="general"
+    {...rest}
   />
 );
 
@@ -27,8 +33,10 @@ const getAppsArray = (apps, userApps) => {
     if (app) applist.push(app);
     if (!app) appsNotOnAppco.push(domain);
   });
-  console.log(uniq(appsNotOnAppco));
-  return uniq(applist);
+  return {
+    apps: uniq(applist),
+    unlisted: appsNotOnAppco,
+  };
 };
 
 const ConnectedAppsList = ({ wrapper, ...rest }) => (
@@ -37,7 +45,7 @@ const ConnectedAppsList = ({ wrapper, ...rest }) => (
       if (!apps)
         return console.log('Make sure you use this component on a page that is fetching data from App.co!') || null;
       if (!user.profile.apps) return null;
-      const appsList = getAppsArray(apps, user.profile.apps);
+      const { apps: appsList, unlisted } = getAppsArray(apps, user.profile.apps);
       const appsNotIncluded = appsList.length !== user.profile.apps.length;
       if (appsList.length) {
         const children = (
@@ -45,7 +53,7 @@ const ConnectedAppsList = ({ wrapper, ...rest }) => (
             {appsList.map(({ imgixImageUrl, name, Slugs }) => (
               <AppItem slug={Slugs[0].value} title={name} image={imgixImageUrl} />
             ))}
-            {appsNotIncluded ? <AppItem /> : null}
+            {appsNotIncluded && unlisted.length !== 0 ? <AppItem>+{unlisted.length}</AppItem> : null}
           </Flex>
         );
 

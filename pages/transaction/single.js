@@ -68,19 +68,24 @@ class TransactionSinglePage extends React.Component {
                       <List.Item.Title height={'1rem'} pb={0} fontFamily="brand">
                         {addr}
                       </List.Item.Title>
-                      <List.Item.Title pb={0}>{value} BTC</List.Item.Title>
+                      <List.Item.Title pb={0}>
+                        {value} <Type opacity={0.5}>BTC</Type>
+                      </List.Item.Title>
                     </List.Item>
                   ))}
               </Box>
               <Box width={[1, 0.5]} flexGrow={1}>
                 {vout &&
                   vout.length &&
-                  vout.map(({ addr, value, txid }) => (
-                    <List.Item>
+                  vout.map(({ addr, value, scriptPubKey, spentTxId, txid }, i) => (
+                    <List.Item key={i} borderBottom={i === vout.length - 1 ? '0' : '1px solid'}>
                       <List.Item.Title height={'1rem'} pb={0} fontFamily="brand">
-                        {addr || 'N/A'}
+                        {(scriptPubKey && scriptPubKey.addresses && scriptPubKey.addresses[0]) || `Unparsed address`}
                       </List.Item.Title>
-                      <List.Item.Title pb={0}>{value} BTC</List.Item.Title>
+                      <List.Item.Title pb={0} pl={1}>
+                        {value} <Type opacity={0.5}>BTC</Type>
+                        {!spentTxId && ' U'}
+                      </List.Item.Title>
                     </List.Item>
                   ))}
               </Box>

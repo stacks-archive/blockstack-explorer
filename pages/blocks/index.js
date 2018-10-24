@@ -1,8 +1,29 @@
 import React from 'react';
 import { Flex, Box, Type, Button } from 'blockstack-ui';
 import { Card } from '@components/card';
+import { List } from '@components/list';
 import { fetchBlocks } from '@client/api';
-import Link from 'next/link';
+
+const SecondaryButton = ({ ...rest }) => (
+  <Button
+    height={'auto'}
+    py={1}
+    px={3}
+    typeProps={{
+      fontSize: '12px',
+      fontWeight: 500,
+    }}
+    bg="transparent"
+    color={'blue.dark'}
+    borderColor={'blue.mid'}
+    boxShadow={'none'}
+    border={'1px solid'}
+    flexGrow={[1, 0, 0]}
+    ml={[0, 2, 2]}
+    mr={[2, 0, 0]}
+    {...rest}
+  />
+);
 const keys = [
   {
     label: 'Height',
@@ -11,7 +32,6 @@ const keys = [
   {
     label: 'Timestamp',
     key: 'time',
-    display: ['none', 'block'],
   },
   {
     label: 'Name Operations',
@@ -36,6 +56,9 @@ const keys = [
   },
 ];
 
+const getResponsiveIndex = (array) =>
+  console.log([...array.filter((item) => !item.display)]) || [...array.filter((item) => !item.display)];
+
 const Cell = ({ ...rest }) => <Box color="blue.dark" px={4} py={3} {...rest} />;
 
 const renderRowData = (data, keys) =>
@@ -45,7 +68,7 @@ const renderRowData = (data, keys) =>
     </Cell>
   ));
 const Block = (data) => (
-  <Link
+  <List.Item
     href={{
       pathname: `/blocks/single`,
       query: {
@@ -54,21 +77,20 @@ const Block = (data) => (
     }}
     passHref
     as={`/blocks/${data.height}`}
+    is="a"
+    borderBottom={1}
+    fontSize="12px"
+    borderColor="blue.mid"
+    display={'grid'}
+    gridTemplateColumns={[`repeat(${getResponsiveIndex(keys).length}, 1fr)`, `repeat(${keys.length}, 1fr)`]}
+    py={1}
+    px={0}
   >
-    <Box
-      is="a"
-      borderBottom={1}
-      fontSize="12px"
-      borderColor="blue.mid"
-      display={'grid'}
-      gridTemplateColumns="repeat(6, 1fr)"
-    >
-      {renderRowData(data, keys)}
-    </Box>
-  </Link>
+    {renderRowData(data, keys)}
+  </List.Item>
 );
 
-const Blocks = ({ list, ...rest }) => list.map((block, i) => (i < 20 ? <Block {...block} /> : null));
+const Blocks = ({ list, ...rest }) => list.map((block, i) => (i < 200 ? <Block {...block} /> : null));
 
 class BlocksPage extends React.Component {
   static async getInitialProps({ req, query }) {
@@ -88,20 +110,27 @@ class BlocksPage extends React.Component {
         <Card
           title="Recent Blocks"
           actions={
-            <Flex>
-              <Box>Action 1</Box>
-              <Box>Action 2</Box>
-              <Box>Action 3</Box>
+            <Flex
+              flexGrow={1}
+              pt={[3, 0, 0]}
+              width={[1, 'auto', 'auto']}
+              alignItems={'center'}
+              justifyContent={['flex-start', 'flex-end', 'flex-end']}
+            >
+              <SecondaryButton>Action 1</SecondaryButton>
+              <SecondaryButton>Action 2</SecondaryButton>
+              <SecondaryButton>Action 3</SecondaryButton>
             </Flex>
           }
         >
           <Box
             display={'grid'}
-            gridTemplateColumns="repeat(6, 1fr)"
+            gridTemplateColumns={[`repeat(${getResponsiveIndex(keys).length}, 1fr)`, `repeat(${keys.length}, 1fr)`]}
             borderBottom={1}
             borderColor="blue.mid"
             bg="#F1F6F9"
             position={'sticky'}
+            zIndex={9999}
             top={[0, 0, 90]}
           >
             {keys.map(({ label, value, ...props }, i) => (

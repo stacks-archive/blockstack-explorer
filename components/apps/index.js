@@ -21,11 +21,13 @@ const AppItem = ({ slug, image, ...rest }) => (
 const getAppsArray = (apps, userApps) => {
   const domains = Object.keys(userApps).map((domain) => extractRootDomain(domain));
   const applist = [];
+  const appsNotOnAppco = [];
   domains.forEach((domain) => {
     const app = apps.find((appco) => appco.website.includes(domain));
     if (app) applist.push(app);
+    if (!app) appsNotOnAppco.push(domain);
   });
-
+  console.log(uniq(appsNotOnAppco));
   return uniq(applist);
 };
 
@@ -36,12 +38,14 @@ const ConnectedAppsList = ({ wrapper, ...rest }) => (
         return console.log('Make sure you use this component on a page that is fetching data from App.co!') || null;
       if (!user.profile.apps) return null;
       const appsList = getAppsArray(apps, user.profile.apps);
+      const appsNotIncluded = appsList.length !== user.profile.apps.length;
       if (appsList.length) {
         const children = (
           <Flex flexWrap="wrap" {...rest}>
             {appsList.map(({ imgixImageUrl, name, Slugs }) => (
               <AppItem slug={Slugs[0].value} title={name} image={imgixImageUrl} />
             ))}
+            {appsNotIncluded ? <AppItem /> : null}
           </Flex>
         );
 

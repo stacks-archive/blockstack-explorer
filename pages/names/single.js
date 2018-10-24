@@ -27,7 +27,7 @@ class NamesSinglePage extends React.Component {
   }
 
   render() {
-    const nameExists = this.props.user && this.props.user.profile;
+    const nameExists = this.props.user;
     return nameExists ? (
       <Flex alignItems="flex-start" p={5} flexDirection={['column', 'column', 'row']} width={1}>
         <UserCard mb={[5, 5, 0]} mr={[0, 0, 5]} width={1} maxWidth={['100%', '100%', '380px']} {...this.props.user} />

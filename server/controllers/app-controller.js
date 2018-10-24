@@ -54,7 +54,7 @@ const makeAppController = (app, cache) => {
     await renderAndCache(req, res, '/names');
   });
   // Names: single
-  AppController.get('/names/:name', async (req, res) => {
+  AppController.get('/name/:name', async (req, res) => {
     await renderAndCache(req, res, '/names/single');
   });
   // Address: Single
@@ -66,7 +66,10 @@ const makeAppController = (app, cache) => {
     await renderAndCache(req, res, '/blocks');
   });
   // Blocks: single
-  AppController.get('/blocks/:hash', async (req, res) => {
+  AppController.get('/nameops/:hash', async (req, res) => {
+    await renderAndCache(req, res, '/blocks/single');
+  });
+  AppController.get('/block/:hash', async (req, res) => {
     await renderAndCache(req, res, '/blocks/single');
   });
   // Transaction: single

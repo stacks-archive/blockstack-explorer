@@ -42,7 +42,7 @@ const generateAutomaticSections = (data, arr = keys, params) => {
           [params.query]: query,
         },
       }}
-      as={`/${params.path}/${query}`}
+      as={`/${params.path.substring(0, params.path.indexOf('s'))}/${query}`}
       prefetch
       passHref
       {...rest}
@@ -179,7 +179,6 @@ const ViewZoneFileSection = ({ zoneFileUrl, ...rest }) => (
  * Bring it all together now
  */
 const UserCard = ({ nameRecord, profile, zone_file, id, owner_address, ...rest }) => {
-  if (!profile) return null;
   const { target: zone_file_url } = zone_file.uri[0];
   const { name, description, account, apps } = profile;
   return (

@@ -3404,6 +3404,10 @@ ignore@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
 
+immer@^1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-1.7.2.tgz#a51e9723c50b27e132f6566facbec1c85fc69547"
+
 immutagen@^1.0.7:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/immutagen/-/immutagen-1.0.8.tgz#efc32eccab30a833496de43a4ea7aa4353e1097a"

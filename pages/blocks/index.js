@@ -116,9 +116,9 @@ class BlocksPage extends React.Component {
               alignItems={'center'}
               justifyContent={['flex-start', 'flex-end', 'flex-end']}
             >
-              <SecondaryButton>Action 1</SecondaryButton>
-              <SecondaryButton>Action 2</SecondaryButton>
-              <SecondaryButton>Action 3</SecondaryButton>
+              <Button size="small">Action 1</Button>
+              <Button size="small">Action 2</Button>
+              <Button size="small">Action 3</Button>
             </Flex>
           }
         >

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Flex, Box, Type } from 'blockstack-ui';
+import { Flex, Box, Type, Button } from 'blockstack-ui';
 import { List } from '@components/list';
 import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import { Toggle } from 'react-powerplug';
+import Link from 'next/link';
 
 const NameOperationsList = ({ items, ...rest }) => (
   <Box>
@@ -33,9 +34,30 @@ const NameOperationsList = ({ items, ...rest }) => (
               </List.Item>
               {on ? (
                 <Box borderBottom={1} borderColor="blue.mid" color="blue.dark" bg="blue.light" py={4}>
-                  <Box borderBottom={1} px={4} borderColor="blue.mid" pb={4}>
-                    <Type>Transaction Details</Type>
-                  </Box>
+                  <Flex
+                    justifyContent="space-between"
+                    alignItems="center"
+                    borderBottom={1}
+                    px={4}
+                    borderColor="blue.mid"
+                    pb={4}
+                  >
+                    <Type fontSize={1}>Transaction Details</Type>
+                    <Link
+                      href={{
+                        pathname: '/transaction/single',
+                        query: {
+                          tx: txid,
+                        },
+                      }}
+                      as={`/tx/${txid}`}
+                      key={txid}
+                    >
+                      <Button is="a" size="small">
+                        View Full Transaction
+                      </Button>
+                    </Link>
+                  </Flex>
                   <Box pt={4}>
                     {Object.keys(item).map((key) => (
                       <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>

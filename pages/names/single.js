@@ -4,7 +4,7 @@ import { Card } from '@components/card';
 import { fetchName, fetchBlockstackApps } from '@common/lib/client/api';
 import { UserCard } from '@components/user';
 import { NameOperationsList } from '@containers/lists/single-name-operations';
-
+import Head from '@components/head';
 class NamesSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
     const name = req && req.params ? req.params.name : query.name;
@@ -18,6 +18,7 @@ class NamesSinglePage extends React.Component {
       },
       meta: {
         title: name,
+        description: (data.profile && data.profile.description) || undefined,
       },
     };
   }

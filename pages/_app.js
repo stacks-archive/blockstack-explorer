@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from 'blockstack-ui';
 import { Layout } from '@components/layout';
 import { createGlobalStyle } from 'styled-components';
-import { normalize } from 'polished';
+import { normalize, darken } from 'polished';
 import fonts from '../common/lib/fonts';
 import NProgress from 'nprogress';
 import Router from 'next/router';
@@ -34,6 +34,17 @@ ${normalize()};
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
+  
+      &::-webkit-scrollbar-thumb {
+      background: ${darken(0.1, String(theme.colors.blue.mid))};
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+      border-radius: 4px;
+      background: ${theme.colors.blue.mid};
+    }
 }
 body, html{
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

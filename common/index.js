@@ -1,6 +1,10 @@
 import fetch from 'cross-fetch';
 import idx from 'idx';
 
+/**
+ * Simple get json fn
+ * @param {string} url - the url you want to fetch
+ */
 const getJSON = async (url) => {
   try {
     const request = await fetch(url);
@@ -10,14 +14,26 @@ const getJSON = async (url) => {
   }
 };
 
+/**
+ * Prepend api calls with the API_URL or fallback
+ * @param {string} path - the path you want to append to the api url
+ */
 const makeUrl = (path) => {
   const url = process.env.API_URL || 'https://blockstack-explorer-api.herokuapp.com';
   return url + path;
 };
 
+/**
+ * Blockstack: get a profile image url from profile.json
+ * @param {object} user - the path you want to append to the api url
+ */
 const getProfileImage = (user) => idx(user, (_) => _.profile.image[0].contentUrl);
 
-function extractHostname(url) {
+/**
+ * Get the hostname of a url
+ * @param {string} url - the url you want the hostname of
+ */
+const extractHostname = (url) => {
   let hostname;
   // find & remove protocol (http, ftp, etc.) and get hostname
 
@@ -33,10 +49,13 @@ function extractHostname(url) {
   hostname = hostname.split('?')[0];
 
   return hostname;
-}
+};
 
-// To address those who want the "root domain," use this function:
-function extractRootDomain(url) {
+/**
+ * Get root domain of a string (URL)
+ * @param {string} url - the url you want the domain of
+ */
+const extractRootDomain = (url) => {
   let domain = extractHostname(url);
   const splitArr = domain.split('.');
   const arrLen = splitArr.length;
@@ -52,7 +71,12 @@ function extractRootDomain(url) {
     }
   }
   return domain;
-}
+};
 
-const uniq = (a) => [...new Set(a)];
+/**
+ * Get unique items in an array
+ * @param {array} array - the array you want to remove duplicate items from
+ */
+const uniq = (array) => [...new Set(array)];
+
 export { getJSON, makeUrl, getProfileImage, extractRootDomain, uniq };

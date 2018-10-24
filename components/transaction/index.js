@@ -60,7 +60,7 @@ const AutomatedSection = ({ iterable, ...rest }) => (
 const TransactionCard = ({ transaction, ...rest }) => {
   const { vin, vout, id, ...iterable } = transaction;
   return (
-    <Card title={`Transaction Details`} {...rest}>
+    <Card title={`Transaction Information`} {...rest}>
       <AutomatedSection iterable={iterable} />
     </Card>
   );

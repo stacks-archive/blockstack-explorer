@@ -84,7 +84,7 @@ const AddressCard = ({ address, ...rest }) => {
   const { data, value } = address;
   const { names, transactions, ...iterable } = data;
   return (
-    <Card title="Address" {...rest}>
+    <Card title="Address Details" {...rest}>
       <Section alignItems="center" justifyContent={'center'} py={4} color="blue.dark">
         <QRCode level="H" fgColor="currentColor" renderAs="svg" size={156} value={value} />
       </Section>

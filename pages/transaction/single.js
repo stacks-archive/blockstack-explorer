@@ -53,10 +53,10 @@ class TransactionSinglePage extends React.Component {
             </Flex>
             <Flex bg="blue.light" borderTop="1px solid" borderBottom="1px solid" borderColor="blue.mid">
               <Flex flexGrow={1} alignItems="center" justifyContent="center" py={4} px={4}>
-                FROM
+                <Type color="#87acc4">FROM</Type>
               </Flex>
               <Flex flexGrow={1} alignItems="center" justifyContent="center" py={4} px={4}>
-                TO
+                <Type color="#87acc4">TO</Type>
               </Flex>
             </Flex>
             <Flex>
@@ -64,7 +64,21 @@ class TransactionSinglePage extends React.Component {
                 {vin &&
                   vin.length &&
                   vin.map(({ addr, value, txid }) => (
-                    <List.Item>
+                    <List.Item
+                      href={
+                        addr
+                          ? {
+                              pathname: '/address/single',
+                              query: {
+                                address: addr,
+                              },
+                            }
+                          : undefined
+                      }
+                      as={addr ? `/address/${addr}` : undefined}
+                      prefetch={addr ? true : undefined}
+                      passHref={addr ? true : undefined}
+                    >
                       <List.Item.Title height={'1rem'} pb={0} fontFamily="brand">
                         {addr}
                       </List.Item.Title>
@@ -78,7 +92,23 @@ class TransactionSinglePage extends React.Component {
                 {vout &&
                   vout.length &&
                   vout.map(({ addr, value, scriptPubKey, spentTxId, txid }, i) => (
-                    <List.Item key={i} borderBottom={i === vout.length - 1 ? '0' : '1px solid'}>
+                    <List.Item
+                      key={i}
+                      href={
+                        scriptPubKey && scriptPubKey.addresses
+                          ? {
+                              pathname: '/address/single',
+                              query: {
+                                address: scriptPubKey.addresses[0],
+                              },
+                            }
+                          : undefined
+                      }
+                      as={scriptPubKey && scriptPubKey.addresses ? `/address/${scriptPubKey.addresses[0]}` : undefined}
+                      prefetch={scriptPubKey && scriptPubKey.addresses ? true : undefined}
+                      passHref={scriptPubKey && scriptPubKey.addresses ? true : undefined}
+                      borderBottom={i === vout.length - 1 ? '0' : '1px solid'}
+                    >
                       <List.Item.Title height={'1rem'} pb={0} fontFamily="brand">
                         {(scriptPubKey && scriptPubKey.addresses && scriptPubKey.addresses[0]) || `Unparsed address`}
                       </List.Item.Title>

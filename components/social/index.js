@@ -77,8 +77,11 @@ const NonSocialItems = ({ wrapper, account: accounts, ...rest }) => {
         {itemsWithoutProofs.map(
           (item) =>
             item.identifier ? (
-              <Flex alignItems={'center'} overflow="auto" maxWidth={'100%'}>
-                <SocialItem {...item} /> <Type fontFamily={'brand'}>{item.identifier}</Type>
+              <Flex alignItems={'center'} justifyContent="space-between" pb={2}>
+                <SocialItem {...item} />
+                <Box p={1} overflow="auto" width={1} maxWidth={'calc(100% - 38px)'}>
+                  <Type fontFamily={'brand'}>{item.service === 'pgp' ? 'PGP Keys' : item.identifier}</Type>
+                </Box>
               </Flex>
             ) : null,
         )}

@@ -2,23 +2,14 @@
   "name": "stacks-explorer",
   "scripts": {},
   "env": {
-    "ADMIN_PASSWORD": {
-      "required": true
-    },
-    "AUTH_PASSWORD": {
-      "required": true
-    },
-    "BASE_URL": "https://stacks-explorer-pr-17.herokuapp.com"
+    "API_URL": "http://blockstack-explorer-api.herokuapp.com"
   },
   "formation": {
     "web": {
       "quantity": 1
     }
   },
-  "addons": [
-    "mongolab",
-    "heroku-redis:hobby-dev"
-  ],
+  "addons": ["mongolab", "heroku-redis:hobby-dev"],
   "buildpacks": [
     {
       "url": "heroku/nodejs"

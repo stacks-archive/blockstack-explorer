@@ -29,6 +29,7 @@
     "mdi-react": "^4.4.0",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.21",
+    "morgan": "^1.9.1",
     "next": "^7.0.2",
     "nprogress": "^0.2.0",
     "numeral": "^2.0.6",

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Type, Button, Flex } from 'blockstack-ui';
-import { Card } from '@components/card';
-import { Section } from '@components/section';
-import { Social, NonSocialItems } from '@components/social';
-import { ConnectedAvatar } from '@components/avatar';
-import { ConnectedAppsList } from '@components/apps';
+import { Card } from '@components/card/index';
+import { Section } from '@components/section/index';
+import { Social, NonSocialItems } from '@components/social/index';
+import { ConnectedAvatar } from '@components/avatar/index';
+import { ConnectedAppsList } from '@components/apps/index';
 import { AccountOutlineIcon } from 'mdi-react';
 import Link from 'next/link';
 

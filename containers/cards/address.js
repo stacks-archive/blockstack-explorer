@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Type } from 'blockstack-ui';
-import { Card } from '@components/card';
-import { Section } from '@components/section';
+import { Card } from '@components/card/index';
+import { Section } from '@components/section/index';
 import QRCode from 'qrcode.react';
 import Link from 'next/link';
 

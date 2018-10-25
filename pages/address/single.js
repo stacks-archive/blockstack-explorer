@@ -1,11 +1,11 @@
 import React from 'react';
-import { Flex, Box } from 'blockstack-ui';
 import { fetchAddress } from '@common/lib/client/api';
-import { AddressCard } from '@components/address';
+import { AddressCard } from '@containers/cards/address';
 import { NamesList } from '@containers/lists/names';
 import { TxList } from '@containers/lists/tx-list';
 import { Card } from '@components/card';
 import { fetchTX } from '@common/lib/client/api';
+import { Page } from '@components/page';
 
 class AddressSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
@@ -41,9 +41,9 @@ class AddressSinglePage extends React.Component {
 
   render() {
     return (
-      <Flex alignItems="flex-start" p={5} flexDirection={['column', 'column', 'row']} flexGrow={1}>
+      <Page>
         <AddressCard mr={[0, 0, 5]} mb={[5, 5, 0]} width={['100%', '100%', '380px']} address={this.props.address} />
-        <Box width={[1, 1, 'calc(100% - 420px)']} flexGrow={1}>
+        <Page.Main>
           {this.props.nameOperations.length ? (
             <Card width={1} mb={[5, 5, 5]} title="Names Owned">
               <NamesList />
@@ -54,8 +54,8 @@ class AddressSinglePage extends React.Component {
               <TxList />
             </Card>
           ) : null}
-        </Box>
-      </Flex>
+        </Page.Main>
+      </Page>
     );
   }
 }

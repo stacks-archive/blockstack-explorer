@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Type } from 'blockstack-ui';
-import { Card } from '@components/card';
-import { Section } from '@components/section';
+import { Card } from '@components/card/index';
+import { Section } from '@components/section/index';
 
 import Link from 'next/link';
 
@@ -57,13 +57,13 @@ const AutomatedSection = ({ iterable, ...rest }) => (
 /**
  * Bring it all together now
  */
-const BlockCard = ({ block, ...rest }) => {
-  const { transactions, poolInfo, nameOperations, ...iterable } = block;
+const TransactionCard = ({ transaction, ...rest }) => {
+  const { vin, vout, id, ...iterable } = transaction;
   return (
-    <Card title={`Block ${block.height}`} {...rest}>
+    <Card title={`Transaction Information`} {...rest}>
       <AutomatedSection iterable={iterable} />
     </Card>
   );
 };
 
-export { BlockCard };
+export { TransactionCard };

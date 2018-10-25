@@ -1,30 +1,8 @@
 import React from 'react';
-import { Flex, Box, Type } from 'blockstack-ui';
 import { fetchTX } from '@common/lib/client/api';
-import { NamesList } from '@containers/lists/names';
-import { TxList } from '@containers/lists/tx-list';
-import { Card } from '@components/card';
-import { TransactionCard } from '@components/transaction';
-import { SectionLabel } from '@components/section';
-import { List } from '@components/list';
-
-const StatItem = ({ isLast, ...rest }) => (
-  <Flex
-    borderRight={!isLast ? ['0', '0', '0', '1px solid'] : undefined}
-    borderBottom={!isLast ? ['1px solid', '1px solid', '1px solid', 0] : undefined}
-    borderColor={['blue.mid', 'blue.mid', 'blue.mid', 'blue.mid']}
-    flexGrow={1}
-    width={[1, 1, 1, '33.3333%']}
-    alignItems="center"
-    flexDirection="column"
-    justifyContent="center"
-    px={5}
-    py={7}
-    {...rest}
-  />
-);
-
-const StatValue = ({ ...rest }) => <Type pb={4} fontSize={5} fontWeight={400} color="blue.dark" {...rest} />;
+import { TransactionCard } from '@containers/cards/transaction';
+import { TransactionDetails } from '@containers/cards/transaction-details';
+import { Page } from '@components/page';
 
 class TransactionSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
@@ -43,125 +21,14 @@ class TransactionSinglePage extends React.Component {
   }
 
   render() {
-    const { valueIn, valueOut, confirmations, vin, vout, fees } = this.props.tx;
+    const { valueOut, confirmations, vin, vout, fees } = this.props.tx;
     return (
-      <Flex alignItems="flex-start" p={5} flexDirection={['column', 'column', 'row']} flexGrow={1}>
+      <Page>
         <TransactionCard mr={[0, 0, 5]} mb={[5, 5, 0]} width={['100%', '100%', '380px']} transaction={this.props.tx} />
-        <Box width={[1, 1, 'calc(100% - 420px)']} flexGrow={1}>
-          <Card width={1} mb={[5, 5, 5]} title="Details">
-            <Flex flexDirection={['column', 'column', 'column', 'row']}>
-              <StatItem>
-                <StatValue>{valueOut}</StatValue>
-                <SectionLabel>Total Transferred</SectionLabel>
-              </StatItem>
-              <StatItem>
-                <StatValue>{confirmations}</StatValue>
-                <SectionLabel>Confirmations</SectionLabel>
-              </StatItem>
-              <StatItem isLast>
-                <StatValue>{fees || 0}</StatValue>
-                <SectionLabel>Fees</SectionLabel>
-              </StatItem>
-            </Flex>
-            <Flex flexDirection={['column', 'column', 'column', 'row']}>
-              <Box
-                width={[1, 1, 1, 0.5]}
-                borderRight={[0, 0, 0, '1px solid']}
-                borderColor={[0, 'blue.mid']}
-                flexGrow={1}
-              >
-                <Flex
-                  bg="blue.light"
-                  borderTop="1px solid"
-                  borderBottom="1px solid"
-                  borderColor="blue.mid"
-                  flexGrow={1}
-                  alignItems="center"
-                  justifyContent="center"
-                  py={4}
-                  px={4}
-                >
-                  <Type color="#87acc4">FROM</Type>
-                </Flex>
-                {vin &&
-                  vin.length &&
-                  vin.map(({ addr, coinbase, value, txid }) => (
-                    <List.Item
-                      href={
-                        addr
-                          ? {
-                              pathname: '/address/single',
-                              query: {
-                                address: addr,
-                              },
-                            }
-                          : undefined
-                      }
-                      as={addr ? `/address/${addr}` : undefined}
-                      prefetch={addr ? true : undefined}
-                      passHref={addr ? true : undefined}
-                    >
-                      <List.Item.Title height={'1rem'} pb={0}>
-                        <SectionLabel> {coinbase ? 'Mining Reward' : addr}</SectionLabel>
-                      </List.Item.Title>
-                      {value && (
-                        <List.Item.Title pb={0}>
-                          {value} <Type opacity={0.5}>BTC</Type>
-                        </List.Item.Title>
-                      )}
-                    </List.Item>
-                  ))}
-              </Box>
-              <Box width={[1, 1, 1, 0.5]} flexGrow={1}>
-                <Flex
-                  bg="blue.light"
-                  borderTop={[0, 0, 0, '1px solid']}
-                  borderBottom="1px solid"
-                  borderColor={['blue.mid', 'blue.mid', 'blue.mid', 'blue.mid']}
-                  flexGrow={1}
-                  alignItems="center"
-                  justifyContent="center"
-                  py={4}
-                  px={4}
-                >
-                  <Type color="#87acc4">TO</Type>
-                </Flex>
-                {vout &&
-                  vout.length &&
-                  vout.map(({ addr, value, scriptPubKey, spentTxId, txid }, i) => (
-                    <List.Item
-                      key={i}
-                      href={
-                        scriptPubKey && scriptPubKey.addresses
-                          ? {
-                              pathname: '/address/single',
-                              query: {
-                                address: scriptPubKey.addresses[0],
-                              },
-                            }
-                          : undefined
-                      }
-                      as={scriptPubKey && scriptPubKey.addresses ? `/address/${scriptPubKey.addresses[0]}` : undefined}
-                      prefetch={scriptPubKey && scriptPubKey.addresses ? true : undefined}
-                      passHref={scriptPubKey && scriptPubKey.addresses ? true : undefined}
-                      borderBottom={i === vout.length - 1 ? '0' : '1px solid'}
-                    >
-                      <List.Item.Title height={'1rem'} pb={0}>
-                        <SectionLabel>
-                          {(scriptPubKey && scriptPubKey.addresses && scriptPubKey.addresses[0]) || `Unparsed address`}
-                        </SectionLabel>
-                      </List.Item.Title>
-                      <List.Item.Title pb={0} pl={1}>
-                        {value} <Type opacity={0.5}>BTC</Type>
-                        {!spentTxId && ' U'}
-                      </List.Item.Title>
-                    </List.Item>
-                  ))}
-              </Box>
-            </Flex>
-          </Card>
-        </Box>
-      </Flex>
+        <Page.Main>
+          <TransactionDetails confirmations={confirmations} fees={fees} valueOut={valueOut} vin={vin} vout={vout} />
+        </Page.Main>
+      </Page>
     );
   }
 }

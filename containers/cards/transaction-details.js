@@ -22,7 +22,7 @@ const DirectionHeader = ({ children, ...rest }) => (
     borderTop="1px solid"
     postion="relative"
     borderBottom="1px solid"
-    borderColor="blue.mid"
+    borderColor={['blue.mid', 'blue.mid', 'blue.mid', 'blue.mid']}
     flexGrow={1}
     alignItems="center"
     justifyContent="center"
@@ -40,7 +40,7 @@ const UTXOItem = ({ label, value, spentTxId, ...rest }) => (
       <SectionLabel>{label}</SectionLabel>
     </List.Item.Title>
     <List.Item.Title style={{ whiteSpace: 'nowrap' }} textAlign={'right'} ml={2} pb={0} pl={1}>
-      {value} <Type opacity={0.5}>BTC</Type>
+      {value || 0} <Type opacity={0.5}>BTC</Type>
       {!spentTxId && ' U'}
     </List.Item.Title>
   </List.Item>
@@ -117,7 +117,7 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest 
           ))}
       </Box>
       <Box width={[1, 1, 1, 0.5]} flexGrow={1}>
-        <DirectionHeader>TO</DirectionHeader>
+        <DirectionHeader borderTop={[0, 0, 0, '1px solid']}>TO</DirectionHeader>
         {vout &&
           vout.length &&
           vout.map(({ addr, value, scriptPubKey, spentTxId, txid }, i) => (

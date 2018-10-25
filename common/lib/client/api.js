@@ -124,6 +124,8 @@ const fetchNameCounts = async () => getJSON(makeUrl('/api/name-counts'));
  */
 const fetchStacksAddress = async (address) => getJSON(makeUrl(`/api/stacks/addresses/${address}`));
 
+const fetchHomeInfo = () => getJSON(makeUrl('/api/home'));
+
 export {
   fetchNameOperations,
   fetchName,
@@ -139,4 +141,5 @@ export {
   fetchNameCounts,
   fetchAccounts,
   fetchStacksAddress,
+  fetchHomeInfo,
 };

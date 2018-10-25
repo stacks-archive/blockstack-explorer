@@ -33,9 +33,9 @@ class Home extends React.Component {
           mb={[5, 5, 0]}
           title="Latest Names Registered"
           actions={
-            <Link href={'/names'}>
+            <Link passHref href={'/names'}>
               <Type opacity={0.5} is="a" color={'blue.dark'}>
-                See All
+                See All Names
               </Type>
             </Link>
           }

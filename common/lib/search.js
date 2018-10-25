@@ -18,7 +18,7 @@ const search = async (query) => {
           name: query,
         },
       },
-      `/names/${query}`,
+      `/name/${query}`,
     );
   }
 

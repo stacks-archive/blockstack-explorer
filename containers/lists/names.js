@@ -8,7 +8,7 @@ const NamesList = ({ list, ...rest }) => (
     {({ nameOperations }) => {
       const array = list && list.length ? list : nameOperations;
       return array
-        ? array.map(({ name, address, timeAgo }) => (
+        ? array.map(({ name, owner, address, timeAgo }) => (
             <List.Item
               href={{
                 pathname: '/names/single',
@@ -21,7 +21,7 @@ const NamesList = ({ list, ...rest }) => (
             >
               <Box>
                 <List.Item.Title>{name}</List.Item.Title>
-                {address ? <List.Item.Subtitle>Owned by {address}</List.Item.Subtitle> : null}
+                {address || owner ? <List.Item.Subtitle>Owned by {address || owner}</List.Item.Subtitle> : null}
               </Box>
               {timeAgo ? <List.Item.Subtitle>{timeAgo}</List.Item.Subtitle> : null}
             </List.Item>

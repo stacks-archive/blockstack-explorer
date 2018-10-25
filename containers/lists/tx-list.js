@@ -2,12 +2,13 @@ import React from 'react';
 import { List } from '@components/list/index';
 import { Box } from 'blockstack-ui';
 import { Consumer } from '@pages/_app';
-import moment from 'moment'
+import { Time } from '@components/time';
+
 const TxList = ({ ...rest }) => (
   <Consumer>
     {({ transactions }) =>
       transactions
-        ? transactions.map(({ txid, time }) => (
+        ? transactions.map(({ txid, valueOut, time }) => (
             <List.Item
               href={{
                 pathname: '/transaction/single',
@@ -19,9 +20,14 @@ const TxList = ({ ...rest }) => (
               key={txid}
             >
               <Box maxWidth={'calc(100% - 105px)'}>
-                <List.Item.Title overflow="auto">{txid}</List.Item.Title>
+                <List.Item.Title overflow="auto">Sent {valueOut} BTC</List.Item.Title>
+                <List.Item.Subtitle overflow="auto">{txid}</List.Item.Subtitle>
               </Box>
-              {time ? <List.Item.Subtitle>{moment(new Date(time * 1000)).format('DD MMM YYYY HH:MM')}</List.Item.Subtitle> : null}
+              {time ? (
+                <List.Item.Subtitle>
+                  <Time date={time} />
+                </List.Item.Subtitle>
+              ) : null}
             </List.Item>
           ))
         : null

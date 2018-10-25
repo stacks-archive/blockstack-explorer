@@ -63,8 +63,9 @@ body{
   height:100%;
   margin:0;
 }
-a {
-  text-decoration: none;
+a:link {
+  text-decoration: underline;
+
 }
 ${fonts}
 #nprogress {

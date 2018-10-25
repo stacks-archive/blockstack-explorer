@@ -10,7 +10,7 @@ const Footer = ({ ...rest }) => (
       </Type>
     </Box>
     <Box>
-      <Type color="blue.mid" fontSize={1}>
+      <Type color="blue.mid" maxWidth="400px" fontSize={1}>
         The Blockstack Tokens are a crypto asset that is currently being developed by Blockstack Token LLC, a Delaware
         {'limited liability company, whose website can be found at '}
         <Type is="a" href="https://stackstoken.com" target="_blank" color="white">

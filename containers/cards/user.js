@@ -171,7 +171,7 @@ const IdentitySection = ({ name, id, description, account, ...rest }) => (
 const ViewZoneFileSection = ({ zoneFileUrl, ...rest }) => (
   <Section py={4} {...rest}>
     <Button is="a" href={zoneFileUrl} target={'_blank'}>
-      View Raw Zone File
+      View Raw Profile Data
     </Button>
   </Section>
 );

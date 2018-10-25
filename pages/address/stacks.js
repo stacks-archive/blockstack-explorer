@@ -27,11 +27,11 @@ export default class StacksAddressPage extends React.Component {
         </Box>
         <Box width={[1, 1, 'calc(100% - 420px)']} flexGrow={1}>
           {address.history && address.history.length ? (
-            <Card width={1} title="Transactions">
+            <Card mb={5} width={1} title="Transactions">
               <StacksTxList />
             </Card>
           ) : null}
-          {address.cumulativeVestedAtBlocks ? <StacksUnlockingChart address={address} /> : null}
+          {address.cumulativeVestedAtBlocks ? <StacksUnlockingChart /> : null}
         </Box>
       </Flex>
     );

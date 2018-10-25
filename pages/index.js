@@ -100,29 +100,6 @@ class Home extends React.Component {
                   },
                 }}
               />
-              {/* <ResponsiveContainer height={400} width="100%">
-                <LineChart
-                  data={this.props.nameOperationsOverTime}
-                  margin={{ top: 30, right: 30, bottom: 30, left: 30 }}
-                >
-                  <XAxis
-                    dataKey="time"
-                    type="number"
-                    tickFormatter={(tick) => tick}
-                    domain={['dataMin', 'dataMax']}
-                    label={{ value: 'Date', position: 'insideBottom', offset: -25 }}
-                  />
-                  <Line dataKey="names" />
-                  <YAxis
-                    tickFormatter={(usd) => numeral(usd).format('0a')}
-                    domain={[minCount, maxCount]}
-                    dataKey="names"
-                    tick={false}
-                    label={{ value: 'Total Names', angle: -90, position: 'insideLeft', offset: -10 }}
-                  />
-                  <CartesianGrid />
-                </LineChart>
-              </ResponsiveContainer> */}
             </Section>
           </Card>
         </Box>

@@ -1,29 +1,10 @@
 import React from 'react';
-import { Flex, Box, Type, Button } from 'blockstack-ui';
+import { Flex, Button } from 'blockstack-ui';
 import { Card } from '@components/card';
-import { List } from '@components/list';
 import { fetchBlocks } from '@common/lib/client/api';
+import { Time } from '@components/time';
+import { BlocksList } from '@containers/lists/blocks';
 
-const SecondaryButton = ({ ...rest }) => (
-  <Button
-    height={'auto'}
-    py={1}
-    px={3}
-    typeProps={{
-      fontSize: '12px',
-      fontWeight: 500,
-    }}
-    bg="transparent"
-    color={'blue.dark'}
-    borderColor={'blue.mid'}
-    boxShadow={'none'}
-    border={'1px solid'}
-    flexGrow={[1, 0, 0]}
-    ml={[0, 2, 2]}
-    mr={[2, 0, 0]}
-    {...rest}
-  />
-);
 const keys = [
   {
     label: 'Height',
@@ -32,11 +13,12 @@ const keys = [
   {
     label: 'Timestamp',
     key: 'time',
+    value: (data) => (data.time ? <Time date={data.time} /> : ''),
   },
   {
     label: 'Name Operations',
     key: 'nameOps',
-    value: (data) => data.nameOps && data.nameOps.length,
+    value: (data) => (data.nameOps && data.nameOps.length) || '0',
     display: ['none', 'block'],
   },
   {
@@ -55,41 +37,6 @@ const keys = [
     key: 'size',
   },
 ];
-
-const getResponsiveIndex = (array) => [...array.filter((item) => !item.display)];
-
-const Cell = ({ ...rest }) => <Box color="blue.dark" px={4} py={3} {...rest} />;
-
-const renderRowData = (data, keys) =>
-  keys.map(({ key, value, ...props }) => (
-    <Cell {...props}>
-      <Type>{String(value ? value(data) : data[key])}</Type>
-    </Cell>
-  ));
-const Block = (data) => (
-  <List.Item
-    href={{
-      pathname: `/blocks/single`,
-      query: {
-        hash: data.height,
-      },
-    }}
-    passHref
-    as={`/blocks/${data.height}`}
-    is="a"
-    borderBottom={1}
-    fontSize="12px"
-    borderColor="blue.mid"
-    display={'grid'}
-    gridTemplateColumns={[`repeat(${getResponsiveIndex(keys).length}, 1fr)`, `repeat(${keys.length}, 1fr)`]}
-    py={1}
-    px={0}
-  >
-    {renderRowData(data, keys)}
-  </List.Item>
-);
-
-const Blocks = ({ list, ...rest }) => list.map((block, i) => (i < 200 ? <Block {...block} /> : null));
 
 class BlocksPage extends React.Component {
   static async getInitialProps({ req, query }) {
@@ -122,27 +69,7 @@ class BlocksPage extends React.Component {
             </Flex>
           }
         >
-          <Box
-            display={'grid'}
-            gridTemplateColumns={[`repeat(${getResponsiveIndex(keys).length}, 1fr)`, `repeat(${keys.length}, 1fr)`]}
-            borderBottom={1}
-            borderColor="blue.mid"
-            bg="#F1F6F9"
-            position={'sticky'}
-            zIndex={9999}
-            top={[0, 0, 90]}
-          >
-            {keys.map(({ label, value, ...props }, i) => (
-              <Box px={4} py={3} flexGrow={1} {...props}>
-                <Type color={'blue.mid'} fontSize={'12px'} textTransform="uppercase">
-                  {label}
-                </Type>
-              </Box>
-            ))}
-          </Box>
-          <Box>
-            <Blocks list={this.props.blocks} />
-          </Box>
+          <BlocksList blocks={this.props.blocks} keys={keys} />
         </Card>
         <Flex py={4} justifyContent="center">
           <Button>View More Blocks</Button>

@@ -43,7 +43,7 @@ const UTXOItem = ({ label, value, spentTxId, ...rest }) => (
     <List.Item.Title maxWidth={'100%'} overflow="auto" height={'1rem'} pb={0}>
       <SectionLabel>{label}</SectionLabel>
     </List.Item.Title>
-    <List.Item.Title style={{whiteSpace: 'nowrap'}} textAlign={'right'} ml={2} pb={0} pl={1}>
+    <List.Item.Title style={{ whiteSpace: 'nowrap' }} textAlign={'right'} ml={2} pb={0} pl={1}>
       {value} <Type opacity={0.5}>BTC</Type>
       {!spentTxId && ' U'}
     </List.Item.Title>
@@ -73,7 +73,9 @@ const ToItem = ({ address, length, value, spentTxId, index, key, ...rest }) => (
   />
 );
 
-const StatValue = ({ ...rest }) => <Type pb={4} fontSize={5} fontWeight={400} color="blue.dark" {...rest} />;
+const StatValue = ({ ...rest }) => (
+  <Type pb={4} textAlign={'center'} fontSize={5} fontWeight={400} color="blue.dark" {...rest} />
+);
 
 const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest }) => (
   <Card width={1} mb={[5, 5, 5]} title="Details">

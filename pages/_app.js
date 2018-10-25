@@ -59,6 +59,14 @@ body{
     }
   }
 }
+::selection {
+  background: ${theme.colors.blue.dark} !important; /* WebKit/Blink Browsers */
+  color: white;
+}
+::-moz-selection {
+  background: ${theme.colors.blue.dark} !important; /* Gecko Browsers */
+  color: white;
+}
 #__next{
   height:100%;
   margin:0;

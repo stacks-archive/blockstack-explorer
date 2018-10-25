@@ -104,4 +104,4 @@ const StacksUnlockingChart = ({ address, STXUSD, handleOnChange, ...rest }) => {
   );
 };
 
-export {StacksUnlockingChart}
+export { StacksUnlockingChart };

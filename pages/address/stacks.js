@@ -29,11 +29,13 @@ export default class StacksAddressPage extends React.Component {
           <StacksAddressCard address={address} />
         </Box>
         <Box width={[1, 1, 'calc(100% - 420px)']} flexGrow={1}>
-          <Card width={1} title="Transactions">
-            <StacksTxList />
-          </Card>
+          {address.history && address.history.length ? (
+            <Card width={1} title="Transactions">
+              <StacksTxList />
+            </Card>
+          ) : null}
           {address.cumulativeVestedAtBlocks ? (
-            <StacksUnlockingChart STXUSD={this.state.STXUSD} handleOnChange={this.setState} />
+            <StacksUnlockingChart address={address} STXUSD={this.state.STXUSD} handleOnChange={this.setState} />
           ) : null}
         </Box>
       </Flex>

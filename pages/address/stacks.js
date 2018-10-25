@@ -1,5 +1,6 @@
 import React from 'react';
 import { Flex, Box, Type } from 'blockstack-ui';
+import Link from 'next/link';
 import QRCode from 'qrcode.react';
 import { Card } from '@components/card';
 import { Section } from '@components/section';
@@ -165,7 +166,25 @@ export default class StacksAddressPage extends React.Component {
             </Section>
             <Section pb={4}>
               <Attribute label="Address" value={address.address} />
-              <Attribute label="BTC Address" value={address.btcAddress} />
+              {/* <Attribute label="BTC Address" value={address.btcAddress} /> */}
+              <Section.Subsection label="BTC Address">
+                <Box maxWidth="100%" overflow="auto">
+                  <Link
+                    href={{
+                      query: {
+                        address: address.btcAddress,
+                      },
+                      pathname: '/address/single',
+                    }}
+                    as={`/address/${address.btcAddress}`}
+                    passHref
+                  >
+                    <Type fontFamily="brand" is="a">
+                      {address.btcAddress}
+                    </Type>
+                  </Link>
+                </Box>
+              </Section.Subsection>
               <Attribute label="Balance" value={stacksValue(address.balance)} />
               <Attribute label="Total Received" value={stacksValue(address.status.credit_value)} />
               <Attribute label="Total Sent" value={stacksValue(address.status.debit_value)} />

@@ -48,9 +48,9 @@ const generateAutomaticSections = (data, arr = keys, params) => {
   );
   return arr.map(
     (key, i) =>
-      data[key] ? (
+      typeof data[key] !== 'undefined' ? (
         <Section.Subsection label={key} key={i}>
-          <Box maxWidth={'100%'} overflow="auto">
+          <Box maxWidth="100%" overflow="auto">
             {params ? (
               <LinkWrapper query={data[key]}>
                 <Type is="a" fontFamily="brand">
@@ -83,9 +83,10 @@ const AutomatedSection = ({ iterable, ...rest }) => (
 const AddressCard = ({ address, ...rest }) => {
   const { data, value } = address;
   const { names, transactions, ...iterable } = data;
+  console.log(iterable);
   return (
     <Card title="Address Details" {...rest}>
-      <Section alignItems="center" justifyContent={'center'} py={4} color="blue.dark">
+      <Section alignItems="center" justifyContent="center" py={4} color="blue.dark">
         <QRCode level="H" fgColor="currentColor" renderAs="svg" size={156} value={value} />
       </Section>
       <AutomatedSection iterable={iterable} />

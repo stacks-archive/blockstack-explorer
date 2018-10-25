@@ -34,7 +34,7 @@ class NamesSinglePage extends React.Component {
       <Page>
         <UserCard mb={[5, 5, 0]} mr={[0, 0, 5]} width={1} maxWidth={['100%', '100%', '380px']} {...this.props.user} />
         <Page.Main>
-          <Card width={[1, 1, 'calc(100% - 420px)']} title="Recent Operations">
+          <Card flexGrow={1} title="Recent Operations">
             <NameOperationsList items={this.props.user.nameRecord.history} />
           </Card>
         </Page.Main>

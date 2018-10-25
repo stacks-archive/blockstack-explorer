@@ -2,8 +2,6 @@ import React from 'react';
 import { Box, Type } from 'blockstack-ui';
 import { List } from '@components/list';
 
-
-
 const getResponsiveIndex = (array) => [...array.filter((item) => !item.display)];
 
 const Cell = ({ ...rest }) => <Box color="blue.dark" px={4} py={3} {...rest} />;
@@ -70,4 +68,4 @@ const BlocksList = ({ blocks, keys, ...rest }) => (
   </>
 );
 
-export {BlocksList}
+export { BlocksList };

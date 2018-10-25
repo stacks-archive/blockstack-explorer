@@ -1,16 +1,15 @@
 import App, { Container } from 'next/app';
 import React from 'react';
-import { withRouter } from 'next/router';
-import { ThemeProvider } from 'styled-components';
+import Router from 'next/router';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { theme } from 'blockstack-ui';
 import { Layout } from '@components/layout';
-import { createGlobalStyle } from 'styled-components';
 import { normalize, darken } from 'polished';
-import fonts from '../common/lib/fonts';
 import NProgress from 'nprogress';
-import Router from 'next/router';
-const { Provider, Consumer } = React.createContext();
 import { fetchBlockstackApps } from '@common/lib/client/api';
+import fonts from '../common/lib/fonts';
+
+const { Provider, Consumer } = React.createContext();
 
 NProgress.configure({
   showSpinner: false,
@@ -19,7 +18,7 @@ NProgress.configure({
   speed: 300,
 });
 
-Router.events.on('routeChangeStart', (url) => {
+Router.events.on('routeChangeStart', () => {
   NProgress.start();
 });
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -164,7 +163,7 @@ ${fonts}
 let apps = null;
 
 class MyApp extends App {
-  static async getInitialProps({ Component, router, ctx }) {
+  static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
     if (!apps) {
@@ -208,4 +207,4 @@ class MyApp extends App {
 
 export { Consumer };
 
-export default withRouter(MyApp);
+export default MyApp;

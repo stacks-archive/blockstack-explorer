@@ -20,7 +20,7 @@ const NamesList = ({ list, ...rest }) => (
               key={name}
             >
               <Box>
-                <List.Item.Title>{name}</List.Item.Title>
+                {name ? <List.Item.Title>{name}</List.Item.Title> : null}
                 {address || owner ? <List.Item.Subtitle>Owned by {address || owner}</List.Item.Subtitle> : null}
               </Box>
               {timeAgo ? <List.Item.Subtitle>{timeAgo}</List.Item.Subtitle> : null}

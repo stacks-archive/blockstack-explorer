@@ -13,6 +13,7 @@ const txTitle = (operation, tokensSent) => {
   }
   return operation;
 };
+
 const StacksTxList = ({ ...rest }) => (
   <Consumer>
     {({ address }) =>

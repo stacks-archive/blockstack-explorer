@@ -30,7 +30,7 @@ const search = async (query) => {
         pathname: '/address/stacks',
         query: { address: query },
       },
-      `/stacks/addresses/${query}`,
+      `/address/stacks/${query}`,
     );
   } catch (error) {
     // move on, not a stacks address

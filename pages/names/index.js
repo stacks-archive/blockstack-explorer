@@ -69,6 +69,7 @@ class NamesPage extends React.Component {
           mr={[0, 0, 5]}
         >
           <List.Item
+            hoverBg={'white'}
             bg={this.state.view === 'all' ? 'white !important' : undefined}
             boxShadow={this.state.view === 'all' ? 'general' : undefined}
             onClick={() => this.fetchNamepaceNames('all')}
@@ -79,6 +80,7 @@ class NamesPage extends React.Component {
           </List.Item>
           {this.props.namespaces.map(({ namespace, count }) => (
             <List.Item
+              hoverBg={'white'}
               borderColor="transparent"
               boxShadow={this.state.view === namespace ? 'general' : undefined}
               bg={this.state.view === namespace ? 'white !important' : undefined}

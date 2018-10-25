@@ -27,9 +27,11 @@ const ListItemComponent = sys(
     transition: 1,
     color: 'blue.dark',
   },
-  ({ theme: { colors } }) => ({
+  ({ theme: { colors }, href, hoverBg, hoverColor }) => ({
     '&:hover': {
-      background: colors.blue.light,
+      background: hoverBg || colors.blue.light,
+      color: hoverColor || undefined,
+      cursor: hoverBg ? 'pointer' : undefined,
     },
   }),
 );

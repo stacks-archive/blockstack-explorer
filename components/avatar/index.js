@@ -27,6 +27,7 @@ const Avatar = ({ src, size = 120, ...rest }) => (
 const ConnectedAvatar = ({ ...rest }) => (
   <Consumer>
     {({ user }) => {
+      if (!user) return null;
       const src = getProfileImage(user);
       return <Avatar src={src} {...rest} />;
     }}

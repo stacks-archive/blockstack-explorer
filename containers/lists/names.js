@@ -10,7 +10,10 @@ const Subtitle = ({ owner }) => {
 
 const NamesList = ({ list, limit, ...rest }) => (
   <Consumer>
-    {({ nameOperations }) => {
+    {(context) => {
+      if (!context) return null;
+      const { nameOperations } = context;
+      if (!nameOperations) return null;
       const array = list && list.length ? list : nameOperations;
       if (!array) return '';
       const needToLimit = (index) => (limit ? (index > limit ? false : true) : true);

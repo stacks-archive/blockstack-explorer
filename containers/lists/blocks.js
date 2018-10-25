@@ -12,6 +12,7 @@ const renderRowData = (data, keys) =>
       <Type>{value ? value(data) : data[key] || '0'}</Type>
     </Cell>
   ));
+
 const Row = ({ keys, ...data }) => (
   <List.Item
     href={{

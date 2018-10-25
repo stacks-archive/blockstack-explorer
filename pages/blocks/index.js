@@ -4,7 +4,8 @@ import { Card } from '@components/card';
 import { fetchBlocks } from '@common/lib/client/api';
 import { Time } from '@components/time';
 import { BlocksList } from '@containers/lists/blocks';
-
+import { Tooltip } from '@components/tooltip';
+import moment from 'moment';
 const keys = [
   {
     label: 'Height',
@@ -13,7 +14,14 @@ const keys = [
   {
     label: 'Timestamp',
     key: 'time',
-    value: (data) => (data.time ? <Time date={data.time} /> : ''),
+    value: (data) =>
+      data.time ? (
+        <Tooltip text={moment(new Date(data.time * 1000)).format('DD MMMM YYYY HH:MM')}>
+          <Time date={data.time} />
+        </Tooltip>
+      ) : (
+        ''
+      ),
   },
   {
     label: 'Name Operations',

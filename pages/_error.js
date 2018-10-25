@@ -1,14 +1,11 @@
 import React from 'react';
 import { Flex, Box, Type } from 'blockstack-ui';
 
-export default ({ statusCode }) => (
+export default () => (
   <Flex>
     <Box width={1}>
-      <Type textAlign="center" fontSize={5} display="block" mt={4}>
+      <Type textAlign="center" fontSize={5} display="block" my={9}>
         Sorry! We couldn't find this page.
-      </Type>
-      <Type textAlign="center" fontSize={4} display="block">
-        {`Status Code: ${statusCode}`}
       </Type>
     </Box>
   </Flex>

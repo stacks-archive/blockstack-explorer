@@ -24,9 +24,9 @@ const NamesList = ({ list, ...rest }) => (
           as={`/name/${name}`}
           key={name}
         >
-          <Box maxWidt="100%">
+          <Box maxWidth="100%">
             {name ? <List.Item.Title overflow="auto">{name}</List.Item.Title> : null}
-            <Subtitle owner={address || owner} />
+            {address || owner ? <Subtitle owner={`Owned by ${address || owner}`} /> : null}
           </Box>
           {timeAgo ? <List.Item.Subtitle>{timeAgo}</List.Item.Subtitle> : null}
         </List.Item>

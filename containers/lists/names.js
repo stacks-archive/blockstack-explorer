@@ -3,7 +3,7 @@ import { List } from '@components/list';
 import { Box } from 'blockstack-ui';
 import { Consumer } from '@pages/_app';
 
-const Subtitle = (owner) => {
+const Subtitle = ({ owner }) => {
   if (!owner) return '';
   return <List.Item.Subtitle overflow="auto">{owner}</List.Item.Subtitle>;
 };

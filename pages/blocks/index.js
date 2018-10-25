@@ -23,7 +23,7 @@ const keys = [
   },
   {
     label: 'Transactions',
-    key: 'txlength',
+    key: 'txCount',
     display: ['none', 'block'],
   },
   {
@@ -50,25 +50,24 @@ class BlocksPage extends React.Component {
     };
   }
 
+  actions = () => (
+    <Flex
+      flexGrow={1}
+      pt={[3, 0, 0]}
+      width={[1, 'auto', 'auto']}
+      alignItems="center"
+      justifyContent={['flex-start', 'flex-end', 'flex-end']}
+    >
+      <Button size="small">Action 1</Button>
+      <Button size="small">Action 2</Button>
+      <Button size="small">Action 3</Button>
+    </Flex>
+  );
+
   render() {
     return (
       <Flex p={5} flexDirection="column" width={1}>
-        <Card
-          title="Recent Blocks"
-          actions={
-            <Flex
-              flexGrow={1}
-              pt={[3, 0, 0]}
-              width={[1, 'auto', 'auto']}
-              alignItems={'center'}
-              justifyContent={['flex-start', 'flex-end', 'flex-end']}
-            >
-              <Button size="small">Action 1</Button>
-              <Button size="small">Action 2</Button>
-              <Button size="small">Action 3</Button>
-            </Flex>
-          }
-        >
+        <Card title="Recent Blocks" actions={this.actions()}>
           <BlocksList blocks={this.props.blocks} keys={keys} />
         </Card>
         <Flex py={4} justifyContent="center">

@@ -37,11 +37,18 @@ ${normalize()};
   
 
 }
+html{
+display: flex;
+}
+body{
+flex-grow: 1;
+}
 body, html{
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   background: ${theme.colors.blue.light};
-  height: 100%;
+  min-height: 100%;
   margin: 0;
+  height: auto;
   
 
 }
@@ -68,8 +75,10 @@ body{
   color: white;
 }
 #__next{
-  height:100%;
+  min-height:100%;
   margin:0;
+  display: flex;
+  flex-direction: column;
 }
 a:link {
   text-decoration: underline;

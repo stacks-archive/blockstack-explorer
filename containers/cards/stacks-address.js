@@ -7,7 +7,7 @@ import { stacksValue } from '@common/lib/units';
 
 const StacksAddressCard = ({ address: { address, btcAddress, balance, status }, ...rest }) =>
   address ? (
-    <Card width={1} title="Address Details" pb={4}>
+    <Card width={1} title="Stacks Address Details" pb={4}>
       <Section alignItems="center" justifyContent="center" py={4} color="blue.dark">
         <QRCode level="H" fgColor="currentColor" renderAs="svg" size={156} value={address} />
       </Section>

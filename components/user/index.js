@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, Type, Button } from 'blockstack-ui';
+import { Box, Type, Button, Flex } from 'blockstack-ui';
 import { Card } from '@components/card';
 import { Section } from '@components/section';
 import { Social, NonSocialItems } from '@components/social';
 import { ConnectedAvatar } from '@components/avatar';
 import { ConnectedAppsList } from '@components/apps';
+import { AccountOutlineIcon } from 'mdi-react';
 import Link from 'next/link';
 
 /**
@@ -175,10 +176,41 @@ const ViewZoneFileSection = ({ zoneFileUrl, ...rest }) => (
   </Section>
 );
 
+const Empty = ({ id, ...rest }) => (
+  <Section color={'blue.mid'} px={4} py={8} alignItems="center" justifyContent={'center'}>
+    <Flex
+      size={80}
+      borderRadius={80}
+      border={'1px solid'}
+      borderColor={'blue.mid'}
+      alignItems="center"
+      justifyContent={'center'}
+      boxShadow={'general'}
+      bg="blue.light"
+      mb={4}
+    >
+      <Box opacity={1}>
+        <AccountOutlineIcon style={{ display: 'block' }} size={60} />
+      </Box>
+    </Flex>
+    <Type color={'blue.dark'} pb={3} fontSize={4}>
+      {id}
+    </Type>
+    <Type>No profile information available.</Type>
+  </Section>
+);
+
 /**
  * Bring it all together now
  */
 const UserCard = ({ nameRecord, profile, zone_file, id, owner_address, ...rest }) => {
+  if (!profile || !zone_file) {
+    return (
+      <Card {...rest}>
+        <Empty id={id} />
+      </Card>
+    );
+  }
   const { target: zone_file_url } = zone_file.uri[0];
   const { name, description, account, apps } = profile;
   return (

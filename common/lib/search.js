@@ -1,4 +1,5 @@
 import Router from 'next/router';
+import * as c32check from 'c32check';
 import { fetchSearch } from '@common/lib/client/api';
 
 /**
@@ -11,7 +12,7 @@ const search = async (query) => {
   const blockstackID = /^([A-Za-z0-9_]+\.){1,2}[A-Za-z0-9_]+$/;
 
   if (blockstackID.test(query)) {
-    Router.push(
+    return Router.push(
       {
         pathname: '/names/single',
         query: {
@@ -20,6 +21,19 @@ const search = async (query) => {
       },
       `/name/${query}`,
     );
+  }
+
+  try {
+    c32check.c32ToB58(query);
+    return Router.push(
+      {
+        pathname: '/address/stacks',
+        query: { address: query },
+      },
+      `/stacks/addresses/${query}`,
+    );
+  } catch (error) {
+    // move on, not a stacks address
   }
 
   const searchData = await fetchSearch(query);

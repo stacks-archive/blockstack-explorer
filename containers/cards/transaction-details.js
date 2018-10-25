@@ -4,18 +4,14 @@ import { Card } from '@components/card';
 import { SectionLabel } from '@components/section';
 import { List } from '@components/list';
 import { darken } from 'polished';
+import { Stat } from '@components/stats';
+
 const StatItem = ({ isLast, ...rest }) => (
-  <Flex
+  <Stat
+    width={[1, 1, 1, '33.3333%']}
     borderRight={!isLast ? ['0', '0', '0', '1px solid'] : undefined}
     borderBottom={!isLast ? ['1px solid', '1px solid', '1px solid', 0] : undefined}
     borderColor={['blue.mid', 'blue.mid', 'blue.mid', 'blue.mid']}
-    flexGrow={1}
-    width={[1, 1, 1, '33.3333%']}
-    alignItems="center"
-    flexDirection="column"
-    justifyContent="center"
-    px={5}
-    py={7}
     {...rest}
   />
 );
@@ -73,28 +69,24 @@ const ToItem = ({ address, length, value, spentTxId, index, key, ...rest }) => (
   />
 );
 
-const StatValue = ({ ...rest }) => (
-  <Type pb={4} textAlign={'center'} fontSize={5} fontWeight={400} color="blue.dark" {...rest} />
-);
-
 const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest }) => (
   <Card width={1} mb={[5, 5, 5]} title="Details">
     <Flex flexDirection={['column', 'column', 'column', 'row']}>
       <StatItem>
-        <StatValue>
+        <Stat.Value>
           {valueOut} <Type opacity={0.5}>BTC</Type>
-        </StatValue>
-        <SectionLabel>Total Transferred</SectionLabel>
+        </Stat.Value>
+        <Stat.Label>Total Transferred</Stat.Label>
       </StatItem>
       <StatItem>
-        <StatValue>{confirmations}</StatValue>
-        <SectionLabel>Confirmations</SectionLabel>
+        <Stat.Value>{confirmations}</Stat.Value>
+        <Stat.Label>Confirmations</Stat.Label>
       </StatItem>
       <StatItem isLast>
-        <StatValue>
+        <Stat.Value>
           {fees || 0} <Type opacity={0.5}>BTC</Type>
-        </StatValue>
-        <SectionLabel>Fees</SectionLabel>
+        </Stat.Value>
+        <Stat.Label>Fees</Stat.Label>
       </StatItem>
     </Flex>
     <Flex flexDirection={['column', 'column', 'column', 'row']}>

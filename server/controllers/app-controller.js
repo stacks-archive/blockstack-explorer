@@ -76,6 +76,10 @@ const makeAppController = (app, cache) => {
   AppController.get('/tx/:tx', async (req, res) => {
     await renderAndCache(req, res, '/transaction/single');
   });
+  // Stacks address
+  AppController.get('/stacks/addresses/:address', async (req, res) => {
+    await renderAndCache(req, res, '/address/stacks');
+  });
 
   return AppController;
 };

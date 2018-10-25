@@ -28,24 +28,17 @@ const items = [
 ];
 
 const Navigation = memo(
-  withRouter(
-    ({ router, ...rest }) =>
-      console.log(router) || (
-        <Flex {...rest}>
-          {items.map(({ label, path, active, ...linkProps }, i) => (
-            <Link key={i} passHref href={path} prefetch>
-              <LinkComponent
-                opacity={router.pathname.includes(active) ? 1 : 0.5}
-                is="a"
-                style={{ textDecoration: 'none' }}
-              >
-                {label}
-              </LinkComponent>
-            </Link>
-          ))}
-        </Flex>
-      ),
-  ),
+  withRouter(({ router, ...rest }) => (
+    <Flex {...rest}>
+      {items.map(({ label, path, active, ...linkProps }, i) => (
+        <Link key={i} passHref href={path} prefetch>
+          <LinkComponent opacity={router.pathname.includes(active) ? 1 : 0.5} is="a" style={{ textDecoration: 'none' }}>
+            {label}
+          </LinkComponent>
+        </Link>
+      ))}
+    </Flex>
+  )),
 );
 
 export { Navigation };

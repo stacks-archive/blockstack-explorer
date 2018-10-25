@@ -1,5 +1,5 @@
-import { getJSON, makeUrl } from '../../index';
 import fetch from 'cross-fetch';
+import { getJSON, makeUrl } from '../../index';
 
 /**
  * Fetch all new name registrations in the past 7 days.
@@ -98,7 +98,7 @@ const fetchBlocks = (date) => {
 };
 
 /**
- * Get data for a specific Stacks address
+ * Get genesis data for a specific Stacks address
  * @param {string} address - the Stacks address
  */
 const fetchAccounts = async (address) => getJSON(makeUrl(`/api/accounts/${address}`));
@@ -112,6 +112,18 @@ const fetchBlockstackApps = async () => {
   return [...apps.filter(({ authentication }) => authentication === 'Blockstack')];
 };
 
+/**
+ * Fetch total names and subdomains
+ */
+const fetchNameCounts = async () => getJSON(makeUrl('/api/name-counts'));
+
+/**
+ * Fetch on-chain information for a Stacks address
+ *
+ * @param {string} address - the Stacks Address
+ */
+const fetchStacksAddress = async (address) => getJSON(makeUrl(`/api/stacks/addresses/${address}`));
+
 export {
   fetchNameOperations,
   fetchName,
@@ -124,4 +136,7 @@ export {
   fetchBlock,
   fetchBlocks,
   fetchBlockstackApps,
+  fetchNameCounts,
+  fetchAccounts,
+  fetchStacksAddress,
 };

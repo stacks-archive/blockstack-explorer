@@ -55,7 +55,7 @@ class Home extends React.Component {
     return (
       <Page>
         <Card width={1} mb={[5, 5, 0]} title="Latest Names Registered" actions={Actions} mr={[0, 0, 5]}>
-          <NamesList />
+          <NamesList limit={10} />
         </Card>
         <Box top="113px" position={['static', 'sticky']} width={[1, 1, 1, '700px']}>
           <Card title="Global statistics">

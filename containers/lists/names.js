@@ -8,29 +8,33 @@ const Subtitle = ({ owner }) => {
   return <List.Item.Subtitle overflow="auto">{owner}</List.Item.Subtitle>;
 };
 
-const NamesList = ({ list, ...rest }) => (
+const NamesList = ({ list, limit, ...rest }) => (
   <Consumer>
     {({ nameOperations }) => {
       const array = list && list.length ? list : nameOperations;
       if (!array) return '';
-      return array.map(({ name, owner, address, timeAgo }) => (
-        <List.Item
-          href={{
-            pathname: '/names/single',
-            query: {
-              name,
-            },
-          }}
-          as={`/name/${name}`}
-          key={name}
-        >
-          <Box maxWidth="100%">
-            {name ? <List.Item.Title overflow="auto">{name}</List.Item.Title> : null}
-            {address || owner ? <Subtitle owner={`Owned by ${address || owner}`} /> : null}
-          </Box>
-          {timeAgo ? <List.Item.Subtitle>{timeAgo}</List.Item.Subtitle> : null}
-        </List.Item>
-      ));
+      const needToLimit = (index) => (limit ? (index > limit ? false : true) : true);
+      return array.map(
+        ({ name, owner, address, timeAgo }, i) =>
+          needToLimit(i) && (
+            <List.Item
+              href={{
+                pathname: '/names/single',
+                query: {
+                  name,
+                },
+              }}
+              as={`/name/${name}`}
+              key={name}
+            >
+              <Box maxWidth="100%">
+                {name ? <List.Item.Title overflow="auto">{name}</List.Item.Title> : null}
+                {address || owner ? <Subtitle owner={`Owned by ${address || owner}`} /> : null}
+              </Box>
+              {timeAgo ? <List.Item.Subtitle>{timeAgo}</List.Item.Subtitle> : null}
+            </List.Item>
+          ),
+      );
     }}
   </Consumer>
 );

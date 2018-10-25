@@ -12,7 +12,7 @@ const StacksAddressCard = ({ address: { address, btcAddress, balance, status }, 
         <QRCode level="H" fgColor="currentColor" renderAs="svg" size={156} value={address} />
       </Section>
       <Section pb={4} borderBottom={'0'}>
-        <Attribute label="Address" value={address} />
+        <Attribute label="Stacks Address" value={address} />
         <Attribute
           label="BTC Address"
           value={btcAddress}

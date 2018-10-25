@@ -10,7 +10,18 @@ const handleSearch = async (event) => {
 };
 
 const Search = ({ ...rest }) => (
-  <Box position="relative" width={[1, 1, '500px']} px={[4]} flexGrow={1} {...rest}>
+  <Box
+    is="form"
+    position="relative"
+    width={[1, 1, '500px']}
+    px={[4]}
+    flexGrow={1}
+    {...rest}
+    onSubmit={(e) => {
+      e.preventDefault();
+      handleSearch(e);
+    }}
+  >
     <Flex
       left="20px"
       color="blue.light"

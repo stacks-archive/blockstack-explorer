@@ -62,7 +62,7 @@ const makeAppController = (app, cache) => {
     await renderAndCache(req, res, '/address/single');
   });
   // Stacks address: Single
-  AppController.get('/stacks/address/:address', async (req, res) => {
+  AppController.get('/address/stacks/:address', async (req, res) => {
     await renderAndCache(req, res, '/address/stacks');
   });
   // Blocks

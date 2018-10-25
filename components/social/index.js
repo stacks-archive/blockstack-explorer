@@ -70,7 +70,9 @@ const Social = ({ account: accounts, ...rest }) => {
 
 const NonSocialItems = ({ wrapper, account: accounts, ...rest }) => {
   if (!accounts || (accounts && !accounts.length)) return null;
-  const itemsWithoutProofs = [...accounts.filter((item) => item.proofUrl === '')];
+  const itemsWithoutProofs = [
+    ...accounts.filter((item) => item.proofUrl === '' && (item.identifier && item.identifier !== '')),
+  ];
   const children =
     itemsWithoutProofs && itemsWithoutProofs.length ? (
       <Box {...rest}>

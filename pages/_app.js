@@ -49,6 +49,8 @@ body, html{
   min-height: 100%;
   margin: 0;
   height: auto;
+  width: 100%;
+  max-width: 100%;
   
 
 }

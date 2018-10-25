@@ -1,5 +1,5 @@
-import { getJSON, makeUrl } from '../../index';
 import fetch from 'cross-fetch';
+import { getJSON, makeUrl } from '../../index';
 
 /**
  * Fetch all new name registrations in the past 7 days.
@@ -112,6 +112,11 @@ const fetchBlockstackApps = async () => {
   return [...apps.filter(({ authentication }) => authentication === 'Blockstack')];
 };
 
+/**
+ * Fetch total names and subdomains
+ */
+const fetchNameCounts = async () => getJSON(makeUrl('/api/name-counts'));
+
 export {
   fetchNameOperations,
   fetchName,
@@ -124,4 +129,6 @@ export {
   fetchBlock,
   fetchBlocks,
   fetchBlockstackApps,
+  fetchNameCounts,
+  fetchAccounts,
 };

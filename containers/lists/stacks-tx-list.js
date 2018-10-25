@@ -3,7 +3,6 @@ import { List } from '@components/list/index';
 import { Box } from 'blockstack-ui';
 import { Consumer } from '@pages/_app';
 import { stacksValue } from '@common/lib/units';
-
 const txTitle = (operation, tokensSent) => {
   if (operation === 'SENT') {
     return `Sent ${stacksValue(tokensSent)}`;

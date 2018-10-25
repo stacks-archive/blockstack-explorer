@@ -17,9 +17,6 @@ export default class StacksAddressPage extends React.Component {
       },
     };
   }
-  state = {
-    STXUSD: '',
-  };
 
   render() {
     const { address } = this.props;
@@ -34,9 +31,7 @@ export default class StacksAddressPage extends React.Component {
               <StacksTxList />
             </Card>
           ) : null}
-          {address.cumulativeVestedAtBlocks ? (
-            <StacksUnlockingChart address={address} STXUSD={this.state.STXUSD} handleOnChange={this.setState} />
-          ) : null}
+          {address.cumulativeVestedAtBlocks ? <StacksUnlockingChart address={address} /> : null}
         </Box>
       </Flex>
     );

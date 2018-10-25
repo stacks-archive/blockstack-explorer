@@ -50,6 +50,7 @@ const NameOperationsList = ({ items, ...rest }) => (
                           tx: txid,
                         },
                       }}
+                      passHref
                       as={`/tx/${txid}`}
                       key={txid}
                     >

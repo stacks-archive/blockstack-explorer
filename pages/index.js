@@ -41,7 +41,7 @@ class Home extends React.Component {
         <Card width={1} mb={[5, 5, 0]} title="Latest Names Registered" actions={Actions} mr={[0, 0, 5]}>
           <NamesList />
         </Card>
-        <Box top="113px" position={['static', 'sticky']} flexGrow={1} maxWidth={['100%', '100%', '500px']}>
+        <Box top="113px" position={['static', 'sticky']} flexGrow={1} maxWidth={['100%', '100%', '100%', '500px']}>
           <Card title="Global statistics">
             <Flex flexWrap="wrap">
               <StatItem width={1} label="total names" value={total} />

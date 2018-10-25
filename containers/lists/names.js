@@ -19,9 +19,11 @@ const NamesList = ({ list, ...rest }) => (
               as={`/name/${name}`}
               key={name}
             >
-              <Box>
-                {name ? <List.Item.Title>{name}</List.Item.Title> : null}
-                {address || owner ? <List.Item.Subtitle>Owned by {address || owner}</List.Item.Subtitle> : null}
+              <Box maxWidt="100%">
+                {name ? <List.Item.Title overflow={'auto'}>{name}</List.Item.Title> : null}
+                {address || owner ? (
+                  <List.Item.Subtitle overflow={'auto'}>Owned by {address || owner}</List.Item.Subtitle>
+                ) : null}
               </Box>
               {timeAgo ? <List.Item.Subtitle>{timeAgo}</List.Item.Subtitle> : null}
             </List.Item>

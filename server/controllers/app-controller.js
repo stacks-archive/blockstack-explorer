@@ -61,6 +61,10 @@ const makeAppController = (app, cache) => {
   AppController.get('/address/:address', async (req, res) => {
     await renderAndCache(req, res, '/address/single');
   });
+  // Stacks address: Single
+  AppController.get('/stacks/address/:address', async (req, res) => {
+    await renderAndCache(req, res, '/address/stacks');
+  });
   // Blocks
   AppController.get('/blocks', async (req, res) => {
     await renderAndCache(req, res, '/blocks');
@@ -75,10 +79,6 @@ const makeAppController = (app, cache) => {
   // Transaction: single
   AppController.get('/tx/:tx', async (req, res) => {
     await renderAndCache(req, res, '/transaction/single');
-  });
-  // Stacks address
-  AppController.get('/stacks/addresses/:address', async (req, res) => {
-    await renderAndCache(req, res, '/address/stacks');
   });
 
   return AppController;

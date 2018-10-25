@@ -5,7 +5,7 @@ import { Consumer } from '@pages/_app';
 
 const Subtitle = ({ owner }) => {
   if (!owner) return '';
-  return <List.Item.Subtitle overflow="auto">{owner}</List.Item.Subtitle>;
+  return <List.Item.Subtitle overflow="auto">{`Owned by ${owner}`}</List.Item.Subtitle>;
 };
 
 const NamesList = ({ list, ...rest }) => (

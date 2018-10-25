@@ -1,16 +1,15 @@
 import App, { Container } from 'next/app';
 import React from 'react';
-import { withRouter } from 'next/router';
-import { ThemeProvider } from 'styled-components';
+import Router from 'next/router';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { theme } from 'blockstack-ui';
 import { Layout } from '@components/layout';
-import { createGlobalStyle } from 'styled-components';
 import { normalize, darken } from 'polished';
-import fonts from '../common/lib/fonts';
 import NProgress from 'nprogress';
-import Router from 'next/router';
-const { Provider, Consumer } = React.createContext();
 import { fetchBlockstackApps } from '@common/lib/client/api';
+import fonts from '../common/lib/fonts';
+
+const { Provider, Consumer } = React.createContext();
 
 NProgress.configure({
   showSpinner: false,
@@ -208,4 +207,4 @@ class MyApp extends App {
 
 export { Consumer };
 
-export default withRouter(MyApp);
+export default Router.withRouter(MyApp);

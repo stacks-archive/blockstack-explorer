@@ -1,11 +1,10 @@
 import React from 'react';
-import { Flex, Box, Type } from 'blockstack-ui';
+import { Flex, Box, Type, Input } from 'blockstack-ui';
 import QRCode from 'qrcode.react';
 import { Card } from '@components/card';
 import { Section } from '@components/section';
 import { List } from '@components/list/index';
 import { fetchStacksAddress } from '@common/lib/client/api';
-import { Input } from '@components/input';
 import { Attribute } from '@components/attribute';
 import { Line as LineChart } from 'react-chartjs-2';
 
@@ -81,6 +80,7 @@ export default class StacksAddressPage extends React.Component {
             unlock over time.
           </Type>
           <Input
+            bg="#F1F6F9"
             mb={6}
             onChange={(e) => this.setState({ STXUSD: e.target.value })}
             value={STXUSD}

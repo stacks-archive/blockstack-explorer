@@ -79,4 +79,5 @@ const extractRootDomain = (url) => {
  */
 const uniq = (array) => [...new Set(array)];
 
+
 export { getJSON, makeUrl, getProfileImage, extractRootDomain, uniq };

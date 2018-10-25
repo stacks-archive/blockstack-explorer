@@ -1,17 +1,16 @@
 import React from 'react';
 import { Flex, Box } from 'blockstack-ui';
-import { fetchAddress } from '@common/lib/client/api';
+import { fetchAddress, fetchTX } from '@common/lib/client/api';
 import { AddressCard } from '@components/address';
 import { NamesList } from '@containers/lists/names';
 import { TxList } from '@containers/lists/tx-list';
 import { Card } from '@components/card';
-import { fetchTX } from '@common/lib/client/api';
 
 class AddressSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
     const address = req && req.params ? req.params.address : query.address;
     const data = await fetchAddress(address);
-    let transactions = [];
+    const transactions = [];
     if (data.transactions && data.transactions.length) {
       await Promise.all(
         data.transactions.map(async (_tx) => {

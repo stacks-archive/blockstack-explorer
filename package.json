@@ -16,6 +16,7 @@
     "@babel/core": "^7.0.0",
     "babel-plugin-styled-components": "^1.8.0",
     "blockstack-ui": "^0.0.27",
+    "c32check": "^0.0.6",
     "connect": "^3.6.6",
     "cookie-session": "^2.0.0-beta.3",
     "cross-fetch": "^2.2.2",
@@ -79,7 +80,8 @@
       ".next",
       "pages/*",
       "components/*",
-      "styled/*"
+      "styled/*",
+      "common/*"
     ]
   }
 }

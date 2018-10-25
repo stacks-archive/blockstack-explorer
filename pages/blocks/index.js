@@ -6,7 +6,7 @@ import { fetchBlocks } from '@common/lib/client/api';
 
 const SecondaryButton = ({ ...rest }) => (
   <Button
-    height={'auto'}
+    height="auto"
     py={1}
     px={3}
     typeProps={{
@@ -14,10 +14,10 @@ const SecondaryButton = ({ ...rest }) => (
       fontWeight: 500,
     }}
     bg="transparent"
-    color={'blue.dark'}
-    borderColor={'blue.mid'}
-    boxShadow={'none'}
-    border={'1px solid'}
+    color="blue.dark"
+    borderColor="blue.mid"
+    boxShadow="none"
+    border="1px solid"
     flexGrow={[1, 0, 0]}
     ml={[0, 2, 2]}
     mr={[2, 0, 0]}
@@ -35,8 +35,8 @@ const keys = [
   },
   {
     label: 'Name Operations',
-    key: 'nameOps',
-    value: (data) => data.nameOps && data.nameOps.length,
+    key: 'nameOperations',
+    value: (data) => data.nameOperations && data.nameOperations.length,
     display: ['none', 'block'],
   },
   {
@@ -80,7 +80,7 @@ const Block = (data) => (
     borderBottom={1}
     fontSize="12px"
     borderColor="blue.mid"
-    display={'grid'}
+    display="grid"
     gridTemplateColumns={[`repeat(${getResponsiveIndex(keys).length}, 1fr)`, `repeat(${keys.length}, 1fr)`]}
     py={1}
     px={0}
@@ -108,8 +108,8 @@ class BlocksPage extends React.Component {
       <Flex p={5} flexDirection="column" width={1}>
         <Card
           title="Recent Blocks"
-          actions={
-            <Flex
+          actions={(
+<Flex
               flexGrow={1}
               pt={[3, 0, 0]}
               width={[1, 'auto', 'auto']}
@@ -120,21 +120,21 @@ class BlocksPage extends React.Component {
               <Button size="small">Action 2</Button>
               <Button size="small">Action 3</Button>
             </Flex>
-          }
+)}
         >
           <Box
-            display={'grid'}
+            display="grid"
             gridTemplateColumns={[`repeat(${getResponsiveIndex(keys).length}, 1fr)`, `repeat(${keys.length}, 1fr)`]}
             borderBottom={1}
             borderColor="blue.mid"
             bg="#F1F6F9"
-            position={'sticky'}
+            position="sticky"
             zIndex={9999}
             top={[0, 0, 90]}
           >
             {keys.map(({ label, value, ...props }, i) => (
               <Box px={4} py={3} flexGrow={1} {...props}>
-                <Type color={'blue.mid'} fontSize={'12px'} textTransform="uppercase">
+                <Type color="blue.mid" fontSize="12px" textTransform="uppercase">
                   {label}
                 </Type>
               </Box>

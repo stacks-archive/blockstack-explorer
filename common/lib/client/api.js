@@ -98,7 +98,7 @@ const fetchBlocks = (date) => {
 };
 
 /**
- * Get data for a specific Stacks address
+ * Get genesis data for a specific Stacks address
  * @param {string} address - the Stacks address
  */
 const fetchAccounts = async (address) => getJSON(makeUrl(`/api/accounts/${address}`));
@@ -117,6 +117,13 @@ const fetchBlockstackApps = async () => {
  */
 const fetchNameCounts = async () => getJSON(makeUrl('/api/name-counts'));
 
+/**
+ * Fetch on-chain information for a Stacks address
+ *
+ * @param {string} address - the Stacks Address
+ */
+const fetchStacksAddress = async (address) => getJSON(makeUrl(`/api/stacks/addresses/${address}`));
+
 export {
   fetchNameOperations,
   fetchName,
@@ -131,4 +138,5 @@ export {
   fetchBlockstackApps,
   fetchNameCounts,
   fetchAccounts,
+  fetchStacksAddress,
 };

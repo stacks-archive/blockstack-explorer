@@ -18,7 +18,7 @@ NProgress.configure({
   speed: 300,
 });
 
-Router.events.on('routeChangeStart', (url) => {
+Router.events.on('routeChangeStart', () => {
   NProgress.start();
 });
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -163,7 +163,7 @@ ${fonts}
 let apps = null;
 
 class MyApp extends App {
-  static async getInitialProps({ Component, router, ctx }) {
+  static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
     if (!apps) {
@@ -207,4 +207,4 @@ class MyApp extends App {
 
 export { Consumer };
 
-export default Router.withRouter(MyApp);
+export default MyApp;

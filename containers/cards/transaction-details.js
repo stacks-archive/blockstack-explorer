@@ -6,6 +6,7 @@ import { List } from '@components/list';
 import { darken } from 'polished';
 import { Stat } from '@components/stats';
 
+
 const StatItem = ({ isLast, ...rest }) => (
   <Stat
     width={[1, 1, 1, '33.3333%']}

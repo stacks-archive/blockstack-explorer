@@ -67,8 +67,8 @@ const AutomatedSection = ({ tx, ...rest }) => (
         as: `/block/${tx.blockhash}`,
       }}
     />
-    <Attribute label="time">
-      <Time date={tx.time} tooltip={false} />
+    <Attribute clip={false} label="time">
+      <Time date={tx.time} />
     </Attribute>
     {generateAutomaticSections(tx, keys)}
   </Section>

@@ -11,16 +11,17 @@ const Tooltip = sys(
     position: 'relative',
     color: 'inherit',
     backgroundColor: 'transparent',
-    zIndex: 100,
+    zIndex: 99999,
     '&::before': {
       display: 'none',
+      fontFamily: themeGet(`fonts.default`)(props),
       content: `"${props.text}"`,
       position: 'absolute',
       bottom: '100%',
       left: '50%',
       transform: 'translate(-50%, -4px)',
       whiteSpace: 'nowrap',
-      fontSize: themeGet('fontSizes.0', '10px')(props),
+      fontSize: '12px',
       paddingTop: '4px',
       paddingBottom: '4px',
       paddingLeft: '8px',
@@ -38,6 +39,7 @@ const Tooltip = sys(
       transform: 'translate(-50%, 8px)',
       content: '" "',
       zIndex: 99999,
+      fontFamily: 'default',
       borderWidth: '6px',
       borderStyle: 'solid',
       borderColor: 'transparent',
@@ -58,5 +60,6 @@ Tooltip.displayName = 'Tooltip';
 Tooltip.defaultProps = {
   bg: 'blue.dark',
   color: 'blue.light',
+  zIndex: 999,
 };
 export { Tooltip };

@@ -2,6 +2,7 @@ import React from 'react';
 import { List } from '@components/list';
 import { Box } from 'blockstack-ui';
 import { Consumer } from '@pages/_app';
+import { Time } from '@components/time';
 
 const Subtitle = ({ owner }) => {
   if (!owner) return '';
@@ -16,9 +17,9 @@ const NamesList = ({ list, limit, ...rest }) => (
       if (!nameOperations) return null;
       const array = list && list.length ? list : nameOperations;
       if (!array) return '';
-      const needToLimit = (index) => (limit ? (index > limit ? false : true) : true);
+      const needToLimit = (index) => (limit ? !(index > limit) : true);
       return array.map(
-        ({ name, owner, address, timeAgo }, i) =>
+        ({ name, owner, address, time }, i) =>
           needToLimit(i) && (
             <List.Item
               href={{
@@ -32,9 +33,13 @@ const NamesList = ({ list, limit, ...rest }) => (
             >
               <Box maxWidth="100%">
                 {name ? <List.Item.Title overflow="auto">{name}</List.Item.Title> : null}
-                {address || owner ? <Subtitle owner={`Owned by ${address || owner}`} /> : null}
+                {address || owner ? <Subtitle owner={address || owner} /> : null}
               </Box>
-              {timeAgo ? <List.Item.Subtitle>{timeAgo}</List.Item.Subtitle> : null}
+              {time && (
+                <List.Item.Subtitle>
+                  <Time date={time / 1000} />
+                </List.Item.Subtitle>
+              )}
             </List.Item>
           ),
       );

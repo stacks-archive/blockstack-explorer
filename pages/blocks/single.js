@@ -9,7 +9,7 @@ import { Page } from '@components/page';
 class BlocksSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
     const hash = req && req.params ? req.params.hash : query.hash;
-    const data = query.data || (typeof hash !== 'undefined' && (await fetchBlock(hash)));
+    const data = query.data || (await fetchBlock(hash));
     const transactions = data.transactions && data.transactions.length ? data.transactions : [];
     const nameOperations = data.nameOperations && data.nameOperations.length ? data.nameOperations : [];
     return {

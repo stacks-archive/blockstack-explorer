@@ -22,12 +22,12 @@ const Row = ({ keys, ...data }) => (
       },
     }}
     passHref
-    as={`/blocks/${data.height}`}
+    as={`/block/${data.height}`}
     is="a"
     borderBottom={1}
     fontSize="12px"
     borderColor="blue.mid"
-    display={'grid'}
+    display="grid"
     gridTemplateColumns={[`repeat(${getResponsiveIndex(keys).length}, 1fr)`, `repeat(${keys.length}, 1fr)`]}
     py={1}
     px={0}
@@ -40,19 +40,19 @@ const Rows = ({ list, keys, ...rest }) => list.map((block, i) => (i < 200 ? <Row
 
 const TableHeader = ({ keys, ...rest }) => (
   <Box
-    display={'grid'}
+    display="grid"
     gridTemplateColumns={[`repeat(${getResponsiveIndex(keys).length}, 1fr)`, `repeat(${keys.length}, 1fr)`]}
     borderBottom={1}
     borderColor="blue.mid"
     bg="#F1F6F9"
-    position={'sticky'}
+    position="sticky"
     zIndex={9999}
     top={[0, 0, 90]}
     {...rest}
   >
     {keys.map(({ label, value, ...props }, i) => (
       <Box px={4} py={3} key={i} flexGrow={1} {...props}>
-        <Type color={'blue.mid'} fontSize={'12px'} textTransform="uppercase">
+        <Type color="blue.mid" fontSize="12px" textTransform="uppercase">
           {label}
         </Type>
       </Box>

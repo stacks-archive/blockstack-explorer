@@ -37,12 +37,7 @@ class Home extends React.Component {
     };
   }
 
-  state = {
-    limitNameOperations: true,
-  };
-
   render() {
-    const { limitNameOperations } = this.state;
     const { namesFormatted, subdomainsFormatted } = this.props.nameTotals;
     const { nameOperationsOverTime, totalStacks } = this.props;
     const data = {
@@ -60,15 +55,11 @@ class Home extends React.Component {
     return (
       <Page>
         <Card width={1} mb={[5, 5, 0]} title="Latest Names Registered" actions={Actions} mr={[0, 0, 5]}>
-          <NamesList limit={limitNameOperations ? 10 : null} />
+          <NamesList limit={25} />
           <Flex py={4} justifyContent="center">
-            {limitNameOperations ? (
-              <Button onClick={() => this.setState({ limitNameOperations: false })}>View More</Button>
-            ) : (
-              <Link passHref href="/names">
-                <Button is={'a'}>View All Names</Button>
-              </Link>
-            )}
+            <Link passHref href="/names">
+              <Button is="a">View All Names</Button>
+            </Link>
           </Flex>
         </Card>
         <Box top="113px" position={['static', 'sticky']} width={[1, 1, 1, '700px']}>

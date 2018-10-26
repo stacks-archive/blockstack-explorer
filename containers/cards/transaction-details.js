@@ -1,7 +1,6 @@
 import React from 'react';
 import { Flex, Box, Type, theme } from 'blockstack-ui';
 import { Card } from '@components/card';
-import { SectionLabel } from '@components/section';
 import { List } from '@components/list';
 import { darken } from 'polished';
 import { Stat } from '@components/stats';

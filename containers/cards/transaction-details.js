@@ -10,8 +10,8 @@ import { ArrowExpandRightIcon, ArrowCollapseDownIcon } from 'mdi-react';
 const StatItem = ({ isLast, ...rest }) => (
   <Stat
     width={[1, 1, 1, '33.3333%']}
-    borderRight={!isLast ? ['0', '0', '0', '1px solid'] : undefined}
-    borderBottom={!isLast ? ['1px solid', '1px solid', '1px solid', 0] : undefined}
+    borderRight={!isLast ? ['0', '1px solid', '0', '1px solid'] : undefined}
+    borderBottom={!isLast ? ['1px solid', 0, '1px solid', 0] : undefined}
     borderColor={['blue.mid', 'blue.mid', 'blue.mid', 'blue.mid']}
     textAlign="center"
     {...rest}
@@ -36,38 +36,8 @@ const DirectionHeader = ({ children, ...rest }) => (
   </Flex>
 );
 
-const UTXOItem = ({ label, value, spentTxId, ...rest }) => (
-  <List.Item flexDirection={['column', 'row']} minHeight="72px" {...rest} py={label.length > 16 ? 4 : '18px'}>
-    <List.Item.Title fontFamily="brand" maxWidth="100%" overflow="auto" minHeight="1rem" pb={0}>
-      {label}
-    </List.Item.Title>
-    <List.Item.Title style={{ whiteSpace: 'nowrap' }} textAlign="right" ml={2} pb={0} pt={[2, 0]} pl={1}>
-      <Flex alignItems={'center'}>
-        {value || 0}
-        <Type opacity={0.5} pl={1}>
-          BTC
-        </Type>
-        {!spentTxId ? (
-          <Tooltip text="Unspent">
-            <Box py={1} color="#70D142" pl={1}>
-              <ArrowCollapseDownIcon size={18} />
-            </Box>
-          </Tooltip>
-        ) : (
-          <Tooltip text="Spent">
-            <Box transform={'translateY(2px)'} py={1} pl={1} color={'rgb(239, 111, 111)'}>
-              <ArrowExpandRightIcon size={18} />
-            </Box>
-          </Tooltip>
-        )}
-      </Flex>
-    </List.Item.Title>
-  </List.Item>
-);
-
-const ToItem = ({ address, length, value, spentTxId, index, key, ...rest }) => (
-  <UTXOItem
-    key={key}
+const UTXOItem = ({ label, address, value, to, spentTxId, ...rest }) => (
+  <List.Item
     href={
       address
         ? {
@@ -81,16 +51,55 @@ const ToItem = ({ address, length, value, spentTxId, index, key, ...rest }) => (
     as={address ? `/address/${address}` : undefined}
     prefetch={address ? true : undefined}
     passHref={address ? true : undefined}
+    flexDirection={['column', 'row']}
+    minHeight="72px"
+    {...rest}
+    py={label.length > 16 ? 4 : '18px'}
+  >
+    <List.Item.Title fontFamily="brand" maxWidth="100%" overflow="auto" minHeight="1rem" pb={0}>
+      {label}
+    </List.Item.Title>
+    <List.Item.Title style={{ whiteSpace: 'nowrap' }} textAlign="right" ml={2} pb={0} pt={[2, 0]} pl={1}>
+      <Flex alignItems={'center'}>
+        {value || 0}
+        <Type opacity={0.5} pl={1}>
+          BTC
+        </Type>
+        {to ? (
+          !spentTxId ? (
+            <Tooltip text="Unspent">
+              <Box py={1} color="#70D142" pl={1}>
+                <ArrowCollapseDownIcon size={18} />
+              </Box>
+            </Tooltip>
+          ) : (
+            <Tooltip text="Spent">
+              <Box transform={'translateY(2px)'} py={1} pl={1} color={'rgb(239, 111, 111)'}>
+                <ArrowExpandRightIcon size={18} />
+              </Box>
+            </Tooltip>
+          )
+        ) : null}
+      </Flex>
+    </List.Item.Title>
+  </List.Item>
+);
+
+const ToItem = ({ address, length, value, spentTxId, index, key, ...rest }) => (
+  <UTXOItem
+    address={address}
+    key={key}
     borderBottom={index === length - 1 ? '0' : '1px solid'}
     spentTxId={spentTxId}
     value={value}
+    to
     label={address || `Unparsed address`}
   />
 );
 
 const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest }) => (
   <Card width={1} mb={[5, 5, 5]} title="Details">
-    <Flex flexDirection={['column', 'column', 'column', 'row']}>
+    <Flex flexDirection={['column', 'row', 'column', 'row']}>
       <StatItem>
         <Stat.Value>{valueOut}</Stat.Value>
         <Stat.Label>Total Transferred (BTC)</Stat.Label>
@@ -104,12 +113,12 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest 
         <Stat.Label>Fees (BTC)</Stat.Label>
       </StatItem>
     </Flex>
-    <Flex flexDirection={['column', 'column', 'column', 'row']}>
-      <Box width={[1, 1, 1, 0.5]} borderRight={[0, 0, 0, '1px solid']} borderColor={[0, 'blue.mid']} flexGrow={1}>
+    <Flex flexDirection={['column', 'column', 'column', 'column', 'row']}>
+      <Box width={[1, 1, 1, 1, 0.5]} borderRight={[0, 0, 0, 0, '1px solid']} borderColor={[0, 'blue.mid']} flexGrow={1}>
         <DirectionHeader position="relative" bg={darken(0.05, theme.colors.blue.light)}>
           <Box
             position="absolute"
-            display={['none', 'none', 'none', 'block']}
+            display={['none', 'none', 'none', 'none', 'block']}
             size={34}
             bg={darken(0.05, theme.colors.blue.light)}
             zIndex={1}
@@ -131,8 +140,8 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest 
             />
           ))}
       </Box>
-      <Box width={[1, 1, 1, 0.5]} flexGrow={1}>
-        <DirectionHeader borderTop={[0, 0, 0, '1px solid']}>TO</DirectionHeader>
+      <Box width={[1, 1, 1, 1, 0.5]} flexGrow={1}>
+        <DirectionHeader borderTop={[0, 0, 0, 0, '1px solid']}>TO</DirectionHeader>
         {vout &&
           vout.length &&
           vout.map(({ addr, value, scriptPubKey, spentTxId, txid }, i) => (

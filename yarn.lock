@@ -1611,10 +1611,10 @@ binary-extensions@^1.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.12.0.tgz#c2d780f53d45bba8317a8902d4ceeaf3a6385b14"
   integrity sha512-DYWGk01lDcxeS/K9IHPGWfT8PsJmbXRtRd2Sx72Tnb8pcYZQFF1oSDb8hJtS1vhp212q1Rzi5dUf9+nq0o9UIg==
 
-blockstack-ui@^0.0.27:
-  version "0.0.27"
-  resolved "https://registry.yarnpkg.com/blockstack-ui/-/blockstack-ui-0.0.27.tgz#942f1db98914eb16b917cc20c417ebf506d77027"
-  integrity sha512-Zl4LkyYsbSDDyVkpBZLlChc8M77rghVVMiynRd1VZyPDevzQVlg9k1MaPRBcRHYfavvGzAB6h8n/bnCMM8mMuw==
+blockstack-ui@^0.0.29:
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/blockstack-ui/-/blockstack-ui-0.0.29.tgz#d5d299eaa3ab4618277bfa7a262b13ee2312636b"
+  integrity sha512-9JsSmTkfY6jGfpW7O4h/GCMBQSRDtgJ0Q6nD9Djro29LaqTkohO0twvW2fpKHg7T8wdHJB4/NtFeVZXmklXfeg==
   dependencies:
     clean-element "^1.0.2"
     clean-tag "^2.0.0"

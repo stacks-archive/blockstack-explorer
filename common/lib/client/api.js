@@ -77,7 +77,7 @@ const fetchTX = async (txid) => getJSON(makeUrl(`/api/transactions/${txid}`));
  * Get data for a specific BTC address
  * @param {string} id - the BTC address
  */
-const fetchAddress = async (id) => getJSON(makeUrl(`/api/addresses/${id}`));
+const fetchAddress = async (id, page = 0) => getJSON(makeUrl(`/api/addresses/${id}?page=${page}`));
 
 /**
  * Get data for a specific block.

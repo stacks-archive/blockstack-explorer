@@ -8,7 +8,7 @@ import Link from 'next/link';
 const NameOperationsList = ({ items, ...rest }) => (
   <Box>
     {items.map((item, i) => (
-      <Toggle>
+      <Toggle key={item.txid}>
         {({ on, toggle }) => {
           const { opcode, txid } = item;
           const Icon = on ? ChevronUpIcon : ChevronDownIcon;
@@ -22,7 +22,7 @@ const NameOperationsList = ({ items, ...rest }) => (
                 onClick={toggle}
               >
                 <Box maxWidth="calc(100% - 48px)">
-                  {/*TODO: is this the best thing to do for subdomains?*/}
+                  {/* TODO: is this the best thing to do for subdomains? */}
                   <List.Item.Title>{opcode || 'Subdomain Registration'}</List.Item.Title>
                   <List.Item.Subtitle overflow="auto">{txid}</List.Item.Subtitle>
                 </Box>
@@ -52,7 +52,6 @@ const NameOperationsList = ({ items, ...rest }) => (
                       }}
                       passHref
                       as={`/tx/${txid}`}
-                      key={txid}
                     >
                       <Button bg="white" is="a" size="small">
                         View Full Transaction
@@ -60,8 +59,8 @@ const NameOperationsList = ({ items, ...rest }) => (
                     </Link>
                   </Flex>
                   <Box pt={4}>
-                    {Object.keys(item).map((key) => (
-                      <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
+                    {Object.keys(item).map((key, i) => (
+                      <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1} key={i}>
                         <Box minWidth="200px" pr={2}>
                           {key}
                         </Box>

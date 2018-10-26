@@ -14,9 +14,9 @@ const fetchNameOperations = async () => {
  * Fetch information for a given BNS name.
  * @param {string} name - the name you want the data for
  */
-const fetchName = async (name) => {
+const fetchName = async (name, page = 0) => {
   try {
-    const url = makeUrl(`/api/names/${name}`);
+    const url = makeUrl(`/api/names/${name}?page=${page}`);
     return getJSON(url);
   } catch (error) {
     console.log(error);

@@ -35,12 +35,13 @@ const DirectionHeader = ({ children, ...rest }) => (
 );
 
 const UTXOItem = ({ label, value, spentTxId, ...rest }) => (
-  <List.Item {...rest}>
-    <List.Item.Title maxWidth={'100%'} overflow="auto" height={'1rem'} pb={0}>
+  <List.Item {...rest} py={label.length > 16 ? 4 : '18px'}>
+    <List.Item.Title maxWidth="100%" overflow="auto" height="1rem" pb={0}>
       <SectionLabel>{label}</SectionLabel>
     </List.Item.Title>
-    <List.Item.Title style={{ whiteSpace: 'nowrap' }} textAlign={'right'} ml={2} pb={0} pl={1}>
-      {value || 0} <Type opacity={0.5}>BTC</Type>
+    <List.Item.Title style={{ whiteSpace: 'nowrap' }} textAlign="right" ml={2} pb={0} pl={1}>
+      {value || 0}
+      <Type opacity={0.5}>BTC</Type>
       {!spentTxId && ' U'}
     </List.Item.Title>
   </List.Item>
@@ -54,7 +55,7 @@ const ToItem = ({ address, length, value, spentTxId, index, key, ...rest }) => (
         ? {
             pathname: '/address/single',
             query: {
-              address: address,
+              address,
             },
           }
         : undefined
@@ -74,7 +75,7 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest 
     <Flex flexDirection={['column', 'column', 'column', 'row']}>
       <StatItem>
         <Stat.Value>
-          {valueOut} <Type opacity={0.5}>BTC</Type>
+          {valueOut}           <Type opacity={0.5}>BTC</Type>
         </Stat.Value>
         <Stat.Label>Total Transferred</Stat.Label>
       </StatItem>
@@ -84,16 +85,16 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest 
       </StatItem>
       <StatItem isLast>
         <Stat.Value>
-          {fees || 0} <Type opacity={0.5}>BTC</Type>
+          {fees || 0}           <Type opacity={0.5}>BTC</Type>
         </Stat.Value>
         <Stat.Label>Fees</Stat.Label>
       </StatItem>
     </Flex>
     <Flex flexDirection={['column', 'column', 'column', 'row']}>
       <Box width={[1, 1, 1, 0.5]} borderRight={[0, 0, 0, '1px solid']} borderColor={[0, 'blue.mid']} flexGrow={1}>
-        <DirectionHeader position={'relative'} bg={darken(0.05, theme.colors.blue.light)}>
+        <DirectionHeader position="relative" bg={darken(0.05, theme.colors.blue.light)}>
           <Box
-            position={'absolute'}
+            position="absolute"
             display={['none', 'none', 'none', 'block']}
             size={34}
             bg={darken(0.05, theme.colors.blue.light)}

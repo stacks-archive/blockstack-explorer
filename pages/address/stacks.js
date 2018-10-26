@@ -5,6 +5,7 @@ import { fetchStacksAddress } from '@common/lib/client/api';
 import { StacksAddressCard } from '@containers/cards/stacks-address';
 import { StacksUnlockingChart } from '@containers/charts/stacks-unlocking-chart';
 import { StacksTxList } from '@containers/lists/stacks-tx-list';
+import { StatItem } from '@components/stats';
 
 export default class StacksAddressPage extends React.Component {
   static async getInitialProps({ req, query }) {
@@ -26,6 +27,13 @@ export default class StacksAddressPage extends React.Component {
           <StacksAddressCard address={address} />
         </Box>
         <Box width={[1, 1, 'calc(100% - 420px)']} flexGrow={1}>
+          {address.vesting_total && (
+            <Card mb={5} width={1} title="STX Allocation">
+              <Flex flexWrap="wrap">
+                <StatItem width={1} label="STX Owned by this Address" value={address.formattedUnlockTotal} />
+              </Flex>
+            </Card>
+          )}
           {address.history && address.history.length ? (
             <Card mb={5} width={1} title="Transactions">
               <StacksTxList />

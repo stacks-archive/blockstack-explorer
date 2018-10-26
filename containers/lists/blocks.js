@@ -8,7 +8,7 @@ const Cell = ({ ...rest }) => <Box color="blue.dark" px={4} py={3} {...rest} />;
 
 const renderRowData = (data, keys) =>
   keys.map(({ key, value, ...props }) => (
-    <Cell {...props}>
+    <Cell {...props} key={key}>
       <Type>{value ? value(data) : data[key] || '0'}</Type>
     </Cell>
   ));
@@ -36,7 +36,11 @@ const Row = ({ keys, ...data }) => (
   </List.Item>
 );
 
-const Rows = ({ list, keys, ...rest }) => list.map((block, i) => (i < 200 ? <Row keys={keys} {...block} /> : null));
+const Rows = ({ list, keys, showAll }) =>
+  list.map((block, i) => {
+    if (!showAll && i >= 200) return '';
+    return <Row keys={keys} key={block.height} {...block} />;
+  });
 
 const TableHeader = ({ keys, ...rest }) => (
   <Box
@@ -60,11 +64,11 @@ const TableHeader = ({ keys, ...rest }) => (
   </Box>
 );
 
-const BlocksList = ({ blocks, keys, ...rest }) => (
+const BlocksList = ({ blocks, keys, showAll }) => (
   <>
     <TableHeader keys={keys} />
     <Box>
-      <Rows keys={keys} list={blocks} />
+      <Rows keys={keys} list={blocks} showAll={showAll} />
     </Box>
   </>
 );

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Box, Type } from 'blockstack-ui';
 import { Card } from '@components/card/index';
 import { Section } from '@components/section/index';
 import { Time } from '@components/time';

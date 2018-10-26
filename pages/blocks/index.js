@@ -1,9 +1,15 @@
 import React from 'react';
+import moment from 'moment';
+import Router from 'next/router';
 import { Flex, Button } from 'blockstack-ui';
 import { Card } from '@components/card';
 import { fetchBlocks } from '@common/lib/client/api';
 import { Time } from '@components/time';
 import { BlocksList } from '@containers/lists/blocks';
+import ChevronDoubleLeftIcon from 'mdi-react/ChevronDoubleLeftIcon';
+import ChevronDoubleRightIcon from 'mdi-react/ChevronDoubleRightIcon';
+// import DatePicker from 'react-datepicker';
+// import { DatePickerButton } from '@components/buttons';
 
 const keys = [
   {
@@ -42,37 +48,82 @@ class BlocksPage extends React.Component {
   static async getInitialProps({ req, query }) {
     const date = req && req.params ? req.params.date : query.date;
     const blocks = await fetchBlocks(date);
+    const today = moment().format('YYYY-MM-DD');
     return {
       blocks,
+      date,
+      today,
       meta: {
         title: 'Blocks',
       },
     };
   }
 
-  actions = () => (
-    <Flex
-      flexGrow={1}
-      pt={[3, 0, 0]}
-      width={[1, 'auto', 'auto']}
-      alignItems="center"
-      justifyContent={['flex-start', 'flex-end', 'flex-end']}
-    >
-      <Button size="small">Action 1</Button>
-      <Button size="small">Action 2</Button>
-      <Button size="small">Action 3</Button>
-    </Flex>
-  );
+  state = {
+    showAll: false,
+  };
+
+  navigateDate = (date) => {
+    Router.push({
+      pathname: '/blocks',
+      query: {
+        date,
+      },
+    });
+  };
+
+  actions = () => {
+    const { date } = this.props;
+    const yesterday = moment(date)
+      .subtract(1, 'day')
+      .format('YYYY-MM-DD');
+    let tomorrow;
+    if (moment(date).format('YYYY-MM-DD') !== this.props.today) {
+      tomorrow = moment(date)
+        .add(1, 'day')
+        .format('YYYY-MM-DD');
+    }
+    return (
+      <Flex
+        flexGrow={1}
+        pt={[3, 0, 0]}
+        width={[1, 'auto', 'auto']}
+        alignItems="center"
+        justifyContent={['flex-start', 'flex-end', 'flex-end']}
+      >
+        <Button size="small" onClick={() => this.navigateDate(yesterday)}>
+          <ChevronDoubleLeftIcon size={11} style={{ top: '1px', position: 'relative', left: '-3px' }} />
+          {yesterday}
+        </Button>
+        {/* <DatePicker
+          customInput={<DatePickerButton size="small" />}
+          onChange={(selectedDate) => {
+            console.log(selectedDate);
+            return selectedDate;
+          }}
+        /> */}
+        {tomorrow && (
+          <Button size="small" onClick={() => this.navigateDate(tomorrow)}>
+            {tomorrow}
+            <ChevronDoubleRightIcon size={11} style={{ top: '1px', position: 'relative', right: '-3px' }} />
+          </Button>
+        )}
+      </Flex>
+    );
+  };
 
   render() {
+    const { showAll } = this.state;
     return (
       <Flex p={5} flexDirection="column" width={1}>
-        <Card title="Recent Blocks" actions={this.actions()}>
-          <BlocksList blocks={this.props.blocks} keys={keys} />
+        <Card title={`Blocks for ${moment(this.props.date).format('dddd, MMMM Do YYYY')}`} actions={this.actions()}>
+          <BlocksList blocks={this.props.blocks} keys={keys} showAll={showAll} />
         </Card>
-        <Flex py={4} justifyContent="center">
-          <Button>View More Blocks</Button>
-        </Flex>
+        {!showAll && (
+          <Flex py={4} justifyContent="center">
+            <Button onClick={() => this.setState({ showAll: true })}>View More Blocks</Button>
+          </Flex>
+        )}
       </Flex>
     );
   }

@@ -21,6 +21,7 @@ module.exports = {
     'react/forbid-prop-types': [0],
     'no-param-reassign': [0],
     'import/no-extraneous-dependencies': [0],
+    'react/prefer-stateless-function': [0],
   },
   env: {
     es6: true,

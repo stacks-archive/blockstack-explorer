@@ -5,7 +5,8 @@ import { SectionLabel } from '@components/section';
 import { List } from '@components/list';
 import { darken } from 'polished';
 import { Stat } from '@components/stats';
-
+import { Tooltip } from '@components/tooltip';
+import { ArrowExpandRightIcon, ArrowCollapseDownIcon } from 'mdi-react';
 
 const StatItem = ({ isLast, ...rest }) => (
   <Stat
@@ -13,6 +14,7 @@ const StatItem = ({ isLast, ...rest }) => (
     borderRight={!isLast ? ['0', '0', '0', '1px solid'] : undefined}
     borderBottom={!isLast ? ['1px solid', '1px solid', '1px solid', 0] : undefined}
     borderColor={['blue.mid', 'blue.mid', 'blue.mid', 'blue.mid']}
+    textAlign="center"
     {...rest}
   />
 );
@@ -36,14 +38,30 @@ const DirectionHeader = ({ children, ...rest }) => (
 );
 
 const UTXOItem = ({ label, value, spentTxId, ...rest }) => (
-  <List.Item {...rest} py={label.length > 16 ? 4 : '18px'}>
-    <List.Item.Title maxWidth="100%" overflow="auto" height="1rem" pb={0}>
-      <SectionLabel>{label}</SectionLabel>
+  <List.Item flexDirection={['column', 'row']} minHeight="72px" {...rest} py={label.length > 16 ? 4 : '18px'}>
+    <List.Item.Title fontFamily="brand" maxWidth="100%" overflow="auto" minHeight="1rem" pb={0}>
+      {label}
     </List.Item.Title>
-    <List.Item.Title style={{ whiteSpace: 'nowrap' }} textAlign="right" ml={2} pb={0} pl={1}>
-      {value || 0}
-      <Type opacity={0.5} pl={1}>BTC</Type>
-      {!spentTxId && ' U'}
+    <List.Item.Title style={{ whiteSpace: 'nowrap' }} textAlign="right" ml={2} pb={0} pt={[2, 0]} pl={1}>
+      <Flex alignItems={'center'}>
+        {value || 0}
+        <Type opacity={0.5} pl={1}>
+          BTC
+        </Type>
+        {!spentTxId ? (
+          <Tooltip text="Unspent">
+            <Box py={1} color="#70D142" pl={1}>
+              <ArrowCollapseDownIcon size={18} />
+            </Box>
+          </Tooltip>
+        ) : (
+          <Tooltip text="Spent">
+            <Box transform={'translateY(2px)'} py={1} pl={1} color={'rgb(239, 111, 111)'}>
+              <ArrowExpandRightIcon size={18} />
+            </Box>
+          </Tooltip>
+        )}
+      </Flex>
     </List.Item.Title>
   </List.Item>
 );

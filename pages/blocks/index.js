@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import Router from 'next/router';
+import Link from 'next/link';
 import { Flex, Button } from 'blockstack-ui';
 import { Card } from '@components/card';
 import { fetchBlocks } from '@common/lib/client/api';
@@ -8,6 +8,8 @@ import { Time } from '@components/time';
 import { BlocksList } from '@containers/lists/blocks';
 import ChevronDoubleLeftIcon from 'mdi-react/ChevronDoubleLeftIcon';
 import ChevronDoubleRightIcon from 'mdi-react/ChevronDoubleRightIcon';
+import NProgress from 'nprogress';
+import Head from '@components/head';
 // import DatePicker from 'react-datepicker';
 // import { DatePickerButton } from '@components/buttons';
 
@@ -66,7 +68,7 @@ const DateButton = ({ icon: Icon, direction = 'back', children, ...rest }) => {
   );
 };
 
-const DateActions = ({ date, today, navigateDate, ...rest }) => {
+const DateActions = ({ date, today, loading, fetchBlocksForDate, ...rest }) => {
   const yesterday = moment(date)
     .subtract(1, 'day')
     .format('YYYY-MM-DD');
@@ -87,9 +89,16 @@ const DateActions = ({ date, today, navigateDate, ...rest }) => {
       alignItems="center"
       justifyContent={['flex-start', 'flex-end', 'flex-end']}
     >
-      <DateButton icon={ChevronDoubleLeftIcon} onClick={() => navigateDate(yesterday)}>
-        {yesterday}
+      <DateButton
+        onClick={(e) => {
+          e.preventDefault();
+          fetchBlocksForDate(yesterday, 'yesterday');
+        }}
+        icon={ChevronDoubleLeftIcon}
+      >
+        {loading === 'yesterday' ? 'Loading' : yesterday}
       </DateButton>
+
       {/* <DatePicker
           customInput={<DatePickerButton size="small" />}
           onChange={(selectedDate) => {
@@ -98,15 +107,23 @@ const DateActions = ({ date, today, navigateDate, ...rest }) => {
           }}
         /> */}
       {tomorrow && (
-        <DateButton direction="forward" icon={ChevronDoubleRightIcon} onClick={() => navigateDate(tomorrow)}>
-          {tomorrow}
+        <DateButton
+          onClick={(e) => {
+            e.preventDefault();
+            fetchBlocksForDate(tomorrow, 'tomorrow');
+          }}
+          is="a"
+          direction="forward"
+          icon={ChevronDoubleRightIcon}
+        >
+          {loading === 'tomorrow' ? 'Loading' : tomorrow}
         </DateButton>
       )}
     </Flex>
   );
 };
 
-class BlocksPage extends React.Component {
+class BlocksPage extends React.PureComponent {
   static async getInitialProps({ req, query }) {
     const date = req && req.params ? req.params.date : query.date;
     const blocks = await fetchBlocks(date);
@@ -123,26 +140,61 @@ class BlocksPage extends React.Component {
 
   state = {
     showAll: false,
+    loading: false,
+    date: this.props.date ? this.props.date : this.props.today,
+    data: {
+      [this.props.date ? this.props.date : this.props.today || 'today']: this.props.blocks,
+    },
   };
 
-  navigateDate = (date) => {
-    Router.push({
-      pathname: '/blocks',
-      query: {
+  fetchBlocksForDate = async (date, direction) => {
+    if (!this.state.data[date]) {
+      setTimeout(() => {
+        NProgress.start();
+      }, 0);
+      const data = await fetchBlocks(date);
+      this.setState((state) => ({
+        ...state,
+        data: {
+          ...state.data,
+          [date]: data,
+        },
         date,
-      },
-    });
+      }));
+      NProgress.done();
+    } else {
+      setTimeout(
+        () =>
+          this.setState((state) => ({
+            ...state,
+            date,
+          })),
+        8,
+      );
+    }
   };
 
   render() {
     const { showAll } = this.state;
     return (
       <Flex p={5} flexDirection="column" width={1}>
+        <Head title={`Blocks for ${moment(this.state.date).format('dddd, MMMM Do YYYY')}`} />
         <Card
-          title={`Blocks for ${moment(this.props.date).format('dddd, MMMM Do YYYY')}`}
-          actions={<DateActions today={this.props.today} date={this.props.date} navigateDate={this.navigateDate} />}
+          title={`Blocks for ${moment(this.state.date).format('dddd, MMMM Do YYYY')}`}
+          actions={
+            <DateActions
+              today={this.props.today}
+              date={this.state.date}
+              loading={this.state.loading}
+              fetchBlocksForDate={this.fetchBlocksForDate}
+            />
+          }
         >
-          <BlocksList blocks={this.props.blocks} keys={keys} showAll={showAll} />
+          <BlocksList
+            blocks={(this.state.date && this.state.data[this.state.date]) || this.props.blocks}
+            keys={keys}
+            showAll={showAll}
+          />
         </Card>
         {!showAll && (
           <Flex py={4} justifyContent="center">

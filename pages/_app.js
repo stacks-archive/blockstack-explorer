@@ -94,7 +94,7 @@ ${fonts}
   background: ${theme.colors.blue.accent};
 
   position: fixed;
-  z-index: 1031;
+  z-index: 9999999999;
   top: 0;
   left: 0;
 

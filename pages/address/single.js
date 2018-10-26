@@ -11,7 +11,7 @@ class AddressSinglePage extends React.Component {
     const address = req && req.params ? req.params.address : query.address;
     const data = query.data || (await fetchAddress(address));
     const transactions = [];
-    if (data.transactions && data.transactions.length) {
+    if (data && data.transactions && data.transactions.length) {
       await Promise.all(
         data.transactions.map(async (_tx) => {
           const tx = await fetchTX(_tx);

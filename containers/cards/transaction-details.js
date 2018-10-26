@@ -36,7 +36,7 @@ const DirectionHeader = ({ children, ...rest }) => (
 );
 
 const UTXOItem = ({ label, value, spentTxId, ...rest }) => (
-  <List.Item {...rest} py={label.length > 16 ? 4 : '18px'}>
+  <List.Item {...rest}>
     <List.Item.Title maxWidth="100%" overflow="auto" height="1rem" pb={0}>
       <SectionLabel>{label}</SectionLabel>
     </List.Item.Title>

@@ -74,20 +74,16 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest 
   <Card width={1} mb={[5, 5, 5]} title="Details">
     <Flex flexDirection={['column', 'column', 'column', 'row']}>
       <StatItem>
-        <Stat.Value>
-          {valueOut}           <Type opacity={0.5}>BTC</Type>
-        </Stat.Value>
-        <Stat.Label>Total Transferred</Stat.Label>
+        <Stat.Value>{valueOut}</Stat.Value>
+        <Stat.Label>Total Transferred (BTC)</Stat.Label>
       </StatItem>
       <StatItem>
         <Stat.Value>{confirmations}</Stat.Value>
         <Stat.Label>Confirmations</Stat.Label>
       </StatItem>
       <StatItem isLast>
-        <Stat.Value>
-          {fees || 0}           <Type opacity={0.5}>BTC</Type>
-        </Stat.Value>
-        <Stat.Label>Fees</Stat.Label>
+        <Stat.Value>{fees || 0}</Stat.Value>
+        <Stat.Label>Fees (BTC)</Stat.Label>
       </StatItem>
     </Flex>
     <Flex flexDirection={['column', 'column', 'column', 'row']}>

@@ -1,16 +1,15 @@
 import React from 'react';
-import { fetchAddress } from '@common/lib/client/api';
+import { fetchAddress, fetchTX } from '@common/lib/client/api';
 import { AddressCard } from '@containers/cards/address';
 import { NamesList } from '@containers/lists/names';
 import { TxList } from '@containers/lists/tx-list';
 import { Card } from '@components/card';
-import { fetchTX } from '@common/lib/client/api';
 import { Page } from '@components/page';
 
 class AddressSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
     const address = req && req.params ? req.params.address : query.address;
-    const data = await fetchAddress(address);
+    const data = query.data || (await fetchAddress(address));
     const transactions = [];
     if (data.transactions && data.transactions.length) {
       await Promise.all(

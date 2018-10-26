@@ -61,11 +61,15 @@ class Home extends React.Component {
       <Page>
         <Card width={1} mb={[5, 5, 0]} title="Latest Names Registered" actions={Actions} mr={[0, 0, 5]}>
           <NamesList limit={limitNameOperations ? 10 : null} />
-          {limitNameOperations && (
-            <Flex py={4} justifyContent="center">
+          <Flex py={4} justifyContent="center">
+            {limitNameOperations ? (
               <Button onClick={() => this.setState({ limitNameOperations: false })}>View More</Button>
-            </Flex>
-          )}
+            ) : (
+              <Link passHref href="/names">
+                <Button is={'a'}>View All Names</Button>
+              </Link>
+            )}
+          </Flex>
         </Card>
         <Box top="113px" position={['static', 'sticky']} width={[1, 1, 1, '700px']}>
           <Card title="Global statistics">

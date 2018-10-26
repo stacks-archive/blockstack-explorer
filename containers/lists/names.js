@@ -16,8 +16,6 @@ const NamesList = ({ list, limit, ...rest }) => (
       const { nameOperations } = context;
       const array = list || nameOperations;
       if (!array) return null;
-      console.log(array, limit);
-      if (!array) return '';
       const needToLimit = (index) => (limit ? !(index > limit) : true);
       return array.map(
         ({ name, owner, address, time }, i) =>

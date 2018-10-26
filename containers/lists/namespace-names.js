@@ -14,7 +14,6 @@ class NamespaceNames extends React.Component {
   }
 
   componentDidMount() {
-    console.log('did mount');
     this.loadMoreNames();
   }
 
@@ -45,12 +44,10 @@ class NamespaceNames extends React.Component {
     } else {
       nameOperations = await fetchNamespaceNames(name, pageNum);
     }
-    console.log(name, pageNum, nameOperations.length);
     nameOperations = nameOperations.map((op) => ({
       name: op,
     }));
     names = names.concat(nameOperations);
-    console.log(names.length);
     this.setState(
       {
         pageNum,

@@ -17,7 +17,7 @@ const SideNavButton = ({ active, loading, ...rest }) => (
         py={4}
         mb={3}
         width={['calc(100%)', 'calc(50% - 6px)', '100%']}
-        border={'1px solid'}
+        border="1px solid"
         borderColor="blue.mid"
         borderRadius={4}
         boxShadow={active || hovered || loading ? 'general' : undefined}
@@ -87,11 +87,11 @@ class NamesPage extends React.Component {
     return (
       <Page>
         <Card
-          boxShadow={'none'}
+          boxShadow="none"
           bg="transparent"
-          borderColor={'transparent'}
+          borderColor="transparent"
           position={['static', 'static', 'sticky']}
-          top={'116px'}
+          top="116px"
           width={1}
           maxWidth={['100%', '100%', '300px']}
           mr={[0, 0, 5]}
@@ -101,7 +101,7 @@ class NamesPage extends React.Component {
               <List.Item.Title m={0} p={0}>
                 All Namespaces
               </List.Item.Title>
-              <List.Item.Subtitle>{this.props.totalNames}</List.Item.Subtitle>
+              {/* <List.Item.Subtitle>{this.props.totalNames}</List.Item.Subtitle> */}
             </SideNavButton>
             {this.props.namespaces.map(({ namespace, count }, i) => (
               <SideNavButton
@@ -110,14 +110,14 @@ class NamesPage extends React.Component {
                 loading={this.state.loading === namespace}
                 onClick={() => this.fetchNamepaceNames(namespace)}
               >
-                <List.Item.Title>.{namespace}</List.Item.Title>
-                <List.Item.Subtitle>{this.state.loading === namespace ? 'Loading...' : count}</List.Item.Subtitle>
+                <List.Item.Title>{`.${namespace}`}</List.Item.Title>
+                <List.Item.Subtitle>{this.state.loading === namespace ? 'Loading...' : ''}</List.Item.Subtitle>
               </SideNavButton>
             ))}
           </Flex>
         </Card>
         <Page.Main width={[1, 1, 'calc(100% - 300px)']}>
-          <Card width={1} mb={[5, 5, 0]} title={'Names'}>
+          <Card width={1} mb={[5, 5, 0]} title="Names">
             <NamesList list={this.state.namespaces[this.state.view]} />
           </Card>
         </Page.Main>

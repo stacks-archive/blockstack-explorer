@@ -14,8 +14,9 @@ const NamesList = ({ list, limit, ...rest }) => (
     {(context) => {
       if (!context) return null;
       const { nameOperations } = context;
-      if (!nameOperations) return null;
-      const array = list && list.length ? list : nameOperations;
+      const array = list || nameOperations;
+      if (!array) return null;
+      console.log(array, limit);
       if (!array) return '';
       const needToLimit = (index) => (limit ? !(index > limit) : true);
       return array.map(

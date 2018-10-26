@@ -4,13 +4,15 @@ import { Box } from 'blockstack-ui';
 import { Consumer } from '@pages/_app';
 import { Time } from '@components/time';
 
-const TxList = ({ ...rest }) => (
+const TxList = (props) => (
   <Consumer>
     {({ transactions }) => {
-      if (!transactions) return '';
-      return transactions
+      console.log(props);
+      const txList = props.transactions || transactions;
+      if (!txList) return '';
+      return txList
         .sort((a, b) => new Date(a.time * 1000) < new Date(b.time * 1000))
-        .map(({ txid, valueOut, time }) => (
+        .map(({ txid, valueOut, time, action, value }) => (
           <List.Item
             href={{
               pathname: '/transaction/single',
@@ -22,7 +24,10 @@ const TxList = ({ ...rest }) => (
             key={txid}
           >
             <Box maxWidth="calc(100% - 105px)">
-              <List.Item.Title overflow="auto">{`${valueOut} BTC`}</List.Item.Title>
+              <List.Item.Title overflow="auto">
+                {action && <span>{`${action} `}</span>}
+                {`${value} BTC`}
+              </List.Item.Title>
               <List.Item.Subtitle overflow="auto">{txid}</List.Item.Subtitle>
             </Box>
             {time && (

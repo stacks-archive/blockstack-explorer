@@ -27,7 +27,7 @@ class AddressSinglePage extends React.Component {
 
           const modifiedTx = {
             ...tx,
-            valueOut: vout.value,
+            valueOut: vout && vout.value ? vout.value : tx.valueOut,
           };
           transactions.push(modifiedTx);
         }),

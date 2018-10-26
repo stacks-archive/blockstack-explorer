@@ -15,6 +15,7 @@ const AddressCard = ({ address, ...rest }) => {
         <QRCode level="H" fgColor="currentColor" renderAs="svg" size={156} value={value} />
       </Section>
       <Section pb={4}>
+        <Attribute label="Address" value={data.addrStr} />
         <Attribute label="Balance" value={`${data.balance} BTC`} />
         <Attribute label="Total Received" value={`${data.totalReceived} BTC`} />
         <Attribute label="Total Sent" value={`${data.totalSent} BTC`} />

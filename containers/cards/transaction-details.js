@@ -42,7 +42,7 @@ const UTXOItem = ({ label, value, spentTxId, ...rest }) => (
     </List.Item.Title>
     <List.Item.Title style={{ whiteSpace: 'nowrap' }} textAlign="right" ml={2} pb={0} pl={1}>
       {value || 0}
-      <Type opacity={0.5}>BTC</Type>
+      <Type opacity={0.5} pl={1}>BTC</Type>
       {!spentTxId && ' U'}
     </List.Item.Title>
   </List.Item>

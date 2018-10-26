@@ -58,20 +58,22 @@ const DateButton = ({ icon: Icon, direction = 'back', children, ...rest }) => {
 
   return (
     <Button size="small" {...rest}>
-      <Icon {...iconProps} />
-      {children}
+      <Flex>
+        <Icon {...iconProps} />
+        <Flex>{children}</Flex>
+      </Flex>
     </Button>
   );
 };
 
-const DateActions = ({ date, navigateDate, ...rest }) => {
+const DateActions = ({ date, today, navigateDate, ...rest }) => {
   const yesterday = moment(date)
     .subtract(1, 'day')
     .format('YYYY-MM-DD');
 
   let tomorrow;
 
-  if (moment(date).format('YYYY-MM-DD') !== this.props.today) {
+  if (moment(date).format('YYYY-MM-DD') !== today) {
     tomorrow = moment(date)
       .add(1, 'day')
       .format('YYYY-MM-DD');
@@ -138,7 +140,7 @@ class BlocksPage extends React.Component {
       <Flex p={5} flexDirection="column" width={1}>
         <Card
           title={`Blocks for ${moment(this.props.date).format('dddd, MMMM Do YYYY')}`}
-          actions={<DateActions date={this.props.date} navigateDate={this.navigateDate} />}
+          actions={<DateActions today={this.props.today} date={this.props.date} navigateDate={this.navigateDate} />}
         >
           <BlocksList blocks={this.props.blocks} keys={keys} showAll={showAll} />
         </Card>

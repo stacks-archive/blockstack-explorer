@@ -15,7 +15,21 @@ class AddressSinglePage extends React.Component {
       await Promise.all(
         data.transactions.map(async (_tx) => {
           const tx = await fetchTX(_tx);
-          transactions.push(tx);
+
+          // Find our true value
+          const vout = tx.vout.find(
+            (v) =>
+              v.scriptPubKey &&
+              v.scriptPubKey.addresses &&
+              v.scriptPubKey.addresses.length &&
+              v.scriptPubKey.addresses.find((addr) => addr === address),
+          );
+
+          const modifiedTx = {
+            ...tx,
+            valueOut: vout.value,
+          };
+          transactions.push(modifiedTx);
         }),
       );
     }

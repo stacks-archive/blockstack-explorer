@@ -5,17 +5,10 @@ import { Card } from '@components/card';
 import { NamesList } from '@containers/lists/names';
 import { fetchHomeInfo } from '@common/lib/client/api';
 import { Page } from '@components/page';
-import { Stat } from '@components/stats';
+import { StatItem } from '@components/stats';
 import { Section } from '@components/section';
 
 import { Line as LineChart } from 'react-chartjs-2';
-
-const StatItem = ({ value, label, width = 0.5, ...rest }) => (
-  <Stat {...rest} width={width}>
-    <Stat.Value>{value}</Stat.Value>
-    <Stat.Label>{label}</Stat.Label>
-  </Stat>
-);
 
 const Actions = () => (
   <Link passHref prefetch href="/names">

@@ -10,7 +10,14 @@ const Stat = ({ isLast, ...rest }) => (
   <Flex flexGrow={1} alignItems="center" flexDirection="column" justifyContent="center" px={5} py={5} {...rest} />
 );
 
+const StatItem = ({ value, label, width = 0.5, ...rest }) => (
+  <Stat {...rest} width={width}>
+    <Stat.Value>{value}</Stat.Value>
+    <Stat.Label>{label}</Stat.Label>
+  </Stat>
+);
+
 Stat.Value = Value;
 Stat.Label = SectionLabel;
 
-export { Stat };
+export { Stat, StatItem };

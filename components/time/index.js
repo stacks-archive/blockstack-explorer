@@ -1,10 +1,19 @@
 import React from 'react';
-
 import TimeAgo from 'react-timeago';
+import moment from 'moment';
 
-const Time = ({ date }) => {
+import { Tooltip } from '@components/tooltip';
+
+const Time = ({ date, tooltip = true }) => {
   const value = new Date(date * 1000);
-  return <TimeAgo date={value} />;
+  if (!tooltip) {
+    return <TimeAgo date={value} />;
+  }
+  return (
+    <Tooltip text={moment(date * 1000).format('DD MMMM YYYY HH:MM')}>
+      <TimeAgo date={value} />
+    </Tooltip>
+  );
 };
 
 export { Time };

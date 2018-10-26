@@ -11,6 +11,7 @@ const Tooltip = sys(
     position: 'relative',
     color: 'inherit',
     backgroundColor: 'transparent',
+    zIndex: 100,
     '&::before': {
       display: 'none',
       content: `"${props.text}"`,
@@ -25,9 +26,9 @@ const Tooltip = sys(
       paddingLeft: '8px',
       zIndex: 99999,
       paddingRight: '8px',
-      color: themeGet('colors.' + props.color)(props),
-      backgroundColor: themeGet('colors.' + props.bg)(props),
-      borderRadius: themeGet('radii.1')(props) + 'px',
+      color: themeGet(`colors.${props.color}`)(props),
+      backgroundColor: themeGet(`colors.${props.bg}`)(props),
+      borderRadius: `${themeGet('radii.1')(props)}px`,
     },
     '&::after': {
       display: 'none',
@@ -40,7 +41,7 @@ const Tooltip = sys(
       borderWidth: '6px',
       borderStyle: 'solid',
       borderColor: 'transparent',
-      borderTopColor: themeGet('colors.' + props.bg)(props),
+      borderTopColor: themeGet(`colors.${props.bg}`)(props),
     },
     '&:hover': {
       '&::before, &::after': {

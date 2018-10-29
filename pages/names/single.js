@@ -35,21 +35,17 @@ class NamesSinglePage extends React.Component {
     };
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      pageNum: 0,
-      data: props.user.nameRecord && props.user.nameRecord.history ? [...props.user.nameRecord.history] : [],
-      limit: 5,
-      loading: false,
-      doesNotHaveNextPage: false,
-    };
-  }
+  state = {
+    pageNum: 0,
+    data:
+      this.props.user.nameRecord && this.props.user.nameRecord.history ? [...this.props.user.nameRecord.history] : [],
+    limit: 5,
+    loading: false,
+    doesNotHaveNextPage: false,
+  };
 
   componentDidMount() {
-    if (this.state.data.length === 20) {
-      this.preloadNextPage(this.state.pageNum + 1);
-    }
+    this.preloadNextPage();
   }
 
   showMoreItems = () => {
@@ -68,25 +64,46 @@ class NamesSinglePage extends React.Component {
     }
   };
 
-  preloadNextPage = async (page = this.state.pageNum + 1) => {
-    const { id } = this.props.user;
-    this.setState({
-      loading: true,
-    });
-    try {
-      const data = await fetchName(id, page);
-      if (data && data.nameRecord && data.nameRecord.history && data.nameRecord.history.length) {
-        this.setState((state) => ({
-          data: [...state.data, ...data.nameRecord.history],
+  componentDidUpdate(prevProps, prevState, prevContext) {
+    if (prevProps.user.id !== this.props.user.id) {
+      // different state, reset to initial state
+      this.setState(
+        {
+          pageNum: 0,
+          data:
+            this.props.user.nameRecord && this.props.user.nameRecord.history
+              ? [...this.props.user.nameRecord.history]
+              : [],
+          limit: 5,
           loading: false,
-        }));
-      }
-    } catch (e) {
-      // if we err, eg 404, set doesNotHaveNextPage true
+          doesNotHaveNextPage: false,
+        },
+        () => this.preloadNextPage(),
+      );
+    }
+  }
+
+  preloadNextPage = async (page = this.state.pageNum + 1) => {
+    if (this.state.data.length >= 20) {
+      const { id } = this.props.user;
       this.setState({
-        loading: false,
-        doesNotHaveNextPage: true,
+        loading: true,
       });
+      try {
+        const data = await fetchName(id, page);
+        if (data && data.nameRecord && data.nameRecord.history && data.nameRecord.history.length) {
+          this.setState((state) => ({
+            data: [...state.data, ...data.nameRecord.history],
+            loading: false,
+          }));
+        }
+      } catch (e) {
+        // if we err, eg 404, set doesNotHaveNextPage true
+        this.setState({
+          loading: false,
+          doesNotHaveNextPage: true,
+        });
+      }
     }
   };
 
@@ -102,7 +119,7 @@ class NamesSinglePage extends React.Component {
         <UserCard mb={[5, 5, 0]} mr={[0, 0, 5]} width={1} maxWidth={['100%', '100%', '380px']} {...this.props.user} />
         <Page.Main>
           <Card flexGrow={1} title="Recent Operations">
-            <NameOperationsList items={items} />
+            <NameOperationsList key={this.props.user.id} items={items} />
             {showMore &&
               !this.state.doesNotHaveNextPage && (
                 <Flex py={4} justifyContent="center">

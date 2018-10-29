@@ -1,6 +1,6 @@
 import React from 'react';
 import { fetchBlock } from '@common/lib/client/api';
-import { NamesList } from '@containers/lists/names';
+import { NameOperationsList } from '@containers/lists/single-name-operations';
 import { TxList } from '@containers/lists/tx-list';
 import { Card } from '@components/card';
 import { BlockCard } from '@containers/cards/block';
@@ -32,7 +32,7 @@ class BlocksSinglePage extends React.Component {
         <Page.Main>
           {this.props.nameOperations.length ? (
             <Card width={1} mb={[5, 5, 5]} title="Name Operations">
-              <NamesList />
+              <NameOperationsList items={this.props.nameOperations} />
             </Card>
           ) : null}
           {this.props.transactions.length ? (

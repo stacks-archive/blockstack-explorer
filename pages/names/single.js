@@ -32,9 +32,10 @@ class NamesSinglePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasMoreHistory: true,
+      hasMoreHistory: props.user.nameRecord.history > 5,
       loadedHistory: props.user.nameRecord.history,
       pageNum: 0,
+      hasLoadedMoreHistory: false,
     };
   }
 
@@ -49,7 +50,7 @@ class NamesSinglePage extends React.Component {
       {
         loadedHistory,
         pageNum,
-        hasMoreHistory: nameRecord.history.length > 0,
+        hasMoreHistory: nameRecord.history.length > 5,
       },
       () => {
         NProgress.done();
@@ -59,13 +60,25 @@ class NamesSinglePage extends React.Component {
 
   render() {
     const nameExists = this.props.user;
-    const { loadedHistory, hasMoreHistory } = this.state;
+
+    const { loadedHistory, hasMoreHistory, hasLoadedMoreHistory } = this.state;
+
+    /**
+     * TODO: we need to fetch the initial data with next.js and not keep it in state.
+     * It causes a bug when you navigate between names, the previous data is persisted
+     * because it's in state. We want to only show additional state stored data on user
+     * action, not on load. We should limit the initial view, and then show the remaining items,
+     * and _then_ fetch more data from the server with loadMoreHistory()
+     */
+
+    const smallList = this.props.user.nameRecord.history.slice(0, 5);
+
     return nameExists ? (
-      <Page>
+      <Page key={this.props.user.id}>
         <UserCard mb={[5, 5, 0]} mr={[0, 0, 5]} width={1} maxWidth={['100%', '100%', '380px']} {...this.props.user} />
         <Page.Main>
           <Card flexGrow={1} title="Recent Operations">
-            <NameOperationsList items={loadedHistory} />
+            <NameOperationsList items={hasLoadedMoreHistory ? loadedHistory : smallList} />
             {hasMoreHistory && (
               <Flex py={4} justifyContent="center">
                 <Button onClick={() => this.loadMoreHistory()}>View More</Button>

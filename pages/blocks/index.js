@@ -123,7 +123,7 @@ const DateActions = ({ date, today, loading, fetchBlocksForDate, ...rest }) => {
   );
 };
 
-class BlocksPage extends React.PureComponent {
+class BlocksPage extends React.Component {
   static async getInitialProps({ req, query }) {
     const date = req && req.params ? req.params.date : query.date;
     const blocks = await fetchBlocks(date);

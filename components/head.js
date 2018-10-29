@@ -2,14 +2,15 @@ import React from 'react';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 
-const defaultDescription = '';
+const defaultDescription =
+  'Explore the Bitcoin and Stacks blockchains, and get detailed information on all Blockstack name operations.';
 const defaultOGURL = '';
 const defaultOGImage = '';
 
 const Head = ({ title, description, url, ogImage }) => (
   <NextHead>
     <meta charSet="UTF-8" />
-    <title>{title ? `${title} - ` : ''} Stacks Explorer</title>
+    <title>{title ? `${title} - ` : ''} Blockstack Explorer</title>
     <meta name="description" content={description || defaultDescription} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" sizes="192x192" href="/static/touch-icon.png" />

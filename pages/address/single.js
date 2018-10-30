@@ -36,7 +36,7 @@ class AddressSinglePage extends React.Component {
     super(props);
     this.state = {
       loadedTxList: props.transactions,
-      hasMoreTx: props.transactions.length < props.address.data.transactions.length,
+      hasMoreTx: props.transactions.length < props.address.data.n_tx,
       pageNum: 0,
     };
   }
@@ -52,7 +52,7 @@ class AddressSinglePage extends React.Component {
       {
         loadedTxList,
         pageNum,
-        hasMoreTx: loadedTxList.length < data.transactions.length,
+        hasMoreTx: loadedTxList.length < data.n_tx,
       },
       () => {
         NProgress.done();

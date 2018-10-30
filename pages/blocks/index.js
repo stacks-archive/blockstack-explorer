@@ -176,20 +176,18 @@ class BlocksPage extends React.Component {
 
   render() {
     const { showAll } = this.state;
+    const dateActions = (
+      <DateActions
+        today={this.props.today}
+        date={this.state.date}
+        loading={this.state.loading}
+        fetchBlocksForDate={this.fetchBlocksForDate}
+      />
+    );
     return (
       <Flex p={5} flexDirection="column" width={1}>
         <Head title={`Blocks for ${moment(this.state.date).format('dddd, MMMM Do YYYY')}`} />
-        <Card
-          title={`Blocks for ${moment(this.state.date).format('dddd, MMMM Do YYYY')}`}
-          actions={
-            <DateActions
-              today={this.props.today}
-              date={this.state.date}
-              loading={this.state.loading}
-              fetchBlocksForDate={this.fetchBlocksForDate}
-            />
-          }
-        >
+        <Card title={`Blocks for ${moment(this.state.date).format('dddd, MMMM Do YYYY')}`} actions={dateActions}>
           <BlocksList
             blocks={(this.state.date && this.state.data[this.state.date]) || this.props.blocks}
             keys={keys}
@@ -198,7 +196,9 @@ class BlocksPage extends React.Component {
         </Card>
         {!showAll && (
           <Flex py={4} justifyContent="center">
-            <Button onClick={() => this.setState({ showAll: true })}>View More Blocks</Button>
+            <Button onClick={() => this.setState({ showAll: true })} width={0.9}>
+              View More Blocks
+            </Button>
           </Flex>
         )}
       </Flex>

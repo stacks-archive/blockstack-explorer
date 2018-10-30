@@ -51,7 +51,9 @@ class Home extends React.Component {
           <NamesList limit={25} />
           <Flex py={4} justifyContent="center">
             <Link passHref href="/names">
-              <Button is="a">View All Names</Button>
+              <Button is="a" width={0.95}>
+                View All Names
+              </Button>
             </Link>
           </Flex>
         </Card>

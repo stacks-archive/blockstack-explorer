@@ -53,9 +53,6 @@ const Search = ({ ...rest }) => (
       const handleChange = (e) => setState({ value: e.target.value });
       const clearValue = () => setState({ value: '' });
       const hasValue = state.value !== '';
-      Router.events.on('routeChangeStart', () => {
-        clearValue();
-      });
       return (
         <Box
           is="form"

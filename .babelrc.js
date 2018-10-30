@@ -4,7 +4,7 @@ module.exports = {
   presets: ['next/babel'],
   plugins: [
     ['transform-define', env],
-    'babel-plugin-styled-components',
+    'styled-components',
     [
       'module-resolver',
       {

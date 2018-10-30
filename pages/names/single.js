@@ -66,7 +66,7 @@ class NamesSinglePage extends React.Component {
 
   componentDidUpdate(prevProps, prevState, prevContext) {
     if (prevProps.user.id !== this.props.user.id) {
-      // different state, reset to initial state
+      // different user, reset to initial state
       this.setState(
         {
           pageNum: 0,

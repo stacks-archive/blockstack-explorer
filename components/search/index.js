@@ -3,7 +3,6 @@ import { SearchIcon, CloseCircleIcon } from 'mdi-react';
 import { Flex, Box, Input } from 'blockstack-ui';
 import { search } from '@common/lib/search';
 import Router from 'next/router';
-
 import { State } from 'react-powerplug';
 
 const handleSearch = async (event) => {
@@ -51,8 +50,16 @@ const Search = ({ ...rest }) => (
   <State initial={{ value: '' }}>
     {({ state, setState }) => {
       const handleChange = (e) => setState({ value: e.target.value });
-      const clearValue = () => setState({ value: '' });
       const hasValue = state.value !== '';
+      const clearValue = () => setState({ value: '' });
+
+      if (hasValue) {
+        // clear the value if we're navigating away
+        Router.events.on('routeChangeStart', () => {
+          clearValue();
+        });
+      }
+
       return (
         <Box
           is="form"
@@ -84,5 +91,4 @@ const Search = ({ ...rest }) => (
     }}
   </State>
 );
-
 export { Search };

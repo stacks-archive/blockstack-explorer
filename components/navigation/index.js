@@ -1,13 +1,13 @@
 import React, { memo } from 'react';
 import Link from 'next/link';
-import { Flex, Type, Box } from 'blockstack-ui';
+import { Flex, Inline } from 'blockstack-ui';
 import { withRouter } from 'next/router';
 
 import sys from 'system-components';
 
 const LinkComponent = sys(
   {
-    is: Type,
+    is: Inline,
     px: 4,
     py: 4,
     fontSize: 2,

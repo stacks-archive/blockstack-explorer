@@ -1,10 +1,12 @@
 import sys from 'system-components';
 import { themeGet } from 'styled-system';
-
+import { Box, blacklist } from 'blockstack-ui';
 const Tooltip = sys(
   {
+    is: Box,
     color: 'white',
     bg: 'black',
+    blacklist,
   },
   (props) => ({
     display: 'inline-block',

@@ -25,14 +25,14 @@ class Home extends React.Component {
     return {
       ...homeInfo,
       meta: {
-        title: 'Home',
+        title: null,
       },
     };
   }
 
   render() {
-    const { namesFormatted, subdomainsFormatted } = this.props.nameTotals;
-    const { nameOperationsOverTime, totalStacks } = this.props;
+    const { nameOperationsOverTime, totalStacks, nameTotals } = this.props;
+    const { namesFormatted, subdomainsFormatted } = nameTotals;
     const data = {
       labels: nameOperationsOverTime.map((op) => op.x),
       datasets: [
@@ -51,7 +51,9 @@ class Home extends React.Component {
           <NamesList limit={25} />
           <Flex py={4} justifyContent="center">
             <Link passHref href="/names">
-              <Button is="a">View All Names</Button>
+              <Button is="a" width={0.95}>
+                View All Names
+              </Button>
             </Link>
           </Flex>
         </Card>

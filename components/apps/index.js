@@ -50,8 +50,8 @@ const ConnectedAppsList = ({ wrapper, ...rest }) => (
       if (appsList.length) {
         const children = (
           <Flex flexWrap="wrap" {...rest}>
-            {appsList.map(({ imgixImageUrl, name, Slugs }) => (
-              <AppItem slug={Slugs[0].value} title={name} image={imgixImageUrl} />
+            {appsList.map(({ imgixImageUrl, name, Slugs }, i) => (
+              <AppItem slug={Slugs[0].value} title={name} image={imgixImageUrl} key={i} />
             ))}
             {appsNotIncluded && unlisted.length !== 0 ? <AppItem>+{unlisted.length}</AppItem> : null}
           </Flex>

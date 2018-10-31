@@ -25,14 +25,14 @@ class Home extends React.Component {
     return {
       ...homeInfo,
       meta: {
-        title: 'Home',
+        title: null,
       },
     };
   }
 
   render() {
-    const { namesFormatted, subdomainsFormatted } = this.props.nameTotals;
-    const { nameOperationsOverTime, totalStacks } = this.props;
+    const { nameOperationsOverTime, totalStacks, nameTotals } = this.props;
+    const { namesFormatted, subdomainsFormatted } = nameTotals;
     const data = {
       labels: nameOperationsOverTime.map((op) => op.x),
       datasets: [

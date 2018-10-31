@@ -30,7 +30,7 @@ const NamesList = ({ list, limit, ...rest }) => (
               as={`/name/${name}`}
               key={name}
             >
-              <Box maxWidth="100%">
+              <Box maxWidth="100%" pr={2}>
                 {name ? <List.Item.Title overflow="auto">{name}</List.Item.Title> : null}
                 {address || owner ? <Subtitle owner={address || owner} /> : null}
               </Box>

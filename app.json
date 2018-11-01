@@ -2,13 +2,7 @@
   "name": "stacks-explorer",
   "scripts": {},
   "env": {
-    "ADMIN_PASSWORD": {
-      "required": true
-    },
-    "AUTH_PASSWORD": {
-      "required": true
-    },
-    "BASE_URL": "https://stacks-explorer.herokuapp.com"
+    "API_URL": "https://blockstack-explorer-api.herokuapp.com"
   },
   "formation": {
     "web": {

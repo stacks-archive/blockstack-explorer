@@ -1,90 +1,111 @@
 import React from 'react';
-import Router from 'next/router';
-import { connect } from 'react-redux';
+import Link from 'next/link';
+import { Flex, Type, Box, Button } from 'blockstack-ui';
+import { Card } from '@components/card';
+import { NamesList } from '@containers/lists/names';
+import { fetchHomeInfo } from '@common/lib/client/api';
+import { Page } from '@components/page';
+import { StatItem } from '@components/stats';
+import { Section } from '@components/section';
 
-import { Flex, Box } from 'grid-styled';
+import { Line as LineChart } from 'react-chartjs-2';
 
-import Head from '@components/head';
-import Nav from '@components/nav';
-import Footer from '@components/footer';
-
-import Wrap from '@styled/wrap';
-import Card from '@styled/card';
-import Button from '@styled/button';
-import { Input } from '@styled/input';
-import { Type } from '@styled/typography';
+const Actions = () => (
+  <Link passHref prefetch href="/names">
+    <Type opacity={0.5} is="a" color="blue.dark">
+      See All
+    </Type>
+  </Link>
+);
 
 class Home extends React.Component {
-// const Home = () => (
-
-  state = {
-    address: "",
-  };
-
-  onEnter(event) {
-    if (event.key === 'Enter') {
-      this.submit()
-    }
-  }
-
-  onChange(event) {
-    this.setState({
-      address: event.target.value
-    })
-  }
-
-  submit() {
-    const { address } = this.state;
-    Router.push(`/app/address/${address.trim()}`);
+  static async getInitialProps() {
+    // const [nameOperations, nameTotals] = await Promise.all([fetchNameOperations(), fetchNameCounts()]);
+    const homeInfo = await fetchHomeInfo();
+    return {
+      ...homeInfo,
+      meta: {
+        title: null,
+      },
+    };
   }
 
   render() {
-    return (
-      <Wrap>
-        <Wrap.Inner>
-          <Head title="Home" />
-          <Nav />
-          <Flex alignItems="center">
-            <Box width={[1, 3 / 4]} m="auto" mt={6} mb={4} textAlign="center">
-              <Card textAlign="center" p={10}>
-                <Card.HeaderBig>
-                  <Type.h2 my={3} fontWeight={500} color="#fff">
-                    Welcome to the block explorer for <br/>the draft Stacks Genesis Block.
-                  </Type.h2>
-                </Card.HeaderBig>
-                <Card.Content>
-                  <Type.p fontSize={3} my={3}>
-                    Enter your Stacks address below to look up your allocation
-                  </Type.p>
-                  <Input my={3} 
-                    value={this.state.address} 
-                    placeholder="eg. SPNN289GPP5HQA5ZF2FKQKJM3K2MPNPDD6QYA2J5" 
-                    autoFocus 
-                    onKeyUp={(evt) => this.onEnter(evt)} 
-                    onChange={(evt) => this.setState({ address: evt.target.value })} 
-                    width="66%" />
-                  <Button onClick={() => this.submit()}>Submit</Button>
-                  <Type.p mt={3} mb={1} fontSize={1}>
-                    If you submitted your wallet through CoinList, please make sure your public address
-                    <br/>
-                    matches the one listed in your CoinList account under “Purchases” and then “Distributions.”
-                  </Type.p>
-                  <Type.p mt={1} mb={3} fontSize={1}>
-                    New versions of the genesis block are published roughly every 24 hours. 
-                    <br/>
-                    If you recently submitted an address or edits, please check back tomorrow.
-                  </Type.p>
-                </Card.Content>
-              </Card>
-            </Box>
-          </Flex>
-          <Wrap.Push></Wrap.Push>
-        </Wrap.Inner>
-        <Footer />
-      </Wrap>
-    )
-  }
+    const { nameOperationsOverTime, totalStacks, nameTotals } = this.props;
+    const { namesFormatted, subdomainsFormatted } = nameTotals;
+    const data = {
+      labels: nameOperationsOverTime.map((op) => op.x),
+      datasets: [
+        {
+          borderColor: 'rgba(0,255,255,1)',
+          backgroundColor: 'rgba(0,255,255,0.2)',
+          fill: true,
+          data: nameOperationsOverTime,
+        },
+      ],
+    };
 
+    return (
+      <Page>
+        <Card width={1} mb={[5, 5, 0]} title="Latest Names Registered" actions={<Actions />} mr={[0, 0, 5]}>
+          <NamesList limit={25} />
+          <Flex py={4} justifyContent="center">
+            <Link passHref href="/names">
+              <Button is="a" width={0.95}>
+                View All Names
+              </Button>
+            </Link>
+          </Flex>
+        </Card>
+        <Box top="113px" position={['static', 'sticky']} width={[1, 1, 1, '700px']}>
+          <Card title="Global statistics">
+            <Flex flexWrap="wrap">
+              <StatItem width={1} label="total stacks" value={totalStacks} />
+              <StatItem width={0.5} label="names" value={namesFormatted} />
+              <StatItem width={0.5} label="subdomains" value={subdomainsFormatted} />
+            </Flex>
+          </Card>
+
+          <Card mt={3} title="Recent Name Growth">
+            <Section py={2}>
+              <LineChart
+                data={data}
+                options={{
+                  responsive: true,
+                  legend: {
+                    display: false,
+                  },
+                  scales: {
+                    xAxes: [
+                      {
+                        type: 'time',
+                        gridLines: {
+                          color: '#F1F6F9',
+                        },
+                        ticks: {
+                          fontColor: '#86afce',
+                        },
+                      },
+                    ],
+                    yAxes: [
+                      {
+                        gridLines: {
+                          color: '#F1F6F9',
+                        },
+                        ticks: {
+                          fontColor: '#86afce',
+                        },
+                      },
+                    ],
+                  },
+                }}
+              />
+            </Section>
+          </Card>
+        </Box>
+      </Page>
+    );
+  }
 }
 
 export default Home;

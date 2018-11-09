@@ -1,5 +1,5 @@
 const stacksValue = (value) => {
-  return `${(value * 10e-7).toPrecision(1)} STX`
+  return `${+`${Math.round(`${value * 10e-7}e+7`)}e-7`} STX`;
 }
 
 export { stacksValue };

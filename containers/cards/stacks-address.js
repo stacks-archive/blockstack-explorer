@@ -13,7 +13,7 @@ const StacksAddressCard = ({ address: { address, btcAddress, balance, status }, 
       </Section>
       <Section pb={4} borderBottom="0">
         <Attribute label="Stacks Address" value={address} />
-        <Attribute
+        {/* <Attribute
           label="BTC Address"
           value={btcAddress}
           link={{
@@ -25,7 +25,7 @@ const StacksAddressCard = ({ address: { address, btcAddress, balance, status }, 
             },
             as: `/address/${btcAddress}`,
           }}
-        />
+        /> */}
         <Attribute label="Available Balance" value={stacksValue(balance)} />
         {status ? <Attribute label="Total Received" value={stacksValue(status.credit_value)} /> : null}
         {status ? <Attribute label="Total Sent" value={stacksValue(status.debit_value)} /> : null}

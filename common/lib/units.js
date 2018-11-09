@@ -1,6 +1,7 @@
-const stacksValue = (value) => `${+`${Math.round(`${value * 10e-7}e+2`)}e-2`} STX`;
+const accounting = require('accounting');
 
-
-export {
-  stacksValue
+const stacksValue = (value) => {
+  return `${(value * 10e-7).toPrecision(1)} STX`
 }
+
+export { stacksValue };

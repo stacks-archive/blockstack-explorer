@@ -25,7 +25,7 @@ const keys = [
   },
   {
     label: 'Name Operations',
-    value: (data) => (data.nameOps && data.nameOps.length) || '0',
+    value: (data) => (data.nameOperations && data.nameOperations.length) || '0',
     key: 'nameOperations',
     display: ['none', 'block'],
   },

@@ -13,7 +13,7 @@ const NameOperationsList = ({ items, ...rest }) => (
           const { opcode, txid } = item;
           const Icon = on ? ChevronUpIcon : ChevronDownIcon;
           return (
-            <React.Fragment key={i}>
+            <React.Fragment>
               <List.Item
                 position={on ? 'sticky' : 'static'}
                 zIndex={9999}

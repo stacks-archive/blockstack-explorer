@@ -79,6 +79,14 @@ const StacksTxList = () => (
                       </Flex>
                       <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
                         <Box minWidth="200px" pr={2}>
+                          Timestamp
+                        </Box>
+                        <Box maxWidth="100%" overflow="auto">
+                          <Type fontFamily="brand">{new Date(historyEntry.blockTime).toString()}</Type>
+                        </Box>
+                      </Flex>
+                      <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
+                        <Box minWidth="200px" pr={2}>
                           BTC Transaction
                         </Box>
                         <Box maxWidth="100%" overflow="auto">

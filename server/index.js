@@ -51,6 +51,14 @@ const setup = async () => {
       }
     });
 
+    server.get('/robots.txt', (req, res) => {
+      res.send(`
+User-agent: *
+Allow: /$
+Disallow: /
+      `);
+    });
+
     server.use('/', makeAppController(app, ssrCache));
 
     server.get('*', (req, res) => handle(req, res));

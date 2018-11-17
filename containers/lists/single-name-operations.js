@@ -5,6 +5,8 @@ import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import { Toggle } from 'react-powerplug';
 import Link from 'next/link';
 
+const nameOpKeys = ['opcode', 'block_number', 'address', 'sender', 'time'];
+
 const NameOperationsList = ({ items, ...rest }) => (
   <Box>
     {items.map((item, i) => (
@@ -59,8 +61,8 @@ const NameOperationsList = ({ items, ...rest }) => (
                     </Link>
                   </Flex>
                   <Box pt={4}>
-                    {Object.keys(item).map((key, i) => (
-                      <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1} key={i}>
+                    {nameOpKeys.map((key) => (
+                      <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1} key={key}>
                         <Box minWidth="200px" pr={2}>
                           {key}
                         </Box>
@@ -73,6 +75,20 @@ const NameOperationsList = ({ items, ...rest }) => (
                         )}
                       </Flex>
                     ))}
+                    {item.subdomains && (
+                      <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
+                        <Box minWidth="200px" pr={2}>
+                          Subdomains
+                        </Box>
+                        <Box maxWidth="100%" overflow="auto">
+                          {item.subdomains.map((subdomain) => (
+                            <Type fontFamily="brand" display="block">
+                              {subdomain.fully_qualified_subdomain}
+                            </Type>
+                          ))}
+                        </Box>
+                      </Flex>
+                    )}
                   </Box>
                 </Box>
               ) : null}

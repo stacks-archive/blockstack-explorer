@@ -54,13 +54,13 @@ const UTXOItem = ({ label, address, value, to, spentTxId, ...rest }) => (
     flexDirection={['column', 'row']}
     minHeight="72px"
     {...rest}
-    py={label.length > 16 ? 4 : '18px'}
+    // py={label.length > 16 ? 4 : '18px'}
   >
     <List.Item.Title fontFamily="brand" maxWidth="100%" overflow="auto" minHeight="1rem" pb={0}>
       {label}
     </List.Item.Title>
     <List.Item.Title style={{ whiteSpace: 'nowrap' }} textAlign="right" ml={2} pb={0} pt={[2, 0]} pl={1}>
-      <Flex alignItems={'center'}>
+      <Flex alignItems="center">
         {value || 0}
         <Type opacity={0.5} pl={1}>
           BTC
@@ -74,7 +74,7 @@ const UTXOItem = ({ label, address, value, to, spentTxId, ...rest }) => (
             </Tooltip>
           ) : (
             <Tooltip text="Spent">
-              <Box transform={'translateY(2px)'} py={1} pl={1} color={'rgb(239, 111, 111)'}>
+              <Box transform="translateY(2px)" py={1} pl={1} color="rgb(239, 111, 111)">
                 <ArrowExpandRightIcon size={18} />
               </Box>
             </Tooltip>
@@ -130,13 +130,13 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest 
         </DirectionHeader>
         {vin &&
           vin.length &&
-          vin.map(({ addr, coinbase, value }) => (
+          vin.map(({ addr, sequence, value }) => (
             <UTXOItem
               length={vin.length}
               spentTxId
               address={addr}
               value={value}
-              label={coinbase ? 'Mining Reward' : addr}
+              label={!sequence ? 'Mining Reward' : addr}
             />
           ))}
       </Box>
@@ -144,14 +144,14 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest 
         <DirectionHeader borderTop={[0, 0, 0, 0, '1px solid']}>TO</DirectionHeader>
         {vout &&
           vout.length &&
-          vout.map(({ addr, value, scriptPubKey, spentTxId, txid }, i) => (
+          vout.map(({ addr, value, spentTxId, txid }, i) => (
             <ToItem
               vout={vout}
-              key={i}
+              key={txid}
               index={i}
               length={vout.length}
               value={value}
-              address={scriptPubKey && scriptPubKey.addresses && scriptPubKey.addresses[0]}
+              address={addr}
               spentTxId={spentTxId}
             />
           ))}

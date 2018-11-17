@@ -26,16 +26,17 @@ class BlocksSinglePage extends React.Component {
   }
 
   render() {
+    const { block, nameOperations, transactions } = this.props;
     return (
       <Page>
-        <BlockCard mr={[0, 0, 5]} mb={[5, 5, 0]} width={['100%', '100%', '380px']} block={this.props.block} />
+        <BlockCard mr={[0, 0, 5]} mb={[5, 5, 0]} width={['100%', '100%', '380px']} block={block} />
         <Page.Main>
-          {this.props.nameOperations.length ? (
+          {nameOperations.length ? (
             <Card width={1} mb={[5, 5, 5]} title="Name Operations">
-              <NameOperationsList items={this.props.nameOperations} />
+              <NameOperationsList items={nameOperations} />
             </Card>
           ) : null}
-          {this.props.transactions.length ? (
+          {transactions.length ? (
             <Card width={1} mb={[5, 5, 0]} title="Transactions">
               <TxList />
             </Card>

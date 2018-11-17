@@ -25,9 +25,9 @@ const AutomatedSection = ({ iterable, block, ...rest }) => (
     <Attribute label="Time">
       <Time date={block.time} tooltip={false} />
     </Attribute>
-    <Attribute label="Reward" value={`${block.reward} BTC`} />
+    {block.reward && <Attribute label="Reward" value={`${block.reward} BTC`} />}
     <Attribute label="Transactions" value={block.txCount} />
-    {block.poolInfo.poolName && <Attribute label="Mining Pool" value={block.poolInfo.poolName} />}
+    {block.poolInfo && block.poolInfo.poolName && <Attribute label="Mining Pool" value={block.poolInfo.poolName} />}
     {generateAutomaticSections(iterable, keys)}
   </Section>
 );

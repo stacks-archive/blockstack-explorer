@@ -9,7 +9,7 @@
     "heroku-postbuild": "next build"
   },
   "engines": {
-    "node": "10.14.2"
+    "node": "10.15.0"
   },
   "dependencies": {
     "@awaitjs/express": "^0.1.4",

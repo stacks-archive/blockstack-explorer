@@ -26,7 +26,7 @@ const setup = async () => {
 
     const server = decorateApp(express());
 
-    server.use(morgan('dev'));
+    server.use(morgan('combined'));
 
     if (!dev) {
       server.use(secure);

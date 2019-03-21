@@ -29,7 +29,9 @@ const makeAppController = (app, cache) => {
         return;
       }
 
-      cache.set(key, html);
+      if (process.env.SSR_CACHE !== 'false') {
+        cache.set(key, html);
+      }
 
       res.setHeader('x-cache', 'MISS');
       console.log(`cache miss: ${req.url}`);

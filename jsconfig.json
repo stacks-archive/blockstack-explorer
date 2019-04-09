@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": "./",
+    "paths": {
+      "@client/*": ["lib/client/*"]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,171 +1,267 @@
 # Blockstack Explorer
 
-A Blockstack data explorer based on Insight UI (a Bitcoin blockchain explorer web application service for [Bitcore Node](https://github.com/bitpay/bitcore-node)) that uses the [Insight API](https://github.com/bitpay/insight-api).
+## Setup
 
+In order to run this app, you first need to install `redis`. If you're on a Mac, you can install and run redis by running `brew install redis`.
 
-## Installation instructions
+### Setting up redis
 
-Start with a clean install of Ubuntu 16.04.1 LTS. You'll need a significant
-amount of disk space to hold the bitcore-indexed Bitcoin blockchain.
-(~215gb as of block 440500).
+After installing redis, run
 
-### Set up your bitcore node
+```
+yarn redis
+```
 
-As root:
+To start a default instance of redis.
 
-`apt-get update && apt-get dist-upgrade -y`
+## First Time Use
 
-`apt-get install python-pip python-dev libzmq3-dev -y`
+### Pre-caching data
 
-Install Node
+We use redis to pre-cache some data that normally would take quite a few API requests. To pre-cache all data, run:
 
-`curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -`
+```bash
+yarn setup
+```
 
-`apt-get install -y nodejs`
+You only need to run this script once. To get fresh data, you can run the script again. In production, this script will run on a scheduled basis.
 
-Create a directory to hold your installation:
+## Development
 
-`mkdir /data`
+The packages will have been installed after running `yarn setup`.
 
-`npm install -g bitcore-node`
+To run the dev server, run `yarn dev`.
 
-Create your bitcore node:
+## Next.js Docs
 
-`bitcore-node create /data/blockstack-bitcore`
+This project was bootstrapped with [Create Next App](https://github.com/segmentio/create-next-app).
 
-Install insight-api and blockstack-explorer:
+Find the most recent version of this guide at [here](https://github.com/segmentio/create-next-app/blob/master/lib/templates/default/README.md). And check out [Next.js repo](https://github.com/zeit/next.js) for the most up-to-date info.
 
-`cd /data/blockstack-bitcore/`
+## Table of Contents
 
-`./node_modules/.bin/bitcore-node install insight-api`
+- [Questions? Feedback?](#questions-feedback)
+- [Folder Structure](#folder-structure)
+- [Available Scripts](#available-scripts)
+  - [npm run dev](#npm-run-dev)
+  - [npm run build](#npm-run-build)
+  - [npm run start](#npm-run-start)
+- [Using CSS](#using-css)
+- [Adding Components](#adding-components)
+- [Fetching Data](#fetching-data)
+- [Custom Server](#custom-server)
+- [Syntax Highlighting](#syntax-highlighting)
+- [Using the `static` Folder](#using-the-static-folder)
+- [Deploy to Now](#deploy-to-now)
+- [Something Missing?](#something-missing)
 
-`./node_modules/.bin/bitcore-node install git+https://github.com/blockstack/blockstack-explorer.git#master`
+## Questions? Feedback?
 
-Start bitcore & wait a long time while your bitcore-indexed Bitcoin node is created:
+Check out [Next.js FAQ & docs](https://github.com/zeit/next.js#faq) or [let us know](https://github.com/segmentio/create-next-app/issues) your feedback.
 
-`./node_modules/.bin/bitcore-node start`
+## Folder Structure
 
-Depending on your disk speed and machine speed, this process can take days.
+After creating an app, it should look something like:
 
-#### Making this setup production ready
+```
+my-app/
+  README.md
+  package.json
+  next.config.js
+  components/
+    head.js
+    nav.js
+  pages/
+    index.js
+  static/
+    favicon.ico
+```
 
-In production, we've had difficulty with `bitcore-node` occasionally dying. In this
-section, we'll discuss how to make sure the explorer processes get restarted
-if they die.
+Routing in Next.js is based on the file system, so `./pages/index.js` maps to the `/` route and
+`./pages/about.js` would map to `/about`.
 
-In the default configuration described above, starting your `bitcore-node` also starts
-a `bitcoind` node. When this happens, `bitcoind` usually lives on and restarting
-`bitcore-node` fails since it can't start another `bitcoind` process on the same
-port.
+The `./static` directory maps to `/static` in the `next` server, so you can put all your
+other static resources like images or compiled CSS in there.
 
-The solution is to start `bitcoind` externally.
+Out of the box, we get:
 
-To do this,
-modify  `/data/blockstack-bitcore/bitcore-node.json` as follows:
+- Automatic transpilation and bundling (with webpack and babel)
+- Hot code reloading
+- Server rendering and indexing of `./pages`
+- Static file serving. `./static/` is mapped to `/static/`
 
-```JSON
-{
-  "network": "livenet",
-  "port": 3001,
-  "services": [
-    "bitcoind",
-    "insight-api",
-    "insight-ui",
-    "web"
-  ],
-  "servicesConfig": {
-    "bitcoind": {
-      "connect": [
-        {
-		"rpcuser": "bitcoin",
-		"rpcpassword": "local321",
-		"zmqpubrawtx": "tcp://127.0.0.1:28332"
+Read more about [Next's Routing](https://github.com/zeit/next.js#routing)
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm run dev`
+
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br>
+You will also see any errors in the console.
+
+### `npm run build`
+
+Builds the app for production to the `.next` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+### `npm run start`
+
+Starts the application in production mode.
+The application should be compiled with \`next build\` first.
+
+See the section in Next docs about [deployment](https://github.com/zeit/next.js/wiki/Deployment) for more information.
+
+## Using CSS
+
+[`styled-jsx`](https://github.com/zeit/styled-jsx) is bundled with next to provide support for isolated scoped CSS. The aim is to support "shadow CSS" resembling of Web Components, which unfortunately [do not support server-rendering and are JS-only](https://github.com/w3c/webcomponents/issues/71).
+
+```jsx
+export default () => (
+  <div>
+    Hello world
+    <p>scoped!</p>
+    <style jsx>{`
+      p {
+        color: blue;
+      }
+      div {
+        background: red;
+      }
+      @media (max-width: 600px) {
+        div {
+          background: blue;
         }
-       ]
-    }
+      }
+    `}</style>
+  </div>
+);
+```
+
+Read more about [Next's CSS features](https://github.com/zeit/next.js#css).
+
+## Adding Components
+
+We recommend keeping React components in `./components` and they should look like:
+
+### `./components/simple.js`
+
+```jsx
+const Simple = () => <div>Simple Component</div>;
+
+export default Simple; // don't forget to export default!
+```
+
+### `./components/complex.js`
+
+```jsx
+import { Component } from 'react';
+
+class Complex extends Component {
+  state = {
+    text: 'World',
+  };
+
+  render() {
+    const { text } = this.state;
+    return <div>Hello {text}</div>;
   }
 }
+
+export default Complex; // don't forget to export default!
 ```
 
-Now, when you start your `bitcore-node`, it will expect to find a `bitcoind` process
-already available on localhost with the default ports.
+## Fetching Data
 
-We use [pm2](https://github.com/Unitech/pm2) to keep an eye on our explorer processes
-and make sure they start at boot and restart if there's a problem.
+You can fetch data in `pages` components using `getInitialProps` like this:
 
-To install `pm2`:
+### `./pages/stars.js`
 
-`sudo npm install pm2 -g`
+```jsx
+const Page = (props) => <div>Next stars: {props.stars}</div>;
 
-Move the 3 scripts found in `tools/deployment` in this repo to `/data/blockstack-bitcore`
+Page.getInitialProps = async ({ req }) => {
+  const res = await fetch('https://api.github.com/repos/zeit/next.js');
+  const json = await res.json();
+  const stars = json.stargazers_count;
+  return { stars };
+};
 
-Run the following to start the explorer processes and set them to start on boot:
-
-```
-pm2 start start_bitcoin.sh --name="bitcoind"
-pm2 start start_bitcore.sh --name="bitcore"
-pm2 start start_blockstack.sh --name="blockstack-server"
-pm2 save
-pm2 startup
+export default Page;
 ```
 
-If you're not running the explorer as root, the command `pm2 startup`
-will fail and provide you a command to run as with `sudo` that will
-make sure `pm2` and the explorer proceses start at boot.
+For the initial page load, `getInitialProps` will execute on the server only. `getInitialProps` will only be executed on the client when navigating to a different route via the `Link` component or using the routing APIs.
 
+_Note: `getInitialProps` can **not** be used in children components. Only in `pages`._
 
+Read more about [fetching data and the component lifecycle](https://github.com/zeit/next.js#fetching-data-and-component-lifecycle)
 
-### Setup a local copy of explorer api
+## Custom Server
 
-Once your node is synced, you'll need to run a local copy of the explorer api script.
+Want to start a new app with a custom server? Run `create-next-app --example customer-server custom-app`
 
-You'll first need a working installation of [blockstack-cli](https://github.com/blockstack/blockstack-cli).
+Typically you start your next server with `next start`. It's possible, however, to start a server 100% programmatically in order to customize routes, use route patterns, etc
 
-This can be found in this repository in `tools/runserver.py`
+This example makes `/a` resolve to `./pages/b`, and `/b` resolve to `./pages/a`:
 
-You should run this in the same virtualenv as your blockstack-cli installation.
-You'll need to install a couple additional packages:
+```jsx
+const { createServer } = require('http');
+const { parse } = require('url');
+const next = require('next');
 
-`pip install --upgrade Flask`
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
+const handle = app.getRequestHandler();
 
-`pip install --upgrade flask-crossdomain`
+app.prepare().then(() => {
+  createServer((req, res) => {
+    // Be sure to pass `true` as the second argument to `url.parse`.
+    // This tells it to parse the query portion of the URL.
+    const parsedUrl = parse(req.url, true);
+    const { pathname, query } = parsedUrl;
 
-Run the explorer api as follows:
+    if (pathname === '/a') {
+      app.render(req, res, '/b', query);
+    } else if (pathname === '/b') {
+      app.render(req, res, '/a', query);
+    } else {
+      handle(req, res, parsedUrl);
+    }
+  }).listen(3000, (err) => {
+    if (err) throw err;
+    console.log('> Ready on http://localhost:3000');
+  });
+});
+```
 
-`cd tools/`
+Then, change your `start` script to `NODE_ENV=production node server.js`.
 
-`./runserver.py`
+Read more about [custom server and routing](https://github.com/zeit/next.js#custom-server-and-routing)
 
-This will start the explorer api on port 5000.
+## Syntax Highlighting
 
-### Point your bitcore node to a local copies of explorer codebase:
+To configure the syntax highlighting in your favorite text editor, head to the [relevant Babel documentation page](https://babeljs.io/docs/editors) and follow the instructions. Some of the most popular editors are covered.
 
-If you want to use your local copy of the explorer api, you'll need to need to point your
-bitcore-node to a local copy of this repository. You'll also need to do this if you're looking
-to do development on the explorer.
+## Deploy to Now
 
-To point your bitcore-node to a local explorer repository, you'll need to make a symlink to the local copy:
+[now](https://zeit.co/now) offers a zero-configuration single-command deployment.
 
-`cd /data/blockstack-bitcore/`
+1.  Install the `now` command-line tool either via the recommended [desktop tool](https://zeit.co/download) or via node with `npm install -g now`.
 
-`./node_modules/.bin/bitcore-node stop`
+2.  Run `now` from your project directory. You will see a **now.sh** URL in your output like this:
 
-`rm -Rf ./node_modules/insight-ui`
+    ```
+    > Ready! https://your-project-dirname-tpspyhtdtk.now.sh (copied to clipboard)
+    ```
 
-`ln -s <path-to-checkout-out-blockstack-explore-repo> ./node_modules/insight-ui`
+    Paste that URL into your browser when the build is complete, and you will see your deployed app.
 
-Next, you'll need to edit `public/index.html` so that the web app knows the path
-to your local explorer api by setting `window.blockstackApiPrefix` to the right
-url.
+You can find more details about [`now` here](https://zeit.co/now).
 
-In `<head>` there should be a tag similar to the following:
+## Something Missing?
 
-`<script language="javascript">window.blockstackApiPrefix = 'http://localhost:5000';</script>`
-
-Finally, start your bitcore-node again:
-
-`./node_modules/.bin/bitcore-node start`
-
-
-To make sure changes to css and javascript are reflected without having to restart
-the bitcore-node, run `grunt watch` in the root directory of the repository.
+If you have ideas for how we could improve this readme or the project in general, [let us know](https://github.com/segmentio/create-next-app/issues) or [contribute some!](https://github.com/segmentio/create-next-app/edit/master/lib/templates/default/README.md)

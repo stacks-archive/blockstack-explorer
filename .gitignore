@@ -1,52 +1,24 @@
-# from https://github.com/github/gitignore/blob/master/Node.gitignore
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
-*.swp
-tags
-pids
-logs
-results
-build
+# See https://help.github.com/ignore-files/ for more about ignoring files.
 
-node_modules
+# dependencies
+/node_modules
 
-# extras
-*.swp
-*.swo
-*~
-.project
-peerdb.json
+# testing
+/coverage
 
-npm-debug.log
-.nodemonignore
+# production
+/build
+/dist
+/.next
 
+# misc
 .DS_Store
-public/lib/*
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-db/txs/*
-db/txs
-db/testnet/txs/*
-db/testnet/txs
-db/blocks/*
-db/blocks
-db/testnet/blocks/*
-db/testnet/blocks
+data/visits.csv
+data/unvisited.csv
 
-public/js/angularjs-all.js
-public/js/main.js
-public/js/vendors.js
-
-public/css/main.css
-
-README.html
-po/*
-!po/*.po
-
-._.DS_Store
-._*
+.idea

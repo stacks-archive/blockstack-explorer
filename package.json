@@ -3,6 +3,7 @@
   "scripts": {
     "prod": "NODE_ENV=production node server",
     "dev": "node server",
+    "nodemon": "nodemon server",
     "build": "next build",
     "start": "node server",
     "format": "prettier --write \"{,!(node_modules|.next|out)/**/}*.{js,jsx,md,mdx}\" && echo -e '\\033[0;32m'💅 Just use prettier'\\033[0m'",

@@ -1,0 +1,21 @@
+{
+  "name": "stacks-explorer",
+  "scripts": {},
+  "env": {
+    "API_URL": "https://blockstack-explorer-api.herokuapp.com"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "mongolab",
+    "heroku-redis:hobby-dev"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

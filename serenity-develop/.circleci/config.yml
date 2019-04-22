@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/SerenityJS-Cucumber-Protractor-StandAlone
+    docker:
+      - image: circleci/node:6-browsers
+    dependencies:
+      cache_directories:
+       - ~/nvm
+    steps:
+      - checkout
+      - restore_cache:
+          key: SerenityJS-Cucumber-Protractor-StandAlone-{{ .Branch }}-{{ checksum "package.json" }}
+      - run: npm install
+      - save_cache:
+          key: SerenityJS-Cucumber-Protractor-StandAlone-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - "node_modules"
+      - run: xvfb-run -a npm run test

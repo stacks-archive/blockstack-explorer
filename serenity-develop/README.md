@@ -16,8 +16,8 @@ The sample test checks the google's search feature.
 
 #### Setup
 ```
-git clone https://gitlab.com/nupeten/serenity.git
-cd serenity
+git clone https://github.com/blockstack/blockstack-explorer
+cd serenity-develop
 npm install
 ```
 

@@ -14,7 +14,7 @@ const AddressCard = ({ address, ...rest }) => {
       <Section alignItems="center" justifyContent="center" py={4} color="blue.dark">
         <QRCode level="H" fgColor="currentColor" renderAs="svg" size={156} value={value} />
       </Section>
-      <Section pb={4}>
+      <Section showBorder={false} pb={4}>
         <Attribute label="Address" value={data.address} />
         <Attribute label="Balance" value={`${data.balance} BTC`} />
         <Attribute label="Total Received" value={`${data.totalReceived} BTC`} />

@@ -21,7 +21,7 @@ const keys = ['height', 'nonce', 'difficulty', 'merkleroot', 'hash', 'bits', 'si
  * Currently hidden because it might not be helpful
  */
 const AutomatedSection = ({ iterable, block, ...rest }) => (
-  <Section pb={4} {...rest}>
+  <Section pb={4} {...rest} showBorder={false}>
     <Attribute label="Time">
       <Time date={block.time} tooltip={false} />
     </Attribute>

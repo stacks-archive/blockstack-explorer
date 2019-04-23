@@ -41,6 +41,12 @@ const Subtitle = ({ overflow, ...rest }) => (
   </Box>
 );
 
+const noLastBorder = {
+  '&:last-child': {
+    'border-bottom': 'none',
+  },
+};
+
 const ListItemComponent = sys(
   {
     is: Flex,
@@ -56,8 +62,9 @@ const ListItemComponent = sys(
   },
   ({ theme: { colors }, hoverBg, hoverColor, noLink }) =>
     noLink
-      ? {}
+      ? { ...noLastBorder }
       : {
+          ...noLastBorder,
           '&:hover': {
             background: hoverBg || colors.blue.light,
             color: hoverColor || undefined,

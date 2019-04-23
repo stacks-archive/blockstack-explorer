@@ -55,7 +55,7 @@ const keys = ['size', 'txid', 'blockhash'];
  * Currently hidden because it might not be helpful
  */
 const AutomatedSection = ({ tx, ...rest }) => (
-  <Section pb={4} {...rest}>
+  <Section pb={4} {...rest} showBorder={false}>
     <Attribute
       label="Block"
       value={tx.blockheight}

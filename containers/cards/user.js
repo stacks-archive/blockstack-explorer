@@ -169,7 +169,7 @@ const IdentitySection = ({ name, id, description, account, ...rest }) => (
  * Footer: view raw zone file button
  */
 const ViewZoneFileSection = ({ zoneFileUrl, ...rest }) => (
-  <Section py={4} {...rest}>
+  <Section py={4} {...rest} showBorder={false}>
     <Button is="a" href={zoneFileUrl} target={'_blank'}>
       View Raw Profile Data
     </Button>

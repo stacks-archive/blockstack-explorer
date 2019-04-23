@@ -37,7 +37,9 @@ const generateAutomaticSections = (data, arr, params) => {
                 </Type>
               </LinkWrapper>
             ) : (
-              <Type fontFamily="brand">{data[key]}</Type>
+              <Type fontFamily="brand" style={{ wordBreak: 'break-word' }}>
+                {data[key]}
+              </Type>
             )}
           </Box>
         </Section.Subsection>

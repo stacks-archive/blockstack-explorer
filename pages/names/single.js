@@ -48,22 +48,6 @@ class NamesSinglePage extends React.Component {
     this.preloadNextPage();
   }
 
-  showMoreItems = () => {
-    const all = this.state.data.length;
-    if (this.state.limit < all) {
-      if (this.state.limit + 5 > all) {
-        this.setState(() => ({
-          limit: all,
-        }));
-        this.preloadNextPage();
-      } else {
-        this.setState((state) => ({
-          limit: state.limit + 5,
-        }));
-      }
-    }
-  };
-
   componentDidUpdate(prevProps, prevState, prevContext) {
     if (prevProps.user.id !== this.props.user.id) {
       // different user, reset to initial state
@@ -82,6 +66,22 @@ class NamesSinglePage extends React.Component {
       );
     }
   }
+
+  showMoreItems = () => {
+    const all = this.state.data.length;
+    if (this.state.limit < all) {
+      if (this.state.limit + 5 > all) {
+        this.setState(() => ({
+          limit: all,
+        }));
+        this.preloadNextPage();
+      } else {
+        this.setState((state) => ({
+          limit: state.limit + 5,
+        }));
+      }
+    }
+  };
 
   preloadNextPage = async (page = this.state.pageNum + 1) => {
     if (this.state.data.length >= 20) {
@@ -113,7 +113,24 @@ class NamesSinglePage extends React.Component {
 
     const allItems = this.state.data;
     const items = allItems.slice(0, this.state.limit);
+    console.log(this.props.user);
     const showMore = allItems.length > this.state.limit;
+    if (!this.props.user.nameRecord) {
+      return (
+        <Page key={this.props.user.id}>
+          <Page.Main>
+            <Card py={8} textAlign="center">
+              <Type>
+                No user was found with the ID
+                <Type fontWeight="bold" ml={1}>
+                  {this.props.user.id}
+                </Type>
+              </Type>
+            </Card>
+          </Page.Main>
+        </Page>
+      );
+    }
     return (
       <Page key={this.props.user.id}>
         <UserCard mb={[5, 5, 0]} mr={[0, 0, 5]} width={1} maxWidth={['100%', '100%', '380px']} {...this.props.user} />

@@ -20,7 +20,9 @@ export const Attribute = ({ clip = true, label, fontFamily = 'brand', value, lin
             </Type>
           </Link>
         ) : (
-          <Type fontFamily={fontFamily}>{children || value}</Type>
+          <Type fontFamily={fontFamily} style={{ wordBreak: 'break-word' }}>
+            {children || value}
+          </Type>
         )}
       </Box>
     </Section.Subsection>

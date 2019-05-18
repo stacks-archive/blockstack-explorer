@@ -3,7 +3,7 @@ import moment from 'moment';
 import Link from 'next/link';
 import { Flex, Button } from 'blockstack-ui';
 import { Card } from '@components/card';
-import { fetchBlocks } from '@common/lib/client/api';
+import { fetchBlocksV2 } from '@common/lib/client/api';
 import { Time } from '@components/time';
 import { BlocksList } from '@containers/lists/blocks';
 import ChevronDoubleLeftIcon from 'mdi-react/ChevronDoubleLeftIcon';
@@ -126,7 +126,7 @@ const DateActions = ({ date, today, loading, fetchBlocksForDate, ...rest }) => {
 class BlocksPage extends React.Component {
   static async getInitialProps({ req, query }) {
     const date = req && req.params ? req.params.date : query.date;
-    const blocks = await fetchBlocks(date);
+    const { blocks } = await fetchBlocksV2(date);
     const today = moment().format('YYYY-MM-DD');
     return {
       blocks,
@@ -152,7 +152,7 @@ class BlocksPage extends React.Component {
       setTimeout(() => {
         NProgress.start();
       }, 0);
-      const data = await fetchBlocks(date);
+      const data = await fetchBlocksV2(date);
       this.setState((state) => ({
         ...state,
         data: {

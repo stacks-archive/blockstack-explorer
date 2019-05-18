@@ -107,7 +107,7 @@ const fetchAccounts = async (address) => getJSON(makeUrl(`/api/accounts/${addres
  * Fetch Apps from app.co and filter to ones that use blockstack as auth
  */
 const fetchBlockstackApps = async () => {
-  const appData = await fetch('https://app-co-api.herokuapp.com/api/apps');
+  const appData = await fetch('https://api.app.co/api/apps');
   const { apps } = await appData.json();
   return [...apps.filter(({ authentication }) => authentication === 'Blockstack')];
 };
@@ -126,6 +126,16 @@ const fetchStacksAddress = async (address) => getJSON(makeUrl(`/api/stacks/addre
 
 const fetchHomeInfo = () => getJSON(makeUrl('/api/home'));
 
+const fetchBlockV2 = (hash) => getJSON(makeUrl(`/api/v2/blocks/${hash}`));
+
+const fetchBlocksV2 = (date) => {
+  let url = makeUrl('/api/v2/blocks');
+  if (date) {
+    url += `?date=${date}`;
+  }
+  return getJSON(url);
+};
+
 export {
   fetchNameOperations,
   fetchName,
@@ -142,4 +152,6 @@ export {
   fetchAccounts,
   fetchStacksAddress,
   fetchHomeInfo,
+  fetchBlockV2,
+  fetchBlocksV2,
 };

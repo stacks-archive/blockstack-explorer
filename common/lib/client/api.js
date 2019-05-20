@@ -136,6 +136,11 @@ const fetchBlocksV2 = (date) => {
   return getJSON(url);
 };
 
+const fetchSTXTransactions = () => {
+  const url = makeUrl('/api/v2/transactions/stx');
+  return getJSON(url);
+};
+
 export {
   fetchNameOperations,
   fetchName,
@@ -154,4 +159,5 @@ export {
   fetchHomeInfo,
   fetchBlockV2,
   fetchBlocksV2,
+  fetchSTXTransactions,
 };

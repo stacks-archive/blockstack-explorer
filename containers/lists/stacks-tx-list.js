@@ -5,19 +5,7 @@ import { Consumer } from '@pages/_app';
 import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import { Toggle } from 'react-powerplug';
 import Link from 'next/link';
-
-const txTitle = (operation, valueStacks) => {
-  if (operation === 'SENT') {
-    return `Sent ${valueStacks} STX`;
-  }
-  if (operation === 'RECEIVED') {
-    return `Received ${valueStacks} STX`;
-  }
-  if (valueStacks) {
-    return `${operation} ${valueStacks} STX`;
-  }
-  return operation;
-};
+import { txTitle } from '@common';
 
 const StacksTxList = () => (
   <Consumer>

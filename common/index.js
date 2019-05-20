@@ -79,4 +79,17 @@ const extractRootDomain = (url) => {
  */
 const uniq = (array) => [...new Set(array)];
 
-export { getJSON, makeUrl, getProfileImage, extractRootDomain, uniq };
+const txTitle = (operation, valueStacks) => {
+  if (operation === 'SENT') {
+    return `Sent ${valueStacks} STX`;
+  }
+  if (operation === 'RECEIVED') {
+    return `Received ${valueStacks} STX`;
+  }
+  if (valueStacks) {
+    return `${operation} ${valueStacks} STX`;
+  }
+  return operation;
+};
+
+export { getJSON, makeUrl, getProfileImage, extractRootDomain, uniq, txTitle };

@@ -141,6 +141,16 @@ const fetchSTXTransactions = () => {
   return getJSON(url);
 };
 
+const fetchNameRegistrations = (page = 0) => {
+  const url = makeUrl(`/api/v2/transactions/names?page=${page}`);
+  return getJSON(url);
+};
+
+const fetchSubdomainRegistrations = (page = 0) => {
+  const url = makeUrl(`/api/v2/transactions/subdomains?page=${page}`);
+  return getJSON(url);
+};
+
 export {
   fetchNameOperations,
   fetchName,
@@ -160,4 +170,6 @@ export {
   fetchBlockV2,
   fetchBlocksV2,
   fetchSTXTransactions,
+  fetchNameRegistrations,
+  fetchSubdomainRegistrations,
 };

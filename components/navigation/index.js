@@ -25,6 +25,7 @@ const LinkComponent = sys(
 const items = [
   { path: '/blocks', active: 'block', label: 'Blocks' },
   { path: '/names', active: 'name', label: 'Names' },
+  { path: '/transactions', active: 'transactions', label: 'Transactions' },
 ];
 
 const Navigation = memo(

@@ -57,6 +57,7 @@ class TransactionsPage extends React.Component {
   views = {
     stx: 'STX Transactions',
     names: 'Name Registrations',
+    subdomains: 'Subdomain Registrations',
   };
 
   setTransactionsView(namespace) {

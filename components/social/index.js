@@ -48,7 +48,7 @@ const SocialItem = ({ service, identifier, proofUrl, ...item }) => {
       color="blue.neutral"
       is={proofUrl ? 'a' : 'div'}
       target={proofUrl ? '_blank' : undefined}
-      href={proofUrl ? proofUrl : undefined}
+      href={proofUrl || undefined}
       display="inline-flex"
       p={1}
     >
@@ -79,10 +79,12 @@ const NonSocialItems = ({ wrapper, account: accounts, ...rest }) => {
         {itemsWithoutProofs.map(
           (item) =>
             item.identifier ? (
-              <Flex alignItems={'center'} justifyContent="space-between" pb={2}>
+              <Flex alignItems="center" justifyContent="space-between" pb={2}>
                 <SocialItem {...item} />
-                <Box p={1} overflow="auto" width={1} maxWidth={'calc(100% - 38px)'}>
-                  <Type fontFamily={'brand'}>{item.service === 'pgp' ? 'PGP Keys' : item.identifier}</Type>
+                <Box p={1} overflow="auto" width={1} maxWidth="calc(100% - 38px)">
+                  <Type fontFamily="brand" style={{ wordBreak: 'break-word' }}>
+                    {item.service === 'pgp' ? 'PGP Keys' : item.identifier}
+                  </Type>
                 </Box>
               </Flex>
             ) : null,

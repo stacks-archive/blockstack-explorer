@@ -37,7 +37,9 @@ const generateAutomaticSections = (data, arr, params) => {
                 </Type>
               </LinkWrapper>
             ) : (
-              <Type fontFamily="brand">{data[key]}</Type>
+              <Type fontFamily="brand" style={{ wordBreak: 'break-word' }}>
+                {data[key]}
+              </Type>
             )}
           </Box>
         </Section.Subsection>
@@ -53,7 +55,7 @@ const keys = ['size', 'txid', 'blockhash'];
  * Currently hidden because it might not be helpful
  */
 const AutomatedSection = ({ tx, ...rest }) => (
-  <Section pb={4} {...rest}>
+  <Section pb={4} {...rest} showBorder={false}>
     <Attribute
       label="Block"
       value={tx.blockheight}

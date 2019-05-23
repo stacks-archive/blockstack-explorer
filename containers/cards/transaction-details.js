@@ -53,6 +53,7 @@ const UTXOItem = ({ label, address, value, to, spentTxId, ...rest }) => (
     passHref={address ? true : undefined}
     flexDirection={['column', 'row']}
     minHeight="72px"
+    noLink={!address}
     {...rest}
     // py={label.length > 16 ? 4 : '18px'}
   >

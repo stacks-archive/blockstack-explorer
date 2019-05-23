@@ -1,9 +1,11 @@
 import React from 'react';
 import { SearchIcon, CloseCircleIcon } from 'mdi-react';
-import { Flex, Box, Input } from 'blockstack-ui';
+import { Flex, Box } from 'blockstack-ui';
 import { search } from '@common/lib/search';
 import Router from 'next/router';
 import { State } from 'react-powerplug';
+
+import { Input } from './styled';
 
 const handleSearch = async (event) => {
   if (event.key === 'Enter') {

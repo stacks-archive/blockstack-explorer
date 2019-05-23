@@ -1,13 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { Flex, Box, Type } from 'blockstack-ui';
+import { Flex, Box, Type, Button } from 'blockstack-ui';
 import { Toggle } from 'react-powerplug';
 import moment from 'moment';
 import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import { Card } from '@components/card';
 import { List } from '@components/list';
 
-const SubdomainsList = ({ subdomains }) => (
+const SubdomainsList = ({ subdomains, nextPage }) => (
   <Card width={1} mb={[5, 5, 0]} title="Names">
     {subdomains.map(({ fully_qualified_subdomain: name, ...subdomain }) => (
       <Toggle key={name}>
@@ -100,6 +100,9 @@ const SubdomainsList = ({ subdomains }) => (
         }}
       </Toggle>
     ))}
+    <Flex py={4} justifyContent="center">
+      <Button onClick={() => nextPage()}>View More</Button>
+    </Flex>
   </Card>
 );
 

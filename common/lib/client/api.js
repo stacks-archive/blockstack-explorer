@@ -136,8 +136,8 @@ const fetchBlocksV2 = (date) => {
   return getJSON(url);
 };
 
-const fetchSTXTransactions = () => {
-  const url = makeUrl('/api/v2/transactions/stx');
+const fetchSTXTransactions = (page = 0) => {
+  const url = makeUrl(`/api/v2/transactions/stx?page=${page}`);
   return getJSON(url);
 };
 

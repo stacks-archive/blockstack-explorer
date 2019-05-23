@@ -1,10 +1,10 @@
 import React from 'react';
-import { Flex, Box, Type } from 'blockstack-ui';
+import { Flex, Box, Type, Button } from 'blockstack-ui';
 import Link from 'next/link';
 import moment from 'moment';
 import { Card } from '@components/card';
 import { List } from '@components/list';
-// import NProgress from 'nprogress';
+import NProgress from 'nprogress';
 import { Page } from '@components/page';
 import { Hover, Toggle } from 'react-powerplug';
 import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
@@ -63,6 +63,11 @@ class TransactionsPage extends React.Component {
     transactions: this.props.transactions, /* eslint-disable-line */
     names: this.props.names, /* eslint-disable-line */
     subdomains: this.props.subdomains, /* eslint-disable-line */
+    pages: {
+      stx: 0,
+      names: 0,
+      subdomains: 0,
+    },
   };
 
   views = {
@@ -75,10 +80,33 @@ class TransactionsPage extends React.Component {
     this.setState({ view: namespace });
   }
 
+  async nextPage() {
+    const { view, pages } = this.state;
+    const page = pages[view];
+    const nextPage = page + 1;
+    NProgress.start();
+    if (view === 'stx') {
+      const { transactions } = this.state;
+      const { transfers } = await fetchSTXTransactions(nextPage);
+      const newList = transactions.concat(transfers);
+      this.setState({ transactions: newList, pages: { [view]: nextPage, ...pages } });
+    } else if (view === 'names') {
+      const { names } = this.state;
+      const result = await fetchNameRegistrations(nextPage);
+      const newList = names.concat(result.names);
+      this.setState({ names: newList, pages: { [view]: nextPage, ...pages } });
+    } else if (view === 'subdomains') {
+      const { subdomains } = this.state;
+      const result = await fetchSubdomainRegistrations(nextPage);
+      const newList = subdomains.concat(result.subdomains);
+      this.setState({ subdomains: newList, pages: { [view]: nextPage, ...pages } });
+    }
+    NProgress.done();
+  }
+
   render() {
-    const { view, names, subdomains } = this.state;
+    const { view, names, subdomains, transactions } = this.state;
     const { views } = this;
-    const { transactions } = this.props;
     return (
       <Page>
         <Card
@@ -213,10 +241,13 @@ class TransactionsPage extends React.Component {
                   }}
                 </Toggle>
               ))}
+              <Flex py={4} justifyContent="center">
+                <Button onClick={() => this.nextPage()}>View More</Button>
+              </Flex>
             </Card>
           )}
-          {view === 'names' && <NamesList names={names} />}
-          {view === 'subdomains' && <SubdomainsList subdomains={subdomains} />}
+          {view === 'names' && <NamesList nextPage={() => this.nextPage()} names={names} />}
+          {view === 'subdomains' && <SubdomainsList nextPage={() => this.nextPage()} subdomains={subdomains} />}
         </Page.Main>
       </Page>
     );

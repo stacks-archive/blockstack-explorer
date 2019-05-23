@@ -1,13 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { Flex, Box, Type } from 'blockstack-ui';
+import { Flex, Box, Type, Button } from 'blockstack-ui';
 import { Toggle } from 'react-powerplug';
 import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import moment from 'moment';
 import { Card } from '@components/card';
 import { List } from '@components/list';
 
-const NamesList = ({ names }) => (
+const NamesList = ({ names, nextPage }) => (
   <Card width={1} mb={[5, 5, 0]} title="Names">
     {names.map((name) => (
       <Toggle key={name.name}>
@@ -151,6 +151,9 @@ const NamesList = ({ names }) => (
         }}
       </Toggle>
     ))}
+    <Flex py={4} justifyContent="center">
+      <Button onClick={() => nextPage()}>View More</Button>
+    </Flex>
   </Card>
 );
 

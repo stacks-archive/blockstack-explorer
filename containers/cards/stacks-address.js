@@ -1,6 +1,7 @@
 import React from 'react';
 import QRCode from 'qrcode.react';
 import { Flex, Box, Type } from 'blockstack-ui';
+import PropTypes from 'prop-types';
 import { Card } from '@components/card';
 import { Section } from '@components/section';
 import { Attribute } from '@components/attribute';
@@ -28,11 +29,8 @@ const getLockedAmount = (vestingTotal, history = []) => {
   return { locked, unlocked, sent, received, total };
 };
 
-const StacksAddressCard = ({
-  address: { address, btcAddress, balance, status, formattedUnlockTotal, vesting_total, history },
-  ...rest
-}) => {
-  const { locked, unlocked, sent, received, total } = getLockedAmount(vesting_total, history);
+const StacksAddressCard = ({ address: { address, balance, status, vesting_total: vestingTotal, history } }) => {
+  const { locked, unlocked, sent, received, total } = getLockedAmount(vestingTotal, history);
   return address ? (
     <Card width={1} title="Stacks Address Details" pb={4}>
       <Section alignItems="center" justifyContent="center" py={4} color="blue.dark">
@@ -91,6 +89,10 @@ const StacksAddressCard = ({
       </Section>
     </Card>
   ) : null;
+};
+
+StacksAddressCard.propTypes = {
+  address: PropTypes.object.isRequired,
 };
 
 export { StacksAddressCard };

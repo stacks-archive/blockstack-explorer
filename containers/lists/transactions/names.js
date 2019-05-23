@@ -6,6 +6,7 @@ import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import moment from 'moment';
 import { Card } from '@components/card';
 import { List } from '@components/list';
+import { Time } from '@components/time';
 
 const NamesList = ({ names, nextPage }) => (
   <Card width={1} mb={[5, 5, 0]} title="Names">
@@ -18,7 +19,9 @@ const NamesList = ({ names, nextPage }) => (
               <List.Item onClick={toggle}>
                 <Box maxWidth="calc(100% - 105px)">
                   <List.Item.Title>{name.name}</List.Item.Title>
-                  {/* <List.Item.Subtitle overflow="auto">{transaction.txid}</List.Item.Subtitle> */}
+                  <List.Item.Subtitle>
+                    <Time date={name.timestamp / 1000} />
+                  </List.Item.Subtitle>
                 </Box>
                 <Box>
                   <Flex opacity={0.5} alignItems="center" justifyContent="center" px={0} py={0} size={36}>
@@ -82,67 +85,6 @@ const NamesList = ({ names, nextPage }) => (
                         <Type fontFamily="brand">{name.address}</Type>
                       </Box>
                     </Flex>
-                    {/* {transaction.historyData.scratch_area && (
-                      <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
-                        <Box minWidth="200px" pr={2}>
-                          Memo
-                        </Box>
-                        <Box maxWidth="100%" overflow="auto">
-                          <Type fontFamily="brand">{transaction.historyData.scratch_area}</Type>
-                        </Box>
-                      </Flex>
-                    )}
-                    <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
-                      <Box minWidth="200px" pr={2}>
-                        Block
-                      </Box>
-                      <Box maxWidth="100%" overflow="auto">
-                        <Type fontFamily="brand">{transaction.block_id}</Type>
-                      </Box>
-                    </Flex>
-                    
-                    <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
-                      <Box minWidth="200px" pr={2}>
-                        Sender
-                      </Box>
-                      <Box maxWidth="100%" overflow="auto">
-                        <Type fontFamily="brand">
-                          <Link
-                            passHref
-                            href={{
-                              pathName: '/address/stacks',
-                              query: { address: transaction.historyData.sender },
-                            }}
-                            as={`/address/stacks/${transaction.historyData.sender}`}
-                          >
-                            <Type fontFamily="brand" is="a">
-                              {transaction.historyData.sender}
-                            </Type>
-                          </Link>
-                        </Type>
-                      </Box>
-                    </Flex>
-                    <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
-                      <Box minWidth="200px" pr={2}>
-                        Recipient
-                      </Box>
-                      <Box maxWidth="100%" overflow="auto">
-                        <Type fontFamily="brand">
-                          <Link
-                            passHref
-                            href={{
-                              pathName: '/address/stacks',
-                              query: { address: transaction.historyData.recipient },
-                            }}
-                            as={`/address/stacks/${transaction.historyData.recipient}`}
-                          >
-                            <Type fontFamily="brand" is="a">
-                              {transaction.historyData.recipient}
-                            </Type>
-                          </Link>
-                        </Type>
-                      </Box>
-                    </Flex> */}
                   </Box>
                 </Box>
               )}

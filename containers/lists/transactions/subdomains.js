@@ -6,6 +6,7 @@ import moment from 'moment';
 import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import { Card } from '@components/card';
 import { List } from '@components/list';
+import { Time } from '@components/time';
 
 const SubdomainsList = ({ subdomains, nextPage }) => (
   <Card width={1} mb={[5, 5, 0]} title="Names">
@@ -18,7 +19,9 @@ const SubdomainsList = ({ subdomains, nextPage }) => (
               <List.Item onClick={toggle}>
                 <Box maxWidth="calc(100% - 105px)">
                   <List.Item.Title>{name}</List.Item.Title>
-                  {/* <List.Item.Subtitle overflow="auto">{transaction.txid}</List.Item.Subtitle> */}
+                  <List.Item.Subtitle>
+                    <Time date={subdomain.timestamp / 1000} />
+                  </List.Item.Subtitle>
                 </Box>
                 <Box>
                   <Flex opacity={0.5} alignItems="center" justifyContent="center" px={0} py={0} size={36}>

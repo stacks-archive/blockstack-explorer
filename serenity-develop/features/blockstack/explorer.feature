@@ -12,8 +12,8 @@ Feature: Blockstack Explorer Test Case
     Given user is on home page
     And user select the Name link
     Then verify that list of all the names is displayed
-    And user select the id "aaronjoelsantos.id"
-    Then Verify that "aaronjoelsantos.id" information has displayed
+    And user select the id "aaron.id.blockstack"
+    Then Verify that "aaron.id.blockstack" information has displayed
 
   Scenario: Verify Explorer returns information for the entered address
     Given user is on home page

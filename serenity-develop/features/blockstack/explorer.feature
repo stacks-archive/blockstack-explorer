@@ -8,7 +8,7 @@ Feature: Blockstack Explorer Test Case
     And user enter the name in search bar
     Then Verify that explorer returns information related to name
 
-  Scenario: Explorer returns information for the selected name aaronjoelsantos.id
+  Scenario: Explorer returns information for the selected name aaron.id.blockstack
     Given user is on home page
     And user select the Name link
     Then verify that list of all the names is displayed

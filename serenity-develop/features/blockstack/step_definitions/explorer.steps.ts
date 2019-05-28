@@ -13,12 +13,12 @@ module.exports = function myStepDefinitions () {
         homePage.openHomePage();
       });
       this.Then('user enter the name in search bar', async ()=> {
-        await homePage.enterNameInSearchBar("aaronbailey.id");
+        await homePage.enterNameInSearchBar("aaron.id.blockstack");
     });
     this.Then('Verify that explorer returns information related to name', async ()=> {
        const l =await homePage.checkInformation();
        console.log('String 2 :'+l);
-        await expect('aaronbailey.id').to.equal(l);
+        await expect('aaron.id.blockstack').to.equal(l);
         //  expect.to.be(homePage.checkInformation()).to.eventually.equal("What do my test results mean?");
     });
 

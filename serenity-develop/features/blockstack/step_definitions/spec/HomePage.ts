@@ -11,7 +11,6 @@ export class HomePage extends BasePage {
     openHomePage() {
         browser.waitForAngularEnabled(false);
          browser.get('https://explorer.blockstack.org');
-         #browser.get('https://stacks-explorer.herokuapp.com');
     }
 
     enterNameInSearchBar(name: string) {

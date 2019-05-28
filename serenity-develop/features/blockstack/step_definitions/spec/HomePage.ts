@@ -10,8 +10,8 @@ export class HomePage extends BasePage {
     private dateBack=element(by.className('dNUTga'));
     openHomePage() {
         browser.waitForAngularEnabled(false);
-         #browser.get('https://explorer.blockstack.org');
-         browser.get('https://stacks-explorer.herokuapp.com');
+         browser.get('https://explorer.blockstack.org');
+         #browser.get('https://stacks-explorer.herokuapp.com');
     }
 
     enterNameInSearchBar(name: string) {

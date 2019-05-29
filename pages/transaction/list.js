@@ -201,12 +201,12 @@ class TransactionsPage extends React.Component {
                                       passHref
                                       href={{
                                         pathName: '/address/stacks',
-                                        query: { address: transaction.historyData.sender },
+                                        query: { address: transaction.senderSTX },
                                       }}
-                                      as={`/address/stacks/${transaction.historyData.sender}`}
+                                      as={`/address/stacks/${transaction.senderSTX}`}
                                     >
                                       <Type fontFamily="brand" is="a">
-                                        {transaction.historyData.sender}
+                                        {transaction.senderSTX}
                                       </Type>
                                     </Link>
                                   </Type>
@@ -222,12 +222,12 @@ class TransactionsPage extends React.Component {
                                       passHref
                                       href={{
                                         pathName: '/address/stacks',
-                                        query: { address: transaction.historyData.recipient },
+                                        query: { address: transaction.recipientSTX },
                                       }}
-                                      as={`/address/stacks/${transaction.historyData.recipient}`}
+                                      as={`/address/stacks/${transaction.recipientSTX}`}
                                     >
                                       <Type fontFamily="brand" is="a">
-                                        {transaction.historyData.recipient}
+                                        {transaction.recipientSTX}
                                       </Type>
                                     </Link>
                                   </Type>

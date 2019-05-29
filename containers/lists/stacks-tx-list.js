@@ -7,6 +7,28 @@ import { Toggle } from 'react-powerplug';
 import Link from 'next/link';
 import { txTitle } from '@common';
 
+const TXLink = ({ txid }) => (
+  <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
+    <Box minWidth="200px" pr={2}>
+      BTC Transaction
+    </Box>
+    <Box maxWidth="100%" overflow="auto">
+      <Link
+        passHref
+        href={{
+          pathName: '/transaction/single',
+          query: { id: txid },
+        }}
+        as={`/tx/${txid}`}
+      >
+        <Type fontFamily="brand" is="a">
+          {txid}
+        </Type>
+      </Link>
+    </Box>
+  </Flex>
+);
+
 const StacksTxList = () => (
   <Consumer>
     {({ address }) => {
@@ -73,25 +95,7 @@ const StacksTxList = () => (
                           <Type fontFamily="brand">{new Date(historyEntry.blockTime).toString()}</Type>
                         </Box>
                       </Flex>
-                      <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
-                        <Box minWidth="200px" pr={2}>
-                          BTC Transaction
-                        </Box>
-                        <Box maxWidth="100%" overflow="auto">
-                          <Link
-                            passHref
-                            href={{
-                              pathName: '/transaction/single',
-                              query: { id: txid },
-                            }}
-                            as={`/tx/${txid}`}
-                          >
-                            <Type fontFamily="brand" is="a">
-                              {txid}
-                            </Type>
-                          </Link>
-                        </Box>
-                      </Flex>
+                      {operation !== 'UNLOCK' && <TXLink txid={txid} />}
                       <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
                         <Box minWidth="200px" pr={2}>
                           BTC Block

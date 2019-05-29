@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { fetchTX } from '@common/lib/client/api';
 import { TransactionCard } from '@containers/cards/transaction';
 import { TransactionDetails } from '@containers/cards/transaction-details';
@@ -6,7 +7,11 @@ import { Page } from '@components/page';
 
 class TransactionSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
-    const id = req && req.params ? req.params.tx : query.tx;
+    let id = req && req.params ? req.params.tx : query.tx;
+    if (!id && typeof document !== 'undefined') {
+      // eslint-disable-next-line prefer-destructuring
+      id = document.location.pathname.split('/')[2];
+    }
     const data = await fetchTX(id);
 
     return {
@@ -21,10 +26,11 @@ class TransactionSinglePage extends React.Component {
   }
 
   render() {
-    const { valueOut, confirmations, vin, vout, fees } = this.props.tx;
+    const { tx } = this.props;
+    const { valueOut, confirmations, vin, vout, fees } = tx;
     return (
       <Page>
-        <TransactionCard mr={[0, 0, 5]} mb={[5, 5, 0]} width={['100%', '100%', '380px']} transaction={this.props.tx} />
+        <TransactionCard mr={[0, 0, 5]} mb={[5, 5, 0]} width={['100%', '100%', '380px']} transaction={tx} />
         <Page.Main>
           <TransactionDetails confirmations={confirmations} fees={fees} valueOut={valueOut} vin={vin} vout={vout} />
         </Page.Main>
@@ -32,4 +38,9 @@ class TransactionSinglePage extends React.Component {
     );
   }
 }
+
+TransactionSinglePage.propTypes = {
+  tx: PropTypes.object.isRequired,
+};
+
 export default TransactionSinglePage;

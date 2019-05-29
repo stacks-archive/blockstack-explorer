@@ -3,7 +3,6 @@ WORKDIR /usr/src
 COPY package.json yarn.lock /usr/src/
 RUN yarn install
 COPY . .
-ENV API_URL aaronblankstein
 RUN yarn build && \
     yarn --production
 

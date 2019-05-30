@@ -1,0 +1,16 @@
+/.idea/
+/.vscode/
+//dist/
+/serenity/node_modules/
+/serenity/reports/
+/serenity/testdata.txt/
+/serenity/package-lock.json/
+/serenity/debug.log/
+/serenity/.vscode/
+/serenity/dist/
+/serenity/node_modules/
+/serenity/reports/
+/serenity/package-lock.json/
+/serenity/debug.log/
+node_modules/
+target/

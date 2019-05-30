@@ -1,5 +1,8 @@
 import { browser, element, by, By, $, $$, ExpectedConditions, promise, protractor, Key } from 'protractor';
 import { BasePage } from '../spec/BasePage';
+
+const url = process.env.TEST_URL || 'https://staging-explorer.blockstack.xyz';
+
 export class HomePage extends BasePage {
     private callUs = element(by.className("ewXKKG"));
     // constructor(){}
@@ -10,7 +13,7 @@ export class HomePage extends BasePage {
     private dateBack=element(by.className('dNUTga'));
     openHomePage() {
         browser.waitForAngularEnabled(false);
-         browser.get('https://stacks-explorer.herokuapp.com');
+         browser.get(`${url}`);
     }
 
     enterNameInSearchBar(name: string) {
@@ -87,7 +90,7 @@ export class HomePage extends BasePage {
         
                 async openURL(){
                         browser.waitForAngularEnabled(false);
-                         browser.get("https://explorer.blockstack.org/name/legnasiul.id.blockstack");
+                         browser.get(`${url}/name/legnasiul.id.blockstack`);
                     }
         
             async clickOnAddressLink(address: string){
@@ -114,11 +117,11 @@ export class HomePage extends BasePage {
         
              async openURLForBlock(){
                 browser.waitForAngularEnabled(false);
-                 browser.get("https://explorer.blockstack.org/tx/335b303a711c71130d10b440b0ac42100830e20407e875422f5832437650bb5c");
+                 browser.get(`${url}/tx/335b303a711c71130d10b440b0ac42100830e20407e875422f5832437650bb5c`);
             }
             async openURLForBlock2(){
                 browser.waitForAngularEnabled(false);
-                 browser.get("https://explorer.blockstack.org/blocks");
+                 browser.get(`${url}/blocks`);
             }
             async clickOnViewMoreBtn(){
                 await browser.executeScript("window.scrollBy(0,10000)");

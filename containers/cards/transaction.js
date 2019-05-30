@@ -49,6 +49,8 @@ const generateAutomaticSections = (data, arr, params) => {
 
 const keys = ['size', 'txid', 'blockhash'];
 
+const convertBlockTimeToInt = (blockTime) => new Date(blockTime).getTime() / 1000;
+
 /**
  * Some latest transaction data
  *
@@ -70,7 +72,7 @@ const AutomatedSection = ({ tx, ...rest }) => (
       }}
     />
     <Attribute clip={false} label="time">
-      <Time date={tx.time} />
+      <Time date={convertBlockTimeToInt(tx.blockTime)} />
     </Attribute>
     {generateAutomaticSections(tx, keys)}
   </Section>

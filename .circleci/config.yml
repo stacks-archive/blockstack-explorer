@@ -62,8 +62,6 @@ jobs:
       - *install_depencies_with_npm
       - *save_npm_cache
       - *build_app
-      - store_artifacts:
-        path: logs
       - *start_app
       - *run_tests
 

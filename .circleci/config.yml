@@ -42,9 +42,7 @@ start_app: &start_app
       export API_URL=http://staging-explorer-api.blockstack.xyz
       export NODE_ENV=production
       touch logs/node_server.log
-      sh -c "npm run start | tee logs/node_server.log" & PID=$! && echo "PID is $PID and PWD is $PWD" && sleep 30
-  store_artifacts:
-    path: logs
+      sh -c "npm start | tee logs/node_server.log" & PID=$! && echo "PID is $PID and PWD is $PWD" && sleep 30
 
 run_tests: &run_tests
   run:
@@ -63,6 +61,8 @@ jobs:
       - *install_depencies_with_npm
       - *save_npm_cache
       - *build_app
+      - store_artifacts:
+        path: logs
       - *start_app
       - *run_tests
 

@@ -39,7 +39,9 @@ start_app: &start_app
   run:
     name: Start app
     command: |
-      sh -c "API_URL=http://staging-explorer-api.blockstack.xyz npm run start | tee logs/node_server.log" && sleep 15
+      export API_URL=http://staging-explorer-api.blockstack.xyz
+      export NODE_ENV=production
+      sh -c "npm run start | tee logs/node_server.log" && sleep 15
 
 run_tests: &run_tests
   run:

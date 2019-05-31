@@ -107,6 +107,7 @@ class NamesPage extends React.Component {
                 key={namespace}
                 active={view === namespace}
                 loading={loading === namespace}
+                id={`namespaces-side-nav-${namespace}`}
                 onClick={() => this.setNamespace(namespace)}
               >
                 <List.Item.Title>{`.${namespace}`}</List.Item.Title>

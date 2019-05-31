@@ -113,7 +113,7 @@ class NamesSinglePage extends React.Component {
 
     const allItems = this.state.data;
     const items = allItems.slice(0, this.state.limit);
-    console.log(this.props.user);
+    // console.log(this.props.user);
     const showMore = allItems.length > this.state.limit;
     if (!this.props.user.nameRecord) {
       return (

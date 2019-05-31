@@ -30,6 +30,7 @@ const Row = ({ keys, ...data }) => (
     display="grid"
     gridTemplateColumns={[`repeat(${getResponsiveIndex(keys).length}, 1fr)`, `repeat(${keys.length}, 1fr)`]}
     py={1}
+    className="block-list-row"
     px={0}
   >
     {renderRowData(data, keys)}

@@ -27,6 +27,7 @@ const NamesList = ({ list, limit, ...rest }) => (
                   name,
                 },
               }}
+              className="names-list-item"
               as={`/name/${name}`}
               key={name}
             >

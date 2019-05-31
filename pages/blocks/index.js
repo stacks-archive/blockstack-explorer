@@ -196,7 +196,7 @@ class BlocksPage extends React.Component {
         </Card>
         {!showAll && (
           <Flex py={4} justifyContent="center">
-            <Button onClick={() => this.setState({ showAll: true })} width={0.9}>
+            <Button onClick={() => this.setState({ showAll: true })} width={0.9} id="view-more-blocks">
               View More Blocks
             </Button>
           </Flex>

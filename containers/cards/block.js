@@ -10,7 +10,7 @@ import { Attribute } from '@components/attribute';
 const generateAutomaticSections = (data, arr) =>
   arr.map((key) => {
     if (!data[key]) return '';
-    return <Attribute label={key} key={key} value={data[key]} />;
+    return <Attribute label={key} key={key} value={data[key]} id={`block-card-${key}`} />;
   });
 
 const keys = ['height', 'nonce', 'difficulty', 'merkleroot', 'hash', 'bits', 'size'];

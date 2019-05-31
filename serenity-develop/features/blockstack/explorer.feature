@@ -12,28 +12,28 @@ Feature: Blockstack Explorer Test Case
     Given user is on home page
     And user select the Name link
     Then verify that list of all the names is displayed
-    And user select the id "aaron.id.blockstack"
-    Then Verify that "aaron.id.blockstack" information has displayed
+    And user select the id "aaron.id"
+    Then Verify that "Aaron Blankstein" information has displayed
 
   Scenario: Verify Explorer returns information for the entered address
     Given user is on home page
     Then user search the address in address search bar
     Then Verify that explorer returns information related to address
 
-  Scenario: Verify Explorer returns information for the selected address
-    Given user open the url
-    And click on the address link "1NHfjtfnTdnPSwFveHMrG5P3PNKM2s3qnV"
-    Then Verify that information of selected address has displayed
+  # Scenario: Verify Explorer returns information for the selected address
+  #   Given user open the url
+  #   And click on the address link "1NHfjtfnTdnPSwFveHMrG5P3PNKM2s3qnV"
+  #   Then Verify that information of selected address has displayed
      
   Scenario: Enter block number 523746 in the explorer text box and press ENTER key
     Given user is on home page
     Then enter the block number and press enter key in search bar
     Then Verify that inforation has shown related to search block number
 
-  Scenario: open the URL and click on block link
-    Given user open url
-    And click on the address link "569896"
-    Then Verify that Explorer returns information for the entered transaction number
+  # Scenario: open the URL and click on block link
+  #   Given user open url
+  #   And click on the address link "569896"
+  #   Then Verify that Explorer returns information for the entered transaction number
 
   Scenario: verify that explorer return the information of the entered transaction no
     Given user is on home page

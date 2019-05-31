@@ -33,44 +33,50 @@ export class HomePage extends BasePage {
   }
   
   async checkInformation(){
-    await browser.sleep(3999).then(function () {
-      console.log('sleep 4 second');
-    });
-    await browser.wait(ExpectedConditions.elementToBeClickable(this.callUs),40000);
-    await browser.sleep(3999).then(function () {
-      console.log('sleep 4 second');
-    });
-    await browser.waitForAngular();
-    const l= await browser.executeScript("return document.getElementsByClassName('sc-bdVaJa bqFlkF')[0].innerText");
+    await browser.sleep(15000)
+    // await browser.wait(ExpectedConditions.elementToBeClickable(this.callUs),40000);
+    // console.log('getting the name')
+    await browser.wait(ExpectedConditions.visibilityOf(element(by.id('user-card-name'))), 1000)
+    // console.log('got the name')
+    // await browser.sleep(3999).then(function () {
+    //   console.log('sleep 4 second');
+    // });
+    // await browser.waitForAngular();
+    const l = await browser.executeScript("return document.getElementById('user-card-name').innerText");
     console.log("String is "+l);
     return l;
   }
   
   async clickOnNameLink(){
-    await this.clickClassButton('sc-bxivhb cRteMP sc-bdVaJa cIgLIY','Names');
+    // await this.clickClassButton('sc-bxivhb cRteMP sc-bdVaJa cIgLIY','Names');
+    await this.clickId('nav-names');
   }
   
   async getListheading(){
     await browser.sleep(3999).then(function () {
       console.log('sleep 4 second');
     });
-    await browser.wait(ExpectedConditions.elementToBeClickable(this.idEnable),40000);
+    // await browser.wait(ExpectedConditions.elementToBeClickable(this.idEnable),40000);
+    await browser.wait(ExpectedConditions.elementToBeClickable(element(by.id('namespaces-side-nav-blockstack'))));
     await browser.sleep(3999).then(function () {
       console.log('sleep 4 second');
     });
     await browser.waitForAngular();
-    const ll= await browser.executeScript("return document.getElementsByClassName('sc-bdVaJa dxSyyy')[0].innerText");
-    console.log("String is "+ll);
+    // const ll= await browser.executeScript("return document.getElementsByClassName('sc-bdVaJa dxSyyy')[0].innerText");
+    const namespace = await browser.executeScript(`return document.getElementById('namespaces-side-nav-blockstack').innerText;`);
+    console.log("String is " + namespace);
+    return namespace;
   }
   
   async clickOnGivenId(id:string){
     await browser.executeScript("window.scrollBy(0,10000)");
-    await this.clickClassButton('ewXKKG','View More');
+    // await this.clickClassButton('ewXKKG','View More');
+    await this.clickId('namespace-names-view-more');
     await browser.waitForAngular();
     await browser.sleep(2999).then(function () {
       console.log('sleep 4 second');
     }); 
-    await this.clickClassButton('KEUBz',id);
+    await this.clickClassButton('names-list-item',id);
   }
   
   
@@ -83,7 +89,7 @@ export class HomePage extends BasePage {
       console.log('sleep 4 second');
     });
     await browser.waitForAngular();
-    const l= await browser.executeScript("return document.getElementsByClassName('sc-bdVaJa fWwYCo')[0].innerText");
+    const l = await browser.executeScript("return document.getElementById('address-card-address').innerText");
     console.log("name or address is "+l);
     return l;
   }
@@ -128,7 +134,9 @@ export class HomePage extends BasePage {
     await browser.sleep(1999).then(function () {
       console.log('sleep 2 second');
     });
-    await this.clickClassButton('sc-bdVaJa bZXzYB','View More Blocks');
+    // await this.clickClassButton('sc-bdVaJa bZXzYB','View More Blocks');
+    await this.clickId('view-more-blocks')
+    await browser.sleep(10000)
   }
   
   async clickOnDateBtn(){
@@ -145,7 +153,22 @@ export class HomePage extends BasePage {
       console.log('sleep 9 second');
     });
     await browser.waitForAngular();
-    const inf= await browser.executeScript("return document.getElementsByClassName('sc-bdVaJa flNnOd')[0].innerText");
+    const inf = await browser.executeScript("return document.getElementById('block-card-height').innerText");
+    console.log("name or address is "+inf);
+    return inf;
+  }
+
+  async getSearchResultOfTransaction(){
+    await browser.sleep(9999).then(function () {
+      console.log('sleep 4 second');
+    });
+    // await browser.wait(ExpectedConditions.elementToBeClickable(this.downIcon),40000);
+    // await browser.wait(ExpectedConditions.visibilityOf(this.traInf),40000);
+    await browser.sleep(9999).then(function () {
+      console.log('sleep 9 second');
+    });
+    await browser.waitForAngular();
+    const inf = await browser.executeScript("return document.getElementById('block-card-height').innerText");
     console.log("name or address is "+inf);
     return inf;
   }
@@ -165,9 +188,8 @@ export class HomePage extends BasePage {
   }
   
   async isMoreDataDisplyed(){
-    const l=browser.executeScript("return document.getElementsByClassName('sc-ifAKCX dUcegu sc-bdVaJa dXHeyP').length");
-    const len=+l;
-    if(len>25){
+    const length = await browser.executeScript("return document.getElementsByClassName('block-list-row').length");
+    if(length > 100){
       return true;
     }
     else{

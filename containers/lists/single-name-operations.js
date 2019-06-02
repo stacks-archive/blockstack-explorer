@@ -5,7 +5,7 @@ import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import { Toggle } from 'react-powerplug';
 import Link from 'next/link';
 
-const nameOpKeys = ['opcode', 'block_number', 'address', 'sender', 'time'];
+const nameOpKeys = ['opcode', 'block_id', 'txid', 'address', 'sender', 'time'];
 
 const NameOperationsList = ({ items, ...rest }) => (
   <Box>

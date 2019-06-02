@@ -112,9 +112,9 @@ export class HomePage extends BasePage {
   async enterBlockNumber(blockNumber: string){
     await element(by.xpath('//*[@id="__next"]/div[1]/div[1]/form/div[3]/input')).sendKeys(blockNumber);
     await browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    await browser.waitForAngular();
-    await browser.sleep(4999);
-    console.log("sleep for 5 sec");
+    // await browser.waitForAngular();
+    console.log('sleep for 5 sec');
+    await browser.sleep(10000);
   }
   
   async getBlockInformation(){
@@ -156,6 +156,15 @@ export class HomePage extends BasePage {
     const inf = await browser.executeScript("return document.getElementById('block-card-height').innerText");
     console.log("name or address is "+inf);
     return inf;
+  }
+
+  async getTxid() {
+    await browser.sleep(25000).then(function() {
+      console.log('sleep 25 second');
+    });
+    // await browser.waitForAngular();
+    const txid = await browser.executeScript("return document.getElementById('tx-card-txid').innerText");
+    return txid;
   }
 
   async getSearchResultOfTransaction(){

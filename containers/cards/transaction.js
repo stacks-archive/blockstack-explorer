@@ -37,7 +37,7 @@ const generateAutomaticSections = (data, arr, params) => {
                 </Type>
               </LinkWrapper>
             ) : (
-              <Type fontFamily="brand" style={{ wordBreak: 'break-word' }}>
+              <Type fontFamily="brand" style={{ wordBreak: 'break-word' }} id={`tx-card-${key}`}>
                 {data[key]}
               </Type>
             )}

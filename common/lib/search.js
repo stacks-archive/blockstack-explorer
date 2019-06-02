@@ -43,6 +43,7 @@ const search = async (query) => {
   }
 
   const { pathname, as, ...rest } = searchData;
+  console.log(rest);
 
   Router.push(
     {

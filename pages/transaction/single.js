@@ -12,7 +12,14 @@ class TransactionSinglePage extends React.Component {
       // eslint-disable-next-line prefer-destructuring
       id = document.location.pathname.split('/')[2];
     }
-    const data = await fetchTX(id);
+    console.log(query);
+    let data;
+    if (query.data) {
+      data = JSON.parse(query.data);
+    } else {
+      data = await fetchTX(id);
+    }
+    // const data = query.data || (await fetchTX(id));
 
     return {
       tx: {

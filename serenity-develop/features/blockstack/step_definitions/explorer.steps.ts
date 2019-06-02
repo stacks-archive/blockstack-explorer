@@ -92,9 +92,8 @@ module.exports = function myStepDefinitions() {
 
   this.Then(/^verify Explorer returns the information for the entered transaction number$/, async () => {
     // add assertion failed defect
-    const inf = await homePage.getSearchResultOfBlock();
-    console.log(`information box ${inf}`);
-    expect(inf).to.include('335b303a711c71130d10b440b0ac42100830e20407e875422f5832437650bb5c');
+    const txid = await homePage.getTxid();
+    expect(txid).to.include('335b303a711c71130d10b440b0ac42100830e20407e875422f5832437650bb5c');
   });
   this.Given(/^user open the block url$/, async () => {
     await homePage.openURLForBlock2();

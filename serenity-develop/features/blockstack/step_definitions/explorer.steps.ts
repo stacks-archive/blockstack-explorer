@@ -54,10 +54,11 @@ module.exports = function myStepDefinitions() {
   this.Given(/^user open the url$/, async () => {
     await homePage.openURL();
   });
-  this.Given(/^click on the address link "([^"]*)"$/, async (arg1) => {
-    // REMOVED: this test won't work when the home page updates
-    // await homePage.clickOnAddressLink(arg1);
+
+  this.Given(/^click on the block link "([^"]*)"$/, async (arg1) => {
+    await homePage.clickOnBlockLink(arg1);
   });
+
   this.Then(/^Verify that information of selected address has displayed$/, async () => {
     // await homePage.checkAddressInformation();
     // REMOVED: this test won't work when the home page updates
@@ -75,8 +76,13 @@ module.exports = function myStepDefinitions() {
     expect(inf).to.include('523746');
   });
 
-  this.Given(/^user open url$/, async () => {
-    await homePage.openURLForBlock();
+  this.Given(/^user open blocks url$/, async () => {
+    await homePage.openURLForBlock2();
+  });
+
+  this.Then(/^Verify that Explorer returns the block page for height "([^"]*)"$/, async (expectedHeight) => {
+    const height = await homePage.verifyBlockPage(expectedHeight);
+    expect(height).to.equal(expectedHeight);
   });
 
   this.Then(/^Verify that Explorer returns information for the entered transaction number$/, async () => {

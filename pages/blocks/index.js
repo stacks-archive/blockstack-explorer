@@ -94,6 +94,7 @@ const DateActions = ({ date, today, loading, fetchBlocksForDate, ...rest }) => {
           e.preventDefault();
           fetchBlocksForDate(yesterday, 'yesterday');
         }}
+        id="block-date-yesterday"
         icon={ChevronDoubleLeftIcon}
       >
         {loading === 'yesterday' ? 'Loading' : yesterday}
@@ -113,6 +114,7 @@ const DateActions = ({ date, today, loading, fetchBlocksForDate, ...rest }) => {
             fetchBlocksForDate(tomorrow, 'tomorrow');
           }}
           is="a"
+          id="block-date-tomorrow"
           direction="forward"
           icon={ChevronDoubleRightIcon}
         >

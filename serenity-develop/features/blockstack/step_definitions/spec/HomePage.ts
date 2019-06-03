@@ -125,10 +125,25 @@ export class HomePage extends BasePage {
     browser.waitForAngularEnabled(false);
     browser.get(`${url}/tx/335b303a711c71130d10b440b0ac42100830e20407e875422f5832437650bb5c`);
   }
+
   async openURLForBlock2(){
     browser.waitForAngularEnabled(false);
-    browser.get(`${url}/blocks`);
+    browser.get(`${url}/blocks?date=2019-05-30`);
   }
+
+  async clickOnBlockLink(blockHeight) {
+    await browser.sleep(10000)
+    console.log(`document.querySelector('[data-block-height="${blockHeight}"]')`);
+    await browser.executeScript(`document.querySelector('[data-block-height="${blockHeight}"]').click()`);
+  }
+
+  async verifyBlockPage(blockHeight) {
+    console.log('sleeping 15 seconds')
+    await browser.sleep(15000);
+    const height = await browser.executeScript("return document.getElementById('block-card-height').innerText");
+    return height;
+  }
+
   async clickOnViewMoreBtn(){
     await browser.executeScript("window.scrollBy(0,10000)");
     await browser.sleep(1999).then(function () {
@@ -140,7 +155,10 @@ export class HomePage extends BasePage {
   }
   
   async clickOnDateBtn(){
-    await browser.executeScript("document.getElementsByClassName('sc-bdVaJa dTlDiF')[0].click()");
+    // await browser.executeScript("document.getElementsByClassName('sc-bdVaJa dTlDiF')[0].click()");
+    await browser.executeScript("document.getElementById('block-date-yesterday').click()")
+    console.log('sleeping 10 seconds')
+    await browser.sleep(10000)
   }
   
   async getSearchResultOfBlock(){

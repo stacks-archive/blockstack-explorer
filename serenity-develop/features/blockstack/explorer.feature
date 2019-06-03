@@ -2,7 +2,6 @@ Feature: Blockstack Explorer Test Case
   'When I go to the Blockstack Explorer Test Case search page, and search for an item,
   I expect to see some reference to that item in the result summary.'
 
-  
   Scenario: Verify that Explorer returns information for the entered name
     Given user is on home page
     And user enter the name in search bar
@@ -30,10 +29,10 @@ Feature: Blockstack Explorer Test Case
     Then enter the block number and press enter key in search bar
     Then Verify that inforation has shown related to search block number
 
-  # Scenario: open the URL and click on block link
-  #   Given user open url
-  #   And click on the address link "569896"
-  #   Then Verify that Explorer returns information for the entered transaction number
+  Scenario: open the URL and click on block link
+    Given user open blocks url
+    And click on the block link "578600"
+    Then Verify that Explorer returns the block page for height "578600"
 
   Scenario: verify that explorer return the information of the entered transaction no
     Given user is on home page
@@ -41,11 +40,13 @@ Feature: Blockstack Explorer Test Case
     Then verify Explorer returns the information for the entered transaction number
 
   Scenario: User clicks the button and more block data will appear at the bottom of the page
-    Given user open the block url
+    Given user open blocks url
     And scroll down page and click on view more block button
     Then Verify that more data has displayed
 
   Scenario: User clicks the date button going back one day each time they click it until they are one week from todays date
-    Given user open the block url
+    Given user open blocks url
     Then click on date button
-    Then verify That user is able to click it until they are one week from todays date  
+    And click on the block link "578440"
+    Then Verify that Explorer returns the block page for height "578440"
+    # Then verify That user is able to click it until they are one week from todays date  

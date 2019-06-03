@@ -128,10 +128,13 @@ const fetchHomeInfo = () => getJSON(makeUrl('/api/home'));
 
 const fetchBlockV2 = (hash) => getJSON(makeUrl(`/api/v2/blocks/${hash}`));
 
-const fetchBlocksV2 = (date) => {
+const fetchBlocksV2 = (date, page) => {
   let url = makeUrl('/api/v2/blocks');
   if (date) {
     url += `?date=${date}`;
+  }
+  if (page) {
+    url += `${date ? '&' : '?'}page=${page}`;
   }
   return getJSON(url);
 };

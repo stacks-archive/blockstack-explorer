@@ -65,10 +65,10 @@ const AutomatedSection = ({ tx, ...rest }) => (
         href: {
           pathname: '/blocks/single',
           query: {
-            hash: tx.blockhash,
+            hash: tx.blockheight,
           },
         },
-        as: `/block/${tx.blockhash}`,
+        as: `/block/${tx.blockheight}`,
       }}
     />
     <Attribute clip={false} label="time">

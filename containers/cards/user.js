@@ -99,9 +99,10 @@ const BlocksSection = ({ nameRecord, ...rest }) => (
 const AppsSection = ({ apps, ...rest }) =>
   apps ? (
     <ConnectedAppsList
+      apps={apps}
       wrapper={({ children }) => (
         <Section pb={4} {...rest}>
-          <Section.Subsection label="Multiplayer Apps Used" children={children} />
+          <Section.Subsection label="Multiplayer Apps Used">{children}</Section.Subsection>
         </Section>
       )}
       pt={2}
@@ -205,7 +206,7 @@ const Empty = ({ id, ...rest }) => (
 /**
  * Bring it all together now
  */
-const UserCard = ({ nameRecord, profile, zone_file, id, owner_address, ...rest }) => {
+const UserCard = ({ nameRecord, profile, zone_file, userApps, id, owner_address, ...rest }) => {
   if (!profile || !zone_file) {
     return (
       <Card {...rest}>
@@ -214,13 +215,13 @@ const UserCard = ({ nameRecord, profile, zone_file, id, owner_address, ...rest }
     );
   }
   const { target: zone_file_url } = zone_file.uri[0];
-  const { name, description, account, apps } = profile;
+  const { name, description, account } = profile;
   return (
     <Card {...rest}>
       <IdentitySection id={id} name={name} account={account} description={description} />
       <ProfileSection id={id} ownerAddress={owner_address} />
       <Addresses account={account} />
-      <AppsSection apps={apps} />
+      <AppsSection apps={userApps} />
       <BlocksSection nameRecord={nameRecord} />
       {/* <TransactionsSection nameRecord={nameRecord} /> */}
       <ViewZoneFileSection zoneFileUrl={zone_file_url} />

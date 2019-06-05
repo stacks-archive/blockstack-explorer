@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Box, Type, Button } from 'blockstack-ui';
+import { Flex } from 'blockstack-ui';
 import { extractRootDomain, uniq } from '@common';
 import { Consumer } from '@pages/_app';
 
@@ -9,7 +9,7 @@ const AppItem = ({ slug, image, ...rest }) => (
     href={`https://app.co/app/${slug}`}
     target="_blank"
     mr={2}
-    bg={'blue.dark'}
+    bg="blue.dark"
     mb={2}
     size={42}
     backgroundImage={`url(${image})`}
@@ -39,21 +39,21 @@ const getAppsArray = (apps, userApps) => {
   };
 };
 
-const ConnectedAppsList = ({ wrapper, ...rest }) => (
+const ConnectedAppsList = ({ apps, wrapper, ...rest }) => (
   <Consumer>
-    {({ apps, user }) => {
+    {() => {
       if (!apps)
         return console.log('Make sure you use this component on a page that is fetching data from App.co!') || null;
-      if (!user.profile.apps) return null;
-      const { apps: appsList, unlisted } = getAppsArray(apps, user.profile.apps);
-      const appsNotIncluded = appsList.length !== user.profile.apps.length;
-      if (appsList.length) {
+      // const { apps: appsList, unlisted } = getAppsArray(apps, userApps);
+      const { listed, unlisted } = apps;
+      console.log(apps);
+      if (listed.length) {
         const children = (
           <Flex flexWrap="wrap" {...rest}>
-            {appsList.map(({ imgixImageUrl, name, Slugs }, i) => (
-              <AppItem slug={Slugs[0].value} title={name} image={imgixImageUrl} key={i} />
+            {listed.map(({ imgixImageUrl, name, slug, id }) => (
+              <AppItem slug={slug} title={name} image={imgixImageUrl} key={id} />
             ))}
-            {appsNotIncluded && unlisted.length !== 0 ? <AppItem>+{unlisted.length}</AppItem> : null}
+            {unlisted && unlisted.length !== 0 && <AppItem>{`+${unlisted.length}`}</AppItem>}
           </Flex>
         );
 

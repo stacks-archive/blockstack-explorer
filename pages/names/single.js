@@ -2,7 +2,7 @@ import React from 'react';
 import NProgress from 'nprogress';
 import { Flex, Box, Type, Button } from 'blockstack-ui';
 import { Card } from '@components/card';
-import { fetchName } from '@common/lib/client/api';
+import { fetchName, fetchBlockstackApps } from '@common/lib/client/api';
 import { getProfileImage } from '@common';
 import { UserCard } from '@containers/cards/user';
 import { NameOperationsList } from '@containers/lists/single-name-operations';
@@ -18,7 +18,9 @@ class NamesSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
     const name = req && req.params ? req.params.name : query.name;
 
-    const data = typeof name === 'undefined' ? {} : await fetchName(name);
+    const getName = () => (typeof name === 'undefined' ? {} : fetchName(name));
+    // const [data, apps] = await Promise.all([getName]);
+    const data = await getName();
 
     const ogImage = getProfileImage(data);
 
@@ -49,15 +51,13 @@ class NamesSinglePage extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, prevContext) {
-    if (prevProps.user.id !== this.props.user.id) {
+    const { user } = this.props;
+    if (prevProps.user.id !== user.id) {
       // different user, reset to initial state
       this.setState(
         {
           pageNum: 0,
-          data:
-            this.props.user.nameRecord && this.props.user.nameRecord.history
-              ? [...this.props.user.nameRecord.history]
-              : [],
+          data: user.nameRecord && user.nameRecord.history ? [...user.nameRecord.history] : [],
           limit: 5,
           loading: false,
           doesNotHaveNextPage: false,
@@ -68,9 +68,10 @@ class NamesSinglePage extends React.Component {
   }
 
   showMoreItems = () => {
-    const all = this.state.data.length;
-    if (this.state.limit < all) {
-      if (this.state.limit + 5 > all) {
+    const { data, limit } = this.state;
+    const all = data.length;
+    if (limit < all) {
+      if (limit + 5 > all) {
         this.setState(() => ({
           limit: all,
         }));
@@ -83,17 +84,20 @@ class NamesSinglePage extends React.Component {
     }
   };
 
+  // eslint-disable-next-line react/destructuring-assignment
   preloadNextPage = async (page = this.state.pageNum + 1) => {
-    if (this.state.data.length >= 20) {
-      const { id } = this.props.user;
+    const { data } = this.state;
+    const { user } = this.props;
+    if (data.length >= 20) {
+      const { id } = user;
       this.setState({
         loading: true,
       });
       try {
-        const data = await fetchName(id, page);
-        if (data && data.nameRecord && data.nameRecord.history && data.nameRecord.history.length) {
+        const newData = await fetchName(id, page);
+        if (newData && newData.nameRecord && newData.nameRecord.history && newData.nameRecord.history.length) {
           this.setState((state) => ({
-            data: [...state.data, ...data.nameRecord.history],
+            data: [...state.data, ...newData.nameRecord.history],
             loading: false,
           }));
         }
@@ -108,22 +112,22 @@ class NamesSinglePage extends React.Component {
   };
 
   render() {
-    const nameExists = this.props.user;
+    const { user } = this.props;
+    const { data: allItems, limit, doesNotHaveNextPage, loading } = this.state;
+    const nameExists = user;
     if (!nameExists) return <Empty />;
 
-    const allItems = this.state.data;
-    const items = allItems.slice(0, this.state.limit);
-    // console.log(this.props.user);
-    const showMore = allItems.length > this.state.limit;
-    if (!this.props.user.nameRecord) {
+    const items = allItems.slice(0, limit);
+    const showMore = allItems.length > limit;
+    if (!user.nameRecord) {
       return (
-        <Page key={this.props.user.id}>
+        <Page key={user.id}>
           <Page.Main>
             <Card py={8} textAlign="center">
               <Type>
                 No user was found with the ID
                 <Type fontWeight="bold" ml={1}>
-                  {this.props.user.id}
+                  {user.id}
                 </Type>
               </Type>
             </Card>
@@ -132,17 +136,15 @@ class NamesSinglePage extends React.Component {
       );
     }
     return (
-      <Page key={this.props.user.id}>
-        <UserCard mb={[5, 5, 0]} mr={[0, 0, 5]} width={1} maxWidth={['100%', '100%', '380px']} {...this.props.user} />
+      <Page key={user.id}>
+        <UserCard mb={[5, 5, 0]} mr={[0, 0, 5]} width={1} maxWidth={['100%', '100%', '380px']} {...user} />
         <Page.Main>
           <Card flexGrow={1} title="Recent Operations">
-            <NameOperationsList key={this.props.user.id} items={items} />
+            <NameOperationsList key={user.id} items={items} />
             {showMore &&
-              !this.state.doesNotHaveNextPage && (
+              !doesNotHaveNextPage && (
                 <Flex py={4} justifyContent="center">
-                  <Button onClick={() => this.showMoreItems()}>
-                    {this.state.loading ? 'Loading...' : 'View More'}
-                  </Button>
+                  <Button onClick={() => this.showMoreItems()}>{loading ? 'Loading...' : 'View More'}</Button>
                 </Flex>
               )}
           </Card>

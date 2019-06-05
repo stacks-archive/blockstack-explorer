@@ -35,12 +35,6 @@ const keys = [
     display: ['none', 'block'],
   },
   {
-    label: 'Mined By',
-    key: 'poolInfo',
-    value: (data) => (data.poolInfo && data.poolInfo.poolName ? data.poolInfo.poolName : ''),
-    display: ['none', 'block'],
-  },
-  {
     label: 'Size',
     key: 'size',
   },

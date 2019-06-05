@@ -8,10 +8,16 @@ import NProgress from 'nprogress';
 import { Page } from '@components/page';
 import { Hover, Toggle } from 'react-powerplug';
 import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
-import { fetchSTXTransactions, fetchNameRegistrations, fetchSubdomainRegistrations } from '@common/lib/client/api';
+import {
+  fetchSTXTransactions,
+  fetchNameRegistrations,
+  fetchSubdomainRegistrations,
+  fetchAllTransactions,
+} from '@common/lib/client/api';
 import { stacksValue } from '@common/lib/units';
 import NamesList from '@containers/lists/transactions/names';
 import SubdomainsList from '@containers/lists/transactions/subdomains';
+import AllTransactionsList from '@containers/lists/transactions/all';
 
 const SideNavButton = ({ active, loading, ...rest }) => (
   <Hover>
@@ -40,10 +46,11 @@ const SideNavButton = ({ active, loading, ...rest }) => (
 
 class TransactionsPage extends React.Component {
   static async getInitialProps() {
-    const [{ transfers }, { names }, { subdomains }] = await Promise.all([
+    const [{ transfers }, { names }, { subdomains }, { history }] = await Promise.all([
       fetchSTXTransactions(),
       fetchNameRegistrations(),
       fetchSubdomainRegistrations(),
+      fetchAllTransactions(),
     ]);
     // const { namespaces, total } = await fetchNamespaces();
     return {
@@ -52,6 +59,7 @@ class TransactionsPage extends React.Component {
       transactions: transfers,
       names,
       subdomains,
+      history,
       meta: {
         title: 'Transactions',
       },
@@ -59,18 +67,21 @@ class TransactionsPage extends React.Component {
   }
 
   state = {
-    view: 'stx',
-    transactions: this.props.transactions, /* eslint-disable-line */
-    names: this.props.names, /* eslint-disable-line */
-    subdomains: this.props.subdomains, /* eslint-disable-line */
+    view: 'all',
+    transactions: this.props.transactions /* eslint-disable-line */,
+    names: this.props.names /* eslint-disable-line */,
+    subdomains: this.props.subdomains /* eslint-disable-line */,
+    history: this.props.history /* eslint-disable-line */,
     pages: {
       stx: 0,
       names: 0,
       subdomains: 0,
+      all: 0,
     },
   };
 
   views = {
+    all: 'All Transactions',
     stx: 'STX Transactions',
     names: 'Name Registrations',
     subdomains: 'Subdomain Registrations',
@@ -105,7 +116,7 @@ class TransactionsPage extends React.Component {
   }
 
   render() {
-    const { view, names, subdomains, transactions } = this.state;
+    const { view, names, subdomains, transactions, history } = this.state;
     const { views } = this;
     return (
       <Page>
@@ -120,11 +131,6 @@ class TransactionsPage extends React.Component {
           mr={[0, 0, 5]}
         >
           <Flex justifyContent="space-between" flexWrap="wrap">
-            {/* <SideNavButton active={view === 'all'} onClick={() => this.setTransactionsView('all')}>
-              <List.Item.Title m={0} p={0}>
-                All Transactions
-              </List.Item.Title>
-            </SideNavButton> */}
             {Object.keys(views).map((key) => (
               <SideNavButton
                 key={key}
@@ -248,6 +254,7 @@ class TransactionsPage extends React.Component {
           )}
           {view === 'names' && <NamesList nextPage={() => this.nextPage()} names={names} />}
           {view === 'subdomains' && <SubdomainsList nextPage={() => this.nextPage()} subdomains={subdomains} />}
+          {view === 'all' && <AllTransactionsList nextPage={() => this.nextPage()} transactions={history} />}
         </Page.Main>
       </Page>
     );

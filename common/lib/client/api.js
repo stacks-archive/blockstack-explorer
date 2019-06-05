@@ -154,6 +154,11 @@ const fetchSubdomainRegistrations = (page = 0) => {
   return getJSON(url);
 };
 
+const fetchAllTransactions = (page = 0) => {
+  const url = makeUrl(`/api/v2/transactions/all?page=${page}`);
+  return getJSON(url);
+};
+
 export {
   fetchNameOperations,
   fetchName,
@@ -175,4 +180,5 @@ export {
   fetchSTXTransactions,
   fetchNameRegistrations,
   fetchSubdomainRegistrations,
+  fetchAllTransactions,
 };

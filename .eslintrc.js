@@ -23,6 +23,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [0],
     'react/prefer-stateless-function': [0],
     'react/prop-types': [1],
+    'no-restricted-globals': [0],
   },
   env: {
     es6: true,

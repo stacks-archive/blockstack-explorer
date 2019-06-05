@@ -7,7 +7,7 @@ import { Section } from '@components/section';
 import { Attribute } from '@components/attribute';
 import { stacksValue } from '@common/lib/units';
 
-const getLockedAmount = (vestingTotal, history = []) => {
+const getLockedAmount = (vestingTotal, history = [], balance) => {
   // const available = credit - debit;
   let unlocked = 0;
   console.log(vestingTotal);
@@ -25,12 +25,15 @@ const getLockedAmount = (vestingTotal, history = []) => {
   });
   const locked = vestingTotal - unlocked;
   // return [locked, unlocked];
-  const total = vestingTotal - sent;
+  let total = balance;
+  if (vestingTotal) {
+    total = vestingTotal - sent;
+  }
   return { locked, unlocked, sent, received, total };
 };
 
 const StacksAddressCard = ({ address: { address, balance, status, vesting_total: vestingTotal, history } }) => {
-  const { locked, unlocked, sent, received, total } = getLockedAmount(vestingTotal, history);
+  const { locked, unlocked, sent, received, total } = getLockedAmount(vestingTotal, history, balance);
   return address ? (
     <Card width={1} title="Stacks Address Details" pb={4}>
       <Section alignItems="center" justifyContent="center" py={4} color="blue.dark">
@@ -61,7 +64,7 @@ const StacksAddressCard = ({ address: { address, balance, status, vesting_total:
         <Flex>
           <Box width={1 / 2}>
             <Section.Subsection label="Locked">
-              <Type fontFamily="brand">{stacksValue(locked)}</Type>
+              <Type fontFamily="brand">{stacksValue(isNaN(locked) ? 0 : locked)}</Type>
             </Section.Subsection>
             <Section.Subsection label="unlocked">
               <Type fontFamily="brand">{stacksValue(unlocked)}</Type>

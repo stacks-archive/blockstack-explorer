@@ -107,7 +107,7 @@ const StacksTxList = () => (
                               pathName: '/blocks/single',
                               query: { hash: historyEntry.block_id },
                             }}
-                            as={`/blocks/${historyEntry.block_id}`}
+                            as={`/block/${historyEntry.block_id}`}
                           >
                             <Type fontFamily="brand" is="a">
                               {historyEntry.block_id}

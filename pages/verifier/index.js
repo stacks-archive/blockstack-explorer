@@ -8,6 +8,7 @@ export default class Verifier extends React.Component {
     result: null,
     notFound: false,
     loading: false,
+    total: null,
   };
 
   async submit() {
@@ -15,19 +16,34 @@ export default class Verifier extends React.Component {
     if (loading) {
       return;
     }
-    this.setState({ loading: true, notFound: false, result: null });
+    this.setState({ loading: true, notFound: false, result: null, total: null });
     try {
       const url = makeUrl(`/api/v2/genesis-2019/${address}`);
-      const account = await getJSON(url);
-      this.setState({ result: account, loading: false });
+      const { accounts, totalFormatted } = await getJSON(url);
+      this.setState({ result: accounts, loading: false, total: totalFormatted });
     } catch (error) {
       // console.error(error);
       this.setState({ notFound: true, loading: false });
     }
   }
 
+  accounts() {
+    const { result } = this.state;
+    return result.map((account, index) => (
+      <Box width={1} borderTop="1px solid gray" mt={7}>
+        <Type fontSize={3} lineHeight={3} mt={7}>
+          Investment #{index + 1} - {account.totalFormatted} STX
+        </Type>
+        <Type fontSize={3} lineHeight={3} mt={7}>
+          This investment&apos;s vesting schedule is {account.unlockPerMonthFormatted} STX per month until{' '}
+          {account.unlockUntil}.
+        </Type>
+      </Box>
+    ));
+  }
+
   render() {
-    const { address, result, loading, notFound } = this.state;
+    const { address, result, loading, notFound, total } = this.state;
     return (
       <Flex flexWrap="wrap">
         <Box width={[1, 0.5]} mx="auto" my={7}>
@@ -57,16 +73,19 @@ export default class Verifier extends React.Component {
           {result && (
             <Box>
               <Type fontSize={3} lineHeight={3} mt={7}>
-                <Type fontFamily="brand">{address}</Type> has a total allocation of {result.totalFormatted} STX.
+                <Type fontFamily="brand">{address}</Type> has a total allocation of {total} STX.
               </Type>
               <Type fontSize={3} lineHeight={3} mt={7}>
-                Your vesting schedule is {result.unlockPerMonthFormatted} STX per month until {result.unlockUntil}.
+                You have a total of {result.length} investment allocations:
               </Type>
-              <Type fontSize={3} lineHeight={3} mt={7}>
-                Please contact us immediately at <a href="mailto:support@stackstoken.com">support@stackstoken.com</a> if
-                any of this information appears incorrect to you. We&apos;ll need to make all corrections before October
-                10th, 2019 before we hard fork the Stacks blockchain and distribute allocations.
-              </Type>
+              {this.accounts()}
+              <Box width={1} borderTop="1px solid gray" mt={7}>
+                <Type fontSize={3} lineHeight={3} mt={7} display="block">
+                  Please contact us immediately at <a href="mailto:support@stackstoken.com">support@stackstoken.com</a>{' '}
+                  if any of this information appears incorrect to you. We&apos;ll need to make all corrections before
+                  October 10th, 2019 before we hard fork the Stacks blockchain and distribute allocations.
+                </Type>
+              </Box>
             </Box>
           )}
         </Box>

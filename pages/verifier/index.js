@@ -20,9 +20,13 @@ export default class Verifier extends React.Component {
     try {
       const url = makeUrl(`/api/v2/genesis-2019/${address}`);
       const { accounts, totalFormatted } = await getJSON(url);
-      this.setState({ result: accounts, loading: false, total: totalFormatted });
+      if (accounts) {
+        this.setState({ result: accounts, loading: false, total: totalFormatted });
+      } else {
+        this.setState({ notFound: true, loading: false });
+      }
     } catch (error) {
-      // console.error(error);
+      console.error(error);
       this.setState({ notFound: true, loading: false });
     }
   }

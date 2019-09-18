@@ -35,12 +35,11 @@ export default class Verifier extends React.Component {
     const { result } = this.state;
     return result.map((account, index) => (
       <Box width={1} borderTop="1px solid gray" mt={7}>
-        <Type fontSize={3} lineHeight={3} mt={7}>
-          Investment #{index + 1} - {account.totalFormatted} STX
+        <Type fontSize={2} lineHeight={3} mt={7}>
+          Allocation #{index + 1} Schedule - {account.totalFormatted} STX
         </Type>
         <Type fontSize={3} lineHeight={3} mt={7}>
-          This investment&apos;s vesting schedule is {account.unlockPerMonthFormatted} STX per month until{' '}
-          {account.unlockUntil}.
+          This allocation vests {account.unlockPerMonthFormatted} STX per month until {account.unlockUntil}.
         </Type>
       </Box>
     ));
@@ -51,24 +50,9 @@ export default class Verifier extends React.Component {
     return (
       <Flex flexWrap="wrap">
         <Box width={[1, 0.5]} mx="auto" my={7}>
-          <Type fontSize={5} textAlign="center" lineHeight={3}>
-            Enter the STX address you used to purchase tokens during the 2019 Stacks sale below:
-          </Type>
-          <Input
-            mt={7}
-            type="text"
-            value={address}
-            onChange={(evt) => this.setState({ address: evt.target.value })}
-            placeholder="Your STX Address"
-          />
-
-          <Button display="block" width={1} mt={7} onClick={() => this.submit()} disabled={loading ? true : undefined}>
-            {loading ? 'Loading...' : 'Submit'}
-          </Button>
-
           {notFound && (
             <Box>
-              <Type fontSize={3} lineHeight={3} mt={7}>
+              <Type fontSize={3} lineHeight={3} mt={4} mb={7}>
                 Sorry, no allocation was found for the address <Type fontFamily="brand">{address}</Type>.
               </Type>
             </Box>
@@ -76,22 +60,49 @@ export default class Verifier extends React.Component {
 
           {result && (
             <Box>
-              <Type fontSize={3} lineHeight={3} mt={7}>
-                <Type fontFamily="brand">{address}</Type> has a total allocation of {total} STX.
+              <Type mt={4} fontSize={5} fontWeight="500">
+                Allocation Details for Address
               </Type>
               <Type fontSize={3} lineHeight={3} mt={7}>
-                You have a total of {result.length} investment allocations:
+                <Type fontFamily="brand">{address}</Type>
+              </Type>
+              <Type fontSize={3} lineHeight={3} mt={4}>
+                This address has {total} STX in total of two investment allocations.
               </Type>
               {this.accounts()}
               <Box width={1} borderTop="1px solid gray" mt={7}>
-                <Type fontSize={3} lineHeight={3} mt={7} display="block">
+                <Type fontSize={3} lineHeight={3} mt={7} display="block" fontWeight="600">
                   Please contact us immediately at <a href="mailto:support@stackstoken.com">support@stackstoken.com</a>{' '}
                   if any of this information appears incorrect to you. We&apos;ll need to make all corrections before
                   October 10th, 2019 before we hard fork the Stacks blockchain and distribute allocations.
                 </Type>
               </Box>
+              <Type mt={7} mb={7} fontSize={5} fontWeight="500">
+                Check another address:
+              </Type>
             </Box>
           )}
+
+          <Type fontSize={5} textAlign="left" lineHeight={3}>
+            {/* Enter the STX address you used to purchase tokens during the 2019 Stacks sale below: */}
+            Enter the wallet address you used to purchase STX tokens during Blockstack&apos;s 2019 Stacks offering:
+          </Type>
+          <Input
+            mt={7}
+            type="text"
+            value={address}
+            onChange={(evt) => this.setState({ address: evt.target.value, notFound: false })}
+            placeholder="Your STX Address"
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                return this.submit();
+              }
+            }}
+          />
+
+          <Button display="block" width={1} mt={7} onClick={() => this.submit()} disabled={loading ? true : undefined}>
+            {loading ? 'Loading...' : 'Submit'}
+          </Button>
         </Box>
       </Flex>
     );

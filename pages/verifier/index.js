@@ -74,16 +74,16 @@ export default class Verifier extends React.Component {
                 <Type fontSize={3} lineHeight={3} mt={7} display="block" fontWeight="600">
                   Please contact us immediately at <a href="mailto:support@stackstoken.com">support@stackstoken.com</a>{' '}
                   if any of this information appears incorrect to you. We&apos;ll need to make all corrections before
-                  October 10th, 2019 before we hard fork the Stacks blockchain and distribute allocations.
+                  October 9th, 2019 before we hard fork the Stacks blockchain and distribute allocations.
                 </Type>
               </Box>
               <Type mt={7} mb={7} fontSize={5} fontWeight="500">
-                Check another address:
+                Check another address
               </Type>
             </Box>
           )}
 
-          <Type fontSize={5} textAlign="left" lineHeight={3}>
+          <Type fontSize={result ? 3 : 5} textAlign="left" lineHeight={3}>
             {/* Enter the STX address you used to purchase tokens during the 2019 Stacks sale below: */}
             Enter the wallet address you used to purchase STX tokens during Blockstack&apos;s 2019 Stacks offering:
           </Type>

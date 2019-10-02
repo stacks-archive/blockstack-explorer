@@ -1,7 +1,7 @@
 // require('babel-register');
 
 module.exports = {
-  extends: ['airbnb', 'plugin:prettier/recommended'],
+  extends: ['airbnb', 'plugin:prettier/recommended', 'prettier/react'],
   rules: {
     'react/jsx-filename-extension': [
       1,

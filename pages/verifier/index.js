@@ -33,14 +33,25 @@ export default class Verifier extends React.Component {
 
   accounts() {
     const { result } = this.state;
-    // NOTE: there is only one account now, so the .map is overkill
-    return result.map((account, index) => (
-      <Box width={1} borderTop="1px solid gray" mt={7}>
-        <Type fontSize={3} lineHeight={3} mt={7}>
-          This allocation vests {account.unlockPerMonthFormatted} STX per month until {account.unlockUntil}.
-        </Type>
-      </Box>
-    ));
+    const account = result[0]
+    if (account.unlockPerMonthFormatted === "0") {
+      return result.map((account, index) => (
+        <Box width={1} borderTop="1px solid gray" mt={7}>
+          <Type fontSize={3} lineHeight={3} mt={7}>
+            This address does not unlock any tokens.
+          </Type>
+        </Box>
+      ));
+    }
+    else {
+      return result.map((account, index) => (
+        <Box width={1} borderTop="1px solid gray" mt={7}>
+          <Type fontSize={3} lineHeight={3} mt={7}>
+            Your tokens automatically unlock at a rate of roughly {account.unlockPerMonthFormatted} STX per month until {account.unlockUntil}.
+          </Type>
+        </Box>
+      ));
+    }
   }
 
   render() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Flex, Box, Type, Input, Button } from 'blockstack-ui';
 import { makeUrl, getJSON } from '../../common';
+import { c32normalize } from 'c32check';
 
 export default class Verifier extends React.Component {
   state = {
@@ -18,7 +19,8 @@ export default class Verifier extends React.Component {
     }
     this.setState({ loading: true, notFound: false, result: null, total: null });
     try {
-      const url = makeUrl(`/api/v2/genesis-2019/${address}`);
+      const normAddress = c32normalize(address);
+      const url = makeUrl(`/api/v2/genesis-2019/${normAddress}`);
       const { accounts, totalFormatted } = await getJSON(url);
       if (accounts) {
         this.setState({ result: accounts, loading: false, total: totalFormatted });

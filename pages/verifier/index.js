@@ -78,14 +78,17 @@ export default class Verifier extends React.Component {
                 <Type fontFamily="brand">{address}</Type>
               </Type>
               <Type fontSize={3} lineHeight={3} mt={4}>
-                This address has {total} STX in total.
+                This address is allocated {total} STX in total for the 2019 hard fork.
+              </Type>
+              <Type fontSize={3} lineHeight={3} mt={4}>
+                <em>This total does NOT include any existing tokens owned by the address.  This allocation only shows tokens that are part of the upcoming 2019 hard fork.</em>
               </Type>
               {this.accounts()}
               <Box width={1} borderTop="1px solid gray" mt={7}>
                 <Type fontSize={3} lineHeight={3} mt={7} display="block" fontWeight="600">
                   Please contact us immediately at <a href="mailto:support@stackstoken.com">support@stackstoken.com</a>{' '}
                   if any of this information appears incorrect to you. We&apos;ll need to make all corrections before
-                  October 9th, 2019 before we hard fork the Stacks blockchain and distribute allocations.
+                  October 18th, 2019 before we hard fork the Stacks blockchain and distribute allocations.
                 </Type>
               </Box>
               <Type mt={7} mb={7} fontSize={5} fontWeight="500">

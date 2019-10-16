@@ -8,13 +8,13 @@ export class BasePage {
         await element.all(by.className(className)).count().then(function (size) {
             len = size;
         });
-        console.log("Outer  Size : " + len);
+        // console.log("Outer  Size : " + len);
         let index;
         for (index = 0; index < len; index++) {
             let str = await element.all(by.className(className)).get(index).getText();
             str = str.trim().toLowerCase();
-            console.log("Index : " + index + "  ans : " + ans);
-            console.log("Str : " + str);
+            // console.log("Index : " + index + "  ans : " + ans);
+            // console.log("Str : " + str);
             if (str === ans) {
                 console.log("Clicked " + ans+" str is: "+str);
                 // await element.all(by.className(className)).get(index).click();
@@ -25,5 +25,9 @@ export class BasePage {
         if (index == len) {
             throw "error: Not found";
         }
+    }
+
+    async clickId(id: string) {
+        await browser.executeScript(`document.getElementById('${id}').click()`)
     }
 }

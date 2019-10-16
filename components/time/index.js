@@ -10,7 +10,11 @@ const Time = ({ date, tooltip = true }) => {
     return <TimeAgo date={value} />;
   }
   return (
-    <Tooltip text={moment(value).format('DD MMMM YYYY HH:MM')}>
+    <Tooltip
+      text={moment(value)
+        .utc()
+        .format('DD MMMM YYYY HH:MM UTC')}
+    >
       <TimeAgo date={value} />
     </Tooltip>
   );

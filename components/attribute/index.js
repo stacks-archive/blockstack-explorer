@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Section } from '@components/section';
 import { Box, Type } from 'blockstack-ui';
 
-export const Attribute = ({ clip = true, label, fontFamily = 'brand', value, link, children }) => {
+export const Attribute = ({ clip = true, label, fontFamily = 'brand', value, link, id, children }) => {
   const clipProps = clip
     ? {
         maxWidth: '100%',
@@ -15,12 +15,14 @@ export const Attribute = ({ clip = true, label, fontFamily = 'brand', value, lin
       <Box {...clipProps}>
         {link ? (
           <Link passHref href={link.href} as={link.as} prefetch>
-            <Type fontFamily="brand" is="a">
+            <Type fontFamily="brand" is="a" id={id}>
               {children || value}
             </Type>
           </Link>
         ) : (
-          <Type fontFamily={fontFamily}>{children || value}</Type>
+          <Type fontFamily={fontFamily} style={{ wordBreak: 'break-word' }} id={id}>
+            {children || value}
+          </Type>
         )}
       </Box>
     </Section.Subsection>

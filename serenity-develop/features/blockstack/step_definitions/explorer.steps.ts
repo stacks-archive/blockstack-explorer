@@ -19,11 +19,18 @@ module.exports = function myStepDefinitions() {
   });
 
   this.Then(/^Verify that explorer returns information related to name$/, async () => {
+    homePage.openHomePage();
+  });
+  this.Then('user enter the name in search bar', async () => {
+    await homePage.enterNameInSearchBar('hankstoever.id');
+  });
+  this.Then('Verify that explorer returns information related to name', async () => {
     const l = await homePage.checkInformation();
     console.log(`String 2 :${l}`);
     await expect('Hank Stoever').to.equal(l);
     //  expect.to.be(homePage.checkInformation()).to.eventually.equal("What do my test results mean?");
   });
+
 
   this.Given(/^user select the Name link$/, async () => {
     await homePage.clickOnNameLink();
@@ -49,6 +56,7 @@ module.exports = function myStepDefinitions() {
     console.log(`String addr :${addr}`);
     await expect('1NHfjtfnTdnPSwFveHMrG5P3PNKM2s3qnV').to.equal(addr);
   });
+
   this.Then(/^user search the address in address search bar$/, async () => {
     await homePage.enterAddressAndPressEnterKey('1NHfjtfnTdnPSwFveHMrG5P3PNKM2s3qnV');
   });

@@ -107,7 +107,7 @@ const fetchAccounts = async (address) => getJSON(makeUrl(`/api/accounts/${addres
  * Fetch Apps from app.co and filter to ones that use blockstack as auth
  */
 const fetchBlockstackApps = async () => {
-  const appData = await fetch('https://app-co-api.herokuapp.com/api/apps');
+  const appData = await fetch('https://api.app.co/api/apps');
   const { apps } = await appData.json();
   return [...apps.filter(({ authentication }) => authentication === 'Blockstack')];
 };
@@ -126,6 +126,39 @@ const fetchStacksAddress = async (address) => getJSON(makeUrl(`/api/stacks/addre
 
 const fetchHomeInfo = () => getJSON(makeUrl('/api/home'));
 
+const fetchBlockV2 = (hash) => getJSON(makeUrl(`/api/v2/blocks/${hash}`));
+
+const fetchBlocksV2 = (date, page) => {
+  let url = makeUrl('/api/v2/blocks');
+  if (date) {
+    url += `?date=${date}`;
+  }
+  if (page) {
+    url += `${date ? '&' : '?'}page=${page}`;
+  }
+  return getJSON(url);
+};
+
+const fetchSTXTransactions = (page = 0) => {
+  const url = makeUrl(`/api/v2/transactions/stx?page=${page}`);
+  return getJSON(url);
+};
+
+const fetchNameRegistrations = (page = 0) => {
+  const url = makeUrl(`/api/v2/transactions/names?page=${page}`);
+  return getJSON(url);
+};
+
+const fetchSubdomainRegistrations = (page = 0) => {
+  const url = makeUrl(`/api/v2/transactions/subdomains?page=${page}`);
+  return getJSON(url);
+};
+
+const fetchAllTransactions = (page = 0) => {
+  const url = makeUrl(`/api/v2/transactions/all?page=${page}`);
+  return getJSON(url);
+};
+
 export {
   fetchNameOperations,
   fetchName,
@@ -142,4 +175,10 @@ export {
   fetchAccounts,
   fetchStacksAddress,
   fetchHomeInfo,
+  fetchBlockV2,
+  fetchBlocksV2,
+  fetchSTXTransactions,
+  fetchNameRegistrations,
+  fetchSubdomainRegistrations,
+  fetchAllTransactions,
 };

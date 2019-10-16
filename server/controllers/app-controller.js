@@ -86,6 +86,14 @@ const makeAppController = (app, cache) => {
     await renderAndCache(req, res, '/transaction/single');
   });
 
+  AppController.get('/transactions', async (req, res) => {
+    await renderAndCache(req, res, '/transaction/list');
+  });
+
+  AppController.get('/verifier', async (req, res) => {
+    await renderAndCache(req, res, '/verifier');
+  });
+
   return AppController;
 };
 

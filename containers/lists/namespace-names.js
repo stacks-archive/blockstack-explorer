@@ -67,7 +67,9 @@ class NamespaceNames extends React.Component {
         <NamesList list={names} />
         {hasMoreNames && (
           <Flex py={4} justifyContent="center">
-            <Button onClick={() => this.loadMoreNames()}>View More</Button>
+            <Button onClick={() => this.loadMoreNames()} id="namespace-names-view-more">
+              View More
+            </Button>
           </Flex>
         )}
       </Card>

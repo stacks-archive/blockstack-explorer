@@ -6,7 +6,6 @@ import { theme } from 'blockstack-ui';
 import { Layout } from '@components/layout';
 import { normalize, darken } from 'polished';
 import NProgress from 'nprogress';
-import { fetchBlockstackApps } from '@common/lib/client/api';
 import fonts from '../common/lib/fonts';
 
 const { Provider, Consumer } = React.createContext();
@@ -160,22 +159,16 @@ ${fonts}
 }
 `;
 
-let apps = null;
-
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
-    if (!apps) {
-      apps = await fetchBlockstackApps();
-    }
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
 
     const props = {
       ...pageProps,
-      apps,
     };
 
     return {

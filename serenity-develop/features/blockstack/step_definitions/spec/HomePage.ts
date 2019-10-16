@@ -233,5 +233,53 @@ export class HomePage extends BasePage {
     }
   }
 
+  async getTxid() {
+    await browser.sleep(25000).then(function() {
+      console.log('sleep 25 second');
+    });
+    // await browser.waitForAngular();
+    const txid = await browser.executeScript("return document.getElementById('tx-card-txid').innerText");
+    return txid;
+  }
 
+  async getSearchResultOfTransaction(){
+    await browser.sleep(9999).then(function () {
+      console.log('sleep 4 second');
+    });
+    // await browser.wait(ExpectedConditions.elementToBeClickable(this.downIcon),40000);
+    // await browser.wait(ExpectedConditions.visibilityOf(this.traInf),40000);
+    await browser.sleep(9999).then(function () {
+      console.log('sleep 9 second');
+    });
+    await browser.waitForAngular();
+    const inf = await browser.executeScript("return document.getElementById('block-card-height').innerText");
+    console.log("name or address is "+inf);
+    return inf;
+  }
+  
+  async clicksOnDateButtonBack(){
+    await browser.sleep(1999).then(function () {
+      console.log('sleep 2 second');
+    });
+    for(let i=0;i<7;i++){
+      await browser.wait(ExpectedConditions.elementToBeClickable(this.dateBack));
+      await browser.executeScript("document.getElementsByClassName('sc-bdVaJa dTlDiF')[0].click()");
+      await browser.sleep(1999).then(function () {
+        console.log('sleep 2 index second '+i);
+      });
+    }
+    return true;
+  }
+  
+  async isMoreDataDisplyed(){
+    const length = await browser.executeScript("return document.getElementsByClassName('block-list-row').length");
+    if(length > 100){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  
+  
 }

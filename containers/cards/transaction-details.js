@@ -6,6 +6,7 @@ import { darken } from 'polished';
 import { Stat } from '@components/stats';
 import { Tooltip } from '@components/tooltip';
 import { ArrowExpandRightIcon, ArrowCollapseDownIcon } from 'mdi-react';
+import { btcValue } from '@common/lib/units';
 
 const StatItem = ({ isLast, ...rest }) => (
   <Stat
@@ -53,6 +54,7 @@ const UTXOItem = ({ label, address, value, to, spentTxId, ...rest }) => (
     passHref={address ? true : undefined}
     flexDirection={['column', 'row']}
     minHeight="72px"
+    noLink={!address}
     {...rest}
     // py={label.length > 16 ? 4 : '18px'}
   >
@@ -65,8 +67,8 @@ const UTXOItem = ({ label, address, value, to, spentTxId, ...rest }) => (
         <Type opacity={0.5} pl={1}>
           BTC
         </Type>
-        {to ? (
-          !spentTxId ? (
+        {to &&
+          (!spentTxId ? (
             <Tooltip text="Unspent">
               <Box py={1} color="#70D142" pl={1}>
                 <ArrowCollapseDownIcon size={18} />
@@ -78,8 +80,7 @@ const UTXOItem = ({ label, address, value, to, spentTxId, ...rest }) => (
                 <ArrowExpandRightIcon size={18} />
               </Box>
             </Tooltip>
-          )
-        ) : null}
+          ))}
       </Flex>
     </List.Item.Title>
   </List.Item>
@@ -109,7 +110,7 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest 
         <Stat.Label>Confirmations</Stat.Label>
       </StatItem>
       <StatItem isLast>
-        <Stat.Value>{fees || 0}</Stat.Value>
+        <Stat.Value>{btcValue(fees || 0)}</Stat.Value>
         <Stat.Label>Fees (BTC)</Stat.Label>
       </StatItem>
     </Flex>

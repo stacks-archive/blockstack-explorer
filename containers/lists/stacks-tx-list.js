@@ -5,19 +5,29 @@ import { Consumer } from '@pages/_app';
 import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import { Toggle } from 'react-powerplug';
 import Link from 'next/link';
+import { txTitle } from '@common';
 
-const txTitle = (operation, valueStacks) => {
-  if (operation === 'SENT') {
-    return `Sent ${valueStacks} STX`;
-  }
-  if (operation === 'RECEIVED') {
-    return `Received ${valueStacks} STX`;
-  }
-  if (valueStacks) {
-    return `${operation} ${valueStacks} STX`;
-  }
-  return operation;
-};
+const TXLink = ({ txid }) => (
+  <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
+    <Box minWidth="200px" pr={2}>
+      BTC Transaction
+    </Box>
+    <Box maxWidth="100%" overflow="auto">
+      <Link
+        passHref
+        href={{
+          pathName: '/transaction/single',
+          query: { id: txid },
+        }}
+        as={`/tx/${txid}`}
+      >
+        <Type fontFamily="brand" is="a">
+          {txid}
+        </Type>
+      </Link>
+    </Box>
+  </Flex>
+);
 
 const StacksTxList = () => (
   <Consumer>
@@ -85,25 +95,7 @@ const StacksTxList = () => (
                           <Type fontFamily="brand">{new Date(historyEntry.blockTime).toString()}</Type>
                         </Box>
                       </Flex>
-                      <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
-                        <Box minWidth="200px" pr={2}>
-                          BTC Transaction
-                        </Box>
-                        <Box maxWidth="100%" overflow="auto">
-                          <Link
-                            passHref
-                            href={{
-                              pathName: '/transaction/single',
-                              query: { id: txid },
-                            }}
-                            as={`/tx/${txid}`}
-                          >
-                            <Type fontFamily="brand" is="a">
-                              {txid}
-                            </Type>
-                          </Link>
-                        </Box>
-                      </Flex>
+                      {operation !== 'UNLOCK' && <TXLink txid={txid} />}
                       <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
                         <Box minWidth="200px" pr={2}>
                           BTC Block
@@ -115,7 +107,7 @@ const StacksTxList = () => (
                               pathName: '/blocks/single',
                               query: { hash: historyEntry.block_id },
                             }}
-                            as={`/blocks/${historyEntry.block_id}`}
+                            as={`/block/${historyEntry.block_id}`}
                           >
                             <Type fontFamily="brand" is="a">
                               {historyEntry.block_id}

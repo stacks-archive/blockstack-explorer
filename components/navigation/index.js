@@ -23,16 +23,22 @@ const LinkComponent = sys(
 );
 
 const items = [
-  { path: '/blocks', active: 'block', label: 'Blocks' },
-  { path: '/names', active: 'name', label: 'Names' },
+  { path: '/blocks', active: 'block', label: 'Blocks', id: 'nav-blocks' },
+  { path: '/names', active: 'name', label: 'Names', id: 'nav-names' },
+  { path: '/transactions', active: 'transactions', label: 'Transactions', id: 'nav-transactions' },
 ];
 
 const Navigation = memo(
   withRouter(({ router, ...rest }) => (
     <Flex {...rest}>
-      {items.map(({ label, path, active, ...linkProps }, i) => (
+      {items.map(({ label, path, active, id, ...linkProps }, i) => (
         <Link key={i} passHref href={path} prefetch>
-          <LinkComponent opacity={router.pathname.includes(active) ? 1 : 0.5} is="a" style={{ textDecoration: 'none' }}>
+          <LinkComponent
+            id={id}
+            opacity={router.pathname.includes(active) ? 1 : 0.5}
+            is="a"
+            style={{ textDecoration: 'none' }}
+          >
             {label}
           </LinkComponent>
         </Link>

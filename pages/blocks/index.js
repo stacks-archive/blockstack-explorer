@@ -3,7 +3,7 @@ import moment from 'moment';
 import Link from 'next/link';
 import { Flex, Button } from 'blockstack-ui';
 import { Card } from '@components/card';
-import { fetchBlocks } from '@common/lib/client/api';
+import { fetchBlocksV2 } from '@common/lib/client/api';
 import { Time } from '@components/time';
 import { BlocksList } from '@containers/lists/blocks';
 import ChevronDoubleLeftIcon from 'mdi-react/ChevronDoubleLeftIcon';
@@ -32,12 +32,6 @@ const keys = [
   {
     label: 'Transactions',
     key: 'txCount',
-    display: ['none', 'block'],
-  },
-  {
-    label: 'Mined By',
-    key: 'poolInfo',
-    value: (data) => (data.poolInfo && data.poolInfo.poolName ? data.poolInfo.poolName : ''),
     display: ['none', 'block'],
   },
   {
@@ -94,6 +88,7 @@ const DateActions = ({ date, today, loading, fetchBlocksForDate, ...rest }) => {
           e.preventDefault();
           fetchBlocksForDate(yesterday, 'yesterday');
         }}
+        id="block-date-yesterday"
         icon={ChevronDoubleLeftIcon}
       >
         {loading === 'yesterday' ? 'Loading' : yesterday}
@@ -113,6 +108,7 @@ const DateActions = ({ date, today, loading, fetchBlocksForDate, ...rest }) => {
             fetchBlocksForDate(tomorrow, 'tomorrow');
           }}
           is="a"
+          id="block-date-tomorrow"
           direction="forward"
           icon={ChevronDoubleRightIcon}
         >
@@ -125,8 +121,10 @@ const DateActions = ({ date, today, loading, fetchBlocksForDate, ...rest }) => {
 
 class BlocksPage extends React.Component {
   static async getInitialProps({ req, query }) {
-    const date = req && req.params ? req.params.date : query.date;
-    const blocks = await fetchBlocks(date);
+    const date = req && req.query ? req.query.date : query.date;
+    console.log('date', date);
+    console.log(query);
+    const { blocks } = await fetchBlocksV2(date);
     const today = moment().format('YYYY-MM-DD');
     return {
       blocks,
@@ -142,6 +140,9 @@ class BlocksPage extends React.Component {
     showAll: false,
     loading: false,
     date: this.props.date ? this.props.date : this.props.today,
+    pages: {
+      [this.props.date ? this.props.date : this.props.today]: 0,
+    },
     data: {
       [this.props.date ? this.props.date : this.props.today || 'today']: this.props.blocks,
     },
@@ -152,12 +153,16 @@ class BlocksPage extends React.Component {
       setTimeout(() => {
         NProgress.start();
       }, 0);
-      const data = await fetchBlocks(date);
+      const { blocks } = await fetchBlocksV2(date);
       this.setState((state) => ({
         ...state,
+        pages: {
+          ...state.pages,
+          [date]: state.pages[date] || 0,
+        },
         data: {
           ...state.data,
-          [date]: data,
+          [date]: blocks,
         },
         date,
       }));
@@ -174,8 +179,27 @@ class BlocksPage extends React.Component {
     }
   };
 
+  async fetchNextPage() {
+    const { date, pages, data } = this.state;
+    NProgress.start();
+    const page = pages[date];
+    const { blocks } = await fetchBlocksV2(date, page + 1);
+    const existingData = data[date];
+    this.setState((state) => ({
+      ...state,
+      pages: {
+        ...state.pages,
+        [date]: page + 1,
+      },
+      data: {
+        ...state.data,
+        [date]: existingData.concat(blocks),
+      },
+    }));
+    NProgress.done();
+  }
+
   render() {
-    const { showAll } = this.state;
     const dateActions = (
       <DateActions
         today={this.props.today}
@@ -191,16 +215,14 @@ class BlocksPage extends React.Component {
           <BlocksList
             blocks={(this.state.date && this.state.data[this.state.date]) || this.props.blocks}
             keys={keys}
-            showAll={showAll}
+            showAll
           />
         </Card>
-        {!showAll && (
-          <Flex py={4} justifyContent="center">
-            <Button onClick={() => this.setState({ showAll: true })} width={0.9}>
-              View More Blocks
-            </Button>
-          </Flex>
-        )}
+        <Flex py={4} justifyContent="center">
+          <Button onClick={() => this.fetchNextPage()} width={0.9} id="view-more-blocks">
+            View More Blocks
+          </Button>
+        </Flex>
       </Flex>
     );
   }

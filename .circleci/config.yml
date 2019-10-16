@@ -25,14 +25,33 @@ install_depencies_with_npm: &install_depencies_with_npm
   run:
     name: Npm Install
     command: |
+      npm install
       cd serenity-develop
       npm install
+
+build_app: &build_app
+  run:
+    name: Next buid
+    command: |
+      npm run build
+
+start_app: &start_app
+  run:
+    name: Start app
+    command: |
+      export API_URL=http://staging-explorer-api.blockstack.xyz
+      export NODE_ENV=production
+      mkdir logs
+      touch logs/node_server.log
+      sh -c "npm start | tee logs/node_server.log" & PID=$! && echo "PID is $PID and PWD is $PWD" && sleep 30
+
 run_tests: &run_tests
   run:
     name: Run Tests
     command: |
       cd serenity-develop
-      npm run test
+      TEST_URL=http://localhost:3000 npm run test
+
 version: 2
 jobs:
   test:
@@ -42,6 +61,8 @@ jobs:
       - *restore_npm_cache
       - *install_depencies_with_npm
       - *save_npm_cache
+      - *build_app
+      - *start_app
       - *run_tests
 
 workflows:

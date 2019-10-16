@@ -37,7 +37,9 @@ const generateAutomaticSections = (data, arr, params) => {
                 </Type>
               </LinkWrapper>
             ) : (
-              <Type fontFamily="brand">{data[key]}</Type>
+              <Type fontFamily="brand" style={{ wordBreak: 'break-word' }} id={`tx-card-${key}`}>
+                {data[key]}
+              </Type>
             )}
           </Box>
         </Section.Subsection>
@@ -47,13 +49,15 @@ const generateAutomaticSections = (data, arr, params) => {
 
 const keys = ['size', 'txid', 'blockhash'];
 
+const convertBlockTimeToInt = (blockTime) => new Date(blockTime).getTime() / 1000;
+
 /**
  * Some latest transaction data
  *
  * Currently hidden because it might not be helpful
  */
 const AutomatedSection = ({ tx, ...rest }) => (
-  <Section pb={4} {...rest}>
+  <Section pb={4} {...rest} showBorder={false}>
     <Attribute
       label="Block"
       value={tx.blockheight}
@@ -61,14 +65,14 @@ const AutomatedSection = ({ tx, ...rest }) => (
         href: {
           pathname: '/blocks/single',
           query: {
-            hash: tx.blockhash,
+            hash: tx.blockheight,
           },
         },
-        as: `/block/${tx.blockhash}`,
+        as: `/block/${tx.blockheight}`,
       }}
     />
     <Attribute clip={false} label="time">
-      <Time date={tx.time} />
+      <Time date={convertBlockTimeToInt(tx.blockTime)} />
     </Attribute>
     {generateAutomaticSections(tx, keys)}
   </Section>

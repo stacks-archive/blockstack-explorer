@@ -53,7 +53,7 @@ const generateAutomaticSections = (data, arr = keys, params) => {
     (key, i) =>
       data[key] ? (
         <Section.Subsection label={key} key={i}>
-          <Box maxWidth={'100%'} overflow="auto">
+          <Box maxWidth="100%" overflow="auto">
             {params ? (
               <LinkWrapper query={data[key]}>
                 <Type is="a" fontFamily="brand">
@@ -99,9 +99,10 @@ const BlocksSection = ({ nameRecord, ...rest }) => (
 const AppsSection = ({ apps, ...rest }) =>
   apps ? (
     <ConnectedAppsList
+      apps={apps}
       wrapper={({ children }) => (
         <Section pb={4} {...rest}>
-          <Section.Subsection label="Multiplayer Apps Used" children={children} />
+          <Section.Subsection label="Multiplayer Apps Used">{children}</Section.Subsection>
         </Section>
       )}
       pt={2}
@@ -155,7 +156,9 @@ const Addresses = ({ account, ...rest }) => (
 const IdentitySection = ({ name, id, description, account, ...rest }) => (
   <Section py={6} textAlign="center" justifyContent="center" alignItems="center">
     <ConnectedAvatar mb={5} />
-    <Type fontSize={4}>{name || id}</Type>
+    <Type fontSize={4} id="user-card-name">
+      {name || id}
+    </Type>
     {description && (
       <Type opacity={0.5} pt={4} px={4} lineHeight={1.5}>
         {description}
@@ -169,23 +172,23 @@ const IdentitySection = ({ name, id, description, account, ...rest }) => (
  * Footer: view raw zone file button
  */
 const ViewZoneFileSection = ({ zoneFileUrl, ...rest }) => (
-  <Section py={4} {...rest}>
-    <Button is="a" href={zoneFileUrl} target={'_blank'}>
+  <Section py={4} {...rest} showBorder={false}>
+    <Button is="a" href={zoneFileUrl} target="_blank">
       View Raw Profile Data
     </Button>
   </Section>
 );
 
 const Empty = ({ id, ...rest }) => (
-  <Section color={'blue.mid'} px={4} py={8} alignItems="center" justifyContent={'center'}>
+  <Section color="blue.mid" px={4} py={8} alignItems="center" justifyContent="center">
     <Flex
       size={80}
       borderRadius={80}
-      border={'1px solid'}
-      borderColor={'blue.mid'}
+      border="1px solid"
+      borderColor="blue.mid"
       alignItems="center"
-      justifyContent={'center'}
-      boxShadow={'general'}
+      justifyContent="center"
+      boxShadow="general"
       bg="blue.light"
       mb={4}
     >
@@ -193,7 +196,7 @@ const Empty = ({ id, ...rest }) => (
         <AccountOutlineIcon style={{ display: 'block' }} size={60} />
       </Box>
     </Flex>
-    <Type color={'blue.dark'} pb={3} fontSize={4}>
+    <Type color="blue.dark" pb={3} fontSize={4} id="user-card-name">
       {id}
     </Type>
     <Type>No profile information available.</Type>
@@ -203,7 +206,7 @@ const Empty = ({ id, ...rest }) => (
 /**
  * Bring it all together now
  */
-const UserCard = ({ nameRecord, profile, zone_file, id, owner_address, ...rest }) => {
+const UserCard = ({ nameRecord, profile, zone_file, userApps, id, owner_address, ...rest }) => {
   if (!profile || !zone_file) {
     return (
       <Card {...rest}>
@@ -212,15 +215,15 @@ const UserCard = ({ nameRecord, profile, zone_file, id, owner_address, ...rest }
     );
   }
   const { target: zone_file_url } = zone_file.uri[0];
-  const { name, description, account, apps } = profile;
+  const { name, description, account } = profile;
   return (
     <Card {...rest}>
       <IdentitySection id={id} name={name} account={account} description={description} />
       <ProfileSection id={id} ownerAddress={owner_address} />
       <Addresses account={account} />
-      <AppsSection apps={apps} />
+      <AppsSection apps={userApps} />
       <BlocksSection nameRecord={nameRecord} />
-      {/*<TransactionsSection nameRecord={nameRecord} />*/}
+      {/* <TransactionsSection nameRecord={nameRecord} /> */}
       <ViewZoneFileSection zoneFileUrl={zone_file_url} />
     </Card>
   );

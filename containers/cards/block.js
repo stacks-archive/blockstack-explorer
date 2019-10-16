@@ -10,7 +10,7 @@ import { Attribute } from '@components/attribute';
 const generateAutomaticSections = (data, arr) =>
   arr.map((key) => {
     if (!data[key]) return '';
-    return <Attribute label={key} key={key} value={data[key]} />;
+    return <Attribute label={key} key={key} value={data[key]} id={`block-card-${key}`} />;
   });
 
 const keys = ['height', 'nonce', 'difficulty', 'merkleroot', 'hash', 'bits', 'size'];
@@ -21,7 +21,7 @@ const keys = ['height', 'nonce', 'difficulty', 'merkleroot', 'hash', 'bits', 'si
  * Currently hidden because it might not be helpful
  */
 const AutomatedSection = ({ iterable, block, ...rest }) => (
-  <Section pb={4} {...rest}>
+  <Section pb={4} {...rest} showBorder={false}>
     <Attribute label="Time">
       <Time date={block.time} tooltip={false} />
     </Attribute>

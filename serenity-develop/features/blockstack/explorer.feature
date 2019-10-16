@@ -19,11 +19,11 @@ Feature: Blockstack Explorer Test Case
     Then user search the address in address search bar
     Then Verify that explorer returns information related to address
 
-   Scenario: Verify Explorer returns information for the selected address
-     Given user open the url
-     And click on the address link "1NHfjtfnTdnPSwFveHMrG5P3PNKM2s3qnV"
-     Then Verify that information of selected address has displayed
-  
+  # Scenario: Verify Explorer returns information for the selected address
+  #   Given user open the url
+  #   And click on the address link "1NHfjtfnTdnPSwFveHMrG5P3PNKM2s3qnV"
+  #   Then Verify that information of selected address has displayed
+
   Scenario: Enter block number 523746 in the explorer text box and press ENTER key
     Given user is on home page
     Then enter the block number and press enter key in search bar
@@ -49,5 +49,4 @@ Feature: Blockstack Explorer Test Case
     Then click on date button
     And click on the block link "578440"
     Then Verify that Explorer returns the block page for height "578440"
-    Then verify That user is able to click it until they are one week from todays date  
-
+    # Then verify That user is able to click it until they are one week from todays date

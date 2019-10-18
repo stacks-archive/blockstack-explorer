@@ -87,6 +87,8 @@ const Search = ({ ...rest }) => (
             spellCheck="false"
             onChange={handleChange}
             onKeyUp={handleSearch}
+            name="search"
+            id="explorer-search-input"
           />
         </Box>
       );

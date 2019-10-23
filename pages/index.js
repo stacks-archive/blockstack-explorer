@@ -31,7 +31,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { nameOperationsOverTime, totalStacks, nameTotals } = this.props;
+    const { nameOperationsOverTime, unlockedSupplyFormatted, nameTotals } = this.props;
     const { namesFormatted, subdomainsFormatted } = nameTotals;
     const data = {
       labels: nameOperationsOverTime.map((op) => op.x),
@@ -60,7 +60,7 @@ class Home extends React.Component {
         <Box top="113px" position={['static', 'sticky']} width={[1, 1, 1, '700px']}>
           <Card title="Global statistics">
             <Flex flexWrap="wrap">
-              <StatItem width={1} label="total stacks" value={totalStacks} />
+              <StatItem width={1} label="unlocked stacks" value={unlockedSupplyFormatted} />
               <StatItem width={0.5} label="paid names" value={namesFormatted} />
               <StatItem width={0.5} label="free names" value={subdomainsFormatted} />
             </Flex>

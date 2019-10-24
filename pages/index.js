@@ -61,8 +61,8 @@ class Home extends React.Component {
           <Card title="Global statistics">
             <Flex flexWrap="wrap">
               <StatItem width={1} label="unlocked stacks" value={unlockedSupplyFormatted} />
-              <StatItem width={0.5} label="paid names" value={namesFormatted} />
-              <StatItem width={0.5} label="free names" value={subdomainsFormatted} />
+              <StatItem width={0.5} label="domains" value={namesFormatted} />
+              <StatItem width={0.5} label="usernames" value={subdomainsFormatted} />
             </Flex>
           </Card>
 

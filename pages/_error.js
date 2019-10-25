@@ -27,11 +27,11 @@ export default class Error extends React.Component {
           <Type maxWidth="250px" lineHeight={1.6} textAlign="center" fontSize={3} display="block" my={2}>
             Sorry, something seems to have gone wrong.
           </Type>
-          <Type maxWidth="250px" lineHeight={1.6} textAlign="center" fontSize={3} display="block" my={2}>
-            This explorer only has visibility into confirmed transactions. Please use a BTC explorer like
+          <Type maxWidth="500px" lineHeight={1.6} textAlign="center" fontSize={3} display="block" my={2}>
+            This explorer only has visibility into confirmed transactions. Please use a BTC explorer like{' '}
             <a href="https://www.blockchain.com/explorer" target="blank" rel="noopener noreferrer">
               blockchain.com
-            </a>
+            </a>{' '}
             to search for unconfirmed transactions.
           </Type>
           <Box mt={5}>

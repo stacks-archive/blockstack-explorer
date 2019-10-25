@@ -41,24 +41,8 @@ const StacksAddressCard = ({ address: { address, balance, status, vesting_total:
       </Section>
       <Section pb={4} borderBottom="0">
         <Attribute label="Stacks Address" value={address} />
-        {/* <Attribute
-          label="BTC Address"
-          value={btcAddress}
-          link={{
-            href: {
-              query: {
-                address: btcAddress,
-              },
-              pathname: '/address/single',
-            },
-            as: `/address/${btcAddress}`,
-          }}
-        /> */}
         <Section.Subsection label="Total at this address">
           <Type fontSize={3}>{stacksValue(total)}</Type>
-          {/* <Type fontSize={1} ml={2}>
-            STX
-          </Type> */}
         </Section.Subsection>
         <Section.Subsection label="Cumulative Address Activity" mt={2} />
         <Flex>

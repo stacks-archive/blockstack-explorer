@@ -19,7 +19,9 @@ class TransactionSinglePage extends React.Component {
     } else {
       data = await fetchTX(id);
     }
-    // const data = query.data || (await fetchTX(id));
+    if (!data || !data.blockheight) {
+      throw Error('Unable to find TX with ID', id);
+    }
 
     return {
       tx: {

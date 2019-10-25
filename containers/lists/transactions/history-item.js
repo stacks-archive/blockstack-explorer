@@ -1,12 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
-import { Flex, Box, Type, Button } from 'blockstack-ui';
+import { Flex, Box, Type } from 'blockstack-ui';
 import { Toggle } from 'react-powerplug';
 import moment from 'moment';
 import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
-// import { Card } from '@components/card';
 import { List } from '@components/list';
-// import { Time } from '@components/time';
 import { stacksValue } from '@common/lib/units';
 
 export default ({ transaction }) => (

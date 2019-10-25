@@ -1,12 +1,6 @@
 import React from 'react';
-// import Link from 'next/link';
 import { Flex, Button } from 'blockstack-ui';
-// import { Toggle } from 'react-powerplug';
-// import moment from 'moment';
-// import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import { Card } from '@components/card';
-// import { List } from '@components/list';
-// import { Time } from '@components/time';
 import HistoryItem from './history-item';
 
 const AllTransactionsList = ({ transactions, nextPage }) => (

@@ -47,7 +47,7 @@ const generateAutomaticSections = (data, arr, params) => {
   );
 };
 
-const keys = ['size', 'txid', 'blockhash'];
+const keys = ['txid', 'blockHash'];
 
 const convertBlockTimeToInt = (blockTime) => new Date(blockTime).getTime() / 1000;
 

@@ -13,7 +13,7 @@ const generateAutomaticSections = (data, arr) =>
     return <Attribute label={key} key={key} value={data[key]} id={`block-card-${key}`} />;
   });
 
-const keys = ['height', 'nonce', 'difficulty', 'merkleroot', 'hash', 'bits', 'size'];
+const keys = ['height', 'merkleroot', 'hash'];
 
 /**
  * Some latest transaction data
@@ -25,7 +25,6 @@ const AutomatedSection = ({ iterable, block, ...rest }) => (
     <Attribute label="Time">
       <Time date={block.time} tooltip={false} />
     </Attribute>
-    {block.reward && <Attribute label="Reward" value={`${block.reward} BTC`} />}
     <Attribute label="Transactions" value={block.txCount} />
     {block.poolInfo && block.poolInfo.poolName && <Attribute label="Mining Pool" value={block.poolInfo.poolName} />}
     {generateAutomaticSections(iterable, keys)}

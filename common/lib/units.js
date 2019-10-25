@@ -1,6 +1,9 @@
 import numeral from 'numeral';
 
-export const formatValue = (v) => numeral(parseInt(v, 10)).format('0,0[.]000000');
+export const formatValue = (v) => {
+  const number = parseFloat(v);
+  return number >= 1000 ? numeral(number).format('0,0.[000000]') : number;
+};
 
 export const stacksValue = (value) => `${formatValue(+`${Math.round(`${value * 10e-7}e+7`)}e-7`)} STX`;
 

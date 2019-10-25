@@ -48,7 +48,7 @@ const makeAppController = (app, cache) => {
 
       res.setHeader('x-cache', 'MISS');
       console.log(`cache miss: ${req.url}`);
-      res.send(html);
+      app.sendHTML(req, res, html, req.method);
     } catch (err) {
       app.renderError(err, req, res, pagePath);
     }

@@ -79,10 +79,14 @@ const UTXOItem = ({ label, address, value, to, spentTxId, currency = 'BTC', ...r
     </List.Item.Title>
     <List.Item.Title style={{ whiteSpace: 'nowrap' }} textAlign="right" ml={2} pb={0} pt={[2, 0]} pl={1}>
       <Flex alignItems="center">
-        {value || 0}
-        <Type opacity={0.5} pl={1}>
-          {currency}
-        </Type>
+        {value && (
+          <>
+            {value || 0}
+            <Type opacity={0.5} pl={1}>
+              {currency}
+            </Type>
+          </>
+        )}
         {to &&
           (!spentTxId ? (
             <Tooltip text="Unspent">
@@ -154,7 +158,7 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, historyD
         </DirectionHeader>
         {historyData ? (
           <>
-            <UTXOItem address={tx.senderSTX} value={tx.valueStacksFormatted} label={tx.senderSTX} currency="STX" />
+            <UTXOItem address={tx.senderSTX} label={tx.senderSTX} currency="STX" />
           </>
         ) : (
           <>
@@ -175,7 +179,7 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, historyD
       <Box width={[1, 1, 1, 1, 0.5]} flexGrow={1}>
         <DirectionHeader borderTop={[0, 0, 0, 0, '1px solid']}>TO</DirectionHeader>
         {historyData ? (
-          <UTXOItem address={tx.senderSTX} value={tx.valueStacksFormatted} label={tx.recipientSTX} currency="STX" />
+          <UTXOItem address={tx.senderSTX} label={tx.recipientSTX} currency="STX" />
         ) : (
           <>
             {vout &&

@@ -27,7 +27,7 @@ const getLockedAmount = (vestingTotal, history = [], balance) => {
   // return [locked, unlocked];
   let total = balance;
   if (vestingTotal) {
-    total = vestingTotal - sent;
+    total = vestingTotal - sent + received;
   }
   return { locked, unlocked, sent, received, total };
 };

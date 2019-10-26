@@ -179,7 +179,7 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, historyD
       <Box width={[1, 1, 1, 1, 0.5]} flexGrow={1}>
         <DirectionHeader borderTop={[0, 0, 0, 0, '1px solid']}>TO</DirectionHeader>
         {historyData ? (
-          <UTXOItem address={tx.senderSTX} label={tx.recipientSTX} currency="STX" />
+          <UTXOItem address={tx.recipientSTX} label={tx.recipientSTX} currency="STX" />
         ) : (
           <>
             {vout &&

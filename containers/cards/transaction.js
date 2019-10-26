@@ -74,6 +74,7 @@ const AutomatedSection = ({ tx, ...rest }) => (
     <Attribute clip={false} label="time">
       <Time date={convertBlockTimeToInt(tx.blockTime)} />
     </Attribute>
+    {tx.stxDecoded && <Attribute value={tx.stxDecoded.scratchData} label="Memo" />}
     {generateAutomaticSections(tx, keys)}
   </Section>
 );

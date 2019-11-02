@@ -4,6 +4,8 @@ const LRUCache = require('lru-cache');
 const secure = require('express-force-https');
 const morgan = require('morgan');
 const { decorateApp } = require('@awaitjs/express');
+const { createMiddleware: createPrometheusMiddleware } = require('@promster/express');
+const { createServer } = require('@promster/server');
 require('dotenv').config();
 
 const makeAppController = require('./controllers/app-controller');
@@ -25,6 +27,11 @@ const setup = async () => {
     await app.prepare();
 
     const server = decorateApp(express());
+
+    server.use(createPrometheusMiddleware({ app }));
+
+    // Create `/metrics` endpoint on separate server
+    createServer({ port: 9151 }).then(() => console.log('@promster/server started on port 9151.'));
 
     server.use(morgan('combined'));
 

@@ -10,11 +10,9 @@ import { stacksValue } from '@common/lib/units';
 const getLockedAmount = (vestingTotal, history = [], balance) => {
   // const available = credit - debit;
   let unlocked = 0;
-  console.log(vestingTotal);
   let sent = 0;
   let received = 0;
   history.forEach((transfer) => {
-    console.log(transfer);
     if (transfer.operation === 'UNLOCK') {
       unlocked += transfer.value;
     } else if (transfer.operation === 'SENT') {

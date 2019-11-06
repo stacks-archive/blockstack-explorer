@@ -22,7 +22,9 @@ const getLockedAmount = (history = []) => {
   return { sent, received };
 };
 
-const StacksAddressCard = ({ address: { address, totalUnlocked, totalLocked, balance, status, history } }) => {
+const StacksAddressCard = ({
+  address: { address, totalUnlocked, totalLocked, balance, status, history, tokensGranted },
+}) => {
   const { sent, received } = getLockedAmount(history);
   return address ? (
     <Card width={1} title="Stacks Address Details" pb={4}>
@@ -57,11 +59,13 @@ const StacksAddressCard = ({ address: { address, totalUnlocked, totalLocked, bal
             )}
           </Box>
         </Flex>
+        {!!tokensGranted && (
+          <Section.Subsection label="Token Grants">
+            <Type fontFamily="brand">{stacksValue(tokensGranted)}</Type>
+          </Section.Subsection>
+        )}
         <Section.Subsection label="Available Balance">
           <Type fontSize={3}>{stacksValue(balance)}</Type>
-          {/* <Type fontSize={1} ml={2}>
-            STX
-          </Type> */}
         </Section.Subsection>
       </Section>
     </Card>

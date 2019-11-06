@@ -39,7 +39,7 @@ start_app: &start_app
   run:
     name: Start app
     command: |
-      export API_URL=http://staging-explorer-api.blockstack.xyz
+      export API_URL=http://explorer-api.staging.blockstack.xyz
       export NODE_ENV=production
       mkdir logs
       touch logs/node_server.log

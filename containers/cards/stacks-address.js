@@ -10,11 +10,9 @@ import { stacksValue } from '@common/lib/units';
 const getLockedAmount = (vestingTotal, history = [], balance) => {
   // const available = credit - debit;
   let unlocked = 0;
-  console.log(vestingTotal);
   let sent = 0;
   let received = 0;
   history.forEach((transfer) => {
-    console.log(transfer);
     if (transfer.operation === 'UNLOCK') {
       unlocked += transfer.value;
     } else if (transfer.operation === 'SENT') {
@@ -27,7 +25,7 @@ const getLockedAmount = (vestingTotal, history = [], balance) => {
   // return [locked, unlocked];
   let total = balance;
   if (vestingTotal) {
-    total = vestingTotal - sent;
+    total = vestingTotal - sent + received;
   }
   return { locked, unlocked, sent, received, total };
 };
@@ -41,24 +39,8 @@ const StacksAddressCard = ({ address: { address, balance, status, vesting_total:
       </Section>
       <Section pb={4} borderBottom="0">
         <Attribute label="Stacks Address" value={address} />
-        {/* <Attribute
-          label="BTC Address"
-          value={btcAddress}
-          link={{
-            href: {
-              query: {
-                address: btcAddress,
-              },
-              pathname: '/address/single',
-            },
-            as: `/address/${btcAddress}`,
-          }}
-        /> */}
         <Section.Subsection label="Total at this address">
           <Type fontSize={3}>{stacksValue(total)}</Type>
-          {/* <Type fontSize={1} ml={2}>
-            STX
-          </Type> */}
         </Section.Subsection>
         <Section.Subsection label="Cumulative Address Activity" mt={2} />
         <Flex>

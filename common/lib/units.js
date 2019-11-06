@@ -1,3 +1,10 @@
-export const stacksValue = (value) => `${+`${Math.round(`${value * 10e-7}e+7`)}e-7`} STX`;
+import numeral from 'numeral';
 
-export const btcValue = (value) => +`${Math.round(`${value * 10e-9}e+9`)}e-9`;
+export const formatValue = (v) => {
+  const number = parseFloat(v);
+  return number >= 1000 ? numeral(number).format('0,0.[000000]') : number;
+};
+
+export const stacksValue = (value) => `${formatValue(+`${Math.round(`${value * 10e-7}e+7`)}e-7`)} STX`;
+
+export const btcValue = (value) => +`${formatValue(Math.round(`${value * 10e-9}e+9`))}e-9`;

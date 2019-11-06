@@ -19,7 +19,9 @@ class TransactionSinglePage extends React.Component {
     } else {
       data = await fetchTX(id);
     }
-    // const data = query.data || (await fetchTX(id));
+    if (!data || !data.blockheight) {
+      throw Error('Unable to find TX with ID', id);
+    }
 
     return {
       tx: {
@@ -34,12 +36,19 @@ class TransactionSinglePage extends React.Component {
 
   render() {
     const { tx } = this.props;
-    const { valueOut, confirmations, vin, vout, fee } = tx;
+    const { valueOut, confirmations, vin, vout, feeBTC } = tx;
     return (
       <Page>
         <TransactionCard mr={[0, 0, 5]} mb={[5, 5, 0]} width={['100%', '100%', '380px']} transaction={tx} />
         <Page.Main>
-          <TransactionDetails confirmations={confirmations} fees={fee} valueOut={valueOut} vin={vin} vout={vout} />
+          <TransactionDetails
+            confirmations={confirmations}
+            fees={feeBTC}
+            valueOut={valueOut}
+            vin={vin}
+            vout={vout}
+            {...tx}
+          />
         </Page.Main>
       </Page>
     );

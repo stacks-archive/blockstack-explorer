@@ -37,19 +37,35 @@ const DirectionHeader = ({ children, ...rest }) => (
   </Flex>
 );
 
-const UTXOItem = ({ label, address, value, to, spentTxId, ...rest }) => (
+const UTXOHref = (currency, address) => {
+  if (currency === 'STX') {
+    return {
+      href: {
+        pathname: '/address/stacks',
+        query: {
+          address,
+        },
+      },
+      as: `/address/stacks/${address}`,
+    };
+  }
+  const href = address
+    ? {
+        pathname: '/address/single',
+        query: {
+          address,
+        },
+      }
+    : undefined;
+  return {
+    href,
+    as: address ? `/address/${address}` : undefined,
+  };
+};
+
+const UTXOItem = ({ label, address, value, to, spentTxId, currency = 'BTC', ...rest }) => (
   <List.Item
-    href={
-      address
-        ? {
-            pathname: '/address/single',
-            query: {
-              address,
-            },
-          }
-        : undefined
-    }
-    as={address ? `/address/${address}` : undefined}
+    {...UTXOHref(currency, address)}
     prefetch={address ? true : undefined}
     passHref={address ? true : undefined}
     flexDirection={['column', 'row']}
@@ -63,10 +79,14 @@ const UTXOItem = ({ label, address, value, to, spentTxId, ...rest }) => (
     </List.Item.Title>
     <List.Item.Title style={{ whiteSpace: 'nowrap' }} textAlign="right" ml={2} pb={0} pt={[2, 0]} pl={1}>
       <Flex alignItems="center">
-        {value || 0}
-        <Type opacity={0.5} pl={1}>
-          BTC
-        </Type>
+        {value && (
+          <>
+            {value || 0}
+            <Type opacity={0.5} pl={1}>
+              {currency}
+            </Type>
+          </>
+        )}
         {to &&
           (!spentTxId ? (
             <Tooltip text="Unspent">
@@ -98,19 +118,26 @@ const ToItem = ({ address, length, value, spentTxId, index, key, ...rest }) => (
   />
 );
 
-const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest }) => (
+const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, historyData, ...tx }) => (
   <Card width={1} mb={[5, 5, 5]} title="Details">
     <Flex flexDirection={['column', 'row', 'column', 'row']}>
-      <StatItem>
-        <Stat.Value>{valueOut}</Stat.Value>
-        <Stat.Label>Total Transferred (BTC)</Stat.Label>
-      </StatItem>
+      {historyData ? (
+        <StatItem>
+          <Stat.Value>{tx.valueStacksFormatted}</Stat.Value>
+          <Stat.Label>Total Transferred (STX)</Stat.Label>
+        </StatItem>
+      ) : (
+        <StatItem>
+          <Stat.Value>{valueOut}</Stat.Value>
+          <Stat.Label>Total Transferred (BTC)</Stat.Label>
+        </StatItem>
+      )}
       <StatItem>
         <Stat.Value>{confirmations}</Stat.Value>
         <Stat.Label>Confirmations</Stat.Label>
       </StatItem>
       <StatItem isLast>
-        <Stat.Value>{btcValue(fees || 0)}</Stat.Value>
+        <Stat.Value>{fees}</Stat.Value>
         <Stat.Label>Fees (BTC)</Stat.Label>
       </StatItem>
     </Flex>
@@ -129,21 +156,48 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest 
           />
           FROM
         </DirectionHeader>
-        {vin &&
-          vin.length &&
-          vin.map(({ addr, sequence, value }) => (
-            <UTXOItem
-              length={vin.length}
-              spentTxId
-              address={addr}
-              value={value}
-              label={!sequence ? 'Mining Reward' : addr}
-            />
-          ))}
+        {historyData ? (
+          <>
+            <UTXOItem address={tx.senderSTX} label={tx.senderSTX} currency="STX" />
+          </>
+        ) : (
+          <>
+            {vin &&
+              vin.length &&
+              vin.map(({ addr, sequence, value }) => (
+                <UTXOItem
+                  length={vin.length}
+                  spentTxId
+                  address={addr}
+                  value={value}
+                  label={!sequence ? 'Mining Reward' : addr}
+                />
+              ))}
+          </>
+        )}
       </Box>
       <Box width={[1, 1, 1, 1, 0.5]} flexGrow={1}>
         <DirectionHeader borderTop={[0, 0, 0, 0, '1px solid']}>TO</DirectionHeader>
-        {vout &&
+        {historyData ? (
+          <UTXOItem address={tx.recipientSTX} label={tx.recipientSTX} currency="STX" />
+        ) : (
+          <>
+            {vout &&
+              vout.length &&
+              vout.map(({ addr, value, spentTxId, txid }, i) => (
+                <ToItem
+                  vout={vout}
+                  key={txid}
+                  index={i}
+                  length={vout.length}
+                  value={value}
+                  address={addr}
+                  spentTxId={spentTxId}
+                />
+              ))}
+          </>
+        )}
+        {/* {vout &&
           vout.length &&
           vout.map(({ addr, value, spentTxId, txid }, i) => (
             <ToItem
@@ -155,7 +209,7 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, ...rest 
               address={addr}
               spentTxId={spentTxId}
             />
-          ))}
+          ))} */}
       </Box>
     </Flex>
   </Card>

@@ -2,17 +2,30 @@ const express = require('express');
 
 const dev = process.env.NODE_ENV !== 'production';
 
+const getCurrentGitTag = () =>
+  new Promise(async (resolve) => {
+    const command = "git describe --exact-match --tags $(git log -n1 --pretty='%h')";
+    // eslint-disable-next-line global-require
+    require('child_process').exec(command, (err, stdout) => {
+      if (err) {
+        return resolve('');
+      }
+      return resolve(stdout);
+    });
+  });
+
 /*
  * NB: make sure to modify this to take into account anything that should trigger
  * an immediate page change (e.g a locale stored in req.session)
  */
-function getCacheKey(req) {
-  return `${req.url}`;
+async function getCacheKey(req) {
+  const tag = await getCurrentGitTag();
+  return `${req.url}-${tag}`;
 }
 
 const makeAppController = (app, cache) => {
   const renderAndCache = async (req, res, pagePath) => {
-    const key = getCacheKey(req);
+    const key = await getCacheKey(req);
 
     // If we have a page in the cache, let's serve it
     if (cache.has(key) && !dev) {
@@ -35,7 +48,7 @@ const makeAppController = (app, cache) => {
 
       res.setHeader('x-cache', 'MISS');
       console.log(`cache miss: ${req.url}`);
-      res.send(html);
+      app.sendHTML(req, res, html, req.method);
     } catch (err) {
       app.renderError(err, req, res, pagePath);
     }

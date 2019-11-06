@@ -1,5 +1,6 @@
 import fetch from 'cross-fetch';
 import idx from 'idx';
+import { formatValue } from '@common/lib/units';
 
 /**
  * Simple get json fn
@@ -19,7 +20,7 @@ const getJSON = async (url) => {
  * @param {string} path - the path you want to append to the api url
  */
 const makeUrl = (path) => {
-  const url = process.env.API_URL || 'https://blockstack-explorer-api.herokuapp.com';
+  const url = process.env.API_URL || 'https://explorer-api.blockstack.org';
   return url + path;
 };
 
@@ -79,15 +80,18 @@ const extractRootDomain = (url) => {
  */
 const uniq = (array) => [...new Set(array)];
 
+/**
+ * Generates a human readable title for transactions
+ */
 const txTitle = (operation, valueStacks) => {
   if (operation === 'SENT') {
-    return `Sent ${valueStacks} STX`;
+    return `Sent ${formatValue(valueStacks)} STX`;
   }
   if (operation === 'RECEIVED') {
-    return `Received ${valueStacks} STX`;
+    return `Received ${formatValue(valueStacks)} STX`;
   }
   if (valueStacks) {
-    return `${operation} ${valueStacks} STX`;
+    return `${operation} ${formatValue(valueStacks)} STX`;
   }
   return operation;
 };

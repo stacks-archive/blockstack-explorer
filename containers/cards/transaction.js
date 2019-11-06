@@ -47,7 +47,7 @@ const generateAutomaticSections = (data, arr, params) => {
   );
 };
 
-const keys = ['size', 'txid', 'blockhash'];
+const keys = ['txid', 'blockHash'];
 
 const convertBlockTimeToInt = (blockTime) => new Date(blockTime).getTime() / 1000;
 
@@ -74,6 +74,7 @@ const AutomatedSection = ({ tx, ...rest }) => (
     <Attribute clip={false} label="time">
       <Time date={convertBlockTimeToInt(tx.blockTime)} />
     </Attribute>
+    {tx.stxDecoded && <Attribute value={tx.stxDecoded.scratchData} label="Memo" />}
     {generateAutomaticSections(tx, keys)}
   </Section>
 );

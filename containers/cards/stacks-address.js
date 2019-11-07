@@ -50,10 +50,10 @@ const StacksAddressCard = ({
             {status && (
               <>
                 <Section.Subsection label="Sent">
-                  <Type fontFamily="brand">{stacksValue(sent)}</Type>
+                  <Type fontFamily="brand">{stacksValue(status.debit_value)}</Type>
                 </Section.Subsection>
                 <Section.Subsection label="Received">
-                  <Type fontFamily="brand">{stacksValue(received)}</Type>
+                  <Type fontFamily="brand">{stacksValue(status.credit_value)}</Type>
                 </Section.Subsection>
               </>
             )}

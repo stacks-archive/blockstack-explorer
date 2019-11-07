@@ -2,31 +2,13 @@ import React from 'react';
 import QRCode from 'qrcode.react';
 import { Flex, Box, Type } from 'blockstack-ui';
 import PropTypes from 'prop-types';
-import numeral from 'numeral';
 import { Card } from '@components/card';
 import { Section } from '@components/section';
 import { Attribute } from '@components/attribute';
 import { stacksValue } from '@common/lib/units';
 
-const getLockedAmount = (history = []) => {
-  // const available = credit - debit;
-  let sent = 0;
-  let received = 0;
-  history.forEach((transfer) => {
-    if (transfer.operation === 'SENT') {
-      sent += transfer.value;
-    } else if (transfer.operation === 'RECEIVED') {
-      received += transfer.value;
-    }
-  });
-  return { sent, received };
-};
-
-const StacksAddressCard = ({
-  address: { address, totalUnlocked, totalLocked, balance, status, history, tokensGranted },
-}) => {
-  const { sent, received } = getLockedAmount(history);
-  return address ? (
+const StacksAddressCard = ({ address: { address, totalUnlocked, totalLocked, balance, status, tokensGranted } }) =>
+  address ? (
     <Card width={1} title="Stacks Address Details" pb={4}>
       <Section alignItems="center" justifyContent="center" py={4} color="blue.dark">
         <QRCode level="H" fgColor="currentColor" renderAs="svg" size={156} value={address} />
@@ -70,7 +52,6 @@ const StacksAddressCard = ({
       </Section>
     </Card>
   ) : null;
-};
 
 StacksAddressCard.propTypes = {
   address: PropTypes.object.isRequired,

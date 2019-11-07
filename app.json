@@ -2,7 +2,7 @@
   "name": "stacks-explorer",
   "scripts": {},
   "env": {
-    "API_URL": "https://blockstack-explorer-api.herokuapp.com"
+    "API_URL": "https://explorer-api.staging.blockstack.xyz"
   },
   "formation": {
     "web": {

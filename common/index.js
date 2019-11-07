@@ -20,7 +20,7 @@ const getJSON = async (url) => {
  * @param {string} path - the path you want to append to the api url
  */
 const makeUrl = (path) => {
-  const url = process.env.API_URL || 'https://explorer-api.blockstack.org';
+  const url = process.env.API_URL || 'https://explorer-api.staging.blockstack.xyz';
   return url + path;
 };
 

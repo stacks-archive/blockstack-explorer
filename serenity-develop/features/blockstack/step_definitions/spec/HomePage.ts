@@ -2,7 +2,7 @@ import { browser, element, by, By, $, $$, ExpectedConditions, promise, protracto
 import { BasePage } from '../spec/BasePage';
 import { createWriteStream } from 'fs';
 
-const url = process.env.TEST_URL || 'https://staging-explorer.blockstack.xyz';
+const url = process.env.TEST_URL || 'https://explorer.staging.blockstack.xyz/';
 
 export class HomePage extends BasePage {
   private callUs = element(by.className("ewXKKG"));

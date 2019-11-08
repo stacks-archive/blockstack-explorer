@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "node server",
     "format": "prettier --write \"{,!(node_modules|.next|out)/**/}*.{js,jsx,md,mdx}\" && echo -e '\\033[0;32m'💅 Just use prettier'\\033[0m'",
-    "heroku-postbuild": "next build"
+    "heroku-postbuild": "next build",
+    "test": "jest"
   },
   "engines": {
     "node": "^10.15"

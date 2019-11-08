@@ -7,7 +7,9 @@ import { Section } from '@components/section';
 import { Attribute } from '@components/attribute';
 import { stacksValue } from '@common/lib/units';
 
-const StacksAddressCard = ({ address: { address, totalUnlocked, totalLocked, balance, status, tokensGranted } }) =>
+const StacksAddressCard = ({
+  address: { address, totalUnlocked, totalLocked, balance, status, tokensGranted, totalReceived },
+}) =>
   address ? (
     <Card width={1} title="Stacks Address Details" pb={4}>
       <Section alignItems="center" justifyContent="center" py={4} color="blue.dark">
@@ -35,7 +37,7 @@ const StacksAddressCard = ({ address: { address, totalUnlocked, totalLocked, bal
                   <Type fontFamily="brand">{stacksValue(status.debit_value)}</Type>
                 </Section.Subsection>
                 <Section.Subsection label="Received">
-                  <Type fontFamily="brand">{stacksValue(status.credit_value)}</Type>
+                  <Type fontFamily="brand">{stacksValue(totalReceived)}</Type>
                 </Section.Subsection>
               </>
             )}

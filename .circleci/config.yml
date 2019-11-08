@@ -49,7 +49,7 @@ run_jest: &run_jest
   run:
     name: Run Tests
     command: |
-      npm run jest
+      npm run test
 
 run_tests: &run_tests
   run:

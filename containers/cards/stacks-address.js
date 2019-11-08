@@ -26,17 +26,29 @@ const StacksAddressCard = ({
       </Section>
       <Section pb={4} borderBottom="0">
         <Attribute label="Stacks Address" value={address} />
-        <Section.Subsection label="Total at this address">
+        <Section.Subsection
+          label="Total at this address"
+          tooltip="Total Stacks available to be sent, plus any remaining locked tokens"
+          tooltipPosition="right"
+        >
           <Type fontSize={3}>{stacksValue(parseInt(balance, 10) + totalLocked)}</Type>
         </Section.Subsection>
         <Section.Subsection label="Cumulative Address Activity" mt={2} />
         <Flex>
           {cumulativeVestedAtBlocks && (
             <Box width={1 / 2}>
-              <Section.Subsection label="Locked">
+              <Section.Subsection
+                label="Locked"
+                tooltip="The total Stacks that have not yet unlocked"
+                tooltipPosition="right"
+              >
                 <Type fontFamily="brand">{stacksValue(totalLocked)}</Type>
               </Section.Subsection>
-              <Section.Subsection label="unlocked">
+              <Section.Subsection
+                label="unlocked"
+                tooltip="The total Stacks that have unlocked so far"
+                tooltipPosition="right"
+              >
                 <Type fontFamily="brand">{stacksValue(totalUnlocked)}</Type>
               </Section.Subsection>
             </Box>
@@ -44,10 +56,10 @@ const StacksAddressCard = ({
           <Box width={1 / 2}>
             {status && (
               <>
-                <Section.Subsection label="Sent">
+                <Section.Subsection label="Sent" tooltip="Total Stacks sent from this address">
                   <Type fontFamily="brand">{stacksValue(status.debit_value)}</Type>
                 </Section.Subsection>
-                <Section.Subsection label="Received">
+                <Section.Subsection label="Received" tooltip="Total amount received from other addresses">
                   <Type fontFamily="brand">{stacksValue(totalReceived)}</Type>
                 </Section.Subsection>
               </>
@@ -55,11 +67,19 @@ const StacksAddressCard = ({
           </Box>
         </Flex>
         {!!tokensGranted && (
-          <Section.Subsection label="Token Grants">
+          <Section.Subsection
+            label="Token Grants"
+            tooltip="Stacks received from a hard fork with no unlocking schedule"
+            tooltipPosition="right"
+          >
             <Type fontFamily="brand">{stacksValue(tokensGranted)}</Type>
           </Section.Subsection>
         )}
-        <Section.Subsection label="Available Balance">
+        <Section.Subsection
+          label="Available Balance"
+          tooltip="Total Stacks available to be sent from this address"
+          tooltipPosition="right"
+        >
           <Type fontSize={3}>{stacksValue(balance)}</Type>
         </Section.Subsection>
       </Section>

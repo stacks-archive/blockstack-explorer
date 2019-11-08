@@ -52,6 +52,11 @@ run_tests: &run_tests
       cd serenity-develop
       TEST_URL=http://localhost:3000 npm run test
 
+store_server_logs: &store_logs
+  store_artifacts:
+    path: logs/node_server.log
+    destination: node_server.log
+
 version: 2
 jobs:
   test:
@@ -63,6 +68,7 @@ jobs:
       - *save_npm_cache
       - *build_app
       - *start_app
+      - *store_logs
       - *run_tests
 
 workflows:

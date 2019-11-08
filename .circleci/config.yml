@@ -2,7 +2,7 @@ default: &defaults
   parallelism: 1
   working_directory: ~/SerenityJS-Cucumber-Protractor-StandAlone
   docker:
-    - image: circleci/node:10.15.3-browsers
+    - image: circleci/node:10.16.3-browsers
   environment:
     CHROME_BIN: "/usr/bin/google-chrome"
   dependencies:
@@ -44,6 +44,12 @@ start_app: &start_app
       mkdir logs
       touch logs/node_server.log
       sh -c "npm start | tee logs/node_server.log" & PID=$! && echo "PID is $PID and PWD is $PWD" && sleep 30
+
+run_jest: &run_jest
+  run:
+    name: Run Tests
+    command: |
+      npm run test
 
 run_tests: &run_tests
   run:

@@ -25,13 +25,19 @@ module.exports = {
     'react/prop-types': [1],
     'no-restricted-globals': [0],
   },
+  plugins: ['jest'],
   env: {
     es6: true,
     browser: true,
+    "jest/globals": true
   },
   parser: 'babel-eslint',
   globals: {
     gtag: true,
+    page: true,
+    browser: true,
+    context: true,
+    jestPuppeteer: true,
   },
   settings: {
     'import/resolver': {

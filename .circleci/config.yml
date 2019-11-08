@@ -69,6 +69,7 @@ jobs:
       - *save_npm_cache
       - *build_app
       - *start_app
+      - *run_jest
       - *run_tests
 
 workflows:

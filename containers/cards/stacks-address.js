@@ -56,10 +56,14 @@ const StacksAddressCard = ({
           <Box width={1 / 2}>
             {status && (
               <>
-                <Section.Subsection label="Sent" tooltip="Total Stacks sent from this address">
+                <Section.Subsection label="Sent" tooltip="Total Stacks sent from this address" tooltipPosition="right">
                   <Type fontFamily="brand">{stacksValue(status.debit_value)}</Type>
                 </Section.Subsection>
-                <Section.Subsection label="Received" tooltip="Total amount received from other addresses">
+                <Section.Subsection
+                  label="Received"
+                  tooltip="Total amount received from other addresses"
+                  tooltipPosition="right"
+                >
                   <Type fontFamily="brand">{stacksValue(totalReceived)}</Type>
                 </Section.Subsection>
               </>

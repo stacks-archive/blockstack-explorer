@@ -1,14 +1,27 @@
 import React from 'react';
 import { Flex, Box, Type } from 'blockstack-ui';
+import { Tooltip } from '@components/tooltip';
 
 /**
  * Misc visual components
  */
-const SubSection = ({ label, children, ...rest }) => (
+
+const SubsectionLabel = ({ tooltip, label, tooltipPosition }) => {
+  if (tooltip) {
+    return (
+      <Tooltip text={tooltip} positioning={tooltipPosition}>
+        <SectionLabel>{label}</SectionLabel>
+      </Tooltip>
+    );
+  }
+  return <SectionLabel>{label}</SectionLabel>;
+};
+
+const SubSection = ({ label, children, tooltip, tooltipPosition, ...rest }) => (
   <Box pt={4} {...rest}>
     {label ? (
       <Box pb={2}>
-        <SectionLabel>{label}</SectionLabel>
+        <SubsectionLabel tooltip={tooltip} label={label} tooltipPosition={tooltipPosition} />
       </Box>
     ) : null}
     {children}

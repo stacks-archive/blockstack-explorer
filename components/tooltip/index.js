@@ -1,6 +1,12 @@
 import sys from 'system-components';
 import { themeGet } from 'styled-system';
 import { Box, blacklist } from 'blockstack-ui';
+
+const transformX = {
+  center: '-50%',
+  right: '0%',
+};
+
 const Tooltip = sys(
   {
     is: Box,
@@ -21,7 +27,7 @@ const Tooltip = sys(
       position: 'absolute',
       bottom: '100%',
       left: '50%',
-      transform: 'translate(-50%, -4px)',
+      transform: `translate(${transformX[props.positioning]}, -4px)`,
       whiteSpace: 'nowrap',
       fontSize: '12px',
       paddingTop: '4px',
@@ -38,7 +44,7 @@ const Tooltip = sys(
       position: 'absolute',
       bottom: '100%',
       left: '50%',
-      transform: 'translate(-50%, 8px)',
+      transform: `translate(${transformX[props.positioning]}, 8px)`,
       content: '" "',
       zIndex: 99999,
       fontFamily: 'default',
@@ -63,5 +69,6 @@ Tooltip.defaultProps = {
   bg: 'blue.dark',
   color: 'blue.light',
   zIndex: 999,
+  positioning: 'center',
 };
 export { Tooltip };

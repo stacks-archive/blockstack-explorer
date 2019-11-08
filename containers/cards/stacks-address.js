@@ -8,7 +8,16 @@ import { Attribute } from '@components/attribute';
 import { stacksValue } from '@common/lib/units';
 
 const StacksAddressCard = ({
-  address: { address, totalUnlocked, totalLocked, balance, status, tokensGranted, totalReceived },
+  address: {
+    address,
+    totalUnlocked,
+    totalLocked,
+    balance,
+    status,
+    tokensGranted,
+    totalReceived,
+    cumulativeVestedAtBlocks,
+  },
 }) =>
   address ? (
     <Card width={1} title="Stacks Address Details" pb={4}>
@@ -22,14 +31,16 @@ const StacksAddressCard = ({
         </Section.Subsection>
         <Section.Subsection label="Cumulative Address Activity" mt={2} />
         <Flex>
-          <Box width={1 / 2}>
-            <Section.Subsection label="Locked">
-              <Type fontFamily="brand">{stacksValue(totalLocked)}</Type>
-            </Section.Subsection>
-            <Section.Subsection label="unlocked">
-              <Type fontFamily="brand">{stacksValue(totalUnlocked)}</Type>
-            </Section.Subsection>
-          </Box>
+          {cumulativeVestedAtBlocks && (
+            <Box width={1 / 2}>
+              <Section.Subsection label="Locked">
+                <Type fontFamily="brand">{stacksValue(totalLocked)}</Type>
+              </Section.Subsection>
+              <Section.Subsection label="unlocked">
+                <Type fontFamily="brand">{stacksValue(totalUnlocked)}</Type>
+              </Section.Subsection>
+            </Box>
+          )}
           <Box width={1 / 2}>
             {status && (
               <>

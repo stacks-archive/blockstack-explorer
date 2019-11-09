@@ -2,7 +2,7 @@ default: &defaults
   parallelism: 1
   working_directory: ~/SerenityJS-Cucumber-Protractor-StandAlone
   docker:
-    - image: circleci/node:10.15.3-browsers
+    - image: circleci/node:10.16.3-browsers
   environment:
     CHROME_BIN: "/usr/bin/google-chrome"
   dependencies:
@@ -26,8 +26,8 @@ install_depencies_with_npm: &install_depencies_with_npm
     name: Npm Install
     command: |
       npm install
-      cd serenity-develop
-      npm install
+      # cd serenity-develop
+      # npm install
 
 build_app: &build_app
   run:
@@ -37,13 +37,23 @@ build_app: &build_app
 
 start_app: &start_app
   run:
-    name: Start app
+    name: Start app and run tests
     command: |
-      export API_URL=http://explorer-api.staging.blockstack.xyz
+      export API_URL=https://explorer-api.staging.blockstack.xyz
       export NODE_ENV=production
       mkdir logs
       touch logs/node_server.log
-      sh -c "npm start | tee logs/node_server.log" & PID=$! && echo "PID is $PID and PWD is $PWD" && sleep 30
+      sh -c "npm start | tee logs/node_server.log" & PID=$! && echo "PID is $PID and PWD is $PWD"
+      sleep 30
+      npm run test
+      cd serenity-develop
+      TEST_URL=http://localhost:3000 npm run test
+
+run_jest: &run_jest
+  run:
+    name: Run Tests
+    command: |
+      npm run test
 
 run_tests: &run_tests
   run:
@@ -52,18 +62,33 @@ run_tests: &run_tests
       cd serenity-develop
       TEST_URL=http://localhost:3000 npm run test
 
+test_app: &test_app
+  run:
+    name: Test app
+    command: curl http://$(cat logs/ip.log):3000
+
+get_ip: &get_ip
+  run:
+    name: storing local IP address
+    command: |
+      npm install ip
+      node -p "require('ip').address()" > logs/ip.log
+
 version: 2
 jobs:
   test:
     <<: *defaults
     steps:
       - checkout
-      - *restore_npm_cache
+      # - *restore_npm_cache
       - *install_depencies_with_npm
-      - *save_npm_cache
+      # - *save_npm_cache
       - *build_app
       - *start_app
-      - *run_tests
+      # - *get_ip
+      # - *test_app
+      # - *run_jest
+      # - *run_tests
 
 workflows:
   version: 2

@@ -24,7 +24,7 @@ const SubSection = ({ label, children, tooltip, tooltipPosition, ...rest }) => (
         <SubsectionLabel tooltip={tooltip} label={label} tooltipPosition={tooltipPosition} />
       </Box>
     ) : null}
-    {children}
+    <span className={`subsection-${label.replace(' ', '-').toLowerCase()}`}>{children}</span>
   </Box>
 );
 export const SectionLabel = ({ ...rest }) => (

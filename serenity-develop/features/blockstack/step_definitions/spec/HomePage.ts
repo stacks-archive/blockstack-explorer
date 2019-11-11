@@ -90,13 +90,12 @@ export class HomePage extends BasePage {
 
 
   async checkAddressInformation(){
-    await browser.sleep(3999).then(function () {
-      console.log('sleep 4 second');
-    });
-    await browser.wait(ExpectedConditions.elementToBeClickable(this.barcode),40000);
-    await browser.sleep(3999).then(function () {
-      console.log('sleep 4 second');
-    });
+    await browser.sleep(3999);
+    console.log('sleep 4 second');
+    // await browser.wait(ExpectedConditions.elementToBeClickable(this.barcode),40000);
+    // await browser.sleep(3999).then(function () {
+    //   console.log('sleep 4 second');
+    // });
     await browser.waitForAngular();
     const l = await browser.executeScript("return document.getElementById('address-card-address').innerText");
     console.log("name or address is "+l);

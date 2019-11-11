@@ -2,7 +2,7 @@ import { browser, element, by, By, $, $$, ExpectedConditions, promise, protracto
 import { BasePage } from '../spec/BasePage';
 import { createWriteStream } from 'fs';
 
-const url = process.env.TEST_URL || 'https://explorer.staging.blockstack.xyz/';
+const url = process.env.TEST_URL || 'https://explorer.staging.blockstack.xyz';
 
 export class HomePage extends BasePage {
   private callUs = element(by.className("ewXKKG"));
@@ -20,10 +20,9 @@ export class HomePage extends BasePage {
   }
 
   async enterNameInSearchBar(name: string) {
-    await browser.takeScreenshot().then(function (png) {
-      console.log(`Screenshot: ${png}`);
-    });
-    //console.log(`DEBUG PAGE SOURCE: ${await browser.getPageSource()}`);
+    // await browser.takeScreenshot().then(function (png) {
+    //   console.log(`Screenshot: ${png}`);
+    // });
     const seachBarXpath = "//input[@placeholder='Search by address, block, name or transaction']";
     await browser.wait(ExpectedConditions.visibilityOf(element(by.xpath(seachBarXpath))), 60000);
     await element(by.xpath(seachBarXpath)).sendKeys(name);
@@ -42,18 +41,8 @@ export class HomePage extends BasePage {
   }
 
   async checkInformation(){
-    await browser.sleep(15000);
-    // await browser.wait(ExpectedConditions.elementToBeClickable(this.callUs),40000);
-    // console.log('getting the name')
-    await browser.wait(ExpectedConditions.visibilityOf(element(by.id('user-card-name'))), 1000);
-    // console.log('got the name')
-    // await browser.sleep(3999).then(function () {
-    //   console.log('sleep 4 second');
-    // });
-    // await browser.waitForAngular();
-    const l = await browser.executeScript("return document.getElementById('user-card-name').innerText");
-    console.log("String is "+l);
-    return l;
+    await browser.wait(ExpectedConditions.visibilityOf(element(by.id('user-card-name'))), 60000);
+    return $("#user-card-name").getText();
   }
 
   async clickOnNameLink(){
@@ -90,16 +79,15 @@ export class HomePage extends BasePage {
 
 
   async checkAddressInformation(){
-    await browser.sleep(3999);
-    console.log('sleep 4 second');
-    // await browser.wait(ExpectedConditions.elementToBeClickable(this.barcode),40000);
-    // await browser.sleep(3999).then(function () {
-    //   console.log('sleep 4 second');
-    // });
+    await browser.sleep(3999).then(function () {
+      console.log('sleep 4 second');
+    });
+    await browser.wait(ExpectedConditions.elementToBeClickable(this.barcode),40000);
+    await browser.sleep(3999).then(function () {
+      console.log('sleep 4 second');
+    });
     await browser.waitForAngular();
-    const l = await browser.executeScript("return document.getElementById('address-card-address').innerText");
-    console.log("name or address is "+l);
-    return l;
+    return element(by.xpath("//span[text()='Stacks Address']/../following-sibling::div/span")).getText();
   }
 
   async openURL(){
@@ -146,8 +134,7 @@ export class HomePage extends BasePage {
   }
 
   async verifyBlockPage(blockHeight) {
-    console.log('sleeping 15 seconds');
-    await browser.sleep(15000);
+    await browser.wait(ExpectedConditions.elementToBeClickable($("#block-card-height")), 20000);
     const height = await browser.executeScript("return document.getElementById('block-card-height').innerText");
     return height;
   }
@@ -158,14 +145,15 @@ export class HomePage extends BasePage {
       console.log('sleep 2 second');
     });
     // await this.clickClassButton('sc-bdVaJa bZXzYB','View More Blocks');
-    await this.clickId('view-more-blocks')
+    await this.clickId('view-more-blocks');
     await browser.sleep(10000)
   }
 
   async clickOnDateBtn(){
-    // await browser.executeScript("document.getElementsByClassName('sc-bdVaJa dTlDiF')[0].click()");
-    await browser.executeScript("document.getElementById('block-date-yesterday').click()")
-    console.log('sleeping 10 seconds')
+    await browser.wait(ExpectedConditions.elementToBeClickable($("#block-date-yesterday")), 10000);
+    await browser.executeScript("document.getElementsByClassName('sc-bdVaJa dTlDiF')[0].click()");
+
+    console.log('sleeping 10 seconds');
     await browser.sleep(10000)
   }
 

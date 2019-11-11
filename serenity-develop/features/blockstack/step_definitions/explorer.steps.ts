@@ -1,4 +1,4 @@
-import { browser, by, protractor } from 'protractor';
+import { browser, by, element, protractor } from 'protractor';
 import { HomePage } from './spec/HomePage';
 
 const chai = require('chai');
@@ -20,9 +20,7 @@ module.exports = function myStepDefinitions() {
 
   this.Then(/^Verify that explorer returns information related to name$/, async () => {
     const l = await homePage.checkInformation();
-    console.log(`String 2 :${l}`);
     await expect('Hank Stoever').to.equal(l);
-    //  expect.to.be(homePage.checkInformation()).to.eventually.equal("What do my test results mean?");
   });
 
   this.Given(/^user select the Name link$/, async () => {
@@ -44,13 +42,21 @@ module.exports = function myStepDefinitions() {
     await expect(arg1).to.equal(inf);
   });
 
-  this.Then(/^Verify that explorer returns information related to address$/, async () => {
+  this.Then(/^Verify that explorer returns information related to stack address "([^"]*)"$/, async (address) => {
     const addr = await homePage.checkAddressInformation();
-    console.log(`String addr :${addr}`);
-    await expect('1NHfjtfnTdnPSwFveHMrG5P3PNKM2s3qnV').to.equal(addr);
+    await expect(address).to.equal(addr);
   });
-  this.Then(/^user search the address in address search bar$/, async () => {
-    await homePage.enterAddressAndPressEnterKey('1NHfjtfnTdnPSwFveHMrG5P3PNKM2s3qnV');
+
+  this.Then(/^Verify that explorer returns information related to address "([^"]*)"$/, async (address) => {
+    const addr = await element(by.id("address-card-address")).getText();
+    await expect(address).to.equal(addr);
+  });
+  // this.Then(/^user search the address in address search bar$/, async () => {
+  //   await homePage.enterAddressAndPressEnterKey('1NHfjtfnTdnPSwFveHMrG5P3PNKM2s3qnV');
+  // });
+
+  this.Then(/^user search the address in address search bar "([^"]*)"$/, async (address) => {
+    await homePage.enterAddressAndPressEnterKey(address);
   });
 
   this.Given(/^user open the url$/, async () => {
@@ -126,5 +132,27 @@ module.exports = function myStepDefinitions() {
   this.Then(/^verify That user is able to click it until they are one week from todays date$/, async () => {
     const bool = await homePage.clicksOnDateButtonBack();
     await expect(true).to.equal(bool);
+  });
+
+  this.Then(/^Verify that explorer returns (\d+) items$/, async(arg1) =>{
+    let len;
+    await element.all(by.xpath("//span[text()='Transactions']/parent::div/following-sibling::div")).count().then(function (size) {
+      len = size;
+    });
+    await expect((len-1).toString()).to.equal(arg1);
+  });
+
+  this.Then(/^Verify message "([^"]*)"$/, async(arg1) =>{
+    const message = await element(by.xpath(`//span[text()='${arg1}']`)).getText();
+    await expect(message).to.equal(arg1);
+  });
+
+  this.Then(/^Verify that explorer returns non\-zero values for next fields: "([^"]*)"$/, async(arg1) =>{
+    const fields = arg1.split(",");
+    for (const item of fields) {
+      console.log(`Checking field for non-zero value: ${item}`);
+      const text = await element(by.xpath(`//span[text()='${item}']/ancestor::node()[3]/span`)).getText();
+      expect(text).to.not.equal("0");
+    }
   });
 };

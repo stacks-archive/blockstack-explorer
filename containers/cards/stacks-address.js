@@ -71,11 +71,7 @@ const StacksAddressCard = ({
           </Box>
         </Flex>
         {!!tokensGranted && (
-          <Section.Subsection
-            label="Token Grants"
-            tooltip="Stacks received from a hard fork with no unlocking schedule"
-            tooltipPosition="right"
-          >
+          <Section.Subsection label="Token Grants" tooltip="Stacks received from a hard fork" tooltipPosition="right">
             <Type fontFamily="brand">{stacksValue(tokensGranted)}</Type>
           </Section.Subsection>
         )}

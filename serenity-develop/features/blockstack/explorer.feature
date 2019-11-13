@@ -4,7 +4,7 @@ Feature: Blockstack Explorer Test Case
 
   Scenario: Verify that Explorer returns information for the entered name
     Given user is on home page
-    And user enter the name in search bar
+    Then user enter the name in search bar
     Then Verify that explorer returns information related to name
 
   Scenario: Explorer returns information for the selected name aaron.id.blockstack
@@ -16,14 +16,14 @@ Feature: Blockstack Explorer Test Case
 
   Scenario: Verify Explorer returns information for the entered address
     Given user is on home page
-    Then user search the address in address search bar
-    Then Verify that explorer returns information related to address
+    Then user search the address in address search bar "1NHfjtfnTdnPSwFveHMrG5P3PNKM2s3qnV"
+    Then Verify that explorer returns information related to address "1NHfjtfnTdnPSwFveHMrG5P3PNKM2s3qnV"
 
   # Scenario: Verify Explorer returns information for the selected address
   #   Given user open the url
   #   And click on the address link "1NHfjtfnTdnPSwFveHMrG5P3PNKM2s3qnV"
   #   Then Verify that information of selected address has displayed
-     
+
   Scenario: Enter block number 523746 in the explorer text box and press ENTER key
     Given user is on home page
     Then enter the block number and press enter key in search bar
@@ -49,4 +49,18 @@ Feature: Blockstack Explorer Test Case
     Then click on date button
     And click on the block link "578440"
     Then Verify that Explorer returns the block page for height "578440"
-    # Then verify That user is able to click it until they are one week from todays date  
+    # Then verify That user is able to click it until they are one week from todays date
+
+#Uncomment when update to the latest code
+#  Scenario: Verify that Explorer returns 50 items with correct message
+#    Given user is on home page
+#    Then user search the address in address search bar "SP1P72Z3704VMT3DMHPP2CB8TGQWGDBHD3RPR9GZS"
+#    Then Verify that explorer returns information related to stack address "SP1P72Z3704VMT3DMHPP2CB8TGQWGDBHD3RPR9GZS"
+#    Then Verify that explorer returns 50 items
+#    Then Verify message "Only showing the 50 most recent transactions."
+
+#  Scenario: Verify that Explorer returns information for the entered address with non-zero values
+#    Given user is on home page
+#    Then user search the address in address search bar "SP1ERE1Z1MDVM100NWYR16GZZJJTZQYHG4F6GWBDM"
+#    Then Verify that explorer returns information related to stack address "SP1ERE1Z1MDVM100NWYR16GZZJJTZQYHG4F6GWBDM"
+#    Then Verify that explorer returns non-zero values for next fields: "Locked,unlocked,Sent,Received,Total at this address,Available Balance,Token Grants"

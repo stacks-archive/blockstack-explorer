@@ -1,6 +1,5 @@
 const express = require('express');
 const next = require('next');
-const LRUCache = require('lru-cache');
 const secure = require('express-force-https');
 const morgan = require('morgan');
 const { decorateApp } = require('@awaitjs/express');
@@ -15,12 +14,6 @@ const dev = process.env.NODE_ENV !== 'production';
 const port = parseInt(process.env.PORT, 10) || 3000;
 const app = next({ dev });
 const handle = app.getRequestHandler();
-
-// This is where we cache our rendered HTML pages
-const ssrCache = new LRUCache({
-  max: 10,
-  maxAge: dev ? 1000 * 5 : 1000 * 60 * 60, // 1hour
-});
 
 const setup = async () => {
   try {
@@ -48,16 +41,6 @@ const setup = async () => {
       _next();
     });
 
-    server.get('/clear-cache', (req, res) => {
-      if (req.query.key === process.env.API_KEY) {
-        console.log('Clearing cache from API');
-        ssrCache.reset();
-        res.json({ success: true });
-      } else {
-        res.status(400).json({ success: false });
-      }
-    });
-
     server.get('/robots.txt', (req, res) => {
       res.send(`
 User-agent: *
@@ -66,7 +49,7 @@ Disallow: /
       `);
     });
 
-    server.use('/', makeAppController(app, ssrCache));
+    server.use('/', makeAppController(app));
 
     server.get('*', (req, res) => handle(req, res));
 

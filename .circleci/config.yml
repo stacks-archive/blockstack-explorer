@@ -37,13 +37,15 @@ build_app: &build_app
 
 start_app: &start_app
   run:
-    name: Start app
+    name: Start app and run tests
     command: |
-      export API_URL=http://staging-explorer-api.blockstack.xyz
+      export API_URL=https://explorer-api.staging.blockstack.xyz
       export NODE_ENV=production
       mkdir logs
       touch logs/node_server.log
       sh -c "npm start | tee logs/node_server.log" & PID=$! && echo "PID is $PID and PWD is $PWD" && sleep 30
+      cd serenity-develop
+      TEST_URL=http://localhost:3000 npm run test
 
 run_tests: &run_tests
   run:
@@ -51,6 +53,11 @@ run_tests: &run_tests
     command: |
       cd serenity-develop
       TEST_URL=http://localhost:3000 npm run test
+
+store_server_logs: &store_logs
+  store_artifacts:
+    path: logs/node_server.log
+    destination: node_server.log
 
 version: 2
 jobs:
@@ -63,11 +70,10 @@ jobs:
       - *save_npm_cache
       - *build_app
       - *start_app
-      - *run_tests
+      - *store_logs
 
 workflows:
   version: 2
   build-and-test:
     jobs:
       - test
-

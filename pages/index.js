@@ -7,6 +7,7 @@ import { fetchHomeInfo } from '@common/lib/client/api';
 import { Page } from '@components/page';
 import { StatItem } from '@components/stats';
 import { Section } from '@components/section';
+import { formatLargeNumber } from '@common/lib/units';
 
 import { Line as LineChart } from 'react-chartjs-2';
 
@@ -31,8 +32,8 @@ class Home extends React.Component {
   }
 
   render() {
-    const { nameOperationsOverTime, unlockedSupplyFormatted, nameTotals } = this.props;
-    const { namesFormatted, subdomainsFormatted } = nameTotals;
+    const { nameOperationsOverTime, unlockedSupply, nameTotals } = this.props;
+    const { names, subdomains } = nameTotals;
     const data = {
       labels: nameOperationsOverTime.map((op) => op.x),
       datasets: [
@@ -44,6 +45,10 @@ class Home extends React.Component {
         },
       ],
     };
+    
+    const unlockedSupplyFormatted = formatLargeNumber(unlockedSupply, 0)
+    const namesFormatted = formatLargeNumber(names, 0)
+    const subdomainsFormatted = formatLargeNumber(subdomains, 0)
 
     return (
       <Page>

@@ -21,7 +21,20 @@ const setup = async () => {
 
     const server = decorateApp(express());
 
-    server.use(createPrometheusMiddleware({ app }));
+    server.use(createPrometheusMiddleware({ 
+      app,
+      options: {
+        normalizePath: (path) => {
+          if (path.startsWith('/address/stacks/SP1P72Z3704VMT3DMHPP2CB8TGQWGDBHD3RPR9GZS')) {
+            return '/address/stacks/SP1P72Z3704VMT3DMHPP2CB8TGQWGDBHD3RPR9GZS'
+          }
+          if (path.startsWith('/address/stacks')) {
+            return '/address/stacks'
+          }
+          return '/'
+        }
+      }
+    }));
 
     // Create `/metrics` endpoint on separate server
     createServer({ port: 9151 }).then(() => console.log('@promster/server started on port 9151.'));

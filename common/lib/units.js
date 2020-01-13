@@ -1,5 +1,5 @@
 import numeral from 'numeral';
-import BigNumber from 'bignumber.js'
+import BigNumber from 'bignumber.js';
 
 export const formatValue = (v) => {
   const number = parseFloat(v);
@@ -7,10 +7,10 @@ export const formatValue = (v) => {
 };
 
 export const formatLargeNumber = (v, decimals = 0) => {
-  const largeNumber = new BigNumber(v)
-  return largeNumber.toFormat(decimals)
-}
+  const largeNumber = new BigNumber(v);
+  return largeNumber.toFormat(decimals);
+};
 
 export const stacksValue = (value) => `${formatValue(+`${Math.round(`${value * 10e-7}e+7`)}e-7`)} STX`;
 
-export const btcValue = (value) => +`${formatValue(Math.round(`${value * 10e-9}e+9`))}e-9`;
+export const btcValue = (value) => `${formatLargeNumber(new BigNumber(value).shiftedBy(-8), 8)}`;

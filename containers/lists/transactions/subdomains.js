@@ -20,7 +20,7 @@ const SubdomainsList = ({ subdomains, nextPage }) => (
                 <Box maxWidth="calc(100% - 105px)">
                   <List.Item.Title>{name}</List.Item.Title>
                   <List.Item.Subtitle>
-                    <Time date={subdomain.timestamp / 1000} />
+                    <Time date={subdomain.timestamp} />
                   </List.Item.Subtitle>
                 </Box>
                 <Box>

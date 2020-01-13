@@ -12,13 +12,13 @@ class AddressSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
     const address = req && req.params ? req.params.address : query.address;
     const data = query.data || (await fetchAddress(address));
-    const transactions = data.fullTransactions;
     return {
       address: {
         value: address,
         data,
       },
-      transactions,
+      totalTransactionsCount: data.totalTransactionsCount,
+      transactions: data.transactions,
       nameOperations:
         data.names && data.names.length
           ? data.names.map((name) => ({
@@ -36,7 +36,7 @@ class AddressSinglePage extends React.Component {
     super(props);
     this.state = {
       loadedTxList: props.transactions,
-      hasMoreTx: props.transactions.length < props.address.data.n_tx,
+      hasMoreTx: props.transactions.length < props.totalTransactionsCount,
       pageNum: 0,
     };
   }
@@ -45,14 +45,15 @@ class AddressSinglePage extends React.Component {
     NProgress.start();
     let { loadedTxList, pageNum } = this.state;
     pageNum += 1;
-    const { value, data } = this.props.address;
-    const { fullTransactions } = await fetchAddress(value, pageNum);
-    loadedTxList = loadedTxList.concat(fullTransactions);
+    const { value } = this.props.address;
+    const { totalTransactionsCount } = this.props;
+    const { transactions } = await fetchAddress(value, pageNum);
+    loadedTxList = loadedTxList.concat(transactions);
     this.setState(
       {
         loadedTxList,
         pageNum,
-        hasMoreTx: loadedTxList.length < data.n_tx,
+        hasMoreTx: loadedTxList.length < totalTransactionsCount,
       },
       () => {
         NProgress.done();

@@ -37,7 +37,7 @@ const NamesList = ({ list, limit, ...rest }) => (
               </Box>
               {time && (
                 <List.Item.Subtitle>
-                  <Time date={time / 1000} />
+                  <Time date={time} />
                 </List.Item.Subtitle>
               )}
             </List.Item>

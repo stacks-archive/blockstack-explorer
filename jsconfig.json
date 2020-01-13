@@ -2,9 +2,18 @@
   "compilerOptions": {
     "target": "es2017",
     "allowSyntheticDefaultImports": false,
-    "baseUrl": "./",
+    "moduleResolution": "node",
+    "baseUrl": ".",
     "paths": {
-      "@client/*": ["lib/client/*"]
+      "@components/*": ["./components/*"],
+      "@containers/*": ["./containers/*"],
+      "@common/*": ["./common/*"],
+      "@pages/*": ["./pages/*"],
+      "@utils/*": ["./utils/*"],
+      "@stores/*": ["./stores/*"],
+      "@styled/*": ["./styled/*"],
+      "@client/*": ["./lib/client/*"],
+      "@lib/*": ["./lib/*"],
     }
   },
   "exclude": [

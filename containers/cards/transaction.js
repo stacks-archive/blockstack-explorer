@@ -49,7 +49,7 @@ const generateAutomaticSections = (data, arr, params) => {
 
 const keys = ['txid', 'blockHash'];
 
-const convertBlockTimeToInt = (blockTime) => new Date(blockTime).getTime() / 1000;
+const convertBlockTimeToInt = (blockTime) => new Date(blockTime).getTime();
 
 /**
  * Some latest transaction data

@@ -20,7 +20,7 @@ const NamesList = ({ names, nextPage }) => (
                 <Box maxWidth="calc(100% - 105px)">
                   <List.Item.Title>{name.name}</List.Item.Title>
                   <List.Item.Subtitle>
-                    <Time date={name.timestamp / 1000} />
+                    <Time date={name.timestamp} />
                   </List.Item.Subtitle>
                 </Box>
                 <Box>

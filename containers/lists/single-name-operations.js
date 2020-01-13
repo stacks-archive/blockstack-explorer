@@ -4,6 +4,7 @@ import { List } from '@components/list';
 import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import { Toggle } from 'react-powerplug';
 import Link from 'next/link';
+import moment from 'moment';
 
 const nameOpKeys = ['opcode', 'block_id', 'txid', 'address', 'sender', 'time'];
 
@@ -68,7 +69,14 @@ const NameOperationsList = ({ items, ...rest }) => (
                         </Box>
                         {item[key] ? (
                           <Box maxWidth="100%" overflow="auto">
-                            <Type fontFamily="brand">{item[key]}</Type>
+                            <Type fontFamily="brand">
+                              {key === 'time'
+                                ? moment
+                                    .unix(item[key])
+                                    .utc()
+                                    .format('DD MMMM YYYY HH:MM UTC')
+                                : item[key]}
+                            </Type>
                           </Box>
                         ) : (
                           <Box />

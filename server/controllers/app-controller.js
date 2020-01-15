@@ -18,7 +18,15 @@ const makeAppController = (app) => {
 
   // Home
   AppController.get('/', async (req, res) => {
-    await renderAndCache(req, res, '/');
+    if (req.query.search) {
+      res.redirect(`/search/${req.query.search}`);
+    } else {
+      await renderAndCache(req, res, '/');
+    }
+  });
+  // Search
+  AppController.get('/search/:search', async (req, res) => {
+    await renderAndCache(req, res, '/search');
   });
   // Names
   AppController.get('/names', async (req, res) => {
@@ -47,11 +55,11 @@ const makeAppController = (app) => {
   AppController.get('/nameops/:hash', async (req, res) => {
     await renderAndCache(req, res, '/blocks/single');
   });
-  AppController.get('/block/:hash', async (req, res) => {
+  AppController.get('/block/:id', async (req, res) => {
     await renderAndCache(req, res, '/blocks/single');
   });
   // Transaction: single
-  AppController.get('/tx/:tx', async (req, res) => {
+  AppController.get('/tx/:id', async (req, res) => {
     await renderAndCache(req, res, '/transaction/single');
   });
 

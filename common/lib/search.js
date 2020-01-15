@@ -12,7 +12,7 @@ const search = async (query) => {
   const blockstackID = /^([A-Za-z0-9_]+\.){1,2}[A-Za-z0-9_]+$/;
 
   if (blockstackID.test(query)) {
-    return Router.push(
+    Router.push(
       {
         pathname: '/names/single',
         query: {
@@ -21,17 +21,19 @@ const search = async (query) => {
       },
       `/name/${query}`,
     );
+    return true;
   }
 
   try {
     c32check.c32ToB58(query);
-    return Router.push(
+    Router.push(
       {
         pathname: '/address/stacks',
         query: { address: query },
       },
       `/address/stacks/${query}`,
     );
+    return true;
   } catch (error) {
     // move on, not a stacks address
   }
@@ -42,16 +44,47 @@ const search = async (query) => {
     return null;
   }
 
-  const { pathname, as, ...rest } = searchData;
-  console.log(rest);
+  if (searchData.type === 'tx') {
+    Router.push(
+      {
+        pathname: '/transaction/single',
+        query: {
+          id: searchData.id,
+        },
+      },
+      `/tx/${searchData.id}`,
+    );
+    return true;
+  }
 
-  Router.push(
-    {
-      pathname,
-      query: rest,
-    },
-    as,
-  );
+  if (searchData.type === 'block') {
+    Router.push(
+      {
+        pathname: '/blocks/single',
+        query: {
+          id: searchData.id,
+        },
+      },
+      `/block/${searchData.id}`,
+    );
+    return true;
+  }
+
+  if (searchData.type === 'btc-address') {
+    Router.push(
+      {
+        pathname: '/address/single',
+        query: {
+          address: searchData.id,
+        },
+      },
+      `/address/${searchData.id}`,
+    );
+    return true;
+  }
+
+  console.log(searchData);
+  throw new Error(`Unexpected search result data: ${searchData}`);
 };
 
 export { search };

@@ -11,7 +11,7 @@ import { fetchAddress } from '@common/lib/client/api';
 class AddressSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
     const address = req && req.params ? req.params.address : query.address;
-    const data = query.data || (await fetchAddress(address));
+    const data = await fetchAddress(address);
     return {
       address: {
         value: address,

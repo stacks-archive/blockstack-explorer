@@ -7,18 +7,12 @@ import { Page } from '@components/page';
 
 class TransactionSinglePage extends React.Component {
   static async getInitialProps({ req, query }) {
-    let id = req && req.params ? req.params.tx : query.tx;
+    let id = req && req.params ? req.params.id : query.id;
     if (!id && typeof document !== 'undefined') {
       // eslint-disable-next-line prefer-destructuring
       id = document.location.pathname.split('/')[2];
     }
-    console.log(query);
-    let data;
-    if (query.data) {
-      data = JSON.parse(query.data);
-    } else {
-      data = await fetchTX(id);
-    }
+    const data = await fetchTX(id);
     if (!data || !data.blockheight) {
       throw Error('Unable to find TX with ID', id);
     }

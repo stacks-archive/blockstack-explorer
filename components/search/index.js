@@ -9,7 +9,10 @@ import { Input } from './styled';
 
 const handleSearch = async (event) => {
   if (event.key === 'Enter') {
-    await search(event.target.value);
+    const result = await search(event.target.value);
+    if (!result) {
+      // TODO: display failed search message
+    }
   }
 };
 

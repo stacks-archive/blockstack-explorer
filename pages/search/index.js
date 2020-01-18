@@ -1,65 +1,66 @@
 import React from 'react';
-import Router from 'next/router';
 import { Flex, Box, Type, Button } from 'blockstack-ui';
-import { Card } from '@components/card';
-import { UserCard } from '@containers/cards/user';
-import { NameOperationsList } from '@containers/lists/single-name-operations';
+import { AlertDecagramIcon } from 'mdi-react';
+import Link from 'next/link';
 import { Page } from '@components/page';
-import { search } from '@common/lib/search';
 
-const Empty = (msg) => (
-  <Box>
-    <Type>{msg}</Type>
-  </Box>
+const UnconfirmedTxMsg = () => (
+  <Type maxWidth="500px" lineHeight={1.6} textAlign="center" fontSize={3} display="block" my={2}>
+    This explorer only has visibility into confirmed transactions. Please use a BTC explorer like{' '}
+    <a href="https://www.blockchain.com/explorer" target="blank" rel="noopener noreferrer">
+      blockchain.com
+    </a>{' '}
+    to search for unconfirmed transactions.
+  </Type>
 );
 
 class SearchPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { searchStatus: 'searching' };
-  }
-
-  static async getInitialProps({ req, query }) {
-    const searchQuery = req && req.params ? req.params.search : query.search;
+  static async getInitialProps({ res, req, query, err }) {
+    const searchTerm = req && req.params ? req.params.search : query.search;
+    const statusCode = res && res.statusCode;
     return {
-      searchQuery,
+      ...query,
+      statusCode,
+      err,
+      searchTerm,
     };
   }
 
-  async componentDidMount() {
-    const { searchQuery } = this.props;
-    const result = await search(searchQuery);
-    if (!result) {
-      this.setState({ searchStatus: 'notfound' });
-    } else {
-      this.setState({ searchStatus: 'redirecting' });
-    }
-  }
-
   render() {
-    const { searchStatus } = this.state;
-    if (searchStatus === 'searching') {
-      return (
-        <Page>
-          <Page.Main>{Empty('Searching...')}</Page.Main>
-        </Page>
-      );
+    const { msg, isHashSearch, statusCode } = this.props;
+    const notFound = statusCode === 404;
+    let errorContent;
+    if (notFound) {
+      if (msg) {
+        errorContent = msg;
+      } else {
+        errorContent = 'No results found.';
+      }
+    } else {
+      errorContent = 'Internal server error while searching.';
     }
-    if (searchStatus === 'redirecting') {
-      return (
-        <Page>
-          <Page.Main>{Empty('Loading...')}</Page.Main>
-        </Page>
-      );
-    }
-    if (searchStatus === 'notfound') {
-      return (
-        <Page>
-          <Page.Main>{Empty('No results found')}</Page.Main>
-        </Page>
-      );
-    }
-    return Empty('Error');
+    return (
+      <Page>
+        <Page.Main>
+          <Flex bg="blue.light" flexGrow={1} alignItems="center" justifyContent="center">
+            <Flex color="blue.neutral" flexDirection="column" justifyContent="center" alignItems="center" my={6}>
+              <Flex color="blue.mid" alignItems="center" justifyContent="center" mx="auto">
+                <AlertDecagramIcon size={120} />
+              </Flex>
+              <Type maxWidth="250px" textAlign="center" fontSize={7} display="block" my={3}>
+                {errorContent}
+              </Type>
+              {isHashSearch ? <UnconfirmedTxMsg /> : <></>}
+              <Box mt={5}>
+                <Link href="/" passHref>
+                  <Button is="a">Back Home</Button>
+                </Link>
+              </Box>
+            </Flex>
+          </Flex>
+        </Page.Main>
+      </Page>
+    );
   }
 }
 

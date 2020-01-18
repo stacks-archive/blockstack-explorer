@@ -1,5 +1,9 @@
 const express = require('express');
+const { handleSearchQuery } = require('./search-router');
 
+/**
+ * @param {import('next-server').Server} app - next.js server
+ */
 const makeAppController = (app) => {
   const renderAndCache = async (req, res, pagePath) => {
     try {
@@ -19,7 +23,7 @@ const makeAppController = (app) => {
   // Home
   AppController.get('/', async (req, res) => {
     if (req.query.search) {
-      res.redirect(`/search/${req.query.search}`);
+      handleSearchQuery(app, req, res);
     } else {
       await renderAndCache(req, res, '/');
     }
@@ -59,7 +63,7 @@ const makeAppController = (app) => {
     await renderAndCache(req, res, '/blocks/single');
   });
   // Transaction: single
-  AppController.get('/tx/:id', async (req, res) => {
+  AppController.get('/tx/:tx', async (req, res) => {
     await renderAndCache(req, res, '/transaction/single');
   });
 

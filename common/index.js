@@ -1,6 +1,7 @@
 import fetch from 'cross-fetch';
 import idx from 'idx';
 import { formatValue } from '@common/lib/units';
+import { makeUrl } from './api-endpoint';
 
 /**
  * Simple get json fn
@@ -13,15 +14,6 @@ const getJSON = async (url) => {
   } catch (e) {
     throw Error(e);
   }
-};
-
-/**
- * Prepend api calls with the API_URL or fallback
- * @param {string} path - the path you want to append to the api url
- */
-const makeUrl = (path) => {
-  const url = process.env.API_URL || 'https://explorer-api.staging.blockstack.xyz';
-  return url + path;
 };
 
 /**

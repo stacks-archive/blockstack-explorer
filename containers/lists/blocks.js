@@ -18,7 +18,7 @@ const Row = ({ keys, ...data }) => (
     href={{
       pathname: `/blocks/single`,
       query: {
-        hash: data.height,
+        id: data.height,
       },
     }}
     passHref

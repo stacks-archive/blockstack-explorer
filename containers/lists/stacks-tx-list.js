@@ -17,7 +17,7 @@ const TXLink = ({ txid }) => (
         passHref
         href={{
           pathName: '/transaction/single',
-          query: { id: txid },
+          query: { tx: txid },
         }}
         as={`/tx/${txid}`}
       >
@@ -89,7 +89,7 @@ const StacksTxList = () => (
                             passHref
                             href={{
                               pathName: '/blocks/single',
-                              query: { hash: historyEntry.block_id },
+                              query: { id: historyEntry.block_id },
                             }}
                             as={`/block/${historyEntry.block_id}`}
                           >

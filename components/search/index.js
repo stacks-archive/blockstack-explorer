@@ -1,18 +1,17 @@
 import React from 'react';
 import { SearchIcon, CloseCircleIcon } from 'mdi-react';
 import { Flex, Box } from 'blockstack-ui';
-import { search } from '@common/lib/search';
 import Router from 'next/router';
 import { State } from 'react-powerplug';
-
+import NProgress from 'nprogress';
 import { Input } from './styled';
 
 const handleSearch = async (event) => {
   if (event.key === 'Enter') {
-    const result = await search(event.target.value);
-    if (!result) {
-      // TODO: display failed search message
-    }
+    event.preventDefault();
+    NProgress.start();
+    const searchPath = `/?search=${encodeURIComponent(event.target.value)}`;
+    window.location = searchPath;
   }
 };
 

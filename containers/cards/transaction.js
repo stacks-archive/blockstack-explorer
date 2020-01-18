@@ -65,7 +65,7 @@ const AutomatedSection = ({ tx, ...rest }) => (
         href: {
           pathname: '/blocks/single',
           query: {
-            hash: tx.blockheight,
+            id: tx.blockheight,
           },
         },
         as: `/block/${tx.blockheight}`,

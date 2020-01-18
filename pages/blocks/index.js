@@ -25,7 +25,7 @@ const keys = [
   },
   {
     label: 'Name Operations',
-    value: (data) => (data.nameOperations && data.nameOperations.length) || '0',
+    value: (data) => data.totalNameOperations || '0',
     key: 'nameOperations',
     display: ['none', 'block'],
   },
@@ -124,10 +124,11 @@ class BlocksPage extends React.Component {
     const date = req && req.query ? req.query.date : query.date;
     console.log('date', date);
     console.log(query);
-    const { blocks } = await fetchBlocksV2(date);
+    const { blocks, availableCount } = await fetchBlocksV2(date);
     const today = moment().format('YYYY-MM-DD');
     return {
       blocks,
+      availableCount,
       date,
       today,
       meta: {
@@ -137,6 +138,7 @@ class BlocksPage extends React.Component {
   }
 
   state = {
+    availableCount: this.props.availableCount,
     showAll: false,
     loading: false,
     date: this.props.date ? this.props.date : this.props.today,
@@ -153,9 +155,10 @@ class BlocksPage extends React.Component {
       setTimeout(() => {
         NProgress.start();
       }, 0);
-      const { blocks } = await fetchBlocksV2(date);
+      const { blocks, availableCount } = await fetchBlocksV2(date);
       this.setState((state) => ({
         ...state,
+        availableCount,
         pages: {
           ...state.pages,
           [date]: state.pages[date] || 0,
@@ -183,10 +186,11 @@ class BlocksPage extends React.Component {
     const { date, pages, data } = this.state;
     NProgress.start();
     const page = pages[date];
-    const { blocks } = await fetchBlocksV2(date, page + 1);
+    const { blocks, availableCount } = await fetchBlocksV2(date, page + 1);
     const existingData = data[date];
     this.setState((state) => ({
       ...state,
+      availableCount,
       pages: {
         ...state.pages,
         [date]: page + 1,
@@ -208,20 +212,21 @@ class BlocksPage extends React.Component {
         fetchBlocksForDate={this.fetchBlocksForDate}
       />
     );
+    const blocks = (this.state.date && this.state.data[this.state.date]) || this.props.blocks;
     return (
       <Flex p={5} flexDirection="column" width={1}>
         <Head title={`Blocks for ${moment(this.state.date).format('dddd, MMMM Do YYYY')}`} />
         <Card title={`Blocks for ${moment(this.state.date).format('dddd, MMMM Do YYYY')}`} actions={dateActions}>
-          <BlocksList
-            blocks={(this.state.date && this.state.data[this.state.date]) || this.props.blocks}
-            keys={keys}
-            showAll
-          />
+          <BlocksList blocks={blocks} keys={keys} showAll />
         </Card>
         <Flex py={4} justifyContent="center">
-          <Button onClick={() => this.fetchNextPage()} width={0.9} id="view-more-blocks">
-            View More Blocks
-          </Button>
+          {blocks.length < this.state.availableCount ? (
+            <Button onClick={() => this.fetchNextPage()} width={0.9} id="view-more-blocks">
+              View More Blocks
+            </Button>
+          ) : (
+            <></>
+          )}
         </Flex>
       </Flex>
     );

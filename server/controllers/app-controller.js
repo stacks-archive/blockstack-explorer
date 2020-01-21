@@ -23,7 +23,7 @@ const makeAppController = (app) => {
   // Home
   AppController.get('/', async (req, res) => {
     if (req.query.search) {
-      handleSearchQuery(app, req, res);
+      await handleSearchQuery(app, req, res);
     } else {
       await renderAndCache(req, res, '/');
     }

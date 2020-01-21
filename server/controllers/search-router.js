@@ -1,9 +1,13 @@
 const fetch = require('cross-fetch');
-const apiEndpoint = require('../../common/api-endpoint');
+
+const makeUrl = (path) => {
+  const url = process.env.API_URL || 'https://explorer-api.staging.blockstack.xyz';
+  return url + path;
+};
 
 // TODO: all this detection logic should probably be moved to the API search endpoint.
 async function resolveQuery(query) {
-  const searchUrl = apiEndpoint.makeUrl(`/api/v2/search/${query}`);
+  const searchUrl = makeUrl(`/api/v2/search/${query}`);
   const fetchResult = await fetch(searchUrl);
   const result = await fetchResult.json();
   if (!result || !result.found) {

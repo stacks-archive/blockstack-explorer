@@ -46,20 +46,9 @@ const NameOperationsList = ({ items, ...rest }) => (
                     pb={4}
                   >
                     <Type fontSize={1}>Transaction Details</Type>
-                    <Link
-                      href={{
-                        pathname: '/transaction/single',
-                        query: {
-                          tx: txid,
-                        },
-                      }}
-                      passHref
-                      as={`/tx/${txid}`}
-                    >
-                      <Button bg="white" is="a" size="small">
-                        View Full Transaction
-                      </Button>
-                    </Link>
+                    <Button bg="white" is="a" size="small" href={`/tx/${txid}`}>
+                      View Full Transaction
+                    </Button>
                   </Flex>
                   <Box pt={4}>
                     {nameOpKeys.map((key) => (

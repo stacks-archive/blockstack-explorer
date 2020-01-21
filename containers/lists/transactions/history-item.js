@@ -68,18 +68,9 @@ export default ({ transaction }) => (
                     </Box>
                     <Box maxWidth="100%" overflow="auto">
                       <Type fontFamily="brand">
-                        <Link
-                          passHref
-                          href={{
-                            pathName: '/address/stacks',
-                            query: { address: transaction.senderSTX },
-                          }}
-                          as={`/address/stacks/${transaction.senderSTX}`}
-                        >
-                          <Type fontFamily="brand" is="a">
-                            {transaction.senderSTX}
-                          </Type>
-                        </Link>
+                        <Type fontFamily="brand" is="a" href={`/address/stacks/${transaction.senderSTX}`}>
+                          {transaction.senderSTX}
+                        </Type>
                       </Type>
                     </Box>
                   </Flex>
@@ -91,18 +82,9 @@ export default ({ transaction }) => (
                     </Box>
                     <Box maxWidth="100%" overflow="auto">
                       <Type fontFamily="brand">
-                        <Link
-                          passHref
-                          href={{
-                            pathName: '/address/stacks',
-                            query: { address: transaction.recipientSTX },
-                          }}
-                          as={`/address/stacks/${transaction.recipientSTX}`}
-                        >
-                          <Type fontFamily="brand" is="a">
-                            {transaction.recipientSTX}
-                          </Type>
-                        </Link>
+                        <Type fontFamily="brand" is="a" href={`/address/stacks/${transaction.recipientSTX}`}>
+                          {transaction.recipientSTX}
+                        </Type>
                       </Type>
                     </Box>
                   </Flex>
@@ -114,18 +96,9 @@ export default ({ transaction }) => (
                     </Box>
                     <Box maxWidth="100%" overflow="auto">
                       <Type fontFamily="brand">
-                        <Link
-                          passHref
-                          href={{
-                            pathName: '/names/single',
-                            query: { name: transaction.history_id },
-                          }}
-                          as={`/name/${transaction.history_id}`}
-                        >
-                          <Type fontFamily="brand" is="a">
-                            View Profile
-                          </Type>
-                        </Link>
+                        <Type fontFamily="brand" is="a" href={`/name/${transaction.history_id}`}>
+                          View Profile
+                        </Type>
                       </Type>
                     </Box>
                   </Flex>
@@ -138,18 +111,9 @@ export default ({ transaction }) => (
                     <Box maxWidth="100%" overflow="auto">
                       {transaction.subdomains.map((subdomain) => (
                         <Type fontFamily="brand" display="block">
-                          <Link
-                            passHref
-                            href={{
-                              pathName: '/names/single',
-                              query: { name: subdomain },
-                            }}
-                            as={`/name/${subdomain}`}
-                          >
-                            <Type fontFamily="brand" is="a">
-                              {subdomain}
-                            </Type>
-                          </Link>
+                          <Type fontFamily="brand" is="a" href={`/name/${subdomain}`}>
+                            {subdomain}
+                          </Type>
                         </Type>
                       ))}
                     </Box>

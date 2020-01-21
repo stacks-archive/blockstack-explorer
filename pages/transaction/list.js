@@ -203,18 +203,9 @@ class TransactionsPage extends React.Component {
                                 </Box>
                                 <Box maxWidth="100%" overflow="auto">
                                   <Type fontFamily="brand">
-                                    <Link
-                                      passHref
-                                      href={{
-                                        pathName: '/address/stacks',
-                                        query: { address: transaction.senderSTX },
-                                      }}
-                                      as={`/address/stacks/${transaction.senderSTX}`}
-                                    >
-                                      <Type fontFamily="brand" is="a">
-                                        {transaction.senderSTX}
-                                      </Type>
-                                    </Link>
+                                    <Type fontFamily="brand" is="a" href={`/address/stacks/${transaction.senderSTX}`}>
+                                      {transaction.senderSTX}
+                                    </Type>
                                   </Type>
                                 </Box>
                               </Flex>
@@ -224,18 +215,9 @@ class TransactionsPage extends React.Component {
                                 </Box>
                                 <Box maxWidth="100%" overflow="auto">
                                   <Type fontFamily="brand">
-                                    <Link
-                                      passHref
-                                      href={{
-                                        pathName: '/address/stacks',
-                                        query: { address: transaction.recipientSTX },
-                                      }}
-                                      as={`/address/stacks/${transaction.recipientSTX}`}
-                                    >
-                                      <Type fontFamily="brand" is="a">
-                                        {transaction.recipientSTX}
-                                      </Type>
-                                    </Link>
+                                    <Type fontFamily="brand" is="a" href={`/address/stacks/${transaction.recipientSTX}`}>
+                                      {transaction.recipientSTX}
+                                    </Type>
                                   </Type>
                                 </Box>
                               </Flex>

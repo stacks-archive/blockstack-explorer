@@ -35,31 +35,15 @@ const keys = [
  * Pass an object and set of keys and this will render subsections for each
  */
 const generateAutomaticSections = (data, arr = keys, params) => {
-  const LinkWrapper = ({ query, ...rest }) => (
-    <Link
-      href={{
-        pathname: `/${params.path}/single`,
-        query: {
-          [params.query]: query,
-        },
-      }}
-      as={`/${params.path.substring(0, params.path.indexOf('s'))}/${query}`}
-      prefetch
-      passHref
-      {...rest}
-    />
-  );
   return arr.map(
     (key, i) =>
       data[key] ? (
         <Section.Subsection label={key} key={i}>
           <Box maxWidth="100%" overflow="auto">
             {params ? (
-              <LinkWrapper query={data[key]}>
-                <Type is="a" fontFamily="brand">
-                  {data[key]}
-                </Type>
-              </LinkWrapper>
+              <Type is="a" fontFamily="brand" href={`/${params.path.substring(0, params.path.indexOf('s'))}/${data[key]}`}>
+                {data[key]}
+              </Type>
             ) : (
               <Type fontFamily="brand">{data[key]}</Type>
             )}
@@ -118,21 +102,9 @@ const ProfileSection = ({ id, ownerAddress, ...rest }) => (
       <Type>{id}</Type>
     </Section.Subsection>
     <Section.Subsection label="Owner Address">
-      <Link
-        href={{
-          pathname: '/address/single',
-          query: {
-            address: ownerAddress,
-          },
-        }}
-        as={`/address/${ownerAddress}`}
-        prefetch
-        passHref
-      >
-        <Type is="a" fontFamily="brand">
-          {ownerAddress}
-        </Type>
-      </Link>
+      <Type is="a" href={`/address/${ownerAddress}`} fontFamily="brand">
+        {ownerAddress}
+      </Type>
     </Section.Subsection>
   </Section>
 );

@@ -32,16 +32,15 @@ const Navigation = memo(
   withRouter(({ router, ...rest }) => (
     <Flex {...rest}>
       {items.map(({ label, path, active, id, ...linkProps }, i) => (
-        <Link key={i} passHref href={path}>
-          <LinkComponent
-            id={id}
-            opacity={router.pathname.includes(active) ? 1 : 0.5}
-            is="a"
-            style={{ textDecoration: 'none' }}
-          >
-            {label}
-          </LinkComponent>
-        </Link>
+        <LinkComponent
+          href={path}
+          id={id}
+          opacity={router.pathname.includes(active) ? 1 : 0.5}
+          is="a"
+          style={{ textDecoration: 'none' }}
+        >
+          {label}
+        </LinkComponent>
       ))}
     </Flex>
   )),

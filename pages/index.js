@@ -12,11 +12,9 @@ import { formatLargeNumber } from '@common/lib/units';
 import { Line as LineChart } from 'react-chartjs-2';
 
 const Actions = () => (
-  <Link passHref href="/names">
-    <Type opacity={0.5} is="a" color="blue.dark">
-      See All
-    </Type>
-  </Link>
+  <Type opacity={0.5} is="a" href="/names" color="blue.dark">
+    See All
+  </Type>
 );
 
 class Home extends React.Component {
@@ -55,11 +53,9 @@ class Home extends React.Component {
         <Card width={1} mb={[5, 5, 0]} title="Latest Names Registered" actions={<Actions />} mr={[0, 0, 5]}>
           <NamesList limit={100} />
           <Flex py={4} justifyContent="center">
-            <Link passHref href="/names">
-              <Button is="a" width={0.95}>
-                View All Names
-              </Button>
-            </Link>
+            <Button is="a" href="/names" width={0.95}>
+              View All Names
+            </Button>
           </Flex>
         </Card>
         <Box top="113px" position={['static', 'sticky']} width={[1, 1, 1, '700px']}>

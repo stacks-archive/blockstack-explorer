@@ -193,7 +193,7 @@ class TransactionsPage extends React.Component {
                                 </Box>
                                 <Box maxWidth="100%" overflow="auto">
                                   <Type fontFamily="brand">
-                                    {moment(transaction.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                                    {moment.unix(transaction.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
                                   </Type>
                                 </Box>
                               </Flex>

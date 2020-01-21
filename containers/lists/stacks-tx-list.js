@@ -6,6 +6,7 @@ import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import { Toggle } from 'react-powerplug';
 import Link from 'next/link';
 import { txTitle } from '@common';
+import moment from 'moment';
 
 const TXLink = ({ txid }) => (
   <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
@@ -76,7 +77,9 @@ const StacksTxList = () => (
                           Timestamp
                         </Box>
                         <Box maxWidth="100%" overflow="auto">
-                          <Type fontFamily="brand">{new Date(historyEntry.blockTime).toString()}</Type>
+                          <Type fontFamily="brand">
+                            {moment.unix(historyEntry.blockTime).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                          </Type>
                         </Box>
                       </Flex>
                       {operation !== 'UNLOCK' && <TXLink txid={txid} />}

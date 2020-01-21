@@ -58,7 +58,9 @@ const NamesList = ({ names, nextPage }) => (
                         Timestamp
                       </Box>
                       <Box maxWidth="100%" overflow="auto">
-                        <Type fontFamily="brand">{moment(name.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}</Type>
+                        <Type fontFamily="brand">
+                          {moment.unix(name.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                        </Type>
                       </Box>
                     </Flex>
                     <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>

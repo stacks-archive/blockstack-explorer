@@ -1,61 +1,32 @@
 const fetch = require('cross-fetch');
-const serverUtil = require('../util');
 const apiEndpoint = require('../../common/api-endpoint');
 
 // TODO: all this detection logic should probably be moved to the API search endpoint.
 async function resolveQuery(query) {
-  // Fast test if query can only be a possible user ID.
-  const blockstackID = serverUtil.isValidBlockstackName(query);
-  if (blockstackID) {
-    return { page: `/name/${blockstackID}` };
+  const searchUrl = apiEndpoint.makeUrl(`/api/v2/search/${query}`);
+  const fetchResult = await fetch(searchUrl);
+  const result = await fetchResult.json();
+  if (!result || !result.found) {
+    return { isHashSearch: result.isHash };
   }
 
-  // Fast test if query can only be a STX address.
-  const stxAddress = serverUtil.isValidStxAddress(query);
-  if (stxAddress) {
-    return { page: `/address/stacks/${stxAddress}` };
+  if (result.type === 'name') {
+    return { page: `/name/${result.name}` };
   }
-
-  // Fast test if query can only be a BTC address.
-  const btcAddress = serverUtil.isValidBtcAddress(query);
-  if (btcAddress) {
-    return { page: `/address/${btcAddress}` };
+  if (result.type === 'stacks-address') {
+    return { page: `/address/stacks/${result.address}` };
   }
-
-  // Fast test if the query can be a value hex hash string.
-  const hash = serverUtil.isValidSha256Hash(query);
-  if (hash) {
-    // Determine what the hash corresponds to -- currently, search allows looking
-    // up a btc block, btc tx, or Stacks tx by hash.
-    const searchUrl = apiEndpoint.makeUrl(`/api/v2/search/hash/${hash}`);
-    const fetchResult = await fetch(searchUrl);
-    const result = await fetchResult.json();
-    if (!result || !result.found) {
-      return { isHashSearch: true };
-    }
-    // TODO: [stacks-v2] support for searching many more object types by hash
-    switch (result.type) {
-      case 'btc_block':
-        return { page: `/block/${result.hash}` };
-      case 'btc_tx':
-        return { page: `/tx/${result.hash}` };
-      default:
-        throw new Error('Unexpected result from search by hash');
-    }
+  if (result.type === 'btc-address') {
+    return { page: `/address/${result.address}` };
   }
-
-  // TODO: [stacks-v2] support for searching Stacks blocks by height
-  const blockHeight = serverUtil.isValidBtcBlockHeight(query);
-  if (blockHeight) {
-    const searchUrl = apiEndpoint.makeUrl(`/api/v2/search/hash-from-height/${blockHeight}`);
-    const fetchResult = await fetch(searchUrl);
-    const result = await fetchResult.json();
-    if (!result || !result.found) {
-      return null;
-    }
+  if (result.type === 'btc-block') {
     return { page: `/block/${result.hash}` };
   }
-  return null;
+  if (result.type === 'btc-tx') {
+    return { page: `/tx/${result.hash}` };
+  }
+
+  throw new Error(`Unexpected result from search: ${JSON.stringify(result)}`);
 }
 
 /**

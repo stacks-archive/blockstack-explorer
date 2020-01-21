@@ -8,7 +8,7 @@ const Logo = ({ ...rest }) => (
   <Hover>
     {({ hovered, bind }) => (
       <Box style={{ flexShrink: 0 }} pl={[0, 0, 5]} py={[5]} {...rest}>
-        <Link href="/" prefetch>
+        <Link href="/">
           <Box is="a" style={{ textDecoration: 'none' }} display="inline-flex" alignItems="center" href="/" {...bind}>
             <Box transition={1} opacity={hovered ? 1 : 0.5} size={36} mr={[3, 3, 0, 3]} color={'white'}>
               <BlockstackOutlined />

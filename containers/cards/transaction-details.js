@@ -66,7 +66,6 @@ const UTXOHref = (currency, address) => {
 const UTXOItem = ({ label, address, value, to, spentTxId, currency = 'BTC', ...rest }) => (
   <List.Item
     {...UTXOHref(currency, address)}
-    prefetch={address ? true : undefined}
     passHref={address ? true : undefined}
     flexDirection={['column', 'row']}
     minHeight="72px"

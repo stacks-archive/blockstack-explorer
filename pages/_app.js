@@ -1,4 +1,4 @@
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import React from 'react';
 import Router from 'next/router';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
@@ -182,18 +182,16 @@ class MyApp extends App {
     const { meta } = pageProps;
 
     return (
-      <Container>
-        <>
-          <Global />
-          <Provider value={context}>
-            <ThemeProvider theme={{ ...theme, transitions: ['unset', '.34s all cubic-bezier(.19,1,.22,1)'] }}>
-              <Layout meta={meta}>
-                <Component {...pageProps} />
-              </Layout>
-            </ThemeProvider>
-          </Provider>
-        </>
-      </Container>
+      <>
+        <Global />
+        <Provider value={context}>
+          <ThemeProvider theme={{ ...theme, transitions: ['unset', '.34s all cubic-bezier(.19,1,.22,1)'] }}>
+            <Layout meta={meta}>
+              <Component {...pageProps} />
+            </Layout>
+          </ThemeProvider>
+        </Provider>
+      </>
     );
   }
 }

@@ -20,8 +20,6 @@ module.exports = {
           '@styled': './styled',
         },
       },
-    ],
-    '@babel/plugin-transform-regenerator',
-    '@babel/plugin-transform-runtime',
+    ]
   ],
 };

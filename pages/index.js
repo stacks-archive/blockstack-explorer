@@ -12,7 +12,7 @@ import { formatLargeNumber } from '@common/lib/units';
 import { Line as LineChart } from 'react-chartjs-2';
 
 const Actions = () => (
-  <Link passHref prefetch href="/names">
+  <Link passHref href="/names">
     <Type opacity={0.5} is="a" color="blue.dark">
       See All
     </Type>

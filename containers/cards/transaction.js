@@ -20,7 +20,6 @@ const generateAutomaticSections = (data, arr, params) => {
         },
       }}
       as={`/${params.path}/${query}`}
-      prefetch
       passHref
       {...rest}
     />

@@ -65,7 +65,7 @@ const StacksUnlockingChart = ({ ...rest }) => (
             }
 
             const data = {
-              labels: Object.keys(cumulativeVestedAtBlocks).map((t) => parseInt(t, 10)),
+              labels: Object.keys(cumulativeVestedAtBlocks).map((t) => parseInt(t, 10) * 1000),
               datasets: [
                 {
                   borderColor: 'rgba(0,255,255,1)',

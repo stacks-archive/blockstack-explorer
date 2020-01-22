@@ -66,7 +66,6 @@ const UTXOHref = (currency, address) => {
 const UTXOItem = ({ label, address, value, to, spentTxId, currency = 'BTC', ...rest }) => (
   <List.Item
     {...UTXOHref(currency, address)}
-    passHref={address ? true : undefined}
     flexDirection={['column', 'row']}
     minHeight="72px"
     noLink={!address}
@@ -163,8 +162,9 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, historyD
           <>
             {vin &&
               vin.length &&
-              vin.map(({ addr, sequence, value }) => (
+              vin.map(({ addr, sequence, value, txid }) => (
                 <UTXOItem
+                  key={txid}
                   length={vin.length}
                   spentTxId
                   address={addr}

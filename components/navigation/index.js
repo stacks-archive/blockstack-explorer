@@ -35,6 +35,7 @@ const Navigation = memo(
         <LinkComponent
           href={path}
           id={id}
+          key={id}
           opacity={router.pathname.includes(active) ? 1 : 0.5}
           is="a"
           style={{ textDecoration: 'none' }}

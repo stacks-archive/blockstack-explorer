@@ -90,7 +90,6 @@ const Search = ({ ...rest }) => (
             onChange={handleChange}
             onKeyUp={handleSearch}
             name="search"
-            id="explorer-search-input"
           />
         </Box>
       );

@@ -7,8 +7,7 @@ const { handleSearchQuery } = require('./search-router');
 const makeAppController = (app) => {
   const renderAndCache = async (req, res, pagePath) => {
     try {
-      const html = await app.renderToHTML(req, res, pagePath, {});
-      app.sendHTML(req, res, html, req.method);
+      await app.render(req, res, pagePath, {});
     } catch (err) {
       app.renderError(err, req, res, pagePath);
     }

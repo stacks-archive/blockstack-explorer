@@ -5,7 +5,9 @@ import Link from 'next/link';
 
 export default class Error extends React.Component {
   static getInitialProps({ res, err }) {
-    console.error(err || 'Error rendered without an error object??');
+    if (err) {
+      console.error(err);
+    }
     const getStatusCode = () => {
       if (res) return res.statusCode;
       if (err) return err.statusCode;

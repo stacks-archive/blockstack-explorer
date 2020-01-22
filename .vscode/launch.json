@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "dev",
             "skipFiles": [
                 "<node_internals>/**"
             ],
@@ -15,6 +15,18 @@
             "env": {
                 "NODE_ENV": "development"
             }
-        }
+        },
+        {
+          "type": "node",
+          "request": "launch",
+          "name": "prod",
+          "skipFiles": [
+              "<node_internals>/**"
+          ],
+          "program": "${workspaceFolder}/server/index.js",
+          "env": {
+              "NODE_ENV": "production"
+          }
+      }
     ]
 }

@@ -19,13 +19,19 @@ const makeAppController = (app) => {
    * Routes
    */
 
-  // Home
-  AppController.get('/', async (req, res) => {
+  // Search query
+  // Note: express cannot statically route based on query strings so middleware must be used.
+  AppController.use(async (req, res, next) => {
     if (req.query.search) {
       await handleSearchQuery(app, req, res);
     } else {
-      await renderAndCache(req, res, '/');
+      next();
     }
+  });
+
+  // Home
+  AppController.get('/', async (req, res) => {
+    await renderAndCache(req, res, '/');
   });
   // Search
   AppController.get('/search/:search', async (req, res) => {

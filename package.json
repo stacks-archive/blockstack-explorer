@@ -16,7 +16,7 @@
     "@promster/express": "^3.4.1",
     "@promster/server": "^3.4.1",
     "@zeit/next-css": "^1.0.1",
-    "babel-plugin-styled-components": "^1.8.0",
+    "babel-plugin-styled-components": "^1.10.6",
     "bignumber.js": "^9.0.0",
     "blockstack-ui": "^0.0.40",
     "c32check": "^1.0.1",

@@ -10,18 +10,36 @@ const GoogleCode = `
 `;
 
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
+  static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
-    const page = renderPage((App) => (props) => sheet.collectStyles(<App {...props} />));
-    const styleTags = sheet.getStyleElement();
-    return { ...page, styleTags };
+    const originalRenderPage = ctx.renderPage;
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+        });
+
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {
     return (
       <Html lang="en">
         <Head>
-          {this.props.styleTags}
+          {this.props.styles}
           <link rel="apple-touch-icon" sizes="57x57" href="/static/icons/apple-icon-57x57.png" />
           <link rel="apple-touch-icon" sizes="60x60" href="/static/icons/apple-icon-60x60.png" />
           <link rel="apple-touch-icon" sizes="72x72" href="/static/icons/apple-icon-72x72.png" />

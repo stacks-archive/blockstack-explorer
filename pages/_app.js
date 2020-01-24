@@ -160,32 +160,14 @@ ${fonts}
 `;
 
 class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
-
-    const props = {
-      ...pageProps,
-    };
-
-    return {
-      pageProps: props,
-      context: props,
-    };
-  }
-
   render() {
-    const { Component, pageProps, context } = this.props;
+    const { Component, pageProps } = this.props;
     const { meta } = pageProps;
-
     return (
       <>
         <Global />
-        <Provider value={context}>
-          <ThemeProvider theme={{ ...theme, transitions: ['unset', '.34s all cubic-bezier(.19,1,.22,1)'] }}>
+        <Provider value={pageProps}>
+          <ThemeProvider theme={theme}>
             <Layout meta={meta}>
               <Component {...pageProps} />
             </Layout>

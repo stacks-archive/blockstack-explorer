@@ -64,8 +64,6 @@ async function handleSearchQuery(app, req, res) {
     const result = await resolveQuery(searchTerm);
     if (!result || !result.page) {
       res.statusCode = 404;
-      // const html = await app.renderToHTML(req, res, '/search', { message: result.message });
-      // app.sendHTML(req, res, html, req.method);
       await app.render(req, res, '/search', { ...result });
     } else {
       res.redirect(result.page);

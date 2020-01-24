@@ -18,7 +18,6 @@
     "@zeit/next-css": "^1.0.1",
     "babel-plugin-styled-components": "^1.8.0",
     "bignumber.js": "^9.0.0",
-    "bitcoinjs-lib": "^5.1.7",
     "blockstack-ui": "^0.0.40",
     "c32check": "^1.0.1",
     "chart.js": "^2.7.3",

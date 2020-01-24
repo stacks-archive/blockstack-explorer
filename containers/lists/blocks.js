@@ -15,7 +15,11 @@ const renderRowData = (data, keys) =>
 
 const Row = ({ keys, ...data }) => (
   <List.Item
-    href={`/block/${data.height}`}
+    href={{
+      pathname: '/blocks/single',
+      query: { id: data.height },
+    }}
+    as={`/block/${data.height}`}
     is="a"
     borderBottom={1}
     fontSize="12px"

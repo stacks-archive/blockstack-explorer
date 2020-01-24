@@ -93,7 +93,7 @@ const NameOperationsList = ({ items, ...rest }) => (
                           {item.subdomains.map((subdomain) => (
                             <Link
                               href={{
-                                pathName: '/names/single',
+                                pathname: '/names/single',
                                 query: { name: subdomain.fully_qualified_subdomain },
                               }}
                               as={`/name/${subdomain.fully_qualified_subdomain}`}

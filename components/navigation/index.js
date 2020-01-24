@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import Link from 'next/link';
-import { Flex, Inline } from 'blockstack-ui';
+import { Flex, Inline, Type } from 'blockstack-ui';
 import { withRouter } from 'next/router';
 
 import sys from 'system-components';
@@ -51,14 +51,16 @@ const Navigation = memo(
     <Flex {...rest}>
       {items.map(({ label, as, href, active, id, ...linkProps }, i) => (
         <Link key={id} href={href} as={as} passHref prefetch={false}>
-          <LinkComponent
-            id={id}
-            opacity={router.pathname.includes(active) ? 1 : 0.5}
-            is="a"
-            style={{ textDecoration: 'none' }}
-          >
-            {label}
-          </LinkComponent>
+          <Type is="a">
+            <LinkComponent
+              id={id}
+              opacity={router.pathname.includes(active) ? 1 : 0.5}
+              is="span"
+              style={{ textDecoration: 'none' }}
+            >
+              {label}
+            </LinkComponent>
+          </Type>
         </Link>
       ))}
     </Flex>

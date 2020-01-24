@@ -205,7 +205,7 @@ class TransactionsPage extends React.Component {
                                   <Type fontFamily="brand">
                                     <Link
                                       href={{
-                                        pathName: '/address/stacks',
+                                        pathname: '/address/stacks',
                                         query: { address: transaction.senderSTX },
                                       }}
                                       as={`/address/stacks/${transaction.senderSTX}`}
@@ -227,7 +227,7 @@ class TransactionsPage extends React.Component {
                                   <Type fontFamily="brand">
                                     <Link
                                       href={{
-                                        pathName: '/address/stacks',
+                                        pathname: '/address/stacks',
                                         query: { address: transaction.recipientSTX },
                                       }}
                                       as={`/address/stacks/${transaction.recipientSTX}`}

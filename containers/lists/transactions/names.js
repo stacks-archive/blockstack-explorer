@@ -40,7 +40,7 @@ const NamesList = ({ names, nextPage }) => (
                         <Type fontFamily="brand">
                           <Link
                             href={{
-                              pathName: '/names/single',
+                              pathname: '/names/single',
                               query: { name: name.name },
                             }}
                             as={`/name/${name.name}`}

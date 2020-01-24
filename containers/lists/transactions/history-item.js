@@ -70,7 +70,7 @@ export default ({ transaction }) => (
                       <Type fontFamily="brand">
                         <Link
                           href={{
-                            pathName: '/address/stacks',
+                            pathname: '/address/stacks',
                             query: { address: transaction.senderSTX },
                           }}
                           as={`/address/stacks/${transaction.senderSTX}`}
@@ -94,7 +94,7 @@ export default ({ transaction }) => (
                       <Type fontFamily="brand">
                         <Link
                           href={{
-                            pathName: '/address/stacks',
+                            pathname: '/address/stacks',
                             query: { address: transaction.recipientSTX },
                           }}
                           as={`/address/stacks/${transaction.recipientSTX}`}
@@ -118,7 +118,7 @@ export default ({ transaction }) => (
                       <Type fontFamily="brand">
                         <Link
                           href={{
-                            pathName: '/names/single',
+                            pathname: '/names/single',
                             query: { name: transaction.history_id },
                           }}
                           as={`/name/${transaction.history_id}`}
@@ -143,7 +143,7 @@ export default ({ transaction }) => (
                         <Type fontFamily="brand" display="block">
                           <Link
                             href={{
-                              pathName: '/names/single',
+                              pathname: '/names/single',
                               query: { name: subdomain },
                             }}
                             as={`/name/${subdomain}`}

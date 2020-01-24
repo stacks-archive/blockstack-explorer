@@ -93,8 +93,8 @@ const StacksTxList = () => (
                         <Box maxWidth="100%" overflow="auto">
                           <Link
                             href={{
-                              pathName: '/blocks/single',
-                              query: { hash: historyEntry.block_id },
+                              pathname: '/blocks/single',
+                              query: { id: historyEntry.block_id },
                             }}
                             as={`/block/${historyEntry.block_id}`}
                             passHref
@@ -114,7 +114,7 @@ const StacksTxList = () => (
                           <Box maxWidth="100%" overflow="auto">
                             <Link
                               href={{
-                                pathName: '/address/stacks',
+                                pathname: '/address/stacks',
                                 query: { address: historyEntry.sender },
                               }}
                               as={`/address/stacks/${historyEntry.sender}`}
@@ -136,7 +136,7 @@ const StacksTxList = () => (
                           <Box maxWidth="100%" overflow="auto">
                             <Link
                               href={{
-                                pathName: '/address/stacks',
+                                pathname: '/address/stacks',
                                 query: { address: historyEntry.recipient },
                               }}
                               as={`/address/stacks/${historyEntry.recipient}`}

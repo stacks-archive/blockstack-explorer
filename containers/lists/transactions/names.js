@@ -38,9 +38,19 @@ const NamesList = ({ names, nextPage }) => (
                       </Box>
                       <Box maxWidth="100%" overflow="auto">
                         <Type fontFamily="brand">
-                          <Type fontFamily="brand" is="a" href={`/name/${name.name}`}>
-                            View Profile
-                          </Type>
+                          <Link
+                            href={{
+                              pathName: '/names/single',
+                              query: { name: name.name },
+                            }}
+                            as={`/name/${name.name}`}
+                            passHref
+                            prefetch={false}
+                          >
+                            <Type fontFamily="brand" is="a">
+                              View Profile
+                            </Type>
+                          </Link>
                         </Type>
                       </Box>
                     </Flex>

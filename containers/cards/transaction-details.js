@@ -162,9 +162,9 @@ const TransactionDetails = ({ valueOut, confirmations, fees, vin, vout, historyD
           <>
             {vin &&
               vin.length &&
-              vin.map(({ addr, sequence, value, txid }) => (
+              vin.map(({ addr, sequence, value, txid, index }) => (
                 <UTXOItem
-                  key={txid}
+                  key={txid + index}
                   length={vin.length}
                   spentTxId
                   address={addr}

@@ -42,9 +42,9 @@ export default class Error extends React.Component {
             to search for unconfirmed transactions.
           </Type>
           <Box mt={5}>
-            <Button is="a" href="/">
-              Back Home
-            </Button>
+            <Link href="/" passHref prefetch={false}>
+              <Button is="a">Back Home</Button>
+            </Link>
           </Box>
         </Flex>
       </Flex>

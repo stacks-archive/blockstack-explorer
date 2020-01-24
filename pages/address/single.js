@@ -9,8 +9,8 @@ import { Page } from '@components/page';
 import { fetchAddress } from '@common/lib/client/api';
 
 class AddressSinglePage extends React.Component {
-  static async getInitialProps({ req, query }) {
-    const address = req && req.params ? req.params.address : query.address;
+  static async getInitialProps({ query }) {
+    const { address } = query;
     const data = await fetchAddress(address);
     return {
       address: {

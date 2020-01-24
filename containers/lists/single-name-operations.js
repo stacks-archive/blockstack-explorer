@@ -46,9 +46,21 @@ const NameOperationsList = ({ items, ...rest }) => (
                     pb={4}
                   >
                     <Type fontSize={1}>Transaction Details</Type>
-                    <Button bg="white" is="a" size="small" href={`/tx/${txid}`}>
-                      View Full Transaction
-                    </Button>
+                    <Link
+                      href={{
+                        pathname: '/transaction/single',
+                        query: {
+                          tx: txid,
+                        },
+                      }}
+                      as={`/tx/${txid}`}
+                      passHref
+                      prefetch={false}
+                    >
+                      <Button bg="white" is="a" size="small">
+                        View Full Transaction
+                      </Button>
+                    </Link>
                   </Flex>
                   <Box pt={4}>
                     {nameOpKeys.map((key) => (
@@ -79,9 +91,19 @@ const NameOperationsList = ({ items, ...rest }) => (
                         </Box>
                         <Box maxWidth="100%" overflow="auto">
                           {item.subdomains.map((subdomain) => (
-                            <Type fontFamily="brand" display="block">
-                              {subdomain.fully_qualified_subdomain}
-                            </Type>
+                            <Link
+                              href={{
+                                pathName: '/names/single',
+                                query: { name: subdomain.fully_qualified_subdomain },
+                              }}
+                              as={`/name/${subdomain.fully_qualified_subdomain}`}
+                              passHref
+                              prefetch={false}
+                            >
+                              <Type fontFamily="brand" display="block" is="a">
+                                {subdomain.fully_qualified_subdomain}
+                              </Type>
+                            </Link>
                           ))}
                         </Box>
                       </Flex>

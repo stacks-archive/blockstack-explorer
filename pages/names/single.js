@@ -15,9 +15,8 @@ const Empty = () => (
 );
 
 class NamesSinglePage extends React.Component {
-  static async getInitialProps({ req, query }) {
-    const name = req && req.params ? req.params.name : query.name;
-
+  static async getInitialProps({ query }) {
+    const { name } = query;
     const getName = () => (typeof name === 'undefined' ? {} : fetchName(name));
     // const [data, apps] = await Promise.all([getName]);
     const data = await getName();

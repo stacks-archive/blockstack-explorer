@@ -14,9 +14,21 @@ const TXLink = ({ txid }) => (
       BTC Transaction
     </Box>
     <Box maxWidth="100%" overflow="auto">
-      <Type fontFamily="brand" is="a" href={`/tx/${txid}`}>
-        {txid}
-      </Type>
+      <Link
+        href={{
+          pathname: '/transaction/single',
+          query: {
+            tx: txid,
+          },
+        }}
+        as={`/tx/${txid}`}
+        passHref
+        prefetch={false}
+      >
+        <Type fontFamily="brand" is="a">
+          {txid}
+        </Type>
+      </Link>
     </Box>
   </Flex>
 );
@@ -79,9 +91,19 @@ const StacksTxList = () => (
                           BTC Block
                         </Box>
                         <Box maxWidth="100%" overflow="auto">
-                          <Type fontFamily="brand" is="a" href={`/block/${historyEntry.block_id}`}>
-                            {historyEntry.block_id}
-                          </Type>
+                          <Link
+                            href={{
+                              pathName: '/blocks/single',
+                              query: { hash: historyEntry.block_id },
+                            }}
+                            as={`/block/${historyEntry.block_id}`}
+                            passHref
+                            prefetch={false}
+                          >
+                            <Type fontFamily="brand" is="a">
+                              {historyEntry.block_id}
+                            </Type>
+                          </Link>
                         </Box>
                       </Flex>
                       {historyEntry.sender && (
@@ -90,9 +112,19 @@ const StacksTxList = () => (
                             Sender
                           </Box>
                           <Box maxWidth="100%" overflow="auto">
-                            <Type fontFamily="brand" is="a" href={`/address/stacks/${historyEntry.sender}`}>
-                              {historyEntry.sender}
-                            </Type>
+                            <Link
+                              href={{
+                                pathName: '/address/stacks',
+                                query: { address: historyEntry.sender },
+                              }}
+                              as={`/address/stacks/${historyEntry.sender}`}
+                              passHref
+                              prefetch={false}
+                            >
+                              <Type fontFamily="brand" is="a">
+                                {historyEntry.sender}
+                              </Type>
+                            </Link>
                           </Box>
                         </Flex>
                       )}
@@ -102,9 +134,19 @@ const StacksTxList = () => (
                             Recipient
                           </Box>
                           <Box maxWidth="100%" overflow="auto">
-                            <Type fontFamily="brand" is="a" href={`/address/stacks/${historyEntry.recipient}`}>
-                              {historyEntry.recipient}
-                            </Type>
+                            <Link
+                              href={{
+                                pathName: '/address/stacks',
+                                query: { address: historyEntry.recipient },
+                              }}
+                              as={`/address/stacks/${historyEntry.recipient}`}
+                              passHref
+                              prefetch={false}
+                            >
+                              <Type fontFamily="brand" is="a">
+                                {historyEntry.recipient}
+                              </Type>
+                            </Link>
                           </Box>
                         </Flex>
                       )}

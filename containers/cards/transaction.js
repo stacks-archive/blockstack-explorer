@@ -11,23 +11,34 @@ import Link from 'next/link';
  * Pass an object and set of keys and this will render subsections for each
  */
 const generateAutomaticSections = (data, arr, params) => {
-  return arr.map(
-    (key, i) =>
-      data[key] ? (
-        <Section.Subsection label={key} key={i}>
-          <Box maxWidth="100%" overflow="auto">
-            {params ? (
-              <Type is="a" href={`/${params.path}/${data[key]}`} fontFamily="brand">
+  return arr.map((key, i) =>
+    data[key] ? (
+      <Section.Subsection label={key} key={i}>
+        <Box maxWidth="100%" overflow="auto">
+          {params ? (
+            <Link
+              href={{
+                pathname: `/${params.path}/single`,
+                query: {
+                  [params.query]: data[key],
+                },
+              }}
+              as={`/${params.path}/${data[key]}`}
+              passHref
+              prefetch={false}
+            >
+              <Type is="a" fontFamily="brand">
                 {data[key]}
               </Type>
-            ) : (
-              <Type fontFamily="brand" style={{ wordBreak: 'break-word' }} id={`tx-card-${key}`}>
-                {data[key]}
-              </Type>
-            )}
-          </Box>
-        </Section.Subsection>
-      ) : null,
+            </Link>
+          ) : (
+            <Type fontFamily="brand" style={{ wordBreak: 'break-word' }} id={`tx-card-${key}`}>
+              {data[key]}
+            </Type>
+          )}
+        </Box>
+      </Section.Subsection>
+    ) : null,
   );
 };
 

@@ -2,12 +2,12 @@ const express = require('express');
 const { handleSearchQuery } = require('./search-router');
 
 /**
- * @param {import('next-server').Server} app - next.js server
+ * @param {import('next/dist/next-server/server/next-server').default} app - next.js server
  */
 const makeAppController = (app) => {
   const renderAndCache = async (req, res, pagePath) => {
     try {
-      await app.render(req, res, pagePath, {});
+      await app.render(req, res, pagePath, req.params);
     } catch (err) {
       app.renderError(err, req, res, pagePath);
     }

@@ -203,9 +203,19 @@ class TransactionsPage extends React.Component {
                                 </Box>
                                 <Box maxWidth="100%" overflow="auto">
                                   <Type fontFamily="brand">
-                                    <Type fontFamily="brand" is="a" href={`/address/stacks/${transaction.senderSTX}`}>
-                                      {transaction.senderSTX}
-                                    </Type>
+                                    <Link
+                                      href={{
+                                        pathName: '/address/stacks',
+                                        query: { address: transaction.senderSTX },
+                                      }}
+                                      as={`/address/stacks/${transaction.senderSTX}`}
+                                      passHref
+                                      prefetch={false}
+                                    >
+                                      <Type fontFamily="brand" is="a">
+                                        {transaction.senderSTX}
+                                      </Type>
+                                    </Link>
                                   </Type>
                                 </Box>
                               </Flex>
@@ -215,9 +225,19 @@ class TransactionsPage extends React.Component {
                                 </Box>
                                 <Box maxWidth="100%" overflow="auto">
                                   <Type fontFamily="brand">
-                                    <Type fontFamily="brand" is="a" href={`/address/stacks/${transaction.recipientSTX}`}>
-                                      {transaction.recipientSTX}
-                                    </Type>
+                                    <Link
+                                      href={{
+                                        pathName: '/address/stacks',
+                                        query: { address: transaction.recipientSTX },
+                                      }}
+                                      as={`/address/stacks/${transaction.recipientSTX}`}
+                                      passHref
+                                      prefetch={false}
+                                    >
+                                      <Type fontFamily="brand" is="a">
+                                        {transaction.recipientSTX}
+                                      </Type>
+                                    </Link>
                                   </Type>
                                 </Box>
                               </Flex>

@@ -34,24 +34,34 @@ const keys = [
 /**
  * Pass an object and set of keys and this will render subsections for each
  */
-const generateAutomaticSections = (data, arr = keys, params) => {
-  return arr.map(
-    (key, i) =>
-      data[key] ? (
-        <Section.Subsection label={key} key={i}>
-          <Box maxWidth="100%" overflow="auto">
-            {params ? (
-              <Type is="a" fontFamily="brand" href={`/${params.path.substring(0, params.path.indexOf('s'))}/${data[key]}`}>
+const generateAutomaticSections = (data, arr = keys, params) =>
+  arr.map((key, i) =>
+    data[key] ? (
+      <Section.Subsection label={key} key={i}>
+        <Box maxWidth="100%" overflow="auto">
+          {params ? (
+            <Link
+              href={{
+                pathname: `/${params.path}s/single`,
+                query: {
+                  [params.query]: data[key],
+                },
+              }}
+              as={`/${params.path}/${data[key]}`}
+              passHref
+              prefetch={false}
+            >
+              <Type is="a" fontFamily="brand">
                 {data[key]}
               </Type>
-            ) : (
-              <Type fontFamily="brand">{data[key]}</Type>
-            )}
-          </Box>
-        </Section.Subsection>
-      ) : null,
+            </Link>
+          ) : (
+            <Type fontFamily="brand">{data[key]}</Type>
+          )}
+        </Box>
+      </Section.Subsection>
+    ) : null,
   );
-};
 
 /**
  * Some latest transaction data
@@ -70,7 +80,7 @@ const TransactionsSection = ({ nameRecord, ...rest }) => (
 const BlocksSection = ({ nameRecord, ...rest }) => (
   <Section pb={4} pr={4} {...rest}>
     <Box display="grid" gridTemplateColumns="40% 40%">
-      {generateAutomaticSections(nameRecord, blockKeys, { path: 'blocks', query: 'hash' })}
+      {generateAutomaticSections(nameRecord, blockKeys, { path: 'block', query: 'hash' })}
     </Box>
   </Section>
 );
@@ -102,9 +112,21 @@ const ProfileSection = ({ id, ownerAddress, ...rest }) => (
       <Type>{id}</Type>
     </Section.Subsection>
     <Section.Subsection label="Owner Address">
-      <Type is="a" href={`/address/${ownerAddress}`} fontFamily="brand">
-        {ownerAddress}
-      </Type>
+      <Link
+        href={{
+          pathname: '/address/single',
+          query: {
+            address: ownerAddress,
+          },
+        }}
+        as={`/address/${ownerAddress}`}
+        passHref
+        prefetch={false}
+      >
+        <Type is="a" fontFamily="brand">
+          {ownerAddress}
+        </Type>
+      </Link>
     </Section.Subsection>
   </Section>
 );

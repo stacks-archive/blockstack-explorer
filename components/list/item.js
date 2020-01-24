@@ -75,7 +75,9 @@ const ListItemComponent = sys(
 
 const Item = ({ href, as, ...rest }) =>
   href ? (
-    <ListItemComponent is="a" href={as || href} {...rest} />
+    <Link href={href} passHref as={as} prefetch={false}>
+      <ListItemComponent is="a" href={as || href} {...rest} />
+    </Link>
   ) : (
     <ListItemComponent {...rest} />
   );

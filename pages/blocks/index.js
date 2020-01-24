@@ -120,8 +120,8 @@ const DateActions = ({ date, today, loading, fetchBlocksForDate, ...rest }) => {
 };
 
 class BlocksPage extends React.Component {
-  static async getInitialProps({ req, query }) {
-    const date = req && req.query ? req.query.date : query.date;
+  static async getInitialProps({ query }) {
+    const { date } = query;
     console.log('date', date);
     console.log(query);
     const { blocks, availableCount } = await fetchBlocksV2(date);

@@ -52,7 +52,9 @@ class SearchPage extends React.Component {
               </Type>
               {isHashSearch ? <UnconfirmedTxMsg /> : <></>}
               <Box mt={5}>
-                <Button is="a" href="/">Back Home</Button>
+                <Link href="/" passHref prefetch={false}>
+                  <Button is="a">Back Home</Button>
+                </Link>
               </Box>
             </Flex>
           </Flex>

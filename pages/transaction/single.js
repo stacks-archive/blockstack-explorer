@@ -6,8 +6,8 @@ import { TransactionDetails } from '@containers/cards/transaction-details';
 import { Page } from '@components/page';
 
 class TransactionSinglePage extends React.Component {
-  static async getInitialProps({ req, query }) {
-    let id = req && req.params ? req.params.tx : query.tx;
+  static async getInitialProps({ query }) {
+    let id = query.tx;
     if (!id && typeof document !== 'undefined') {
       // eslint-disable-next-line prefer-destructuring
       id = document.location.pathname.split('/')[2];

@@ -20,17 +20,7 @@ const NamesList = ({ list, limit, ...rest }) => (
       return array.map(
         ({ name, owner, address, time }, i) =>
           needToLimit(i) && (
-            <List.Item
-              href={{
-                pathname: '/names/single',
-                query: {
-                  name,
-                },
-              }}
-              className="names-list-item"
-              as={`/name/${name}`}
-              key={name}
-            >
+            <List.Item href={`/name/${name}`} className="names-list-item" key={name}>
               <Box maxWidth="100%" pr={2}>
                 {name ? <List.Item.Title overflow="auto">{name}</List.Item.Title> : null}
                 {address || owner ? <Subtitle owner={address || owner} /> : null}

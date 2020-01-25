@@ -6,8 +6,6 @@ import { Toggle } from 'react-powerplug';
 import Link from 'next/link';
 import moment from 'moment';
 
-const nameOpKeys = ['opcode', 'block_id', 'txid', 'address', 'sender', 'time'];
-
 const NameOperationsList = ({ items, ...rest }) => (
   <Box>
     {items.map((item, i) => (
@@ -26,7 +24,9 @@ const NameOperationsList = ({ items, ...rest }) => (
               >
                 <Box maxWidth="calc(100% - 48px)">
                   {/* TODO: is this the best thing to do for subdomains? */}
-                  <List.Item.Title>{opcode || 'Subdomain Registration'}</List.Item.Title>
+                  <List.Item.Title>
+                    {!opcode || opcode === 'NAME_UPDATE' ? 'Subdomain Registration' : opcode}
+                  </List.Item.Title>
                   <List.Item.Subtitle overflow="auto">{txid}</List.Item.Subtitle>
                 </Box>
                 <Box>
@@ -63,27 +63,109 @@ const NameOperationsList = ({ items, ...rest }) => (
                     </Link>
                   </Flex>
                   <Box pt={4}>
-                    {nameOpKeys.map((key) => (
-                      <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1} key={key}>
+                    {item.name && (
+                      <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
                         <Box minWidth="200px" pr={2}>
-                          {key}
+                          name
                         </Box>
-                        {item[key] ? (
-                          <Box maxWidth="100%" overflow="auto">
-                            <Type fontFamily="brand">
-                              {key === 'time'
-                                ? moment
-                                    .unix(item[key])
-                                    .utc()
-                                    .format('DD MMMM YYYY HH:MM UTC')
-                                : item[key]}
+                        <Box maxWidth="100%" overflow="auto">
+                          <Link
+                            href={{
+                              pathname: '/names/single',
+                              query: { name: item.name },
+                            }}
+                            as={`/name/${item.name}`}
+                            passHref
+                            prefetch={false}
+                          >
+                            <Type fontFamily="brand" is="a">
+                              {item.name}
                             </Type>
-                          </Box>
-                        ) : (
-                          <Box />
-                        )}
+                          </Link>
+                        </Box>
                       </Flex>
-                    ))}
+                    )}
+                    {item.opcode && (
+                      <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
+                        <Box minWidth="200px" pr={2}>
+                          opcode
+                        </Box>
+                        <Box maxWidth="100%" overflow="auto">
+                          <Type fontFamily="brand">{item.opcode}</Type>
+                        </Box>
+                      </Flex>
+                    )}
+                    <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
+                      <Box minWidth="200px" pr={2}>
+                        block_id
+                      </Box>
+                      <Box maxWidth="100%" overflow="auto">
+                        <Link
+                          href={{
+                            pathname: '/blocks/single',
+                            query: { id: item.block_id },
+                          }}
+                          as={`/block/${item.block_id}`}
+                          passHref
+                          prefetch={false}
+                        >
+                          <Type fontFamily="brand" is="a">
+                            {item.block_id}
+                          </Type>
+                        </Link>
+                      </Box>
+                    </Flex>
+                    <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
+                      <Box minWidth="200px" pr={2}>
+                        txid
+                      </Box>
+                      <Box maxWidth="100%" overflow="auto">
+                        <Link
+                          href={{
+                            pathname: '/transaction/single',
+                            query: {
+                              tx: item.txid,
+                            },
+                          }}
+                          as={`/tx/${item.txid}`}
+                          passHref
+                          prefetch={false}
+                        >
+                          <Type fontFamily="brand" is="a">
+                            {item.txid}
+                          </Type>
+                        </Link>
+                      </Box>
+                    </Flex>
+                    <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
+                      <Box minWidth="200px" pr={2}>
+                        address
+                      </Box>
+                      <Box maxWidth="100%" overflow="auto">
+                        <Type fontFamily="brand">{item.address}</Type>
+                      </Box>
+                    </Flex>
+                    <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
+                      <Box minWidth="200px" pr={2}>
+                        sender
+                      </Box>
+                      <Box maxWidth="100%" overflow="auto">
+                        <Type fontFamily="brand">{item.sender}</Type>
+                      </Box>
+                    </Flex>
+                    <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
+                      <Box minWidth="200px" pr={2}>
+                        time
+                      </Box>
+                      <Box maxWidth="100%" overflow="auto">
+                        <Type fontFamily="brand">
+                          {moment
+                            .unix(item.time)
+                            .utc()
+                            .format('DD MMMM YYYY HH:MM UTC')}
+                        </Type>
+                      </Box>
+                    </Flex>
                     {item.subdomains && (
                       <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
                         <Box minWidth="200px" pr={2}>

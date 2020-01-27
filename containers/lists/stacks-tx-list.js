@@ -5,7 +5,7 @@ import { Consumer } from '@pages/_app';
 import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import { Toggle } from 'react-powerplug';
 import Link from 'next/link';
-import { txTitle } from '@common';
+import { txTitle } from '@common/index';
 import moment from 'moment';
 
 const TXLink = ({ txid }) => (

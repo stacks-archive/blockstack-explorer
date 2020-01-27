@@ -155,9 +155,7 @@ class TransactionsPage extends React.Component {
                       <React.Fragment>
                         <List.Item onClick={toggle}>
                           <Box maxWidth="calc(100% - 105px)">
-                            <List.Item.Title>
-                              {stacksValue(parseInt(transaction.historyData.token_fee, 10))}
-                            </List.Item.Title>
+                            <List.Item.Title>{stacksValue(transaction.historyData.token_fee)}</List.Item.Title>
                             <List.Item.Subtitle overflow="auto">{transaction.txid}</List.Item.Subtitle>
                           </Box>
                           <Box>

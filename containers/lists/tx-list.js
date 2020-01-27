@@ -26,7 +26,7 @@ const TxList = ({ transactions, ...rest }) => (
             <Box maxWidth="calc(100% - 105px)">
               <List.Item.Title overflow="auto">
                 {action && <span>{`${action} `}</span>}
-                {`${btcValue(value)} BTC`}
+                {`${btcValue(value)}`}
               </List.Item.Title>
               <List.Item.Subtitle overflow="auto">{txid}</List.Item.Subtitle>
             </Box>

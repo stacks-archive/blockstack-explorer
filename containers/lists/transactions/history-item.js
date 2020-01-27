@@ -16,8 +16,7 @@ export default ({ transaction }) => (
           <List.Item onClick={toggle}>
             <Box maxWidth="calc(100% - 105px)">
               <List.Item.Title>
-                {transaction.opcode === 'TOKEN_TRANSFER' &&
-                  stacksValue(parseInt(transaction.historyData.token_fee, 10))}
+                {transaction.opcode === 'TOKEN_TRANSFER' && stacksValue(transaction.historyData.token_fee)}
                 {transaction.opcode === 'NAME_UPDATE' && `Subdomain Registrations`}
                 {transaction.opcode === 'NAME_REGISTRATION' && `${transaction.history_id} Registration`}
                 {transaction.opcode === 'NAME_PREORDER' && `${transaction.history_id} Pre-order`}

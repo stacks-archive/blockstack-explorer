@@ -17,9 +17,9 @@ const AddressCard = ({ address, ...rest }) => {
       </Section>
       <Section showBorder={false} pb={4}>
         <Attribute label="Address" value={value} id="address-card-address" />
-        <Attribute label="Balance" value={`${btcValue(data.balance)} BTC`} />
-        <Attribute label="Total Received" value={`${btcValue(data.totalReceived)} BTC`} />
-        <Attribute label="Total Sent" value={`${btcValue(data.totalSent)} BTC`} />
+        <Attribute label="Balance" value={`${btcValue(data.balance)}`} />
+        <Attribute label="Total Received" value={`${btcValue(data.totalReceived)}`} />
+        <Attribute label="Total Sent" value={`${btcValue(data.totalSent)}`} />
         <Attribute label="Total Transactions" value={data.totalTransactionsCount} />
       </Section>
     </Card>

@@ -1,6 +1,6 @@
 import fetch from 'cross-fetch';
 import idx from 'idx';
-import { formatValue } from '@common/lib/units';
+import { stacksValue } from '@common/lib/units';
 
 /**
  * Simple get json fn
@@ -85,13 +85,13 @@ const uniq = (array) => [...new Set(array)];
  */
 const txTitle = (operation, valueStacks) => {
   if (operation === 'SENT') {
-    return `Sent ${formatValue(valueStacks)} STX`;
+    return `Sent ${stacksValue(valueStacks, false)}`;
   }
   if (operation === 'RECEIVED') {
-    return `Received ${formatValue(valueStacks)} STX`;
+    return `Received ${stacksValue(valueStacks, false)}`;
   }
   if (valueStacks) {
-    return `${operation} ${formatValue(valueStacks)} STX`;
+    return `${operation} ${stacksValue(valueStacks, false)}`;
   }
   return operation;
 };

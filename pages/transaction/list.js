@@ -111,6 +111,11 @@ class TransactionsPage extends React.Component {
       const result = await fetchSubdomainRegistrations(nextPage);
       const newList = subdomains.concat(result.subdomains);
       this.setState({ subdomains: newList, pages: { ...pages, [view]: nextPage } });
+    } else if (view === 'all') {
+      const { history } = this.state;
+      const result = await fetchAllTransactions(nextPage);
+      const newList = history.concat(result.history);
+      this.setState({ history: newList, pages: { ...pages, [view]: nextPage } });
     }
     NProgress.done();
   }

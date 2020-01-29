@@ -100,17 +100,17 @@ class TransactionsPage extends React.Component {
       const { transactions } = this.state;
       const { transfers } = await fetchSTXTransactions(nextPage);
       const newList = transactions.concat(transfers);
-      this.setState({ transactions: newList, pages: { [view]: nextPage, ...pages } });
+      this.setState({ transactions: newList, pages: { ...pages, [view]: nextPage } });
     } else if (view === 'names') {
       const { names } = this.state;
       const result = await fetchNameRegistrations(nextPage);
       const newList = names.concat(result.names);
-      this.setState({ names: newList, pages: { [view]: nextPage, ...pages } });
+      this.setState({ names: newList, pages: { ...pages, [view]: nextPage } });
     } else if (view === 'subdomains') {
       const { subdomains } = this.state;
       const result = await fetchSubdomainRegistrations(nextPage);
       const newList = subdomains.concat(result.subdomains);
-      this.setState({ subdomains: newList, pages: { [view]: nextPage, ...pages } });
+      this.setState({ subdomains: newList, pages: { ...pages, [view]: nextPage } });
     }
     NProgress.done();
   }

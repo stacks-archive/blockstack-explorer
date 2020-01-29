@@ -23,12 +23,10 @@ const NamesList = ({ list, limit, ...rest }) => (
             <List.Item
               href={{
                 pathname: '/names/single',
-                query: {
-                  name,
-                },
+                query: { name },
               }}
-              className="names-list-item"
               as={`/name/${name}`}
+              className="names-list-item"
               key={name}
             >
               <Box maxWidth="100%" pr={2}>
@@ -37,7 +35,7 @@ const NamesList = ({ list, limit, ...rest }) => (
               </Box>
               {time && (
                 <List.Item.Subtitle>
-                  <Time date={time / 1000} />
+                  <Time date={time} />
                 </List.Item.Subtitle>
               )}
             </List.Item>

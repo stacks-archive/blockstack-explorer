@@ -14,7 +14,7 @@ export const Attribute = ({ clip = true, label, fontFamily = 'brand', value, lin
     <Section.Subsection label={label}>
       <Box {...clipProps}>
         {link ? (
-          <Link passHref href={link.href} as={link.as} prefetch>
+          <Link key={id} href={link.href} as={link.as} passHref prefetch={false}>
             <Type fontFamily="brand" is="a" id={id}>
               {children || value}
             </Type>

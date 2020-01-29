@@ -20,7 +20,7 @@ const NamesList = ({ names, nextPage }) => (
                 <Box maxWidth="calc(100% - 105px)">
                   <List.Item.Title>{name.name}</List.Item.Title>
                   <List.Item.Subtitle>
-                    <Time date={name.timestamp / 1000} />
+                    <Time date={name.timestamp} />
                   </List.Item.Subtitle>
                 </Box>
                 <Box>
@@ -39,12 +39,13 @@ const NamesList = ({ names, nextPage }) => (
                       <Box maxWidth="100%" overflow="auto">
                         <Type fontFamily="brand">
                           <Link
-                            passHref
                             href={{
-                              pathName: '/names/single',
+                              pathname: '/names/single',
                               query: { name: name.name },
                             }}
                             as={`/name/${name.name}`}
+                            passHref
+                            prefetch={false}
                           >
                             <Type fontFamily="brand" is="a">
                               View Profile
@@ -58,7 +59,9 @@ const NamesList = ({ names, nextPage }) => (
                         Timestamp
                       </Box>
                       <Box maxWidth="100%" overflow="auto">
-                        <Type fontFamily="brand">{moment(name.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}</Type>
+                        <Type fontFamily="brand">
+                          {moment.unix(name.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                        </Type>
                       </Box>
                     </Flex>
                     <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>

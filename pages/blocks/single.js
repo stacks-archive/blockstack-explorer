@@ -7,14 +7,13 @@ import { BlockCard } from '@containers/cards/block';
 import { Page } from '@components/page';
 
 class BlocksSinglePage extends React.Component {
-  static async getInitialProps({ req, query }) {
-    const hash = req && req.params ? req.params.hash : query.hash;
-    const data = query.data || (await fetchBlockV2(hash)).block;
+  static async getInitialProps({ query }) {
+    const blockHashOrHeight = query.id;
+    const data = (await fetchBlockV2(blockHashOrHeight)).block;
     const transactions = data.transactions && data.transactions.length ? data.transactions : [];
     const nameOperations = data.nameOperations && data.nameOperations.length ? data.nameOperations : [];
     return {
       block: {
-        hash,
         ...data,
       },
       transactions,

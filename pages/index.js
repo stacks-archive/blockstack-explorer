@@ -12,7 +12,7 @@ import { formatLargeNumber } from '@common/lib/units';
 import { Line as LineChart } from 'react-chartjs-2';
 
 const Actions = () => (
-  <Link passHref prefetch href="/names">
+  <Link href="/names" passHref prefetch={false}>
     <Type opacity={0.5} is="a" color="blue.dark">
       See All
     </Type>
@@ -55,7 +55,7 @@ class Home extends React.Component {
         <Card width={1} mb={[5, 5, 0]} title="Latest Names Registered" actions={<Actions />} mr={[0, 0, 5]}>
           <NamesList limit={100} />
           <Flex py={4} justifyContent="center">
-            <Link passHref href="/names">
+            <Link href="/names" passHref prefetch={false}>
               <Button is="a" width={0.95}>
                 View All Names
               </Button>

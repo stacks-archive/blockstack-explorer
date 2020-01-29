@@ -16,12 +16,9 @@ const renderRowData = (data, keys) =>
 const Row = ({ keys, ...data }) => (
   <List.Item
     href={{
-      pathname: `/blocks/single`,
-      query: {
-        hash: data.height,
-      },
+      pathname: '/blocks/single',
+      query: { id: data.height },
     }}
-    passHref
     as={`/block/${data.height}`}
     is="a"
     borderBottom={1}

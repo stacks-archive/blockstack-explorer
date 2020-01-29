@@ -100,17 +100,22 @@ class TransactionsPage extends React.Component {
       const { transactions } = this.state;
       const { transfers } = await fetchSTXTransactions(nextPage);
       const newList = transactions.concat(transfers);
-      this.setState({ transactions: newList, pages: { [view]: nextPage, ...pages } });
+      this.setState({ transactions: newList, pages: { ...pages, [view]: nextPage } });
     } else if (view === 'names') {
       const { names } = this.state;
       const result = await fetchNameRegistrations(nextPage);
       const newList = names.concat(result.names);
-      this.setState({ names: newList, pages: { [view]: nextPage, ...pages } });
+      this.setState({ names: newList, pages: { ...pages, [view]: nextPage } });
     } else if (view === 'subdomains') {
       const { subdomains } = this.state;
       const result = await fetchSubdomainRegistrations(nextPage);
       const newList = subdomains.concat(result.subdomains);
-      this.setState({ subdomains: newList, pages: { [view]: nextPage, ...pages } });
+      this.setState({ subdomains: newList, pages: { ...pages, [view]: nextPage } });
+    } else if (view === 'all') {
+      const { history } = this.state;
+      const result = await fetchAllTransactions(nextPage);
+      const newList = history.concat(result.history);
+      this.setState({ history: newList, pages: { ...pages, [view]: nextPage } });
     }
     NProgress.done();
   }
@@ -193,7 +198,7 @@ class TransactionsPage extends React.Component {
                                 </Box>
                                 <Box maxWidth="100%" overflow="auto">
                                   <Type fontFamily="brand">
-                                    {moment(transaction.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                                    {moment.unix(transaction.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
                                   </Type>
                                 </Box>
                               </Flex>
@@ -204,12 +209,13 @@ class TransactionsPage extends React.Component {
                                 <Box maxWidth="100%" overflow="auto">
                                   <Type fontFamily="brand">
                                     <Link
-                                      passHref
                                       href={{
-                                        pathName: '/address/stacks',
+                                        pathname: '/address/stacks',
                                         query: { address: transaction.senderSTX },
                                       }}
                                       as={`/address/stacks/${transaction.senderSTX}`}
+                                      passHref
+                                      prefetch={false}
                                     >
                                       <Type fontFamily="brand" is="a">
                                         {transaction.senderSTX}
@@ -225,12 +231,13 @@ class TransactionsPage extends React.Component {
                                 <Box maxWidth="100%" overflow="auto">
                                   <Type fontFamily="brand">
                                     <Link
-                                      passHref
                                       href={{
-                                        pathName: '/address/stacks',
+                                        pathname: '/address/stacks',
                                         query: { address: transaction.recipientSTX },
                                       }}
                                       as={`/address/stacks/${transaction.recipientSTX}`}
+                                      passHref
+                                      prefetch={false}
                                     >
                                       <Type fontFamily="brand" is="a">
                                         {transaction.recipientSTX}

@@ -4,6 +4,7 @@ import { List } from '@components/list';
 import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import { Toggle } from 'react-powerplug';
 import Link from 'next/link';
+import moment from 'moment';
 
 const nameOpKeys = ['opcode', 'block_id', 'txid', 'address', 'sender', 'time'];
 
@@ -52,8 +53,9 @@ const NameOperationsList = ({ items, ...rest }) => (
                           tx: txid,
                         },
                       }}
-                      passHref
                       as={`/tx/${txid}`}
+                      passHref
+                      prefetch={false}
                     >
                       <Button bg="white" is="a" size="small">
                         View Full Transaction
@@ -68,7 +70,14 @@ const NameOperationsList = ({ items, ...rest }) => (
                         </Box>
                         {item[key] ? (
                           <Box maxWidth="100%" overflow="auto">
-                            <Type fontFamily="brand">{item[key]}</Type>
+                            <Type fontFamily="brand">
+                              {key === 'time'
+                                ? moment
+                                    .unix(item[key])
+                                    .utc()
+                                    .format('DD MMMM YYYY HH:MM UTC')
+                                : item[key]}
+                            </Type>
                           </Box>
                         ) : (
                           <Box />
@@ -82,9 +91,19 @@ const NameOperationsList = ({ items, ...rest }) => (
                         </Box>
                         <Box maxWidth="100%" overflow="auto">
                           {item.subdomains.map((subdomain) => (
-                            <Type fontFamily="brand" display="block">
-                              {subdomain.fully_qualified_subdomain}
-                            </Type>
+                            <Link
+                              href={{
+                                pathname: '/names/single',
+                                query: { name: subdomain.fully_qualified_subdomain },
+                              }}
+                              as={`/name/${subdomain.fully_qualified_subdomain}`}
+                              passHref
+                              prefetch={false}
+                            >
+                              <Type fontFamily="brand" display="block" is="a">
+                                {subdomain.fully_qualified_subdomain}
+                              </Type>
+                            </Link>
                           ))}
                         </Box>
                       </Flex>

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import Link from 'next/link';
-import { Flex, Inline } from 'blockstack-ui';
+import { Flex, Inline, Type } from 'blockstack-ui';
 import { withRouter } from 'next/router';
 
 import sys from 'system-components';
@@ -15,7 +15,7 @@ const LinkComponent = sys(
     transition: 1,
     color: 'white',
   },
-  (props) => ({
+  () => ({
     '&:hover': {
       opacity: 1,
     },
@@ -23,24 +23,44 @@ const LinkComponent = sys(
 );
 
 const items = [
-  { path: '/blocks', active: 'block', label: 'Blocks', id: 'nav-blocks' },
-  { path: '/names', active: 'name', label: 'Names', id: 'nav-names' },
-  { path: '/transactions', active: 'transactions', label: 'Transactions', id: 'nav-transactions' },
+  {
+    href: '/blocks',
+    as: '/blocks',
+    active: 'block',
+    label: 'Blocks',
+    id: 'nav-blocks',
+  },
+  {
+    href: '/names',
+    as: '/names',
+    active: 'name',
+    label: 'Names',
+    id: 'nav-names',
+  },
+  {
+    href: '/transaction/list',
+    as: '/transactions',
+    active: 'transaction',
+    label: 'Transactions',
+    id: 'nav-transactions',
+  },
 ];
 
 const Navigation = memo(
   withRouter(({ router, ...rest }) => (
     <Flex {...rest}>
-      {items.map(({ label, path, active, id, ...linkProps }, i) => (
-        <Link key={i} passHref href={path} prefetch>
-          <LinkComponent
-            id={id}
-            opacity={router.pathname.includes(active) ? 1 : 0.5}
-            is="a"
-            style={{ textDecoration: 'none' }}
-          >
-            {label}
-          </LinkComponent>
+      {items.map(({ label, as, href, active, id, ...linkProps }, i) => (
+        <Link key={id} href={href} as={as} passHref prefetch={false}>
+          <Type is="a">
+            <LinkComponent
+              id={id}
+              opacity={router.pathname.includes(active) ? 1 : 0.5}
+              is="span"
+              style={{ textDecoration: 'none' }}
+            >
+              {label}
+            </LinkComponent>
+          </Type>
         </Link>
       ))}
     </Flex>

@@ -20,7 +20,7 @@ const SubdomainsList = ({ subdomains, nextPage }) => (
                 <Box maxWidth="calc(100% - 105px)">
                   <List.Item.Title>{name}</List.Item.Title>
                   <List.Item.Subtitle>
-                    <Time date={subdomain.timestamp / 1000} />
+                    <Time date={subdomain.timestamp} />
                   </List.Item.Subtitle>
                 </Box>
                 <Box>
@@ -39,12 +39,13 @@ const SubdomainsList = ({ subdomains, nextPage }) => (
                       <Box maxWidth="100%" overflow="auto">
                         <Type fontFamily="brand">
                           <Link
-                            passHref
                             href={{
-                              pathName: '/names/single',
+                              pathname: '/names/single',
                               query: { name },
                             }}
                             as={`/name/${name}`}
+                            passHref
+                            prefetch={false}
                           >
                             <Type fontFamily="brand" is="a">
                               View Profile
@@ -59,7 +60,7 @@ const SubdomainsList = ({ subdomains, nextPage }) => (
                       </Box>
                       <Box maxWidth="100%" overflow="auto">
                         <Type fontFamily="brand">
-                          {moment(subdomain.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                          {moment.unix(subdomain.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
                         </Type>
                       </Box>
                     </Flex>

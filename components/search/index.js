@@ -1,15 +1,17 @@
 import React from 'react';
 import { SearchIcon, CloseCircleIcon } from 'mdi-react';
 import { Flex, Box } from 'blockstack-ui';
-import { search } from '@common/lib/search';
 import Router from 'next/router';
 import { State } from 'react-powerplug';
-
+import NProgress from 'nprogress';
 import { Input } from './styled';
 
 const handleSearch = async (event) => {
   if (event.key === 'Enter') {
-    await search(event.target.value);
+    event.preventDefault();
+    NProgress.start();
+    const searchPath = `/?search=${encodeURIComponent(event.target.value)}`;
+    window.location = searchPath;
   }
 };
 
@@ -88,7 +90,6 @@ const Search = ({ ...rest }) => (
             onChange={handleChange}
             onKeyUp={handleSearch}
             name="search"
-            id="explorer-search-input"
           />
         </Box>
       );

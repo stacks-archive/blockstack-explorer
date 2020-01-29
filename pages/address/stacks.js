@@ -7,8 +7,8 @@ import { StacksUnlockingChart } from '@containers/charts/stacks-unlocking-chart'
 import { StacksTxList } from '@containers/lists/stacks-tx-list';
 
 export default class StacksAddressPage extends React.Component {
-  static async getInitialProps({ req, query }) {
-    const addr = req && req.params ? req.params.address : query.address;
+  static async getInitialProps({ query }) {
+    const addr = query.address;
     const address = await fetchStacksAddress(addr);
     return {
       address,

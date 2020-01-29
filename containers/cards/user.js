@@ -34,40 +34,34 @@ const keys = [
 /**
  * Pass an object and set of keys and this will render subsections for each
  */
-const generateAutomaticSections = (data, arr = keys, params) => {
-  const LinkWrapper = ({ query, ...rest }) => (
-    <Link
-      href={{
-        pathname: `/${params.path}/single`,
-        query: {
-          [params.query]: query,
-        },
-      }}
-      as={`/${params.path.substring(0, params.path.indexOf('s'))}/${query}`}
-      prefetch
-      passHref
-      {...rest}
-    />
+const generateAutomaticSections = (data, arr = keys, params) =>
+  arr.map((key, i) =>
+    data[key] ? (
+      <Section.Subsection label={key} key={i}>
+        <Box maxWidth="100%" overflow="auto">
+          {params ? (
+            <Link
+              href={{
+                pathname: `/${params.path}s/single`,
+                query: {
+                  [params.query]: data[key],
+                },
+              }}
+              as={`/${params.path}/${data[key]}`}
+              passHref
+              prefetch={false}
+            >
+              <Type is="a" fontFamily="brand">
+                {data[key]}
+              </Type>
+            </Link>
+          ) : (
+            <Type fontFamily="brand">{data[key]}</Type>
+          )}
+        </Box>
+      </Section.Subsection>
+    ) : null,
   );
-  return arr.map(
-    (key, i) =>
-      data[key] ? (
-        <Section.Subsection label={key} key={i}>
-          <Box maxWidth="100%" overflow="auto">
-            {params ? (
-              <LinkWrapper query={data[key]}>
-                <Type is="a" fontFamily="brand">
-                  {data[key]}
-                </Type>
-              </LinkWrapper>
-            ) : (
-              <Type fontFamily="brand">{data[key]}</Type>
-            )}
-          </Box>
-        </Section.Subsection>
-      ) : null,
-  );
-};
 
 /**
  * Some latest transaction data
@@ -86,7 +80,7 @@ const TransactionsSection = ({ nameRecord, ...rest }) => (
 const BlocksSection = ({ nameRecord, ...rest }) => (
   <Section pb={4} pr={4} {...rest}>
     <Box display="grid" gridTemplateColumns="40% 40%">
-      {generateAutomaticSections(nameRecord, blockKeys, { path: 'blocks', query: 'hash' })}
+      {generateAutomaticSections(nameRecord, blockKeys, { path: 'block', query: 'hash' })}
     </Box>
   </Section>
 );
@@ -126,8 +120,8 @@ const ProfileSection = ({ id, ownerAddress, ...rest }) => (
           },
         }}
         as={`/address/${ownerAddress}`}
-        prefetch
         passHref
+        prefetch={false}
       >
         <Type is="a" fontFamily="brand">
           {ownerAddress}

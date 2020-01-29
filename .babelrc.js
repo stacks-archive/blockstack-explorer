@@ -4,7 +4,11 @@ module.exports = {
   presets: ['next/babel'],
   plugins: [
     ['transform-define', env],
-    'styled-components',
+    ['styled-components', {
+      "ssr": true,
+      "displayName": true,
+      "preprocess": false
+    }],
     [
       'module-resolver',
       {
@@ -20,8 +24,6 @@ module.exports = {
           '@styled': './styled',
         },
       },
-    ],
-    '@babel/plugin-transform-regenerator',
-    '@babel/plugin-transform-runtime',
+    ]
   ],
 };

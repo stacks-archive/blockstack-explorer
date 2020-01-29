@@ -11,45 +11,40 @@ import Link from 'next/link';
  * Pass an object and set of keys and this will render subsections for each
  */
 const generateAutomaticSections = (data, arr, params) => {
-  const LinkWrapper = ({ query, ...rest }) => (
-    <Link
-      href={{
-        pathname: `/${params.path}/single`,
-        query: {
-          [params.query]: query,
-        },
-      }}
-      as={`/${params.path}/${query}`}
-      prefetch
-      passHref
-      {...rest}
-    />
-  );
-  return arr.map(
-    (key, i) =>
-      data[key] ? (
-        <Section.Subsection label={key} key={i}>
-          <Box maxWidth="100%" overflow="auto">
-            {params ? (
-              <LinkWrapper query={data[key]}>
-                <Type is="a" fontFamily="brand">
-                  {data[key]}
-                </Type>
-              </LinkWrapper>
-            ) : (
-              <Type fontFamily="brand" style={{ wordBreak: 'break-word' }} id={`tx-card-${key}`}>
+  return arr.map((key, i) =>
+    data[key] ? (
+      <Section.Subsection label={key} key={i}>
+        <Box maxWidth="100%" overflow="auto">
+          {params ? (
+            <Link
+              href={{
+                pathname: `/${params.path}/single`,
+                query: {
+                  [params.query]: data[key],
+                },
+              }}
+              as={`/${params.path}/${data[key]}`}
+              passHref
+              prefetch={false}
+            >
+              <Type is="a" fontFamily="brand">
                 {data[key]}
               </Type>
-            )}
-          </Box>
-        </Section.Subsection>
-      ) : null,
+            </Link>
+          ) : (
+            <Type fontFamily="brand" style={{ wordBreak: 'break-word' }} id={`tx-card-${key}`}>
+              {data[key]}
+            </Type>
+          )}
+        </Box>
+      </Section.Subsection>
+    ) : null,
   );
 };
 
 const keys = ['txid', 'blockHash'];
 
-const convertBlockTimeToInt = (blockTime) => new Date(blockTime).getTime() / 1000;
+const convertBlockTimeToInt = (blockTime) => new Date(blockTime).getTime();
 
 /**
  * Some latest transaction data
@@ -65,7 +60,7 @@ const AutomatedSection = ({ tx, ...rest }) => (
         href: {
           pathname: '/blocks/single',
           query: {
-            hash: tx.blockheight,
+            id: tx.blockheight,
           },
         },
         as: `/block/${tx.blockheight}`,
@@ -74,7 +69,7 @@ const AutomatedSection = ({ tx, ...rest }) => (
     <Attribute clip={false} label="time">
       <Time date={convertBlockTimeToInt(tx.blockTime)} />
     </Attribute>
-    {tx.stxDecoded && <Attribute value={tx.stxDecoded.scratchData} label="Memo" />}
+    {tx.memo && <Attribute value={tx.memo} label="Memo" />}
     {generateAutomaticSections(tx, keys)}
   </Section>
 );

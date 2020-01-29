@@ -6,6 +6,7 @@ import { ChevronDownIcon, ChevronUpIcon } from 'mdi-react';
 import { Toggle } from 'react-powerplug';
 import Link from 'next/link';
 import { txTitle } from '@common';
+import moment from 'moment';
 
 const TXLink = ({ txid }) => (
   <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
@@ -14,12 +15,15 @@ const TXLink = ({ txid }) => (
     </Box>
     <Box maxWidth="100%" overflow="auto">
       <Link
-        passHref
         href={{
-          pathName: '/transaction/single',
-          query: { id: txid },
+          pathname: '/transaction/single',
+          query: {
+            tx: txid,
+          },
         }}
         as={`/tx/${txid}`}
+        passHref
+        prefetch={false}
       >
         <Type fontFamily="brand" is="a">
           {txid}
@@ -76,7 +80,9 @@ const StacksTxList = () => (
                           Timestamp
                         </Box>
                         <Box maxWidth="100%" overflow="auto">
-                          <Type fontFamily="brand">{new Date(historyEntry.blockTime).toString()}</Type>
+                          <Type fontFamily="brand">
+                            {moment.unix(historyEntry.blockTime).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                          </Type>
                         </Box>
                       </Flex>
                       {operation !== 'UNLOCK' && <TXLink txid={txid} />}
@@ -86,12 +92,13 @@ const StacksTxList = () => (
                         </Box>
                         <Box maxWidth="100%" overflow="auto">
                           <Link
-                            passHref
                             href={{
-                              pathName: '/blocks/single',
-                              query: { hash: historyEntry.block_id },
+                              pathname: '/blocks/single',
+                              query: { id: historyEntry.block_id },
                             }}
                             as={`/block/${historyEntry.block_id}`}
+                            passHref
+                            prefetch={false}
                           >
                             <Type fontFamily="brand" is="a">
                               {historyEntry.block_id}
@@ -106,12 +113,13 @@ const StacksTxList = () => (
                           </Box>
                           <Box maxWidth="100%" overflow="auto">
                             <Link
-                              passHref
                               href={{
-                                pathName: '/address/stacks',
+                                pathname: '/address/stacks',
                                 query: { address: historyEntry.sender },
                               }}
                               as={`/address/stacks/${historyEntry.sender}`}
+                              passHref
+                              prefetch={false}
                             >
                               <Type fontFamily="brand" is="a">
                                 {historyEntry.sender}
@@ -127,12 +135,13 @@ const StacksTxList = () => (
                           </Box>
                           <Box maxWidth="100%" overflow="auto">
                             <Link
-                              passHref
                               href={{
-                                pathName: '/address/stacks',
+                                pathname: '/address/stacks',
                                 query: { address: historyEntry.recipient },
                               }}
                               as={`/address/stacks/${historyEntry.recipient}`}
+                              passHref
+                              prefetch={false}
                             >
                               <Type fontFamily="brand" is="a">
                                 {historyEntry.recipient}

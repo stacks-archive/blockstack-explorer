@@ -1,10 +1,13 @@
 const express = require('express');
+const { handleSearchQuery } = require('./search-router');
 
+/**
+ * @param {import('next/dist/next-server/server/next-server').default} app - next.js server
+ */
 const makeAppController = (app) => {
   const renderAndCache = async (req, res, pagePath) => {
     try {
-      const html = await app.renderToHTML(req, res, pagePath, {});
-      app.sendHTML(req, res, html, req.method);
+      await app.render(req, res, pagePath, req.params);
     } catch (err) {
       app.renderError(err, req, res, pagePath);
     }
@@ -16,9 +19,23 @@ const makeAppController = (app) => {
    * Routes
    */
 
+  // Search query
+  // Note: express cannot statically route based on query strings so middleware must be used.
+  AppController.use(async (req, res, next) => {
+    if (req.query.search) {
+      await handleSearchQuery(app, req, res);
+    } else {
+      next();
+    }
+  });
+
   // Home
   AppController.get('/', async (req, res) => {
     await renderAndCache(req, res, '/');
+  });
+  // Search
+  AppController.get('/search/:search', async (req, res) => {
+    await renderAndCache(req, res, '/search');
   });
   // Names
   AppController.get('/names', async (req, res) => {
@@ -47,7 +64,7 @@ const makeAppController = (app) => {
   AppController.get('/nameops/:hash', async (req, res) => {
     await renderAndCache(req, res, '/blocks/single');
   });
-  AppController.get('/block/:hash', async (req, res) => {
+  AppController.get('/block/:id', async (req, res) => {
     await renderAndCache(req, res, '/blocks/single');
   });
   // Transaction: single

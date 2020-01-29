@@ -57,7 +57,7 @@ export default ({ transaction }) => (
                   </Box>
                   <Box maxWidth="100%" overflow="auto">
                     <Type fontFamily="brand">
-                      {moment(transaction.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                      {moment.unix(transaction.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
                     </Type>
                   </Box>
                 </Flex>
@@ -69,12 +69,13 @@ export default ({ transaction }) => (
                     <Box maxWidth="100%" overflow="auto">
                       <Type fontFamily="brand">
                         <Link
-                          passHref
                           href={{
-                            pathName: '/address/stacks',
+                            pathname: '/address/stacks',
                             query: { address: transaction.senderSTX },
                           }}
                           as={`/address/stacks/${transaction.senderSTX}`}
+                          passHref
+                          prefetch={false}
                         >
                           <Type fontFamily="brand" is="a">
                             {transaction.senderSTX}
@@ -92,14 +93,15 @@ export default ({ transaction }) => (
                     <Box maxWidth="100%" overflow="auto">
                       <Type fontFamily="brand">
                         <Link
-                          passHref
                           href={{
-                            pathName: '/address/stacks',
+                            pathname: '/address/stacks',
                             query: { address: transaction.recipientSTX },
                           }}
                           as={`/address/stacks/${transaction.recipientSTX}`}
+                          passHref
+                          prefetch={false}
                         >
-                          <Type fontFamily="brand" is="a">
+                          <Type fontFamily="brand" is="a" >
                             {transaction.recipientSTX}
                           </Type>
                         </Link>
@@ -115,12 +117,13 @@ export default ({ transaction }) => (
                     <Box maxWidth="100%" overflow="auto">
                       <Type fontFamily="brand">
                         <Link
-                          passHref
                           href={{
-                            pathName: '/names/single',
+                            pathname: '/names/single',
                             query: { name: transaction.history_id },
                           }}
                           as={`/name/${transaction.history_id}`}
+                          passHref
+                          prefetch={false}
                         >
                           <Type fontFamily="brand" is="a">
                             View Profile
@@ -139,12 +142,13 @@ export default ({ transaction }) => (
                       {transaction.subdomains.map((subdomain) => (
                         <Type fontFamily="brand" display="block">
                           <Link
-                            passHref
                             href={{
-                              pathName: '/names/single',
+                              pathname: '/names/single',
                               query: { name: subdomain },
                             }}
                             as={`/name/${subdomain}`}
+                            passHref
+                            prefetch={false}
                           >
                             <Type fontFamily="brand" is="a">
                               {subdomain}

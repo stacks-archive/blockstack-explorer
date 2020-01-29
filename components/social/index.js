@@ -62,7 +62,7 @@ const Social = ({ account: accounts, ...rest }) => {
   return itemsWithProofs && itemsWithProofs.length ? (
     <Flex {...rest}>
       {itemsWithProofs.map((item) => (
-        <SocialItem {...item} />
+        <SocialItem {...item} key={item.proofUrl} />
       ))}
     </Flex>
   ) : null;
@@ -79,7 +79,7 @@ const NonSocialItems = ({ wrapper, account: accounts, ...rest }) => {
         {itemsWithoutProofs.map(
           (item) =>
             item.identifier ? (
-              <Flex alignItems="center" justifyContent="space-between" pb={2}>
+              <Flex alignItems="center" justifyContent="space-between" pb={2} key={item.identifier}>
                 <SocialItem {...item} />
                 <Box p={1} overflow="auto" width={1} maxWidth="calc(100% - 38px)">
                   <Type fontFamily="brand" style={{ wordBreak: 'break-word' }}>

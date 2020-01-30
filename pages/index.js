@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import * as moment from 'moment';
 import { Flex, Type, Box, Button } from 'blockstack-ui';
 import { Card } from '@components/card';
 import { NamesList } from '@containers/lists/names';
@@ -35,13 +36,16 @@ class Home extends React.Component {
     const { nameOperationsOverTime, unlockedSupply, nameTotals } = this.props;
     const { names, subdomains } = nameTotals;
     const data = {
-      labels: nameOperationsOverTime.map((op) => op.x),
+      labels: nameOperationsOverTime.map((op) => moment.unix(op.x).toDate()),
       datasets: [
         {
           borderColor: 'rgba(0,255,255,1)',
           backgroundColor: 'rgba(0,255,255,0.2)',
           fill: true,
-          data: nameOperationsOverTime,
+          data: nameOperationsOverTime.map((op) => ({
+            ...op,
+            x: moment.unix(op.x).toDate(),
+          })),
         },
       ],
     };

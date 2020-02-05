@@ -132,7 +132,7 @@ export default ({ transaction }) => (
                     </Box>
                   </Flex>
                 )}
-                {transaction.subdomains && (
+                {transaction.subdomains && transaction.subdomains.length > 0 && (
                   <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
                     <Box minWidth="200px" pr={2}>
                       Subdomains

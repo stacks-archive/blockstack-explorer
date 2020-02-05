@@ -57,7 +57,10 @@ export default ({ transaction }) => (
                   </Box>
                   <Box maxWidth="100%" overflow="auto">
                     <Type fontFamily="brand">
-                      {moment.unix(transaction.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                      {moment
+                        .unix(transaction.timestamp)
+                        .utc()
+                        .format('DD MMMM YYYY HH:MM UTC')}
                     </Type>
                   </Box>
                 </Flex>

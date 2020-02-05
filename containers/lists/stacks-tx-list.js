@@ -81,7 +81,10 @@ const StacksTxList = () => (
                         </Box>
                         <Box maxWidth="100%" overflow="auto">
                           <Type fontFamily="brand">
-                            {moment.unix(historyEntry.blockTime).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                            {moment
+                              .unix(historyEntry.blockTime)
+                              .utc()
+                              .format('DD MMMM YYYY HH:MM UTC')}
                           </Type>
                         </Box>
                       </Flex>

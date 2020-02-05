@@ -20,6 +20,7 @@ export default ({ transaction }) => (
                 {transaction.opcode === 'NAME_UPDATE' && `Subdomain Registrations`}
                 {transaction.opcode === 'NAME_REGISTRATION' && `${transaction.history_id} Registration`}
                 {transaction.opcode === 'NAME_PREORDER' && `${transaction.history_id} Pre-order`}
+                {transaction.opcode === 'NAME_RENEWAL' && `${transaction.history_id} Renewal`}
               </List.Item.Title>
               <List.Item.Subtitle overflow="auto">{transaction.txid}</List.Item.Subtitle>
             </Box>

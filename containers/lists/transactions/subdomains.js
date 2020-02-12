@@ -60,7 +60,10 @@ const SubdomainsList = ({ subdomains, nextPage }) => (
                       </Box>
                       <Box maxWidth="100%" overflow="auto">
                         <Type fontFamily="brand">
-                          {moment.unix(subdomain.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                          {moment
+                            .unix(subdomain.timestamp)
+                            .utc()
+                            .format('DD MMMM YYYY HH:MM UTC')}
                         </Type>
                       </Box>
                     </Flex>

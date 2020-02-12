@@ -12,7 +12,7 @@ const TxList = ({ transactions, ...rest }) => (
       if (!txList) return null;
       return txList
         .sort((a, b) => a.time < b.time)
-        .map(({ txid, time, action, value }) => (
+        .map(({ txid, index, time, action, value }) => (
           <List.Item
             href={{
               pathname: '/transaction/single',
@@ -21,12 +21,12 @@ const TxList = ({ transactions, ...rest }) => (
               },
             }}
             as={`/tx/${txid}`}
-            key={txid}
+            key={txid + index}
           >
             <Box maxWidth="calc(100% - 105px)">
               <List.Item.Title overflow="auto">
                 {action && <span>{`${action} `}</span>}
-                {`${btcValue(value)} BTC`}
+                {`${btcValue(value)}`}
               </List.Item.Title>
               <List.Item.Subtitle overflow="auto">{txid}</List.Item.Subtitle>
             </Box>

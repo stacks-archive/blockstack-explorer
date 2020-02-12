@@ -160,9 +160,7 @@ class TransactionsPage extends React.Component {
                       <React.Fragment>
                         <List.Item onClick={toggle}>
                           <Box maxWidth="calc(100% - 105px)">
-                            <List.Item.Title>
-                              {stacksValue(parseInt(transaction.historyData.token_fee, 10))}
-                            </List.Item.Title>
+                            <List.Item.Title>{stacksValue(transaction.historyData.token_fee)}</List.Item.Title>
                             <List.Item.Subtitle overflow="auto">{transaction.txid}</List.Item.Subtitle>
                           </Box>
                           <Box>
@@ -198,7 +196,10 @@ class TransactionsPage extends React.Component {
                                 </Box>
                                 <Box maxWidth="100%" overflow="auto">
                                   <Type fontFamily="brand">
-                                    {moment.unix(transaction.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                                    {moment
+                                      .unix(transaction.timestamp)
+                                      .utc()
+                                      .format('DD MMMM YYYY HH:MM UTC')}
                                   </Type>
                                 </Box>
                               </Flex>

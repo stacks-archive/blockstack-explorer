@@ -3,7 +3,7 @@ import NProgress from 'nprogress';
 import { Flex, Box, Type, Button } from 'blockstack-ui';
 import { Card } from '@components/card';
 import { fetchName, fetchBlockstackApps } from '@common/lib/client/api';
-import { getProfileImage } from '@common';
+import { getProfileImage } from '@common/index';
 import { UserCard } from '@containers/cards/user';
 import { NameOperationsList } from '@containers/lists/single-name-operations';
 import { Page } from '@components/page';
@@ -15,15 +15,21 @@ const Empty = () => (
 );
 
 class NamesSinglePage extends React.Component {
-  static async getInitialProps({ query }) {
+  static async getInitialProps({ res, query }) {
     const { name } = query;
     const getName = () => (typeof name === 'undefined' ? {} : fetchName(name));
     // const [data, apps] = await Promise.all([getName]);
     const data = await getName();
+    const nameRecordsExist = data && data.nameRecord && data.nameRecord.length > 0;
+
+    if (!nameRecordsExist && res) {
+      res.statusCode = 404;
+    }
 
     const ogImage = getProfileImage(data);
 
     return {
+      nameRecordsExist,
       user: {
         id: name,
         ...data,
@@ -67,11 +73,8 @@ class NamesSinglePage extends React.Component {
   // }
 
   render() {
-    const { user } = this.props;
-    const nameExists = user;
-    if (!nameExists) return <Empty />;
-
-    if (!user.nameRecord) {
+    const { user, nameRecordsExist } = this.props;
+    if (!nameRecordsExist) {
       return (
         <Page key={user.id}>
           <Page.Main>

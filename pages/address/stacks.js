@@ -1,16 +1,23 @@
 import React from 'react';
 import { Flex, Box, Type } from 'blockstack-ui';
 import { Card } from '@components/card';
+import { Page } from '@components/page';
 import { fetchStacksAddress } from '@common/lib/client/api';
 import { StacksAddressCard } from '@containers/cards/stacks-address';
 import { StacksUnlockingChart } from '@containers/charts/stacks-unlocking-chart';
 import { StacksTxList } from '@containers/lists/stacks-tx-list';
 
 export default class StacksAddressPage extends React.Component {
-  static async getInitialProps({ query }) {
+  static async getInitialProps({ res, query }) {
     const addr = query.address;
     const address = await fetchStacksAddress(addr);
+    const historyExists = address && address.success !== false;
+    if (!historyExists && res) {
+      res.statusCode = 404;
+    }
     return {
+      addressQuery: addr,
+      historyExists,
       address,
       meta: {
         title: `Stacks Address ${addr}`,
@@ -19,7 +26,25 @@ export default class StacksAddressPage extends React.Component {
   }
 
   render() {
-    const { address } = this.props;
+    const { address, historyExists, addressQuery } = this.props;
+
+    if (!historyExists) {
+      return (
+        <Page key={addressQuery}>
+          <Page.Main>
+            <Card py={8} textAlign="center">
+              <Type>
+                No history was found for Stacks address
+                <Type fontWeight="bold" ml={1}>
+                  {addressQuery}
+                </Type>
+              </Type>
+            </Card>
+          </Page.Main>
+        </Page>
+      );
+    }
+
     return (
       <Flex alignItems="flex-start" p={5} flexDirection={['column', 'column', 'row']} flexGrow={1}>
         <Box mr={[0, 0, 5]} mb={[5, 5, 0]} width={['100%', '100%', '380px']}>

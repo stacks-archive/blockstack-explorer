@@ -16,11 +16,11 @@ export default ({ transaction }) => (
           <List.Item onClick={toggle}>
             <Box maxWidth="calc(100% - 105px)">
               <List.Item.Title>
-                {transaction.opcode === 'TOKEN_TRANSFER' &&
-                  stacksValue(parseInt(transaction.historyData.token_fee, 10))}
+                {transaction.opcode === 'TOKEN_TRANSFER' && stacksValue(transaction.historyData.token_fee)}
                 {transaction.opcode === 'NAME_UPDATE' && `Subdomain Registrations`}
                 {transaction.opcode === 'NAME_REGISTRATION' && `${transaction.history_id} Registration`}
                 {transaction.opcode === 'NAME_PREORDER' && `${transaction.history_id} Pre-order`}
+                {transaction.opcode === 'NAME_RENEWAL' && `${transaction.history_id} Renewal`}
               </List.Item.Title>
               <List.Item.Subtitle overflow="auto">{transaction.txid}</List.Item.Subtitle>
             </Box>
@@ -57,7 +57,10 @@ export default ({ transaction }) => (
                   </Box>
                   <Box maxWidth="100%" overflow="auto">
                     <Type fontFamily="brand">
-                      {moment.unix(transaction.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}
+                      {moment
+                        .unix(transaction.timestamp)
+                        .utc()
+                        .format('DD MMMM YYYY HH:MM UTC')}
                     </Type>
                   </Box>
                 </Flex>
@@ -133,7 +136,7 @@ export default ({ transaction }) => (
                     </Box>
                   </Flex>
                 )}
-                {transaction.subdomains && (
+                {transaction.subdomains && transaction.subdomains.length > 0 && (
                   <Flex alignItems="flex-start" fontSize={1} pb={4} px={4} width={1}>
                     <Box minWidth="200px" pr={2}>
                       Subdomains

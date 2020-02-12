@@ -7,12 +7,21 @@ import { stacksValue } from '@common/lib/units';
  * @param {string} url - the url you want to fetch
  */
 const getJSON = async (url) => {
-  try {
-    const request = await fetch(url);
-    return request.json();
-  } catch (e) {
-    throw Error(e);
+  const request = await fetch(url);
+  if (!request.ok) {
+    let responseText;
+    try {
+      responseText = await request.text();
+    } catch (error) {
+      // ignore
+    }
+    const error = new Error(`Error ${request.status} fetching ${url}`);
+    error.statusCode = request.status;
+    error.responseBody = responseText;
+    console.error(error);
+    throw error;
   }
+  return request.json();
 };
 
 /**

@@ -18,6 +18,9 @@ class SearchPage extends React.Component {
   static async getInitialProps({ res, req, query, err }) {
     const searchTerm = req && req.params ? req.params.search : query.search;
     const statusCode = res && res.statusCode;
+    if (res) {
+      res.setHeader('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
+    }
     return {
       ...query,
       statusCode,

@@ -51,6 +51,9 @@ const setup = async () => {
     server.use((req, res, _next) => {
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Access-Control-Allow-Headers', '*');
+      if (!dev) {
+        res.header('Cache-Control', 'max-age=600');
+      }
       _next();
     });
 

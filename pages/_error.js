@@ -8,9 +8,12 @@ export default class Error extends React.Component {
     if (err) {
       console.error(err);
     }
+    if (res) {
+      res.setHeader('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
+    }
     const getStatusCode = () => {
-      if (res) return res.statusCode;
-      if (err) return err.statusCode;
+      if (res && res.statusCode) return res.statusCode;
+      if (err && err.statusCode) return err.statusCode;
       return 500;
     };
     const statusCode = getStatusCode();
@@ -34,13 +37,6 @@ export default class Error extends React.Component {
               Sorry, something seems to have gone wrong.
             </Type>
           )}
-          <Type maxWidth="500px" lineHeight={1.6} textAlign="center" fontSize={3} display="block" my={2}>
-            This explorer only has visibility into confirmed transactions. Please use a BTC explorer like{' '}
-            <a href="https://www.blockchain.com/explorer" target="blank" rel="noopener noreferrer">
-              blockchain.com
-            </a>{' '}
-            to search for unconfirmed transactions.
-          </Type>
           <Box mt={5}>
             <Link href="/" passHref prefetch={false}>
               <Button is="a">Back Home</Button>

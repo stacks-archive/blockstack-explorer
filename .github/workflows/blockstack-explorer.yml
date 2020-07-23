@@ -1,15 +1,22 @@
 name: blockstack-explorer
-env:
-  IMAGE_NAME: blockstack/blockstack-explorer
-  DOCKER_REGISTRY: quay.io
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+    paths-ignore:
+      - '**/CHANGELOG.md'
+  pull_request:
 
 jobs:
   build-publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Notify slack start
         if: success()
@@ -28,7 +35,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SEMANTIC_RELEASE_PACKAGE: gh-actions-test
+          SEMANTIC_RELEASE_PACKAGE: ${{ github.workflow }}
         with:
           extra_plugins: |
             @semantic-release/changelog
@@ -38,10 +45,10 @@ jobs:
       - name: Build/Tag/Push Image
         uses: docker/build-push-action@v1
         with:
-          repository: ${{ env.IMAGE_NAME }}
+          repository: blockstack/${{ github.workflow }}
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_PASSWORD }}
-          registry: ${{ env.DOCKER_REGISTRY }}
+          registry: quay.io
           tags: ${{ steps.semantic.outputs.new_release_version }}
           tag_with_ref: true
           add_git_labels: true

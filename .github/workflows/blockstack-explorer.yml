@@ -26,7 +26,7 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2.5.0
         id: semantic
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SEMANTIC_RELEASE_PACKAGE: gh-actions-test
         with:

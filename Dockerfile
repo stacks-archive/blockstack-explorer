@@ -1,14 +1,12 @@
-FROM node:12.14.1-alpine as base
-WORKDIR /usr/src
-COPY package.json yarn.lock /usr/src/
-RUN yarn install
+FROM node:alpine
 COPY . .
-RUN yarn build && \
-    yarn --production
-
-FROM node:12.14.1-alpine
-WORKDIR /usr/src
-ENV NODE_ENV="production"
-COPY --from=base /usr/src .
+run apk --no-cache add --virtual native-deps \
+  g++ gcc libgcc libstdc++ linux-headers make python && \
+  npm install --quiet node-gyp -g &&\
+  yarn && \
+  apk del native-deps
+ENV NODE_ENV production
+RUN yarn build
+RUN yarn cache clean
 EXPOSE 3000
-CMD ["node", "./server"]
+CMD [ "yarn", "start" ]

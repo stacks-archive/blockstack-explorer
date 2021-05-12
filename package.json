@@ -47,7 +47,7 @@
     "bignumber.js": "^9.0.0",
     "blockstack-ui": "^0.0.40",
     "c32check": "^1.0.1",
-    "chart.js": "^2.7.3",
+    "chart.js": "^2.9.4",
     "connect": "^3.6.6",
     "cookie-session": "^2.0.0-beta.3",
     "cross-fetch": "^2.2.3",
